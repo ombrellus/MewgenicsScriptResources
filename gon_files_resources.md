@@ -43,7 +43,8 @@
 
 ## EFFECT STATUSES (effects {} or temporary_effects{} in abilities)
 
--- These statuses also work as passives fields
+>[!TIP]
+>These statuses also work as passives
 
 * `Shield X`
 * `Burn X`
@@ -60,6 +61,7 @@
 * `StrengthUp X`
 * `DamageUp X`
 * `TempDamageUp X`
+* `TempRangeUp X`
 * `LuckUp X`
 * `IntelligenceUp X`
 * `AlphaCat X`
@@ -79,6 +81,12 @@
 `RepairOnKill X` -- Repair used item by X when it kills  
 
 `HealthGain X` -- Heals the source by X  
+
+`BramblesOnHit 1` -- Spawns brambles on the targetted tile
+
+`SpawnBearTrap 1` -- Spawns a bear trap on the targetted tile
+
+`CastAgain X` -- ABILITY casts the ability another X times
 
 `ChangeTile Tile_Name` -- Changes the targeted tile to the selected tile  
 
@@ -132,6 +140,11 @@
 * `leg2 X`
 * `ear1 X`
 * `ear2 X`
+
+`Temporary {}` -- Gives a temporary status for a select amount of turns
+* `status Status_Name` -- Status name
+* `stacks X` -- Stacks amount of the temporary status
+* `turns X` -- Turns the status remains
 
 `ApplyToSource {}` -- Use to switch to source in targeted effects
 
