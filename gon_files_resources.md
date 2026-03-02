@@ -44,13 +44,16 @@
 ## EFFECT STATUSES (effects {} or temporary_effects{} in abilities)
 
 >[!TIP]
->These statuses also work as passives
+>These statuses also work as passives  
+>These statuses can be given as parameter a list of an integer and a float [X Y] where X = status stacks Y = chance of applying
 
 * `Shield X`
 * `Burn X`
 * `Bleed X`
 * `Weakness X`
 * `Leeches X`
+* `Madness X`
+* `SafeDoomed X`
 * `Thorns X`
 * `BleedThorns X`
 * `Brace X`
@@ -58,13 +61,16 @@
 * `Trample X`
 * `HealthRegenUp X`
 * `SpeedUp X`
+* `LuckUp X`
 * `StrengthUp X`
+* `IntelligenceUp X`
 * `DamageUp X`
 * `TempDamageUp X`
 * `TempRangeUp X`
-* `LuckUp X`
-* `IntelligenceUp X`
+* `TempInjuryImmunity X`
+* `InjuryImmunity X`
 * `AlphaCat X`
+* `AllStatsUp X`
 
 `Die 1` -- Target dies  
 
@@ -80,6 +86,12 @@
 
 `RepairOnKill X` -- Repair used item by X when it kills  
 
+`TakeExtraTurn X` -- Target takes X extra turn(s)
+
+`SpecificInjury Injury_Name` -- Gives the target a specific injury
+
+`RandomInjury X` -- Gives the target X random injury [TEST]
+
 `HealthGain X` -- Heals the source by X  
 
 `BramblesOnHit 1` -- Spawns brambles on the targetted tile
@@ -87,6 +99,8 @@
 `SpawnBearTrap 1` -- Spawns a bear trap on the targetted tile
 
 `CastAgain X` -- ABILITY casts the ability another X times
+
+`Revive 0-100%` -- Revive the target at a health percentage
 
 `ChangeTile Tile_Name` -- Changes the targeted tile to the selected tile  
 
@@ -190,7 +204,7 @@
 
 ---
 
-## X_is STUFF (only for abilities) 
+## X_is 
 
 > [!TIP]
 > "XIsWhatever" can also be used with curly braces, and inside of it X will become whatever it specifies [TEST].
