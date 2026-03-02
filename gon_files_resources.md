@@ -164,6 +164,7 @@
 `on_store X` -- Effect when item is returned home, (known effects: become_aux_coins, become_furniture, become_rare_furniture)
 
 `divine_shield X` -- gives X divine shields
+
 `shield X` -- gives X shield
 
 `aux` -- a number value stored per item (accessed by item_aux) [TEST]
