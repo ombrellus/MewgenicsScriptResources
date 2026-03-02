@@ -1,1 +1,1 @@
-# Mewgenics .script resources
+# Mewgenics script resources
