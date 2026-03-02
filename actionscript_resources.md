@@ -26,7 +26,7 @@ Creates a shockwave circle effect. Used by Pyrophina and Man in the Moon.
 `initCharacterPlaceholder(obj: MovieClip)`
 -- Marks this object as a character placeholder. (This is used in attacks that also animate the target visually, like Daddy Shark)
 
-A copy of the template cat most commonly used in animations can be found here.
+A copy of the template cat most commonly used in animations can be found [here](templates/actionscript/PlaceholderCat.fla).
 
 `StartAtRandomFrame()`
 -- Starts the Movieclip at a random frame.
