@@ -20,19 +20,23 @@
 * `create_temp_ability bool` -- i don't know
 
 `StatusEachTurnEnd {}` -- Gives the chosen statuses at the end of each turn
+
 `StatusOnBattleEnd {}` -- Gives the chosen statuses at the end of the battle
 
 * `even_if_dead bool` -- Give statuses even if the cat was downed
 
 `StatusOnBreak {}` -- ITEM gives specified statuses when the item breaks
+
 `PassiveIfWeaponIsUsable {}` -- ITEM executes the passives if the weapon is usable
 
 `SpawnOnBattleStart Entity_Name` -- Spawn an entity on battle start
 
 `IgnoreTiles 1` -- Ignore tiles
+
 `ExtraWeaponAttacks X` -- Gives X extra weapon attacks
 
 `ElementImmune Element_Name` -- Makes target immune to a certain element
+
 `StatusImmunity [Status_Name]` -- Makes target immune to a list of statuses
 
 ---
@@ -107,8 +111,8 @@
 `Metronome 1` -- Cast random spell [TEST if changing 1 does something]  
 
 `GainCoinsRange {}` -- Entity gains a random amount of coins in a range
-* `min X` --Minimum range
-* `max X` --Maximum range
+* `min X` -- Minimum range
+* `max X` -- Maximum range
 
 `CollectsPickupsWithAltEffects {}` -- Gives the source the specified statuses for every pickup collected by the ability, replaces the pickup effects
 
