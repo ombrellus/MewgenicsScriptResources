@@ -43,13 +43,16 @@
 
 ## EFFECT STATUSES (effects {} or temporary_effects{} in abilities)
 
->[!TIP]
+>[!NOTE]
 >These statuses also work as passives  
 >These statuses can be given as parameter a list of an integer and a float [X Y] where X = status stacks Y = chance of applying
 
 * `Shield X`
 * `Burn X`
 * `Bleed X`
+* `Stun X`  
+* `Slow X`
+* `Hex X`  
 * `Weakness X`
 * `Leeches X`
 * `Madness X`
@@ -60,6 +63,17 @@
 * `Cleave X`
 * `Trample X`
 * `HealthRegenUp X`
+* `TempInjuryImmunity X`
+* `InjuryImmunity X`
+* `AlphaCat X`
+* `Charmed X`
+* `DoubleCastSpell X`
+
+>[!NOTE]
+>These statuses can be given as parameters negative numbers for debuffs
+
+* `PermanentDexterity X`
+* `AllStatsUp X`
 * `SpeedUp X`
 * `LuckUp X`
 * `StrengthUp X`
@@ -67,10 +81,6 @@
 * `DamageUp X`
 * `TempDamageUp X`
 * `TempRangeUp X`
-* `TempInjuryImmunity X`
-* `InjuryImmunity X`
-* `AlphaCat X`
-* `AllStatsUp X`
 
 `Die 1` -- Target dies  
 
