@@ -22,7 +22,6 @@
 `StatusEachTurnEnd {}` -- Gives the chosen statuses at the end of each turn
 
 `StatusOnBattleEnd {}` -- Gives the chosen statuses at the end of the battle
-
 * `even_if_dead bool` -- Give statuses even if the cat was downed
 
 `StatusOnBreak {}` -- ITEM gives specified statuses when the item breaks
@@ -38,6 +37,30 @@
 `ElementImmune Element_Name` -- Makes target immune to a certain element
 
 `StatusImmunity [Status_Name]` -- Makes target immune to a list of statuses
+
+`EquipTemporaryItem Item_Name` -- Gives the target a temporary item that breaks after battle
+
+`StatusAlliesOnBattleStart {}` -- Gives the specified statuses to all allies on battle start
+
+`ConsumablesMeleeRange X` -- Increases by X the melee range of the target consumables
+
+`BonusFoodEachBattle X` -- Gives X bonus food when winning a battle
+
+`ConsumablesInfiniteRange 1` -- Gives the target infinite range on it's consumables
+
+`bonus_items [Item_Name]` -- PASSIVE Gives every item in the list when the passive is first taken
+
+`StatusEachTurnEndPerEnemyKill {}` -- Gives the specified statuses to the target at the end of the turn for every enemy it killed during the turn
+
+`StatusOnBattleEndIfKillThresholdMet {}` -- Gives the specified statuses to the target at the end of the battle if it killed X entities
+* `kills X` -- Kill count
+* `statuses {}` -- Specified statuses [TEST if not needed]
+
+`BouncyProjectiles {}` -- Makes the target projectiles bounce X times to a Y range
+* `max_bounces X` -- Max number of bouces the projectile can do
+* `max_range Y` -- Max range the bouncing can happen
+
+`AddStatusToFirstBasicAttack {}` -- The first basic attack of the target gives the specified statuses
 
 ---
 
@@ -64,6 +87,7 @@
 * `Trample X`
 * `HealthRegenUp X`
 * `TempInjuryImmunity X`
+* `TempManaCostReduction X`
 * `InjuryImmunity X`
 * `AlphaCat X`
 * `Charmed X`
@@ -84,11 +108,31 @@
 
 `Die 1` -- Target dies  
 
+`FullHeal 1` -- Heals the target to full
+
+`RandomMagicMissile X` -- Spawns X 1 damage sparks targetting the source's enemies
+
+`RandomMagicMissile {}` -- Spawns X sparks targetting the source's enemies
+* `stacks X` -- Number of sparks
+* `full_size bool` -- true = 3 damage, false = 1 damage
+
+`EvolveAbilityFromPool Class_Name` -- ABILITY Permanently changes the ability to one from the specified class pool [TEST if works with custom pools]
+
+`ObjectOnHitCharacter {}` -- Spawns X specified entities from the target
+* `stacks X` -- Number of entities
+* `object Entity_Name` -- Entity
+
+`FindItemFromPool Item_Pool_Name` -- Gives an item from a specified pool
+
 `RefreshMovePoints N` -- Refreshes N movement points  
 
 `TransformBasicAttack Ability_Name` -- Transform the target basic attack to a chosen ability  
 
 `TransformAbility Ability_Name` -- ABILITY Transform the current ability into a chosen ability  
+
+`OverrideDamage X` -- ABILITY overrides the ability's damage with X
+
+`CastAgain X` -- ABILITY casts the ability another X times
 
 `ForceUseAbility Ability_Name` -- Make target use a specific ability  
 
@@ -104,11 +148,13 @@
 
 `HealthGain X` -- Heals the source by X  
 
+`ManaGain X` -- Gives the source X mana
+
 `BramblesOnHit 1` -- Spawns brambles on the targetted tile
 
-`SpawnBearTrap 1` -- Spawns a bear trap on the targetted tile
+`FlowersOnHit 1` -- Spawns flowers on the targetted tile
 
-`CastAgain X` -- ABILITY casts the ability another X times
+`SpawnBearTrap 1` -- Spawns a bear trap on the targetted tile
 
 `Revive 0-100%` -- Revive the target at a health percentage
 
@@ -121,6 +167,8 @@
 `CurrentWeaponDamageUp X` -- Gives X damage up to the current held weapon  
 
 `ForceAttack 1` -- Forces target to attack  
+
+`CharmedForceAttack 1` -- Makes the target automatically attack targetting the source's enemies
 
 `RandomStatUp X` -- Gives X random stats up  
 
