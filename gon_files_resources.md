@@ -40,6 +40,8 @@
 
 `EquipTemporaryItem Item_Name` -- Gives the target a temporary item that breaks after battle
 
+`EquipPermanentItem Item_Name` -- Gives the target an item that stays after the battle
+
 `StatusAlliesOnBattleStart {}` -- Gives the specified statuses to all allies on battle start
 
 `ConsumablesMeleeRange X` -- Increases by X the melee range of the target consumables
