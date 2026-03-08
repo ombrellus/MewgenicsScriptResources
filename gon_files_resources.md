@@ -34,7 +34,7 @@
 
 `ExtraWeaponAttacks X` -- Gives X extra weapon attacks
 
-`ElementImmune Element_Name` -- Makes target immune to a certain element
+`ElementImmune Element_Name` -- Makes target immune to a certain [Element](enums.md#elements)
 
 `StatusImmunity [Status_Name]` -- Makes target immune to a list of statuses
 
@@ -98,15 +98,14 @@
 >[!NOTE]
 >These statuses can be given as parameters negative numbers for debuffs
 
-* `PermanentDexterity X`
+* `PermanentSTATNAMELONG X` [(Stats list)](enums.md#stats)
+* `STATNAMELONGUp X` [(Stats list)](enums.md#stats)
+* `TempSTATNAMELONGUp X` [(Stats list)](enums.md#stats)
 * `AllStatsUp X`
-* `SpeedUp X`
-* `LuckUp X`
-* `StrengthUp X`
-* `IntelligenceUp X`
 * `DamageUp X`
-* `TempDamageUp X`
+* `RangeUp X`
 * `TempRangeUp X`
+* `TempDamageUp X`
 
 `Die 1` -- Target dies  
 
@@ -115,6 +114,8 @@
 `SpawnFlames 1` -- Spawns fire
 
 `RandomMagicMissile X` -- Spawns X 1 damage sparks targetting the source's enemies
+
+`ExtraBasicAttacks_Status X` -- Gives X extra basic attacks to the target
 
 `RandomMagicMissile {}` -- Spawns X sparks targetting the source's enemies
 * `stacks X` -- Number of sparks
@@ -385,7 +386,7 @@
 
 `Conditional_AffectedByElement {}` -- Execute if target is affected by an element
 
-* `element Element_Name` -- Element name
+* `element Element_Name` -- [Element](enums.md#elements) name
 
 `Conditional_FormulaIsPositive {}` -- Execute if the formula given is positive
 
