@@ -138,7 +138,7 @@
 
 `cantrip bool` -- Ability castable only once per turn
 
-`prime X` -- Turns it takes to cast
+`prime 1` -- (AI) Ability is cast next turn
 
 `coins X` -- Coin cost of the ability
 
