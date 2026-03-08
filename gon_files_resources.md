@@ -112,6 +112,8 @@
 
 `FullHeal 1` -- Heals the target to full
 
+`SpawnFlames 1` -- Spawns fire
+
 `RandomMagicMissile X` -- Spawns X 1 damage sparks targetting the source's enemies
 
 `RandomMagicMissile {}` -- Spawns X sparks targetting the source's enemies
