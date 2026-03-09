@@ -11,6 +11,7 @@
 * `variant_of AbilityName` -- Used for upgraded abilities, the upgraded ability needs the same name with a 2 after it (AbilityName2), will inherit configurations
 * `tags [Tag_Name]` -- List of ability tags
 * `chain_ability Ability_Name` -- Ability casted right after this one
+* `ai_ability Ability_Name` -- (AI) Another ability that is used to calculate the ai chance for this one
 * `meta {}` -- Contains the information about the ability
 * `graphics {}` -- Contains the graphical properties of the ability
 * `cost {}` -- Containts the costs and requirements of the ability
@@ -150,6 +151,8 @@
 
 `requires_destructible_weapon bool` -- If this ability requires a destructible weapon to cast
 
+`requires_attack_damage_threshold X` -- If this ability requires the basic attack damage to be over X
+
 `must_have_weapon bool` -- If this ability requires a weapon to cast
 
 `cant_cast bool/Formula` -- If this ability can't be cast
@@ -193,6 +196,8 @@
 `can_multihit bool` -- If the ability can hit multiple times
 
 `multihit X` -- The ability hits X times
+
+`stagger_multihit_targets bool` -- [TEST]
 
 `prioritize_face_camera bool` -- (AI) if the character should prioritize facing the camera when casting this ability
 

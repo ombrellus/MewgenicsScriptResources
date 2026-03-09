@@ -48,6 +48,7 @@ must_match_current_orientation
 none  
 must_be_empty  
 exclude_blocking  
+exclude_direct_target
 familiars_only  
 enemies_only  
 character_must_be_affected_by_tile_with_element  

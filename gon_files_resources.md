@@ -64,6 +64,37 @@
 
 `AddStatusToFirstBasicAttack {}` -- The first basic attack of the target gives the specified statuses
 
+`StatusDamagers {}` -- Gives the specified statuses to any entity that attacks the source
+
+`AbilityReaction {}` -- Uses a specified ability when the source is hit (ImmediateAbilityReaction can be used for enemies)
+* `ability [Ability_Name]` -- Specified ability, if given a list it will choose one (Can also be used as "AbilityReaction [Ability_Name]")
+* `backstabs_only bool` -- If it reacts only when backstabbed
+* `ability_damage_only bool` -- If it reacts only when hit with a damaging attack
+* `match_knockback_direction bool` -- If the reaction ability follows the direction of the knockback given by the damaging attack
+* `cancel_knockback bool` -- If it cancels the knockback given by the damaging attack
+* `even_on_0_damage_if_knockback bool` -- If it reacts even when the damaging attack deals no damage, but gives knockback
+* `even_if_stunned bool` -- If it reacts even when stunned
+* `target_furthest_valid bool` -- If the reaction ability targets the furthest valid target
+* `only_when_not_your_turn bool` -- If it reacts only when it's not the source's turn
+* `verify_target bool` -- If it checks if the target exists? [TEST]
+* `ranged_only bool` -- If it reacts only when the damaging attack is a ranged attack
+* `even_if_blocked bool` -- If it reacts even if the damaging attack gets blocked
+* `enemies_only bool` -- If it reacts only when the damaging attack comes from an enemy
+* `damage_threshold X` -- It reacts only when X damage is dealt
+* `health_threshold X` -- It reacts only when below X health
+* `buddy_damage_only bool` -- It reacts only when the damaging attack comes from a buddy
+* `chance X%` -- X chance of reacting
+
+`CaveFamilyEnrage {}` -- Cast ability when X or less other entities with tag are alive [TEST]
+* `ability Ability_Name` -- Ability to cast
+* `tag Tag_Name` -- Tag
+* `count X` -- Entity count
+
+`LateBloomer {}` -- Takes any status as optional parameter to give after X rounds 
+* `stacks X` -- Number of rounds
+
+`SizeScale 0.0-1.0` -- Changes the target's size scale
+
 ---
 
 ## EFFECT STATUSES (effects {} or temporary_effects{} in abilities)
@@ -77,6 +108,8 @@
 * `Bleed X`
 * `Stun X`  
 * `Slow X`
+* `Immobile X`
+* `Freeze X`
 * `Hex X`  
 * `Weakness X`
 * `Leeches X`
@@ -94,6 +127,7 @@
 * `AlphaCat X`
 * `Charmed X`
 * `DoubleCastSpell X`
+* `DodgeChance_Status X%`
 
 >[!NOTE]
 >These statuses can be given as parameters negative numbers for debuffs
@@ -103,15 +137,20 @@
 * `TempSTATNAMELONGUp X` [(Stats list)](enums.md#stats)
 * `AllStatsUp X`
 * `DamageUp X`
+* `SpellDamageUp X`
 * `RangeUp X`
+* `CritChanceUp X`
 * `TempRangeUp X`
 * `TempDamageUp X`
+* `TempSpellDamageUp X`
 
 `Die 1` -- Target dies  
 
 `FullHeal 1` -- Heals the target to full
 
 `SpawnFlames 1` -- Spawns fire
+
+`SpawnCreep 1` -- Spawns creep tile
 
 `RandomMagicMissile X` -- Spawns X 1 damage sparks targetting the source's enemies
 
@@ -222,8 +261,65 @@
 * `status Status_Name` -- Status name
 * `stacks X` -- Stacks amount of the temporary status
 * `turns X` -- Turns the status remains
+* `expires_on_begin_turn bool` -- If it expires as soon as the next target turn begine
+* `expires_on_end_turn bool` -- If it expires as soon as the target turn ends
 
 `ApplyToSource {}` -- Use to switch to source in targeted effects
+
+`Imprison Entity_Name` -- Creates specified entities around the target
+
+`Cleanse 0 or 1` -- Removes all debuffs on the target (1 makes it so it also gives 1 holy shield for every type of debuff)
+
+`NextAttackBonusRange X` -- Gives next attack bonus range
+
+`ManaSteal X` -- Source steals X mana from the target
+
+`ReduceManaCost X` -- Reduces mana cost by X
+
+`ReduceManaCostExcludeBrainstorm X` -- Reduces mana cost by X excluding the brainstorm ability [TEST]
+
+`NextAttackSpecialCrit {}` -- Gamble ability stuff [TEST]
+* `extra_coins_per_stack X` -- Gives X extra coins
+* `crit_multiplier_bonus X` -- Gives X extra mult critical chance for the next attack
+* `luck_increase X` -- [TEST if it's not only luck]
+
+`FaceAway 1` -- Makes the target face away
+
+`LeaveBehind {}` -- Spawns behind the specified entity
+* `object Entity_Name` -- Entity
+        
+`SafeDie 1` -- Dies without injury
+
+`ReviveNextRound {}` -- Revives the target after Y rounds (takes any status as optional parameter for when the entity is revived)
+* `stacks Y` -- Rounds it takes to revive (Can also be used like "ReviveNextRound Y")
+* `revive_health X%` -- Health the target is revived with
+
+`DontHealEnemies 1` -- Prevents the damage instance heal from applying to enemies
+
+`Displace X` -- Displaces the target by X tiles
+
+`NextActionLuckUp X` -- [TEST if it's not only LuckUp]
+
+`RefreshItemAbilities X` -- Refreshes the target's item abilities
+
+`PoolMetronome {}` -- Casts a random specified ability
+* `pool [Ability_Name]` -- Ability list
+            
+`EndTurn 1` -- Ends the turn
+
+`DoDamage {}` -- Creates a [damage instance](ability_fields.md#damage_instance--self_damage) targetting the target
+
+`Tangled {}` -- Tangles the target
+* `stacks X` -- Tangled amount (Can also be used like "Tangled X")
+* `alt_art MotionClip_Name` -- Motion clip to replac ethe default tangled art
+
+`KnockUpAndAway {}` -- Knocks the target away throwing it in the air [TEST]
+* `stacks X` -- [TEST]
+* `distance X` -- Knockback distance
+* `displace true` -- [TEST]
+* `self_damage false` -- [TEST]
+
+`AlliesTakeExtraTurn 1` -- Makes the take an extra turn if it's an ally
 
 ---
 
@@ -357,6 +453,8 @@
 `Conditional_Boss {}` -- Execute if target is a boss
 
 `Conditional_NotBoss {}` -- Execute if target is NOT a boss
+
+`Conditional_BossOrBig {}` -- Executes if the target is either a boss or big
 
 `Conditional_Corpse {}` -- Execute if target is a corpse
 
