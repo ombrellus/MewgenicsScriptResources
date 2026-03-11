@@ -139,6 +139,8 @@
 
 `cantrip bool` -- Ability castable only once per turn
 
+`cantrip_group Group_Name` -- Ability will share it's used state with every other ability in the group
+
 `prime 1` -- (AI) Ability is cast next turn
 
 `coins X` -- Coin cost of the ability
@@ -155,6 +157,8 @@
 
 `must_have_weapon bool` -- If this ability requires a weapon to cast
 
+`must_not_be_consuming bool` -- If thi ability requires not having the consuming status
+
 `cant_cast bool/Formula` -- If this ability can't be cast
 
 `allow_offmap_casts bool` -- If this ability can be cast when the character is not on the map
@@ -165,7 +169,7 @@
 
 ## TARGET
 
-`target_mode Mode_Name` -- How the target tile(s) can be selected [tile, direction, random_tile, none = No selection]
+`target_mode Mode_Name` -- How the target tile(s) can be selected [tile, direction, direction8, random_tile, none = No selection]
 
 `range_mode Mode_Name` -- [standard, square, water_move, groud_move, cross, 8cross, custom, none]
 
@@ -190,6 +194,10 @@
 `aoe_considers_character_size bool` -- If the aoe size considers the target's size
 
 `aoe_excludes_self bool` -- If the ability aoe should exclude the source
+
+`aoe_symmetry Symmetry_Type` -- How symmetry is handled for the aoe [none, four_way, eight_way]
+
+`range_symmetry Symmetry_Type` -- How symmetry is handled for the range [none, four_way, eight_way]
 
 `max_targets X` -- Target only a Maximum of X tiles
 
@@ -219,6 +227,8 @@
 
 `delayed_trigger bool` -- If the ability is casted next turn
 
+`shuffle_tile_order bool `-- If the ability shuffles the order the tiles are targetted
+
 `toss_direction_restriction Toss_Restriction_Name` -- Restriction that need to be followed when tossing an entity [forward, backwards]
 
 `aoe_restrictions [AOE_Restriction_Name]` -- [AOE Restrictions](enums.md#aoe-restrictions) that need to be followed for a tile to be accepted in the aoe
@@ -230,6 +240,8 @@
 `target_requires_element Element_Name` -- (MUST_HAVE_ELEMENT) [Element](enums.md#elements) check
 
 `X_is Variable_Name` -- X becomes a chosen [variable](enums.md#x_is), and can be used in expressions in other parts of the ability
+
+`N Y` -- N becomes Y, used for X_is [random_0_to_N](enums.md#x_is)
 
 ---
 

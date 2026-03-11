@@ -24,11 +24,13 @@
 `StatusOnBattleEnd {}` -- Gives the chosen statuses at the end of the battle
 * `even_if_dead bool` -- Give statuses even if the cat was downed
 
-`StatusOnBreak {}` -- ITEM gives specified statuses when the item breaks
+`StatusOnBreak {}` -- (ITEM) gives specified statuses when the item breaks
 
-`PassiveIfWeaponIsUsable {}` -- ITEM executes the passives if the weapon is usable
+`PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
 
-`SpawnOnBattleStart Entity_Name` -- Spawn an entity on battle start
+`SpawnOnBattleStart {}` -- Spawns X entities on battle start
+* `object Entity_Name` -- Entity (Can also be used as `SpawnOnBattleStart Entity_Name`)
+* `number X` -- Number of entities
 
 `IgnoreTiles 1` -- Ignore tiles
 
@@ -95,6 +97,37 @@
 
 `SizeScale 0.0-1.0` -- Changes the target's size scale
 
+`SizeScalePercent X%` -- Changes the target's size scale by percentage
+
+`PassiveLevelUpAtCombatEnd X` -- Levels up spell by X when a battle ends
+
+`PassiveLevelScaledStatus {}` -- Applies the specified statuses, inside the block "X" is the level of the passive
+
+`PassiveWhenTheAlpha {}` -- Applies the specific statuses when the target is the alpha
+
+`DeathRattle {}` -- When the target dies uses the specified ability
+* `ability Ability_Name` -- Ability (Can also be used as `DeathRattle Ability_Name`)
+* `pop_corpse bool` -- If the corpse should be destroyed
+* `is_dying_animation bool` -- If the animation is the dying animation
+* `immediate bool` -- If it should be done instantly upon death
+* `cancel_knockback bool` -- If it cancels received knockback
+* `target_killer bool` -- If the target should target the killer if possible
+* `must_target_killer bool` -- If the target must target the killer
+
+`DeathRattleRevive {}` -- When the target dies it revives and uses the specified ability
+* `ability Ability_Name` -- Ability (Can also be used as `DeathRattleRevive Ability_Name`)
+* `even_if_stunned bool` -- If it can be used when stunned
+
+`CritsApplyStatus {}` -- When an attack crits apply the specified statuses
+
+`AddMovement X` -- Adds X tiles to the movement range
+
+`ReplaceBasicAttackWhenCastable Ability_Name` -- Replaces the basic attack with the specified ability when the ability is castable
+
+`StatusOnGainCoins {}` -- Gives the specified statuses when gaining coins
+
+`AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
+
 ---
 
 ## EFFECT STATUSES (effects {} or temporary_effects{} in abilities)
@@ -115,6 +148,7 @@
 * `Leeches X`
 * `Madness X`
 * `SafeDoomed X`
+* `Bruise X`
 * `Thorns X`
 * `BleedThorns X`
 * `Brace X`
@@ -160,11 +194,13 @@
 * `stacks X` -- Number of sparks
 * `full_size bool` -- true = 3 damage, false = 1 damage
 
-`EvolveAbilityFromPool Class_Name` -- ABILITY Permanently changes the ability to one from the specified class pool [TEST if works with custom pools]
+`EvolveAbilityFromPool {}` -- ABILITY Permanently changes the ability to one from the specified class pool [TEST if works with custom pools]
+* `pool Class_Name` -- Class pool (Can also be just `Class` to use the target class) (Can also be used as `EvolveabilityFromPool Class_Name`)
+* `upgraded bool` -- If it's the upgraded version
 
 `ObjectOnHitCharacter {}` -- Spawns X specified entities from the target
+* `object Entity_Name` -- Entity (Can be used as `ObjectOnHitCharacter Entity_Name`)
 * `stacks X` -- Number of entities
-* `object Entity_Name` -- Entity
 
 `FindItemFromPool Item_Pool_Name` -- Gives an item from a specified pool
 
@@ -215,6 +251,8 @@
 `CharmedForceAttack 1` -- Makes the target automatically attack targetting the source's enemies
 
 `RandomStatUp X` -- Gives X random stats up  
+
+`RandomMutation X` -- Gives X random mutations
 
 `UndoDamage X` -- Undo last X damages taken by the target [TEST better]  
 
@@ -290,9 +328,9 @@
         
 `SafeDie 1` -- Dies without injury
 
-`ReviveNextRound {}` -- Revives the target after Y rounds (takes any status as optional parameter for when the entity is revived)
-* `stacks Y` -- Rounds it takes to revive (Can also be used like "ReviveNextRound Y")
-* `revive_health X%` -- Health the target is revived with
+`ReviveNextRound {}` -- Revives the target after X rounds (takes any status as optional parameter for when the entity is revived)
+* `stacks X` -- Rounds it takes to revive (Can also be used as `ReviveNextRound X`)
+* `revive_health Y%` -- Health the target is revived with
 
 `DontHealEnemies 1` -- Prevents the damage instance heal from applying to enemies
 
@@ -320,6 +358,37 @@
 * `self_damage false` -- [TEST]
 
 `AlliesTakeExtraTurn 1` -- Makes the take an extra turn if it's an ally
+
+`RandomStatusFromPool {}` -- Gives a random specified status effect
+
+`ScatterCoins {}` -- Scatters X coins around
+* `stacks X`-- Amount of coins
+* `stackable bool` -- If they can stack together
+
+`EnableWeather Weather_Name` -- Starts a specified weather
+
+`DoDistortionRing {}` -- Creates a visual distorted ring effect (Like gravity slam/zaratana) 
+* `speed X`
+* `intensity X`
+* `radius X`
+
+`DoScreenShake {}` -- Creates a screen shake effect
+* `time X`
+* `intensity X`
+
+`SetHealth X%` -- Sets the target's health to X%
+
+`FormChange Form_Name` -- Changes the target's form to Form_Name
+
+`RemoveMovePoints 1` -- Removes a movement point from the target
+
+`RemoveActPoints 1` -- Removes an act point from the target 
+
+`RefreshMovePoints 1` -- Refreshes a movement point for the target
+
+`RefreshActPoints 1` -- Refreshes an act point for the target
+
+`RefreshMovePointsIfHit 1` -- Refreshes a movement point for the target if the damage instance hits
 
 ---
 
@@ -473,7 +542,6 @@
 `Conditional_Buddy {}` -- Execute if target is the source's buddy (Esempio sta in Guillotina.gon)
 
 `Conditional_InForm {}` -- Execute if target is in a specific form
-
 * `form Form_Name` -- Form name
 
 `Conditional_Object {}` -- Execute if target is an object

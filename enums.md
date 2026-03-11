@@ -43,6 +43,7 @@ must_have_line_of_sight
 must_be_moveable_ignore_wall  
 must_have_destructible_corpse  
 must_match_current_orientation  
+diagonal_only  
 
 ## AOE RESTRICTIONS
 none  
@@ -66,6 +67,7 @@ bonus_ranged_damage
 bonus_meele_range  
 bonus_meele_damage  
 bonus_basic_spell_damage  
+level  
 
 ## STATS
 str (long: Strength)  
