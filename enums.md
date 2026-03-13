@@ -78,6 +78,13 @@ con (long: Constitution)
 dex (long: Dexterity)  
 lck (long: Luck)  
 
+## ITEM SLOTS
+weapon  
+head  
+neck  
+face  
+trinket  
+
 ## X_is
 custom  
 basic_attack_damage  

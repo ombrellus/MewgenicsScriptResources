@@ -1,4 +1,4 @@
-## PASSIVE ACTIONS (bonus_passives {} in abilities)
+## PASSIVE ACTIONS
 
 `OverrideBasicAttack Ability_Name` -- Replaces the basic attack of the entity with the chosen ability
 
@@ -51,8 +51,6 @@
 `BonusFoodEachBattle X` -- Gives X bonus food when winning a battle
 
 `ConsumablesInfiniteRange 1` -- Gives the target infinite range on it's consumables
-
-`bonus_items [Item_Name]` -- PASSIVE Gives every item in the list when the passive is first taken
 
 `StatusEachTurnEndPerEnemyKill {}` -- Gives the specified statuses to the target at the end of the turn for every enemy it killed during the turn
 
@@ -126,11 +124,15 @@
 
 `StatusOnGainCoins {}` -- Gives the specified statuses when gaining coins
 
+`DisableAbilitiesWithTag Tag_Name` -- Disables all the target's abilities that have a specified tag
+
 `AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
+
+`HouseFoodRequirementMultiplier X` -- Changes how much food is needed for the target's when a day passes [TEST if things other than 0 work]
 
 ---
 
-## EFFECT STATUSES (effects {} or temporary_effects{} in abilities)
+## EFFECT STATUSES
 
 >[!NOTE]
 >These statuses also work as passives  
@@ -281,7 +283,7 @@
 `AddWeaponAux X` -- ITEM Used in weapons' abilities, add X to the weapon aux
 
 `SetItemAux {}` -- ITEM Sets the aux value of an item in a specific item slot
-* `slot Item_Slot` -- [weapon, head, neck, face, trinket]
+* `slot Item_Slot` -- [Item slot](enums.md#item-slots)
 * `value X` -- value to set
 
 `CatPartsTransform {}` -- Transforms a cat entity parts into specific parts via their id
@@ -396,7 +398,7 @@
 
 `frame N` -- Animation frame of the item graphic [TEST] :/  
 
-`Kind Item_Slot` -- In what slot an item goes [weapon, head, neck, face, trinket]  
+`Kind Item_Slot` -- In what [slot](enums.md#item-slots) an item goes
 
 `rarity Rarity_Name` -- Rarity of an item (do not include for common) [uncommon, rare, very_rare, consumable_uncommon, consumable_rare, consumable_very_rare]  
 

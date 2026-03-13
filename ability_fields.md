@@ -37,9 +37,9 @@
 
 `class Class_Name` -- Cat collar class of the ability
 
-`name "ABILITY_ABILITYNAME_NAME"` -- Name of the abilty, can be directly written as a string or point to the translation file
+`name "ABILITYNAME"` -- Name of the abilty, can be directly written as a string or point to the translation file
 
-`desc "ABILITY_ABILITYNAME_DESC"` -- Description of the abilty, can be directly written as a string or point to the translation file
+`desc "ABILITYDESC"` -- Description of the abilty, can be directly written as a string or point to the translation file
 
 `icon_shell_frame Frame_Name` -- [attack, big_damage, damage]
 
@@ -204,6 +204,8 @@
 `can_multihit bool` -- If the ability can hit multiple times
 
 `multihit X` -- The ability hits X times
+
+`shotgun_mode bool` -- If the ability behaves like the shotgun item (projectiles come from you and hit the first thing they come in contact with)
 
 `stagger_multihit_targets bool` -- [TEST]
 
