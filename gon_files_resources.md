@@ -424,7 +424,7 @@
 
 `RefreshMovePointsIfHit 1` -- Refreshes a movement point for the target if the damage instance hits
 
-`craft {}` -- Creates an item in a specific slot from a specific pool
+`Craft {}` -- Creates an item in a specific slot from a specific pool
 * `pool Item_Pool` -- The item pool 
 * `slot Item_Slot` -- [Item slot](enums#item-slots)
 * `works_with_tech bool` -- If the crafting is influenced by tech (searches Item_Pool_X, where X is the amount of tech)
