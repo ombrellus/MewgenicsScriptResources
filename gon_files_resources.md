@@ -2,22 +2,13 @@
 
 `OverrideBasicAttack Ability_Name` -- Replaces the basic attack of the entity with the chosen ability
 
-`AddSelfStatusToBasicAttack {}` -- When the source uses it's basic attack, give itself the chosen statuses
+`AddSelfStatusToBasicAttack {}` -- When using the basic attack give the source the chosen statuses
 
 `AddStatusToBasicAttack {}` -- When using the basic attack give the target the chosen statuses
 
+`AddStatusToAllDamage {}` -- When dealing any damage give the target the chosen statuses
+
 `ChanceToRevive 0-100` -- Chance to revive at the end of the round
-
-`SpawnThingOnDamage {}` -- Spawn objects/entities whenever the source takes damage
-* `object Entity_Name` -- Entity name
-* `number X` -- Number of entities
-* `chance 1.0-0.0` -- chance of spawning
-
-`MovementReaction {}` -- Uses a specific ability when someone moves near the target
-* `ability Ability_Name` -- Ability Name
-* `enemies_only bool` -- If it reacts to only enemies
-* `on_self_move_too bool` -- If it reacts when you move as well
-* `create_temp_ability bool` -- i don't know
 
 `StatusEachTurnEnd {}` -- Gives the chosen statuses at the end of each turn
 
@@ -26,11 +17,34 @@
 
 `StatusOnBreak {}` -- (ITEM) gives specified statuses when the item breaks
 
+`StatusOnBattleEndIfKillThresholdMet {}` -- Gives the specified statuses to the target at the end of the battle if it killed X entities
+* `kills X` -- Kill count
+* `statuses {}` -- Specified statuses [TEST if not needed]
+
+`StatusOnGainCoins {}` -- Gives the specified statuses when gaining coins
+
+`StatusOnEndMove {}` -- Gives the specified statuses when finishing to move
+
+`StatusOnTookDamage {}` -- Gives the specified statuses when getting damaged
+
+`ScaledStatusOnHolyShieldBlock {}` -- Gives the specified statuses for every amount of damage received that break an holy shield
+
 `PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
+
+`PassiveLevelUpAtCombatEnd X` -- Levels up spell by X when a battle ends
+
+`PassiveLevelScaledStatus {}` -- Applies the specified statuses, inside the block "X" is the level of the passive
+
+`PassiveWhenTheAlpha {}` -- Applies the specific statuses when the target is the alpha
 
 `SpawnOnBattleStart {}` -- Spawns X entities on battle start
 * `object Entity_Name` -- Entity (Can also be used as `SpawnOnBattleStart Entity_Name`)
 * `number X` -- Number of entities
+
+`SpawnThingOnDamage {}` -- Spawn objects/entities whenever the source takes damage
+* `object Entity_Name` -- Entity name
+* `number X` -- Number of entities
+* `chance 1.0-0.0` -- chance of spawning
 
 `IgnoreTiles 1` -- Ignore tiles
 
@@ -54,10 +68,6 @@
 
 `StatusEachTurnEndPerEnemyKill {}` -- Gives the specified statuses to the target at the end of the turn for every enemy it killed during the turn
 
-`StatusOnBattleEndIfKillThresholdMet {}` -- Gives the specified statuses to the target at the end of the battle if it killed X entities
-* `kills X` -- Kill count
-* `statuses {}` -- Specified statuses [TEST if not needed]
-
 `BouncyProjectiles {}` -- Makes the target projectiles bounce X times to a Y range
 * `max_bounces X` -- Max number of bouces the projectile can do
 * `max_range Y` -- Max range the bouncing can happen
@@ -66,8 +76,14 @@
 
 `StatusDamagers {}` -- Gives the specified statuses to any entity that attacks the source
 
+`MovementReaction {}` -- Uses a specific ability when someone moves near the target
+* `ability Ability_Name` -- Ability Name
+* `enemies_only bool` -- If it reacts to only enemies
+* `on_self_move_too bool` -- If it reacts when you move as well
+* `create_temp_ability bool` -- i don't know
+
 `AbilityReaction {}` -- Uses a specified ability when the source is hit (ImmediateAbilityReaction can be used for enemies)
-* `ability [Ability_Name]` -- Specified ability, if given a list it will choose one (Can also be used as "AbilityReaction [Ability_Name]")
+* `ability [Ability_Name]` -- Specified ability, if given a list it will choose one (Can also be used as `AbilityReaction [Ability_Name]`)
 * `backstabs_only bool` -- If it reacts only when backstabbed
 * `ability_damage_only bool` -- If it reacts only when hit with a damaging attack
 * `match_knockback_direction bool` -- If the reaction ability follows the direction of the knockback given by the damaging attack
@@ -85,24 +101,6 @@
 * `buddy_damage_only bool` -- It reacts only when the damaging attack comes from a buddy
 * `chance X%` -- X chance of reacting
 
-`CaveFamilyEnrage {}` -- Cast ability when X or less other entities with tag are alive [TEST]
-* `ability Ability_Name` -- Ability to cast
-* `tag Tag_Name` -- Tag
-* `count X` -- Entity count
-
-`LateBloomer {}` -- Takes any status as optional parameter to give after X rounds 
-* `stacks X` -- Number of rounds
-
-`SizeScale 0.0-1.0` -- Changes the target's size scale
-
-`SizeScalePercent X%` -- Changes the target's size scale by percentage
-
-`PassiveLevelUpAtCombatEnd X` -- Levels up spell by X when a battle ends
-
-`PassiveLevelScaledStatus {}` -- Applies the specified statuses, inside the block "X" is the level of the passive
-
-`PassiveWhenTheAlpha {}` -- Applies the specific statuses when the target is the alpha
-
 `DeathRattle {}` -- When the target dies uses the specified ability
 * `ability Ability_Name` -- Ability (Can also be used as `DeathRattle Ability_Name`)
 * `pop_corpse bool` -- If the corpse should be destroyed
@@ -116,19 +114,42 @@
 * `ability Ability_Name` -- Ability (Can also be used as `DeathRattleRevive Ability_Name`)
 * `even_if_stunned bool` -- If it can be used when stunned
 
+`CaveFamilyEnrage {}` -- Cast ability when X or less other entities with tag are alive [TEST]
+* `ability Ability_Name` -- Ability to cast
+* `tag Tag_Name` -- Tag
+* `count X` -- Entity count
+
+`LateBloomer {}` -- Takes any status as optional parameter to give after X rounds 
+* `stacks X` -- Number of rounds
+
+`SizeScale 0.0-1.0` -- Changes the target's size scale
+
+`SizeScalePercent X%` -- Changes the target's size scale by percentage
+
 `CritsApplyStatus {}` -- When an attack crits apply the specified statuses
 
 `AddMovement X` -- Adds X tiles to the movement range
 
 `ReplaceBasicAttackWhenCastable Ability_Name` -- Replaces the basic attack with the specified ability when the ability is castable
 
-`StatusOnGainCoins {}` -- Gives the specified statuses when gaining coins
-
 `DisableAbilitiesWithTag Tag_Name` -- Disables all the target's abilities that have a specified tag
 
 `AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
 
 `HouseFoodRequirementMultiplier X` -- Changes how much food is needed for the target's when a day passes [TEST if things other than 0 work]
+
+`AlternateCraftingPools {}` -- Changes specified crafting pools with new ones
+* `Pool_Name New_Pool_Name` -- Changes the Pool_Name pool with New_Pool_Name (This doesn't take into consideration tech, so if you want to change all 4 tech levels you have to specify it for each one)
+* etc...
+
+`TerminatorChase {}` -- C-800 behaviour, when the enemies use a spell it moves, and if gets in range of the enemy it uses a special ability
+* `move Ability_Name` -- Movement ability used
+* `ability Ability_Name` -- Special ability used when in range
+
+`DepressionAura {}` -- Gives all units in a Y range X all stats down
+* `stacks X` -- Amount of stats down (Can also be used as `DepressionAura X`)
+* `range Y` -- Effect range (Set to `global` for global range)
+* `aura_effects_allies bool` -- If this effect targets allies
 
 ---
 
@@ -155,6 +176,7 @@
 * `BleedThorns X`
 * `Brace X`
 * `Cleave X`
+* `Tech X`
 * `Trample X`
 * `HealthRegenUp X`
 * `TempInjuryImmunity X`
@@ -163,7 +185,7 @@
 * `AlphaCat X`
 * `Charmed X`
 * `DoubleCastSpell X`
-* `DodgeChance_Status X%`
+* `DodgeChance_Status X`
 
 >[!NOTE]
 >These statuses can be given as parameters negative numbers for debuffs
@@ -201,7 +223,7 @@
 * `upgraded bool` -- If it's the upgraded version
 
 `ObjectOnHitCharacter {}` -- Spawns X specified entities from the target
-* `object Entity_Name` -- Entity (Can be used as `ObjectOnHitCharacter Entity_Name`)
+* `object Entity_Name` -- Entity (Can also be used as `ObjectOnHitCharacter Entity_Name`)
 * `stacks X` -- Number of entities
 
 `FindItemFromPool Item_Pool_Name` -- Gives an item from a specified pool
@@ -217,6 +239,8 @@
 `CastAgain X` -- ABILITY casts the ability another X times
 
 `ForceUseAbility Ability_Name` -- Make target use a specific ability  
+
+`ImmediateUseAbility_Instant Ability_name` -- Makes the target use a specific ability instantly
 
 `RerollEnemy 1` -- Rerolls the target to a random chapter enemy  
 
@@ -350,8 +374,12 @@
 `DoDamage {}` -- Creates a [damage instance](ability_fields.md#damage_instance--self_damage) targetting the target
 
 `Tangled {}` -- Tangles the target
-* `stacks X` -- Tangled amount (Can also be used like "Tangled X")
+* `stacks X` -- Tangled amount (Can also be used as `Tangled X`)
 * `alt_art MotionClip_Name` -- Motion clip to replac ethe default tangled art
+
+`KnockbackIfCrit {}` -- Give X knockback to the target if the attack crits
+* `knockback X` -- Amount of knockback
+* `override_chain_knockback Y` -- Override chain knockback given with Y
 
 `KnockUpAndAway {}` -- Knocks the target away throwing it in the air [TEST]
 * `stacks X` -- [TEST]
@@ -378,6 +406,10 @@
 * `time X`
 * `intensity X`
 
+`VisualFX FX_Name` -- Shows a visual effect on the target
+
+`VisualFXTile FX_Name` -- Shows a visual effect on the target's tile
+
 `SetHealth X%` -- Sets the target's health to X%
 
 `FormChange Form_Name` -- Changes the target's form to Form_Name
@@ -391,6 +423,18 @@
 `RefreshActPoints 1` -- Refreshes an act point for the target
 
 `RefreshMovePointsIfHit 1` -- Refreshes a movement point for the target if the damage instance hits
+
+`craft {}` -- Creates an item in a specific slot from a specific pool influenced by tech
+* `pool Item_Pool` -- The item pool (searches Item_Pool_X, where X is the amount of tech)
+* `slot Item_Slot` -- [Item slot](enums#item-slots)
+
+`RemoveStatusStacks {}` -- Removes X stacks of a specified status
+* `status Status_Name`-- Status
+* `stacks X` -- Stacks
+
+`RemoveStatus Status_name` -- Removes a specified status
+
+`ForceTransferWeapon 1` -- Forces the source's weapon to go to the target
 
 ---
 

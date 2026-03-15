@@ -43,23 +43,25 @@ must_have_line_of_sight
 must_be_moveable_ignore_wall  
 must_have_destructible_corpse  
 must_match_current_orientation  
+must_target_cat_with_empty_or_destructible_weapon_slot  
 diagonal_only  
 
 ## AOE RESTRICTIONS
 none  
 must_be_empty  
+must_have_tag  
+must_have_line_of_sight_unpurgable  
+must_have_line_of_sight  
+must_have_animate_character  
+must_not_have_corpse  
+must_have_low_health_character
 exclude_blocking  
 exclude_direct_target
 familiars_only  
 enemies_only  
 character_must_be_affected_by_tile_with_element  
-must_have_tag  
-must_have_line_of_sight_unpurgable  
-must_have_line_of_sight  
 checker_parity_even  
 allies_only  
-must_have_animate_character  
-must_not_have_corpse  
 
 ## ABILITY VARIABLE
 bonus_range  
@@ -84,6 +86,7 @@ head
 neck  
 face  
 trinket  
+random_empty_armor
 
 ## X_is
 custom  

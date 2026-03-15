@@ -43,6 +43,10 @@
 
 `icon_shell_frame Frame_Name` -- [attack, big_damage, damage]
 
+`icon_damage_display_eq X` -- Changes the damage display on the ability with X
+
+`is_trinket bool` -- If this ability is a trinket ability
+
 ---
 
 ## GRAPHICS
@@ -114,6 +118,8 @@
 `miss_random_delay [X,Y]` -- Abiltiy graphics cast delay between two random intervals on miss
 
 `visual_delay_but_simultaneous_damage X` -- [TEST]
+
+`uncatchable bool` -- If the projectile is uncatchable
 
 `palette X` -- Palette used for the ability graphics
 
@@ -241,6 +247,8 @@
 
 `target_requires_element Element_Name` -- (MUST_HAVE_ELEMENT) [Element](enums.md#elements) check
 
+`low_health_character_threshold X` -- (MUST_HAVE_LOW_HEALTH_CHARACTER) Sets the treshold of a low damage unit to equal or less than X
+
 `X_is Variable_Name` -- X becomes a chosen [variable](enums.md#x_is), and can be used in expressions in other parts of the ability
 
 `N Y` -- N becomes Y, used for X_is [random_0_to_N](enums.md#x_is)
@@ -272,6 +280,8 @@
 `makes_contact bool` -- If the ability counts as contact with the tile
 
 `force_no_contact bool` -- If the ability forces to be no contact to the targetted tile
+
+`hit_animation_alt Animation_name` -- Change the hit animation for this damage instance
 
 `force_play_hit_animation bool` -- If the ability forces the target to play it's hit animation
 

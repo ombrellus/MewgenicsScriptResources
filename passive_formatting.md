@@ -8,7 +8,7 @@
 * `desc_multiclass "PASSIVEDESC"` -- Description of the passive when it's on a cat of a different class
 
 * `class Class_Name / Disorder ` -- Class of the passice (use `Disorder` for disorders)
-* `name_mod "NAMEMOD"` -- Prefix added to the target's name
+* `name_mod "NAMEMOD"` -- Modifier added to the target's name (Example: `"{Catname} The Great"`)
 
 * `tags [Tag_Name]` -- List of passive tags (Base game ones: noncopyable)
 
