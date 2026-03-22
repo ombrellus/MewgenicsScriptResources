@@ -27,6 +27,11 @@
 
 `StatusOnTookDamage {}` -- Gives the specified statuses when getting damaged
 
+`StatusOnKill {}` -- Gives the specified statuses when the target kills something
+
+
+`StatusOnKillEnemy {}` -- Gives the specified statuses when the target kills an enemy
+
 `StatusIfDidntMove {}` -- Gives the specified statuses at the end of the turn if the target didn't move
 
 `StatusIfUnusedMovePoints {}` -- if the target ends it's turn with unused movement actions gain the specified statuses
@@ -219,6 +224,8 @@
 `SpawnFlames 1` -- Spawns fire
 
 `SpawnCreep 1` -- Spawns creep tile
+
+`PurgeAll 1` -- Removes all buffs and debuffs from the target
 
 `RandomMagicMissile X` -- Spawns X 1 damage sparks targetting the source's enemies
 

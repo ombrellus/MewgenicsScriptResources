@@ -41,9 +41,11 @@
 
 `desc "ABILITYDESC"` -- Description of the abilty, can be directly written as a string or point to the translation file
 
-`icon_shell_frame Frame_Name` -- [attack, big_damage, damage]
+`icon_shell_frame Frame_Label` -- [attack, big_damage, damage]
 
 `icon_damage_display_eq X` -- Changes the damage display on the ability with X
+
+`icon_damage_type Frame_Label` -- Changes the damage icon type [physical, heal, contextual, magic, combo (magic + physical), and contextualspell]
 
 `is_trinket bool` -- If this ability is a trinket ability
 
