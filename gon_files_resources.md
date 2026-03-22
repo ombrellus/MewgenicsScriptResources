@@ -27,15 +27,23 @@
 
 `StatusOnTookDamage {}` -- Gives the specified statuses when getting damaged
 
+`StatusIfDidntMove {}` -- Gives the specified statuses at the end of the turn if the target didn't move
+
+`StatusIfUnusedMovePoints {}` -- if the target ends it's turn with unused movement actions gain the specified statuses
+
+`StatusIfUnusedActPoints {}` -- if the target ends it's turn with unused basic attack actions gain the specified statuses (Inside the block `X` is the amount of action points left)
+
 `ScaledStatusOnHolyShieldBlock {}` -- Gives the specified statuses for every amount of damage received that break an holy shield
 
 `PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
 
 `PassiveLevelUpAtCombatEnd X` -- Levels up spell by X when a battle ends
 
-`PassiveLevelScaledStatus {}` -- Applies the specified statuses, inside the block "X" is the level of the passive
+`PassiveLevelScaledStatus {}` -- Applies the specified passives, inside the block "X" is the level of the passive
 
-`PassiveWhenTheAlpha {}` -- Applies the specific statuses when the target is the alpha
+`PassiveWhenTheAlpha {}` -- Applies the specific passives when the target is the alpha
+
+`PassiveWhileNotHasStatus {}` -- A
 
 `SpawnOnBattleStart {}` -- Spawns X entities on battle start
 * `object Entity_Name` -- Entity (Can also be used as `SpawnOnBattleStart Entity_Name`)
@@ -150,6 +158,8 @@
 * `stacks X` -- Amount of stats down (Can also be used as `DepressionAura X`)
 * `range Y` -- Effect range (Set to `global` for global range)
 * `aura_effects_allies bool` -- If this effect targets allies
+
+`SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
 
 ---
 
@@ -437,45 +447,9 @@
 
 `ForceTransferWeapon 1` -- Forces the source's weapon to go to the target
 
----
-
-## ITEM FIELDS
-
-`frame N` -- Animation frame of the item graphic [TEST] :/  
-
-`Kind Item_Slot` -- In what [slot](enums.md#item-slots) an item goes
-
-`rarity Rarity_Name` -- Rarity of an item (do not include for common) [uncommon, rare, very_rare, consumable_uncommon, consumable_rare, consumable_very_rare]  
-
-`set Set_Name or list` -- What set(s) this item is part of  
-
-`cursed bool` -- If an item is cursed and can’t be removed  
-
-`parasite bool` -- If an item counts as a parasite  
-
-`sticky bool` -- If an item can’t be removed (like class items)  
-
-`fragile bool` -- If an item can break when taking damage  
-
-`indestructible bool` -- if an item can’t break  
-
-`durability X` -- How many uses an item has  
-
-`consumable bool` -- If this item is a consumable  
-
-`on_store X` -- Effect when item is returned home, (known effects: become_aux_coins, become_furniture, become_rare_furniture)
-
-`divine_shield X` -- gives X divine shields
-
-`shield X` -- gives X shield
-
-`aux` -- a number value stored per item (accessed by item_aux) [TEST]
-
-`str_aux` -- a string value stored per item [TEST]
-
-`reset_aux_on_store X` -- Resets aux to X when item is returned home
-
-`aux_is_catid bool` -- aux becomes the holder cat id (aux can be used with catdata) [Not sure if it's something hardcoded with the soul jar or not] [TEST]
+`BackflipWhenTargeted {}` -- Gives X backflips using a specified ability for the backflip
+* `stacks X` -- Amount (Can also be used as `BackflipWhenTargeted X`)
+* `ability Ability_Name` -- Ability used to backflip
 
 ---
 

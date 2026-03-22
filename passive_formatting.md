@@ -8,6 +8,7 @@
 * `desc_multiclass "PASSIVEDESC"` -- Description of the passive when it's on a cat of a different class
 
 * `class Class_Name / Disorder ` -- Class of the passice (use `Disorder` for disorders)
+
 * `name_mod "NAMEMOD"` -- Modifier added to the target's name (Example: `"{Catname} The Great"`)
 
 * `tags [Tag_Name]` -- List of passive tags (Base game ones: noncopyable)
@@ -23,7 +24,7 @@
 
 * `schadenfreude_scaled_stats {}` -- Same as stats but it gives the specified stats for every disorder the party has
 
-* `passives {}` -- Inside there are all the passive effects that the passive gives (Including some statuses)
+* `passives {}` -- Inside there are all the [passive](gon_files_resources.md#passive-actions) effects that the passive gives (Including some statuses)
 
 * `override_basic_attack Ability_Name` -- Replaces the target's basic attack with a specified ability
 

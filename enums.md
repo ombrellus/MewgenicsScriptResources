@@ -104,3 +104,14 @@ storn_count
 this_ability_storm_count  
 is_dead  
 enable_if_has_ammo  
+
+## STR_AUX INITIALIZE
+random_seed  
+random_stat  
+random_class_passive  
+random_class_ability  
+random_disorder
+random_copyable_colorless_passive  
+random_copyable_colorless_passive  
+random_copyable_class_ability  
+random_passive_trinket  

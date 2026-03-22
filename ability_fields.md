@@ -117,7 +117,7 @@
 
 `miss_random_delay [X,Y]` -- Abiltiy graphics cast delay between two random intervals on miss
 
-`visual_delay_but_simultaneous_damage X` -- [TEST]
+`visual_delay_but_simultaneous_damage X` -- Delay between the particle effects showing up on every targetted tile, doesn't effect the cast time [TEST]
 
 `uncatchable bool` -- If the projectile is uncatchable
 
@@ -150,6 +150,8 @@
 `prime 1` -- (AI) Ability is cast next turn
 
 `coins X` -- Coin cost of the ability
+
+`requires_reload bool` -- If ability requires to be reloaded to be used 
 
 `minimum_STAT X` -- Ability castable if [STAT](enums.md#stats) is more or equal than X
 
@@ -189,7 +191,7 @@
 
 `dont_orient bool` -- If the character should not orient the in the casting direction
 
-`aoe_mode Mode_Name` -- How the area is selected [standard, line, square, circle, perpline, cross, diagcross, 8cross, map_edges, all, all_except_edges, occupied_tiles, hit_consumer, custom]
+`aoe_mode Mode_Name` -- How the area is selected [standard, line, square, circle, perpline, cross, diagcross, 8cross, pierce_cross, map_edges, all, all_except_edges, occupied_tiles, hit_consumer, custom]
 
 `custom_aoe [ [X,Y] ]` -- (AOE_MODE CUSTOM) define a list of tiles with [x,y] where x=front/back tiles, y=sides tiles, [0,0] is the character tile
 
