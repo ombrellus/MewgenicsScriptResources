@@ -12,7 +12,7 @@
 
 * `hint_persistent_elements [Element]` -- Makes the weather display what [elements](enums.md#elements) will remain persistent (does not make the element persistent)
 
-* `effects {}` -- Table of the passive effects given by the weather
+* `effects {}` -- Table of the [passive](gon_files_resources.md#passive-actions) effects given by the weather
 
 > TODO Add example and test specific passive effects only found in weathers
 

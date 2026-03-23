@@ -1,4 +1,8 @@
 # ITEM FORMATTING
+
+>[!WARNING]
+>This list is still a work in progress, some things haven't been tested to their fullest, haven't been documentet properly, or aren't present
+
 `ItemName {}` -- Id name of the item
 * `name "ITEMNAME"` -- Display name of the item
 
@@ -40,7 +44,7 @@
 
 * `STATNAME X` -- Gives X [stat](enums.md#stats)
 
-* `passives {}` -- Inside there are all the [passive](gon_files_resources.md#passive-actions) effects that the item gives (Including some statuses)
+* `passives {}` -- Table of the [passive](gon_files_resources.md#passive-actions) effects that the item gives (Including some statuses)
 
 * `attack AbilityName` -- Changes the basic attack with a specified ability
 
@@ -84,4 +88,4 @@
 
 * `STATNAME X` -- Gives X [stat](enums.md#stats)
 
-* `passives {}` -- Inside there are all the [passive](gon_files_resources.md#passive-actions) effects that the item set gives (Including some statuses)
+* `passives {}` -- Table of the [passive](gon_files_resources.md#passive-actions) effects that the item set gives (Including some statuses)
