@@ -166,6 +166,10 @@
 
 `SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
 
+`SpawnExtraThingsOnBattleStart {}` -- Spawns the specified entities on battle start
+* `object [Entity_Name]` -- Entity(s) to spawn
+* `number X` or `[X Y]` -- Number of entities to spawn, or range of entities to spawn
+
 ---
 
 ## EFFECT STATUSES
