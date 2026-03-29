@@ -1,6 +1,6 @@
 ## PASSIVE ACTIONS
 
-`OverrideBasicAttack Ability_Name` -- Replaces the basic attack of the entity with the chosen ability
+`OverrideBasicAttack Ability_Name` -- Replaces the basic attack of the character with the chosen ability
 
 `AddSelfStatusToBasicAttack {}` -- When using the basic attack give the source the chosen statuses
 
@@ -17,7 +17,7 @@
 
 `StatusOnBreak {}` -- (ITEM) gives specified statuses when the item breaks
 
-`StatusOnBattleEndIfKillThresholdMet {}` -- Gives the specified statuses to the target at the end of the battle if it killed X entities
+`StatusOnBattleEndIfKillThresholdMet {}` -- Gives the specified statuses to the target at the end of the battle if it killed X Characters
 * `kills X` -- Kill count
 * `statuses {}` -- Specified statuses [TEST if not needed]
 
@@ -34,9 +34,15 @@
 
 `StatusIfDidntMove {}` -- Gives the specified statuses at the end of the turn if the target didn't move
 
-`StatusIfUnusedMovePoints {}` -- if the target ends it's turn with unused movement actions gain the specified statuses
+`StatusIfUnusedMovePoints {}` -- If the target ends it's turn with unused movement actions gain the specified statuses
 
-`StatusIfUnusedActPoints {}` -- if the target ends it's turn with unused basic attack actions gain the specified statuses (Inside the block `X` is the amount of action points left)
+`StatusIfUnusedActPoints {}` -- If the target ends it's turn with unused basic attack actions gain the specified statuses (Inside the block `X` is the amount of action points left)
+
+`StatusEachTurnBegin {}` --  Table of statuses to give at the start of every turn
+
+`StatusEachRoundEnd {}` -- Table of statuses to give at the end of every round
+
+`StatusOnUseBasicAttack {}` -- Table of statuses to give when the basic attack is used
 
 `ScaledStatusOnHolyShieldBlock {}` -- Gives the specified statuses for every amount of damage received that break an holy shield
 
@@ -48,15 +54,22 @@
 
 `PassiveWhenTheAlpha {}` -- Applies the specific passives when the target is the alpha
 
-`PassiveWhileNotHasStatus {}` -- A
+`PassiveWhileNotHasStatus {}` -- Applies the specifies passives when the target doesn't have the specified status
+* `status Status_Name` -- The status
+* `passives {}` -- Table of passives
 
-`SpawnOnBattleStart {}` -- Spawns X entities on battle start
-* `object Entity_Name` -- Entity (Can also be used as `SpawnOnBattleStart Entity_Name`)
-* `number X` -- Number of entities
+`PassiveAtHealthThreshold {}` -- Appliest the specified passives when the target health matches the condition
+* `threshold X` -- The threshold amount
+* `mode Threshold_Mode` -- How the condition is calculated [equal, less, greater, less_or_equal, greater_or_equal]
+* `passives {}` -- Table of passives
 
-`SpawnThingOnDamage {}` -- Spawn objects/entities whenever the source takes damage
-* `object Entity_Name` -- Entity name
-* `number X` -- Number of entities
+`SpawnOnBattleStart {}` -- Spawns X Characters on battle start
+* `object Character_Name` -- Character (Can also be used as `SpawnOnBattleStart Character_Name`)
+* `number X` -- Number of Characters
+
+`SpawnThingOnDamage {}` -- Spawn objects/Characters whenever the source takes damage
+* `object Character_Name` -- Character name
+* `number X` -- Number of Characters
 * `chance 1.0-0.0` -- chance of spawning
 
 `IgnoreTiles 1` -- Ignore tiles
@@ -87,7 +100,7 @@
 
 `AddStatusToFirstBasicAttack {}` -- The first basic attack of the target gives the specified statuses
 
-`StatusDamagers {}` -- Gives the specified statuses to any entity that attacks the source
+`StatusDamagers {}` -- Gives the specified statuses to any character that attacks the source
 
 `MovementReaction {}` -- Uses a specific ability when someone moves near the target
 * `ability Ability_Name` -- Ability Name
@@ -127,10 +140,10 @@
 * `ability Ability_Name` -- Ability (Can also be used as `DeathRattleRevive Ability_Name`)
 * `even_if_stunned bool` -- If it can be used when stunned
 
-`CaveFamilyEnrage {}` -- Cast ability when X or less other entities with tag are alive [TEST]
+`CaveFamilyEnrage {}` -- Cast ability when X or less other Characters with tag are alive [TEST]
 * `ability Ability_Name` -- Ability to cast
 * `tag Tag_Name` -- Tag
-* `count X` -- Entity count
+* `count X` -- Character count
 
 `LateBloomer {}` -- Takes any status as optional parameter to give after X rounds 
 * `stacks X` -- Number of rounds
@@ -166,9 +179,23 @@
 
 `SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
 
-`SpawnExtraThingsOnBattleStart {}` -- Spawns the specified entities on battle start
-* `object [Entity_Name]` -- Entity(s) to spawn
-* `number X` or `[X Y]` -- Number of entities to spawn, or range of entities to spawn
+`SpawnExtraThingsOnBattleStart {}` -- Spawns the specified Characters on battle start
+* `object [Character_Name]` -- Character(s) to spawn
+* `number X` or `[X Y]` -- Number of Characters to spawn, or range of Characters to spawn
+
+`DamageFromBehindOnly 1` -- Makes the character ignore all attacks that aren't from the back 
+
+`LimitDamage X` -- Limits the damage amount taken to X
+
+`LimitHeal X` -- Limiys the healing amount received to X
+
+`NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
+
+`MutateViaAbility Ability_Name` -- If a mutation gets triggered, it mutates using the specified ability
+
+`BoostHeals X` -- Boosts the target's heals by X
+
+`HealAtStart X%` -- Heals X% at the start of the battle
 
 ---
 
@@ -213,6 +240,7 @@
 * `STATNAMELONGUp X` [(Stats list)](enums.md#stats)
 * `TempSTATNAMELONGUp X` [(Stats list)](enums.md#stats)
 * `AllStatsUp X`
+* `RandomPermanentStat X`
 * `DamageUp X`
 * `SpellDamageUp X`
 * `RangeUp X`
@@ -224,6 +252,8 @@
 `Die 1` -- Target dies  
 
 `FullHeal 1` -- Heals the target to full
+
+`FillMana 1` -- Fully fills the target's mana
 
 `SpawnFlames 1` -- Spawns fire
 
@@ -243,9 +273,9 @@
 * `pool Class_Name` -- Class pool (Can also be just `Class` to use the target class) (Can also be used as `EvolveabilityFromPool Class_Name`)
 * `upgraded bool` -- If it's the upgraded version
 
-`ObjectOnHitCharacter {}` -- Spawns X specified entities from the target
-* `object Entity_Name` -- Entity (Can also be used as `ObjectOnHitCharacter Entity_Name`)
-* `stacks X` -- Number of entities
+`ObjectOnHitCharacter {}` -- Spawns X specified Characters from the target
+* `object Character_Name` -- Character (Can also be used as `ObjectOnHitCharacter Character_Name`)
+* `stacks X` -- Number of Characters
 
 `FindItemFromPool Item_Pool_Name` -- Gives an item from a specified pool
 
@@ -259,7 +289,11 @@
 
 `CastAgain X` -- ABILITY casts the ability another X times
 
-`ForceUseAbility Ability_Name` -- Make target use a specific ability  
+`UseAbility Ability_Name` -- Makes the target use a specific ability  
+
+`UseAbility_NonStack Ability_Name` -- Makes the target use a specific ability (Applying it multiple times won't stack the effect)  
+
+`ForceUseAbility Ability_Name` -- Forces the target to use a specific ability  
 
 `ImmediateUseAbility_Instant Ability_name` -- Makes the target use a specific ability instantly
 
@@ -301,7 +335,7 @@
 
 `RandomMutation X` -- Gives X random mutations
 
-`UndoDamage X` -- Undo last X damages taken by the target [TEST better]  
+`UndoDamage X` -- Undo last X damages taken by the target 
 
 `Rebuke X` -- Deal damage to the target equal to X * the damage that unit last dealt  
 
@@ -315,11 +349,11 @@
 
 `PullSourceToKnockbackImmuneTarget 1` -- When knockback is dealt, if the target is immune to it pull the source to it  
 
-`SpawnThingIfHitKills Entity_Name` -- Spawns a specified entity when the target is killed  
+`SpawnThingIfHitKills Character_Name` -- Spawns a specified character when the target is killed  
 
 `Metronome 1` -- Cast random spell [TEST if changing 1 does something]  
 
-`GainCoinsRange {}` -- Entity gains a random amount of coins in a range
+`GainCoinsRange {}` -- Character gains a random amount of coins in a range
 * `min X` -- Minimum range
 * `max X` -- Maximum range
 
@@ -331,7 +365,7 @@
 * `slot Item_Slot` -- [Item slot](enums.md#item-slots)
 * `value X` -- value to set
 
-`CatPartsTransform {}` -- Transforms a cat entity parts into specific parts via their id
+`CatPartsTransform {}` -- Transforms a cat character parts into specific parts via their id
 * `tail X`
 * `body X`
 * `head X`
@@ -351,7 +385,7 @@
 
 `ApplyToSource {}` -- Use to switch to source in targeted effects
 
-`Imprison Entity_Name` -- Creates specified entities around the target
+`Imprison Character_Name` -- Creates specified Characters around the target
 
 `Cleanse 0 or 1` -- Removes all debuffs on the target (1 makes it so it also gives 1 holy shield for every type of debuff)
 
@@ -370,12 +404,12 @@
 
 `FaceAway 1` -- Makes the target face away
 
-`LeaveBehind {}` -- Spawns behind the specified entity
-* `object Entity_Name` -- Entity
+`LeaveBehind {}` -- Spawns behind the specified character
+* `object Character_Name` -- Character
         
 `SafeDie 1` -- Dies without injury
 
-`ReviveNextRound {}` -- Revives the target after X rounds (takes any status as optional parameter for when the entity is revived)
+`ReviveNextRound {}` -- Revives the target after X rounds (takes any status as optional parameter for when the character is revived)
 * `stacks X` -- Rounds it takes to revive (Can also be used as `ReviveNextRound X`)
 * `revive_health Y%` -- Health the target is revived with
 
@@ -462,6 +496,10 @@
 * `stacks X` -- Amount (Can also be used as `BackflipWhenTargeted X`)
 * `ability Ability_Name` -- Ability used to backflip
 
+`NextBattleStatus {}` -- Table of statuses to give at the start of the next battle
+
+`FlippedFacingForceAttack 1` -- Flips direction and force attacks
+
 ---
 
 ## X_is 
@@ -479,7 +517,7 @@
 
 `XIsLivingAlliesWithTag Tag_Name` -- X becomes the number of allies with a specific tag
 
-`XIsConsumedCharacterMaxHP N` -- X becomes N * the max health of the entity the source consumed
+`XIsConsumedCharacterMaxHP N` -- X becomes N * the max health of the character the source consumed
 
 `XIsIncreaseEachTurn N` -- X increases by N each turn
 

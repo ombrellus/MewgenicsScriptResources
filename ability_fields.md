@@ -153,21 +153,47 @@
 
 `coins X` -- Coin cost of the ability
 
+`durability X` -- (ITEM) Item durability cost
+
+`item_aux X` -- (ITEM) Item aux cost
+
 `requires_reload bool` -- If ability requires to be reloaded to be used 
 
 `minimum_STAT X` -- Ability castable if [STAT](enums.md#stats) is more or equal than X
 
 `once_per_fight bool` -- If ability is castable only once per fight
 
+`uses_per_fight X` -- Amout of uses this abaility has per fight [TEST]
+
 `main_turn_only bool` -- If ability is castable only during a main turn (No bonus turn)
+
+`must_be_first_action bool` -- If the ability must be used as the first ability
+
+`must_be_first_nonmove_action bool` -- If the ability must be used as the first ability (without counting the move action)
+
+`can_pay_over_multiple_turns bool` -- If the ability's mana cost can be paid as a debt (split the atom behaviour)
+
+`can_be_refreshed bool` -- If this ability can be refreshed
+
+`can_self_refreshed bool` -- If this ability can refresh itself
+
+`manacost_cant_be_zero bool` -- If the mana cost of the ability can't go to 0
+
+`damage_cant_be_zero bool` -- If the damage of the ability can't go to 0
 
 `requires_destructible_weapon bool` -- If this ability requires a destructible weapon to cast
 
-`requires_attack_damage_threshold X` -- If this ability requires the basic attack damage to be over X
-
 `must_have_weapon bool` -- If this ability requires a weapon to cast
 
+`requires_empty_trinket bool` -- If this ability requires an empty trinket slot
+
+`requires_consumed_trinket bool` -- If this ability requires an item from the trinket slot to be consumed first
+
+`requires_attack_damage_threshold X` -- If this ability requires the basic attack damage to be over X
+
 `must_not_be_consuming bool` -- If thi ability requires not having the consuming status
+
+`must_be_consuming bool` -- If thi ability requires having the consuming status
 
 `cant_cast bool/Formula` -- If this ability can't be cast
 
@@ -175,13 +201,15 @@
 
 `must_be_offmap bool` -- If this ability can be cast only when the character is not on the map
 
+`disallow_cost_modification bool` -- If this ability costs can't be modified
+
 ---
 
 ## TARGET
 
-`target_mode Mode_Name` -- How the target tile(s) can be selected [tile, direction, direction8, random_tile, none = No selection]
+`target_mode Mode_Name` -- How the target tile(s) can be selected [tile, direction, direction8, random_tile, random_closest_tile, random_farthest_tile, random_direction none = No selection]
 
-`range_mode Mode_Name` -- [standard, square, water_move, groud_move, cross, 8cross, custom, none]
+`range_mode Mode_Name` -- [standard, square, water_move, groud_move, cross, 8cross, diagcross, last_targetted_tile, map_edges, special_tagged_tiles, custom, none]
 
 `allow_diagonals bool` -- AI Stuff [TEST]
 
@@ -193,7 +221,7 @@
 
 `dont_orient bool` -- If the character should not orient the in the casting direction
 
-`aoe_mode Mode_Name` -- How the area is selected [standard, line, square, circle, perpline, cross, diagcross, 8cross, pierce_cross, map_edges, all, all_except_edges, occupied_tiles, hit_consumer, custom]
+`aoe_mode Mode_Name` -- How the area is selected [standard, line, square, circle, perpline, cross, diagcross, 8cross, pierce_cross, map_edges, all, all_except_edges, all_except_random_empty, all_except_custom, narrow_cone, narrowest_cone, cone8 area_around_all_player_cats, occupied_tiles, hit_consumer, custom]
 
 `custom_aoe [ [X,Y] ]` -- (AOE_MODE CUSTOM) define a list of tiles with [x,y] where x=front/back tiles, y=sides tiles, [0,0] is the character tile
 
@@ -205,9 +233,9 @@
 
 `aoe_excludes_self bool` -- If the ability aoe should exclude the source
 
-`aoe_symmetry Symmetry_Type` -- How symmetry is handled for the aoe [none, four_way, eight_way]
+`aoe_symmetry Symmetry_Type` -- How symmetry is handled for the aoe [none, four_way, eight_way, front_back, left_right]
 
-`range_symmetry Symmetry_Type` -- How symmetry is handled for the range [none, four_way, eight_way]
+`range_symmetry Symmetry_Type` -- How symmetry is handled for the range [none, four_way, eight_way, front_back, left_right]
 
 `max_targets X` -- Target only a Maximum of X tiles
 
@@ -233,7 +261,7 @@
 
 `range_display_include_character_size bool` -- [TEST]
 
-`knockback_mode Mode_Name` -- how knockback is handled [zero, character_to_tile, target_to_tile]
+`knockback_mode Mode_Name` -- how knockback is handled [zero, character_to_tile, target_to_tile, orientation, back_orentation, left_orentation, right_orentation, character_to_target, target_to_character, tile_to_character]
 
 `always_bounce bool` -- [TEST]
 
