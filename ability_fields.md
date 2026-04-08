@@ -87,7 +87,7 @@
 
 `bounce_on_hit bool` -- If the projectile bounces when hitting something
 
-`projectile Projectile_Name` -- Projectile graphics used
+`projectile Projectile_Name` -- Projectile graphics used (`source_weapon` if you want to use the currently held weapon as projectile)
 
 `single_projectile bool` -- If the projectile is only one (shot at the center of the aoe area)
 
@@ -232,6 +232,8 @@
 `aoe_considers_character_size bool` -- If the aoe size considers the target's size
 
 `aoe_excludes_self bool` -- If the ability aoe should exclude the source
+
+`aoe_hint_teamcast bool` -- If the ability aoe considers the other characters of the team casting it
 
 `aoe_symmetry Symmetry_Type` -- How symmetry is handled for the aoe [none, four_way, eight_way, front_back, left_right]
 

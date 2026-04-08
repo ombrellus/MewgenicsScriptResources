@@ -72,6 +72,10 @@
 * `number X` -- Number of Characters
 * `chance 1.0-0.0` -- chance of spawning
 
+`RandomPassivePool {}` -- Randomly selects a passive from the table
+
+`PassiveGroup {}` -- Treats a table of passives as one
+
 `IgnoreTiles 1` -- Ignore tiles
 
 `ExtraWeaponAttacks X` -- Gives X extra weapon attacks
@@ -197,6 +201,8 @@
 
 `HealAtStart X%` -- Heals X% at the start of the battle
 
+`AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
+
 ---
 
 ## EFFECT STATUSES
@@ -227,6 +233,7 @@
 * `HealthRegenUp X`
 * `TempInjuryImmunity X`
 * `TempManaCostReduction X`
+* `TempBasicAttackBonusAOE X`
 * `InjuryImmunity X`
 * `AlphaCat X`
 * `Charmed X`
@@ -359,9 +366,9 @@
 
 `CollectsPickupsWithAltEffects {}` -- Gives the source the specified statuses for every pickup collected by the ability, replaces the pickup effects
 
-`AddWeaponAux X` -- ITEM Used in weapons' abilities, add X to the weapon aux
+`AddWeaponAux X` -- Adds X to the currently equipped weapon aux
 
-`SetItemAux {}` -- ITEM Sets the aux value of an item in a specific item slot
+`SetItemAux {}` -- Sets the aux value of an item in a specific item slot
 * `slot Item_Slot` -- [Item slot](enums.md#item-slots)
 * `value X` -- value to set
 
@@ -488,7 +495,7 @@
 * `status Status_Name`-- Status
 * `stacks X` -- Stacks
 
-`RemoveStatus Status_name` -- Removes a specified status
+`RemoveStatus Status_Name` -- Removes a specified status
 
 `ForceTransferWeapon 1` -- Forces the source's weapon to go to the target
 
@@ -500,6 +507,36 @@
 
 `FlippedFacingForceAttack 1` -- Flips direction and force attacks
 
+`GainDisorderFromPool_PostCast Pool_name` -- Gives a random disorder from a pool
+
+`LateStatusApplication {}` -- Table of statuses to apply later in the status evaluation
+
+`Instakill X` -- Instakills non boss units, and deals X damage to bosses
+
+`MonkStanceSwitch 1` -- Switches the monk stance of the target [TEST]
+
+`ExplosionIfHitSomething X` -- Creates an explosion that deals X damage if something is hit
+
+`DestroyNeckArmor 1` -- Destroys the neck item if it exists
+
+`DestroyFaceArmor 1` -- Destroys the face item if it exists
+
+`DestroyTrinket 1` -- Destroys the trinket item if it exists
+
+`DestroyWeapon 1` -- Destroys the weapon item if it exists
+
+`DestroyWeaponThrow 1` -- Destroys the thrown weapon
+
+`RemoveItem Item_Name` -- Removes a specific item from the target's inventory
+
+`TeamCastAbility {}` -- Makes all of the targe's team cast an ability
+* `ability Ability_Name` -- Ability to cast (Can also be used as `TeamCastAbility Ability_Name`)
+* `tag_restriction string` -- Tag required by the character to cast the ability
+* `same_orentation bool` -- If the character uses the same orentation of the original caster
+
+`ChanceToBreak 0-100` (ITEM) Breaks the used item with an X chance
+
+`IncreaseItemAuxOnKill X` (ITEM) Increases the item aux by X when it kills
 ---
 
 ## X_is 
