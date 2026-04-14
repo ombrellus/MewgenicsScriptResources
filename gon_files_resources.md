@@ -2,11 +2,41 @@
 
 `OverrideBasicAttack Ability_Name` -- Replaces the basic attack of the character with the chosen ability
 
-`AddSelfStatusToBasicAttack {}` -- When using the basic attack give the source the chosen statuses
+`AddStatusToBasicAttack {}` -- Table of statuses given to the basic attack
 
-`AddStatusToBasicAttack {}` -- When using the basic attack give the target the chosen statuses
+`AddStatusToFirstBasicAttack {}`
 
-`AddStatusToAllDamage {}` -- When dealing any damage give the target the chosen statuses
+`AddSelfStatusToBasicAttack {}` -- Table of statuses given to the basic attack that get applied to the source
+
+`AddStatusToAllDamage {}` -- Table of statuses given to all damages coming from the target
+
+`AddStatusToFirstSpellEachTurn {}` -- Table of statuses given to the first spell used each turn
+
+`AddStatusToTrampleDamage {}` -- Table of statuses given to the trample damage
+
+`AddStatusToBasicMeleeAttack {}` -- Table of statuses given to the basic attack when melee
+
+`AddStatusToElementDamage {}` -- Table of statuses given to damage of specific elements
+* `element [Element_Name]` -- Chosen [element](enums.md#elements) list
+
+`AddStatusToElementAbilities {}` -- Table of statuses given to abilities with a specific element
+* `element Element_Name` -- Chosen [element](enums.md#elements)
+
+`AddStatusToReceivedDamage {}` -- Table of statuses given to received damage
+
+`AddStatusToReceivedDamage_ExcludeStatuses {}` -- Table of statuses given to received damage (excluding damage from statuses)
+
+`AddStatusesToReceivedElementalDamage {}` -- Table of statuses given to received damage of specific elements [NOT WORKING AS OF v1.0.20941]
+* `element [Element_Name]` -- Chosen [element](enums.md#elements) list 
+
+`AddStatusToKnockbackDamage {}` -- Table of statuses given to knockback damage
+
+`AddStatusToSpells {}` -- Table of statuses given to spells
+
+`AddStatusToWeapons {}` -- Table of statuses given to weapons
+
+`AddStatusesIfPersistentWeatherElement {}` -- Table of statuses given if there is a persistent element weather
+* `element [Element_Name]` -- Chosen [element](enums.md#elements) list
 
 `ChanceToRevive 0-100` -- Chance to revive at the end of the round
 
@@ -322,7 +352,9 @@
 * `AlphaCat X`
 * `Charmed X`
 * `DoubleCastSpell X`
-* `DodgeChance_Status X`
+* `CritChanceUp X` -- X is each percentage point
+* `DodgeChance_Status X` -- X is each percentage point
+* `ExtraBasicAttacks_Status X`
 
 >[!NOTE]
 >These statuses can be given as parameters negative numbers for debuffs
@@ -335,7 +367,6 @@
 * `DamageUp X`
 * `SpellDamageUp X`
 * `RangeUp X`
-* `CritChanceUp X`
 * `TempRangeUp X`
 * `TempDamageUp X`
 * `TempSpellDamageUp X`
@@ -353,8 +384,6 @@
 `PurgeAll 1` -- Removes all buffs and debuffs from the target
 
 `RandomMagicMissile X` -- Spawns X 1 damage sparks targetting the source's enemies
-
-`ExtraBasicAttacks_Status X` -- Gives X extra basic attacks to the target
 
 `RandomMagicMissile {}` -- Spawns X sparks targetting the source's enemies
 * `stacks X` -- Number of sparks
