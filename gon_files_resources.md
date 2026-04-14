@@ -17,22 +17,51 @@
 `StatusOnBattleEnd {}` -- Table of statuses given at the end of the battle
 * `even_if_dead bool` -- Give statuses even if the cat was downed
 
-`StatusOnBreak {}` -- (ITEM) Table of statuses given at when the item breaks
-
 `StatusOnBattleEndIfKillThresholdMet {}` -- Table of statuses given at the end of the battle if it killed X Characters
 * `kills X` -- Kill count
 * `statuses {}` -- Specified statuses [TEST if not needed]
 
 `StatusOnGainCoins {}` -- Table of statuses given when gaining coins
 
+`StatusOnCollectPickup {}` -- Table of statuses given when collecting a pickup
+
+`StatusOnPickupCoins {}` -- Table of statuses given when collecting a coin (as a pickup)
+
+`StatusOnEatFood {}` -- Table of statuses given when eating a food item/pickup
+
+`StatusOnFullMana {}` -- Table of statuses given when reaching full mana
+
 `StatusOnEndMove {}` -- Table of statuses given when finishing to move
 
 `StatusOnTookDamage {}` -- Table of statuses given when getting damaged
 
+`StatusOnTookDamageFromAbility {}` -- Table of statuses given when getting damaged by an action
+
+`StatusOnTookDamageFromEnemyAbility {}` -- Table of statuses given when getting damaged by an enemy's action
+
+`StatusOnLoseShield {}` -- Table of statuses given when taking shield damage
+
+`StatusOnTakeHealthOrShieldDamage {}` -- Table of statuses given when taking health or shield damage
+
+`StatusOnHealed {}` -- Table of statuses given when healing
+
+`StatusOnGainShield {}` -- Table of statuses given when getting shields
+
 `StatusOnKill {}` -- Table of statuses given when the target kills something
 
+`StatusOnPopCorpse {}` -- Table of statuses given when breaking a corpse
+
+`StatusOnDie {}` -- Table of statuses given when dead
+
+`StatusOnDodge {}` -- Table of statuses given when dodging an attack
 
 `StatusOnKillEnemy {}` -- Table of statuses given when the target kills an enemy
+
+`StatusOnBackstab {}` -- Table of statuses given when hitting a backstab
+
+`StatusOnCrit {}` -- Table of statuses given when hitting a critical attack
+
+`StatusOnFallAsleep {}` -- Table of statuses given when falling asleep
 
 `StatusIfDidntMove {}` -- Table of statuses given at the end of the turn if the target didn't move
 
@@ -46,7 +75,56 @@
 
 `StatusOnUseBasicAttack {}` -- Table of statuses to given when the basic attack is used
 
+`StatusOnCastSpell {}` -- Table of statuses given when casting a spell
+
+`StatusOnUseElementAbility {}` -- Table of statuses given when casting an ability with a specific element
+* `element Element_Name` -- Chosen [element](enums#elements)
+
+`StatusOnUseAbilityWithTag {}` -- Table of statuses given when casting an ability with a specific tag
+* `tag string` -- Chosen tag
+* `exclude_basicattack bool` -- If the basic attack doesn't count
+
+`StatusOnTurnEndIfCastNSpells {}` -- Table of statuses given at the end of the turn if exactly X spells were casted
+* `spells X` -- Number of spells
+
+`StatusOnTurnEndIfManaExact {}` -- Table of statuses given at the end of the turn if the mana is exactly X
+* `mana X` -- Number of mana
+
+`StatusOnStanceSwitch {}` -- Table of statuses given when changing monk stance
+
+`StatusOnDealtDamage {}` -- Table of statuses given when dealing damage
+
+`StatusOnDealtDamageThreshold {}` -- Table of statuses given when dealing over X damage
+* `threshold X` -- Damage treshold
+* `count_overkill bool` -- If overkill damage counts
+
+`StatusOnEatPill {}` -- Table of statuses given when consuming a pill
+
+`StatusOnEnemyDeath {}` -- Table of statuses given when an enemy dies
+
+`StatusOnEnemyConfused {}` -- Table of statuses given when an enemy gets confused
+
+`StatusOnAllyCatDeath {}` -- Table of statuses given when an ally cat dies
+
+`StatusOnSpawnIn {}` -- Table of statuses given when the character is spawned in the battle
+
+`StatusOnTriggerTrap {}` -- Table of statuses given when a target's trap is triggered
+
+`StatusOnBreak {}` -- (ITEM) Table of statuses given at when the item breaks
+
+`StatusOnSetPieceBreak {}` -- (ITEM SET) Table of statuses given when a piece of the set breaks
+
 `ScaledStatusOnHolyShieldBlock {}` -- Table of statuses given for every amount of damage received that break an holy shield
+
+`ScaledStatusOnSpendMana {}` -- Table of statuses given for every mana spent
+
+`ScaledStatusOnOverMana {}` -- Table of statuses given for every mana over capacity
+
+`ScaledStatusOnOverHealed {}` -- Table of statuses given for every heal over capacity
+
+`ScaledStatusOnLoseShield {}` -- Table of statuses given for every shield lost
+
+`ScaledStatusOnBleedDamage {}` -- Table of statuses given for every bleed damage
 
 `PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
 
@@ -359,6 +437,8 @@
 `ContextualHeal 1` -- Makes the ability heal allies and damage enemies [TEST might be in a different context]  
 
 `IgnoreSelf 1` -- Effects and damage don't get applied to the source  
+
+`Leech X` -- Damage dealt heals the source times X
 
 `FlatLeech X` -- Source heals X hp, targets gets damaged for X  
 
