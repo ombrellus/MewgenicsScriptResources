@@ -10,41 +10,43 @@
 
 `ChanceToRevive 0-100` -- Chance to revive at the end of the round
 
-`StatusEachTurnEnd {}` -- Gives the chosen statuses at the end of each turn
+`StatusEachTurnEnd {}` -- Table of statuses given at the end of each turn
 
-`StatusOnBattleEnd {}` -- Gives the chosen statuses at the end of the battle
+`StatusOnBattleStart {}` -- Table of statuses given at the start of the battle
+
+`StatusOnBattleEnd {}` -- Table of statuses given at the end of the battle
 * `even_if_dead bool` -- Give statuses even if the cat was downed
 
-`StatusOnBreak {}` -- (ITEM) gives specified statuses when the item breaks
+`StatusOnBreak {}` -- (ITEM) Table of statuses given at when the item breaks
 
-`StatusOnBattleEndIfKillThresholdMet {}` -- Gives the specified statuses to the target at the end of the battle if it killed X Characters
+`StatusOnBattleEndIfKillThresholdMet {}` -- Table of statuses given at the end of the battle if it killed X Characters
 * `kills X` -- Kill count
 * `statuses {}` -- Specified statuses [TEST if not needed]
 
-`StatusOnGainCoins {}` -- Gives the specified statuses when gaining coins
+`StatusOnGainCoins {}` -- Table of statuses given when gaining coins
 
-`StatusOnEndMove {}` -- Gives the specified statuses when finishing to move
+`StatusOnEndMove {}` -- Table of statuses given when finishing to move
 
-`StatusOnTookDamage {}` -- Gives the specified statuses when getting damaged
+`StatusOnTookDamage {}` -- Table of statuses given when getting damaged
 
-`StatusOnKill {}` -- Gives the specified statuses when the target kills something
+`StatusOnKill {}` -- Table of statuses given when the target kills something
 
 
-`StatusOnKillEnemy {}` -- Gives the specified statuses when the target kills an enemy
+`StatusOnKillEnemy {}` -- Table of statuses given when the target kills an enemy
 
-`StatusIfDidntMove {}` -- Gives the specified statuses at the end of the turn if the target didn't move
+`StatusIfDidntMove {}` -- Table of statuses given at the end of the turn if the target didn't move
 
-`StatusIfUnusedMovePoints {}` -- If the target ends it's turn with unused movement actions gain the specified statuses
+`StatusIfUnusedMovePoints {}` -- Table of statuses given if the target ends it's turn with unused movement actions
 
-`StatusIfUnusedActPoints {}` -- If the target ends it's turn with unused basic attack actions gain the specified statuses (Inside the block `X` is the amount of action points left)
+`StatusIfUnusedActPoints {}` -- Table of statuses given if the target ends it's turn with unused basic attack actions (Inside the block `X` is the amount of action points left)
 
-`StatusEachTurnBegin {}` --  Table of statuses to give at the start of every turn
+`StatusEachTurnBegin {}` --  Table of statuses given at the start of every turn
 
-`StatusEachRoundEnd {}` -- Table of statuses to give at the end of every round
+`StatusEachRoundEnd {}` -- Table of statuses to given at the end of every round
 
-`StatusOnUseBasicAttack {}` -- Table of statuses to give when the basic attack is used
+`StatusOnUseBasicAttack {}` -- Table of statuses to given when the basic attack is used
 
-`ScaledStatusOnHolyShieldBlock {}` -- Gives the specified statuses for every amount of damage received that break an holy shield
+`ScaledStatusOnHolyShieldBlock {}` -- Table of statuses given for every amount of damage received that break an holy shield
 
 `PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
 
@@ -201,6 +203,10 @@
 
 `HealAtStart X%` -- Heals X% at the start of the battle
 
+`MoveWhenDamaged {}`
+* `move_ability Ability_Name` -- Ability used to move (Can also be used as `MoveWhenDamaged Ability_Name`) (if not included it uses the character's base move ability)
+* `weights Movement_Weight_Name` -- Weights used to decide where to move 
+
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
 
 ---
@@ -341,6 +347,8 @@
 `RandomStatUp X` -- Gives X random stats up  
 
 `RandomMutation X` -- Gives X random mutations
+
+`RandomTaggedMutation string` -- Gives a random mutation that has the specified tag
 
 `UndoDamage X` -- Undo last X damages taken by the target 
 
@@ -533,6 +541,10 @@
 * `ability Ability_Name` -- Ability to cast (Can also be used as `TeamCastAbility Ability_Name`)
 * `tag_restriction string` -- Tag required by the character to cast the ability
 * `same_orentation bool` -- If the character uses the same orentation of the original caster
+
+`UpgradeRandomAbility X` -- Upgrades X random abilities temporarily
+
+`PermanentUpgradeRandomActive X` -- Upgrades permanently X random abilities
 
 `ChanceToBreak 0-100` (ITEM) Breaks the used item with an X chance
 
