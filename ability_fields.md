@@ -331,12 +331,12 @@
 
 `ai_base_score X` -- (AI) Base score that dictates the ai's willingness to cast this ability
 
-`object Entity_Name or [Entity_Name]` -- Entity or list of possible entities to spawn
+`object CharacterID or [CharacterID]` -- Character or list of possible entities to spawn
 
-`faction Faction_Name` -- Faction of the spawned entity [self, default, enemy, solitary_enemies, auto]
+`faction Faction_Type` -- [Faction](enums#factions) of the spawned character
 
-`layer Layer_Name` -- Entity layer where the entity is spawned [self, characters, pickups]
+`layer Layer_Type` -- [Layer](enums#layers) where the character is spawned
 
-`post_spawn_statuses {}` -- Statuses given to the spawned entity
+`post_spawn_statuses {}` -- Statuses given to the spawned character
 
-`additional_passives {}` -- Passives given to the spawned entity
+`additional_passives {}` -- Passives given to the spawned character

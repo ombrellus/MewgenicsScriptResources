@@ -115,3 +115,24 @@ random_copyable_colorless_passive
 random_copyable_colorless_passive  
 random_copyable_class_ability  
 random_passive_trinket  
+
+## FACTIONS
+none  
+enemies  
+cavemen  
+sabertooths  
+mammoths  
+allies  
+third_party  
+kaiju1  
+kaiju2  
+solitary_enemies  
+self  
+auto  
+
+## LAYERS
+all  
+characters  
+pickups  
+tiles  
+gas  

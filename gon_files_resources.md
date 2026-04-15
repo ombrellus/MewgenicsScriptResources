@@ -40,7 +40,29 @@
 
 `ChanceToRevive 0-100` -- Chance to revive at the end of the round
 
+`StatusWhenAllySpendsMana {}`
+
+`ExtraStatusWhenDealingDamage {}`
+
+`StatusWhenStatusCompletelyRemoved {}`
+* `status Status_Name`
+
 `StatusEachTurnEnd {}` -- Table of statuses given at the end of each turn
+
+`StatusEachTurnEndForEachTurn {}` -- Table of statuses given at the end of each turn, scaled for how many turns have passed
+
+`StatusEachTurnBegin {}` --  Table of statuses given at the start of every turn
+
+`StatusEachTurnEndPerEnemyKill {}` -- Table of statuses given at the end of the turn for every enemy killed during the turn
+
+`StatusEachTurnBeginIfHasStatus {}` -- Table of statuses given at the end of the turn if it has a specific status
+* `status Status_Name` -- Chosen status
+* `consume bool` -- If the status is consumed after
+* `animation Frame_Label` -- What animation to use
+
+`StatusEachRoundBegin {}` -- Table of statuses given at the start of every round
+
+`StatusEachRoundEnd {}` -- Table of statuses to given at the end of every round
 
 `StatusOnBattleStart {}` -- Table of statuses given at the start of the battle
 
@@ -98,10 +120,6 @@
 `StatusIfUnusedMovePoints {}` -- Table of statuses given if the target ends it's turn with unused movement actions
 
 `StatusIfUnusedActPoints {}` -- Table of statuses given if the target ends it's turn with unused basic attack actions (Inside the block `X` is the amount of action points left)
-
-`StatusEachTurnBegin {}` --  Table of statuses given at the start of every turn
-
-`StatusEachRoundEnd {}` -- Table of statuses to given at the end of every round
 
 `StatusOnUseBasicAttack {}` -- Table of statuses to given when the basic attack is used
 
@@ -164,6 +182,14 @@
 
 `PassiveWhenTheAlpha {}` -- Applies the specific passives when the target is the alpha
 
+`PassiveIfAllArmorEmpty {}` -- Table of passives executed while the target has all it's armor slots empty
+
+`PassiveIfEmptyFace {}` -- Table of passives executed while the target has no face armor
+
+`PassiveIfEmptyNeck {}` -- Table of passives executed while the target has no neck armor
+
+`PassiveIfEmptyHead {}` -- Table of passives executed while the target has no head armor
+
 `PassiveWhileNotHasStatus {}` -- Applies the specifies passives when the target doesn't have the specified status
 * `status Status_Name` -- The status
 * `passives {}` -- Table of passives
@@ -205,8 +231,6 @@
 `BonusFoodEachBattle X` -- Gives X bonus food when winning a battle
 
 `ConsumablesInfiniteRange 1` -- Gives the target infinite range on it's consumables
-
-`StatusEachTurnEndPerEnemyKill {}` -- Gives the specified statuses to the target at the end of the turn for every enemy it killed during the turn
 
 `BouncyProjectiles {}` -- Makes the target projectiles bounce X times to a Y range
 * `max_bounces X` -- Max number of bouces the projectile can do
