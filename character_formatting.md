@@ -170,3 +170,46 @@
 `catdata_ignore_skills bool` (_CAT) If the character ignores skills from the given catdata
 
 `disallow_items all or ItemID` -- (_CAT) If the character is not allowed to use any or a specific item
+
+## Character abilities
+
+`move AbilityID` -- Ability used by the character to move
+
+`attack AbilityID` -- Ability used by the character as basic attack
+
+`spells [AbilityID]` -- Spells the character has
+
+## Character ai
+
+`brain Brain_Type` -- [GenericBrain PatternBrain PlayerBrain NoBrain]
+
+`move_weights MoveWeight_Type`
+
+`decision_weights DecisionWeight_Type`
+
+`auto_orient bool`
+
+`virtual_abilities {}`
+* `VirtualAbilityName {}`
+* * `ability AbilityID`
+* * `move_for_ability AbilityID`
+* * `move_weights MoveWeight_Type`
+* * `decision_weights DecisionWeight_Type`
+
+`pattern {}`
+* `do Character_Ability`
+* `do_all [Character_Ability]`
+* `do_random [Character_Ability]`
+* `do_strict [Character_Ability]`
+* `move_then_do_priority [Character_Ability]`
+
+> [!NOTE]  
+> `*Character_Ability` will make the character use the ability without moving  
+> `**Character_Ability` will make the character use the ability without moving and use a movement point  
+> `Character_Ability~` will make the character try to use the ability for as many times it can
+
+`mainturn_pattern {}`
+
+`bonusturn_pattern {}`
+
+`round_end_bonusturn_pattern {}`

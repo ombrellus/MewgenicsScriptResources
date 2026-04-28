@@ -224,6 +224,8 @@
 
 `EquipPermanentItem Item_Name` -- Gives the target an item that stays after the battle
 
+`StatusAllCharactersOnSpawn {}` -- Table of statuses given to all characters when the source spawns
+
 `StatusAlliesOnBattleStart {}` -- Gives the specified statuses to all allies on battle start
 
 `ConsumablesMeleeRange X` -- Increases by X the melee range of the target consumables
@@ -341,6 +343,8 @@
 
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
 
+`KillsHeal X or X%` -- When killing a character, heals the damager by X if it's not a percentage, or by X% of it's max health if it's a percentage
+
 ---
 
 ## EFFECT STATUSES
@@ -454,6 +458,8 @@
 `HealthGain X` -- Heals the source by X  
 
 `ManaGain X` -- Gives the source X mana
+
+`PercentHeal X` -- Heals by X percent of the max health
 
 `BramblesOnHit 1` -- Spawns brambles on the targetted tile
 
@@ -679,9 +685,19 @@
 
 `PermanentUpgradeRandomActive X` -- Upgrades permanently X random abilities
 
-`ChanceToBreak 0-100` (ITEM) Breaks the used item with an X chance
+`MeleeRevengeDamage {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) targetting characters to inflict melee damage to the source
 
-`IncreaseItemAuxOnKill X` (ITEM) Increases the item aux by X when it kills
+`IncreaseExplosionSize X` -- Increases the source's explosions size by X
+
+`IncreaseExplosionDamage X` -- Increases the source's explosions damage by X
+
+`ExplosionImmunity 1` -- Gives explosion damage immunity
+
+`ChanceToBreak 0-100` -- (ITEM) Breaks the used item with an X chance
+
+`IncreaseItemAuxOnKill X` -- (ITEM) Increases the item aux by X when it kills
+
+`TauntAlways 1` -- Gives constatly the taunt effect (Enemies will prioritize the source)
 ---
 
 ## X_is 

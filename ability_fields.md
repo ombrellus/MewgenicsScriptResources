@@ -18,16 +18,16 @@
 * `target {}` -- Contains the targetting properties of the ability
 * `damage_instance {}` -- Contains the damage properties of the ability
 * `spawn {}` -- Used for spawning abilities, contains the spawn properties of the ability
-* `sounds {}` -- (OPTIONAL) contains the sound properties of the ability
-* `self_damage {}` -- (OPTIONAL) same as damage_instance but applied on the source
-* `bonus_passives {}` -- (OPTIONAL) contains bonus passives applied to the source when it has this ability
-* `temporary_effects {}` -- (OPTIONAL) contains effects applied to the source for the duration of the ability
+* `sounds {}` -- contains the sound properties of the ability
+* `self_damage {}` -- same as damage_instance but applied on the source
+* `bonus_passives {}` -- contains bonus passives applied to the source when it has this ability
+* `temporary_effects {}` -- contains effects applied to the source for the duration of the ability
 
 ---
 
 ## META
 
-`type_icon "Icon_Name"` -- Top icon of the ability [movement, spawn, debuff, buff, misc, unknown, heal, defense, ranged, magic] (More can be added appending ui_fla.ABILITYICONSHELL_161)
+`type_icon "Icon_Name"` -- Top icon of the ability [movement, spawn, debuff, buff, misc, unknown, heal, defense, ranged, magic]
 
 `is_move bool` -- If this ability is the character movement
 
@@ -95,7 +95,7 @@
 
 `chain_movieclip MovieClip_Name` -- Chain graphics used to connect source and projectile
 
-`chain_distance X` -- distance between the chain parts? [TEST]
+`chain_distance X` -- distance between the chain parts
 
 `particle Particle_Name` -- Particle played on hit characters
 
@@ -111,13 +111,13 @@
 
 `darken_screen_exclude_characters_on_tile bool` -- If the characters on the targetted tiles are excluded from the darken screen
 
-`delay X` -- Abiltiy graphics cast delay
+`delay X` -- Abilty's graphics cast delay
 
-`miss_delay X` -- Abiltiy graphics cast delay on miss
+`miss_delay X` -- Abilty's graphics cast delay on miss
 
-`random_delay [X,Y]` -- Abiltiy graphics cast delay between two random intervals
+`random_delay [X,Y]` -- Abilty's graphics cast delay between two random intervals
 
-`miss_random_delay [X,Y]` -- Abiltiy graphics cast delay between two random intervals on miss
+`miss_random_delay [X,Y]` -- Abilty's graphics cast delay between two random intervals on miss
 
 `visual_delay_but_simultaneous_damage X` -- Delay between the particle effects showing up on every targetted tile, doesn't effect the cast time [TEST]
 
@@ -135,9 +135,9 @@
 
 ## COST
 
-`move_points X` -- If this ability uses the character movement points = 1
+`move_points 1` -- If this ability uses the character movement points (0 is false)
 
-`act_points X` -- If this ability uses the character attack points = 1
+`act_points 1` -- If this ability uses the character attack points (0 is false)
 
 `charge 1` -- mhm
 
@@ -163,7 +163,7 @@
 
 `once_per_fight bool` -- If ability is castable only once per fight
 
-`uses_per_fight X` -- Amout of uses this abaility has per fight [TEST]
+`uses_per_fight X` -- Amout of uses this abaility has per fight
 
 `main_turn_only bool` -- If ability is castable only during a main turn (No bonus turn)
 
@@ -191,9 +191,9 @@
 
 `requires_attack_damage_threshold X` -- If this ability requires the basic attack damage to be over X
 
-`must_not_be_consuming bool` -- If thi ability requires not having the consuming status
+`must_not_be_consuming bool` -- If this ability requires not having the consuming status
 
-`must_be_consuming bool` -- If thi ability requires having the consuming status
+`must_be_consuming bool` -- If this ability requires having the consuming status
 
 `cant_cast bool/Formula` -- If this ability can't be cast
 
@@ -201,7 +201,7 @@
 
 `must_be_offmap bool` -- If this ability can be cast only when the character is not on the map
 
-`disallow_cost_modification bool` -- If this ability costs can't be modified
+`disallow_cost_modification bool` -- If this ability's cost can't be modified
 
 ---
 
@@ -251,11 +251,11 @@
 
 `prioritize_face_camera bool` -- (AI) if the character should prioritize facing the camera when casting this ability
 
-`dont_orient_aoe bool` -- [TEST]
+`dont_orient_aoe bool` -- If the character doesn't orient towards the aoe
 
 `straight_shot bool` -- If the targetting is done in a straight line, stopped by objects
 
-`upgrade_straight_shot_to_piercing bool` -- If the straight targetting becomes piercing, passing through objects [TEST]
+`upgrade_straight_shot_to_piercing bool` -- If the straight targetting becomes piercing, passing through objects
 
 `reverse_target_direction bool` -- If the character has to flip direction when casting the ability (From the butt)
 
@@ -297,7 +297,7 @@
 
 `damage X` -- Damage dealt by the ability
 
-`raw_damage X` -- Raw damage dealt by the ability (Isn't changed by other thing?) [TEST]
+`raw_damage X` -- Raw damage dealt by the ability
 
 `heal X` -- Healing dealt by the ability
 
@@ -319,7 +319,7 @@
 
 `force_play_hit_animation bool` -- If the ability forces the target to play it's hit animation
 
-`disallow_modifications bool` -- [TEST]
+`disallow_modifications bool` -- If the damage/heal of the damage instance isn't allowed to be modified
 
 `layer Layer_Name` -- On what entity layer this ability effects are applied [self, characters, pickups]
 
