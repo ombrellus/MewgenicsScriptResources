@@ -702,9 +702,6 @@
 
 ## X_is 
 
-> [!TIP]
-> "XIsWhatever" can also be used with curly braces, and inside of it X will become whatever it specifies [TEST].
-
 `X_cant_be_zero bool` -- X can't be 0 (goes in cost)
 
 `XIsCountStatusStacks Status_Name` -- X becomes the status stacks count
