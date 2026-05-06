@@ -3,15 +3,15 @@
 >[!WARNING]
 >This list is still a work in progress, some things haven't been tested to their fullest, haven't been documentet properly, or aren't present
 
-`AbilityName {}`
+`AbilityID {}`
 
 * `Class Class_Name` -- Ability class, only used when making a template [check ablity_template.gon for classes]
 
 * `template Template_Name` -- Ability template, will inherit all of the configurations of the template [check ablity_template.gon for templates]
-* `variant_of AbilityName` -- Used for upgraded abilities, the upgraded ability needs the same name with a 2 after it (AbilityName2), will inherit configurations
+* `variant_of AbilityID` -- Used for upgraded abilities, the upgraded ability needs the same name with a 2 after it (AbilityName2), will inherit configurations
 * `tags [Tag_Name]` -- List of ability tags
-* `chain_ability Ability_Name` -- Ability casted right after this one
-* `ai_ability Ability_Name` -- (AI) Another ability that is used to calculate the ai chance for this one
+* `chain_ability AbilityID` -- Ability casted right after this one
+* `ai_ability AbilityID` -- (AI) Another ability that is used to calculate the ai chance for this one
 * `meta {}` -- Contains the information about the ability
 * `graphics {}` -- Contains the graphical properties of the ability
 * `cost {}` -- Containts the costs and requirements of the ability

@@ -26,7 +26,7 @@
 
 * `passives {}` -- Inside there are all the [passive](gon_files_resources.md#passive-actions) effects that the passive gives (Including some statuses)
 
-* `override_basic_attack Ability_Name` -- Replaces the target's basic attack with a specified ability
+* `override_basic_attack AbilityID` -- Replaces the target's basic attack with a specified ability
 
 * `lock_item_slot{}` -- Locks the specified item slots of the target
 * * `slot [Item_Slot]`-- The chosen [item slot(s)](enums.md#item-slots)

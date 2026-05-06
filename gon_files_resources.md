@@ -1,6 +1,6 @@
 ## PASSIVE ACTIONS
 
-`OverrideBasicAttack Ability_Name` -- Replaces the basic attack of the character with the chosen ability
+`OverrideBasicAttack AbilityID` -- Replaces the basic attack of the character with the chosen ability
 
 `AddStatusToBasicAttack {}` -- Table of statuses given to the basic attack
 
@@ -200,11 +200,11 @@
 * `passives {}` -- Table of passives
 
 `SpawnOnBattleStart {}` -- Spawns X Characters on battle start
-* `object Character_Name` -- Character (Can also be used as `SpawnOnBattleStart Character_Name`)
+* `object CharacterID` -- Character (Can also be used as `SpawnOnBattleStart CharacterID`)
 * `number X` -- Number of Characters
 
 `SpawnThingOnDamage {}` -- Spawn objects/Characters whenever the source takes damage
-* `object Character_Name` -- Character name
+* `object CharacterID` -- Character name
 * `number X` -- Number of Characters
 * `chance 1.0-0.0` -- chance of spawning
 
@@ -216,7 +216,9 @@
 
 `ExtraWeaponAttacks X` -- Gives X extra weapon attacks
 
-`ElementImmune Element_Name` -- Makes target immune to a certain [Element](enums.md#elements)
+`InnateElement Element_Name` -- Makes target be of a certain [element](enums.md#elements)
+
+`ElementImmune Element_Name` -- Makes target immune to a certain [element](enums.md#elements)
 
 `StatusImmunity [Status_Name]` -- Makes target immune to a list of statuses
 
@@ -243,13 +245,13 @@
 `StatusDamagers {}` -- Gives the specified statuses to any character that attacks the source
 
 `MovementReaction {}` -- Uses a specific ability when someone moves near the target
-* `ability Ability_Name` -- Ability Name
+* `ability AbilityID` -- Ability Name
 * `enemies_only bool` -- If it reacts to only enemies
 * `on_self_move_too bool` -- If it reacts when you move as well
 * `create_temp_ability bool` -- i don't know
 
 `AbilityReaction {}` -- Uses a specified ability when the source is hit (ImmediateAbilityReaction can be used for enemies)
-* `ability [Ability_Name]` -- Specified ability, if given a list it will choose one (Can also be used as `AbilityReaction [Ability_Name]`)
+* `ability [AbilityID]` -- Specified ability, if given a list it will choose one (Can also be used as `AbilityReaction [AbilityID]`)
 * `backstabs_only bool` -- If it reacts only when backstabbed
 * `ability_damage_only bool` -- If it reacts only when hit with a damaging attack
 * `match_knockback_direction bool` -- If the reaction ability follows the direction of the knockback given by the damaging attack
@@ -268,7 +270,7 @@
 * `chance X%` -- X chance of reacting
 
 `DeathRattle {}` -- When the target dies uses the specified ability
-* `ability Ability_Name` -- Ability (Can also be used as `DeathRattle Ability_Name`)
+* `ability AbilityID` -- Ability (Can also be used as `DeathRattle AbilityID`)
 * `pop_corpse bool` -- If the corpse should be destroyed
 * `is_dying_animation bool` -- If the animation is the dying animation
 * `immediate bool` -- If it should be done instantly upon death
@@ -277,11 +279,11 @@
 * `must_target_killer bool` -- If the target must target the killer
 
 `DeathRattleRevive {}` -- When the target dies it revives and uses the specified ability
-* `ability Ability_Name` -- Ability (Can also be used as `DeathRattleRevive Ability_Name`)
+* `ability AbilityID` -- Ability (Can also be used as `DeathRattleRevive AbilityID`)
 * `even_if_stunned bool` -- If it can be used when stunned
 
 `CaveFamilyEnrage {}` -- Cast ability when X or less other Characters with tag are alive [TEST]
-* `ability Ability_Name` -- Ability to cast
+* `ability AbilityID` -- Ability to cast
 * `tag Tag_Name` -- Tag
 * `count X` -- Character count
 
@@ -296,7 +298,7 @@
 
 `AddMovement X` -- Adds X tiles to the movement range
 
-`ReplaceBasicAttackWhenCastable Ability_Name` -- Replaces the basic attack with the specified ability when the ability is castable
+`ReplaceBasicAttackWhenCastable AbilityID` -- Replaces the basic attack with the specified ability when the ability is castable
 
 `DisableAbilitiesWithTag Tag_Name` -- Disables all the target's abilities that have a specified tag
 
@@ -309,8 +311,8 @@
 * etc...
 
 `TerminatorChase {}` -- C-800 behaviour, when the enemies use a spell it moves, and if gets in range of the enemy it uses a special ability
-* `move Ability_Name` -- Movement ability used
-* `ability Ability_Name` -- Special ability used when in range
+* `move AbilityID` -- Movement ability used
+* `ability AbilityID` -- Special ability used when in range
 
 `DepressionAura {}` -- Gives all units in a Y range X all stats down
 * `stacks X` -- Amount of stats down (Can also be used as `DepressionAura X`)
@@ -320,7 +322,7 @@
 `SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
 
 `SpawnExtraThingsOnBattleStart {}` -- Spawns the specified Characters on battle start
-* `object [Character_Name]` -- Character(s) to spawn
+* `object [CharacterID]` -- Character(s) to spawn
 * `number X` or `[X Y]` -- Number of Characters to spawn, or range of Characters to spawn
 
 `DamageFromBehindOnly 1` -- Makes the character ignore all attacks that aren't from the back 
@@ -331,14 +333,14 @@
 
 `NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
 
-`MutateViaAbility Ability_Name` -- If a mutation gets triggered, it mutates using the specified ability
+`MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
 
 `BoostHeals X` -- Boosts the target's heals by X
 
 `HealAtStart X%` -- Heals X% at the start of the battle
 
 `MoveWhenDamaged {}`
-* `move_ability Ability_Name` -- Ability used to move (Can also be used as `MoveWhenDamaged Ability_Name`) (if not included it uses the character's base move ability)
+* `move_ability AbilityID` -- Ability used to move (Can also be used as `MoveWhenDamaged AbilityID`) (if not included it uses the character's base move ability)
 * `weights Movement_Weight_Name` -- Weights used to decide where to move 
 
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
@@ -399,6 +401,8 @@
 * `TempDamageUp X`
 * `TempSpellDamageUp X`
 
+`ApplyPassives {}` -- Table of passive effects to add to the target
+
 `Die 1` -- Target dies  
 
 `FullHeal 1` -- Heals the target to full
@@ -422,28 +426,28 @@
 * `upgraded bool` -- If it's the upgraded version
 
 `ObjectOnHitCharacter {}` -- Spawns X specified Characters from the target
-* `object Character_Name` -- Character (Can also be used as `ObjectOnHitCharacter Character_Name`)
+* `object CharacterID` -- Character (Can also be used as `ObjectOnHitCharacter CharacterID`)
 * `stacks X` -- Number of Characters
 
 `FindItemFromPool Item_Pool_Name` -- Gives an item from a specified pool
 
 `RefreshMovePoints N` -- Refreshes N movement points  
 
-`TransformBasicAttack Ability_Name` -- Transform the target basic attack to a chosen ability  
+`TransformBasicAttack AbilityID` -- Transform the target basic attack to a chosen ability  
 
-`TransformAbility Ability_Name` -- ABILITY Transform the current ability into a chosen ability  
+`TransformAbility AbilityID` -- ABILITY Transform the current ability into a chosen ability  
 
 `OverrideDamage X` -- ABILITY overrides the ability's damage with X
 
 `CastAgain X` -- ABILITY casts the ability another X times
 
-`UseAbility Ability_Name` -- Makes the target use a specific ability  
+`UseAbility AbilityID` -- Makes the target use a specific ability  
 
-`UseAbility_NonStack Ability_Name` -- Makes the target use a specific ability (Applying it multiple times won't stack the effect)  
+`UseAbility_NonStack AbilityID` -- Makes the target use a specific ability (Applying it multiple times won't stack the effect)  
 
-`ForceUseAbility Ability_Name` -- Forces the target to use a specific ability  
+`ForceUseAbility AbilityID` -- Forces the target to use a specific ability  
 
-`ImmediateUseAbility_Instant Ability_name` -- Makes the target use a specific ability instantly
+`ImmediateUseAbility_Instant AbilityID` -- Makes the target use a specific ability instantly
 
 `RerollEnemy 1` -- Rerolls the target to a random chapter enemy  
 
@@ -503,7 +507,7 @@
 
 `PullSourceToKnockbackImmuneTarget 1` -- When knockback is dealt, if the target is immune to it pull the source to it  
 
-`SpawnThingIfHitKills Character_Name` -- Spawns a specified character when the target is killed  
+`SpawnThingIfHitKills CharacterID` -- Spawns a specified character when the target is killed  
 
 `Metronome 1` -- Cast random spell [TEST if changing 1 does something]  
 
@@ -537,9 +541,11 @@
 * `expires_on_begin_turn bool` -- If it expires as soon as the next target turn begine
 * `expires_on_end_turn bool` -- If it expires as soon as the target turn ends
 
+`ApplyToRandomClosestAlly {}` -- Table of statuses applied to a random closest ally
+
 `ApplyToSource {}` -- Use to switch to source in targeted effects
 
-`Imprison Character_Name` -- Creates specified Characters around the target
+`Imprison CharacterID` -- Creates specified Characters around the target
 
 `Cleanse 0 or 1` -- Removes all debuffs on the target (1 makes it so it also gives 1 holy shield for every type of debuff)
 
@@ -559,7 +565,7 @@
 `FaceAway 1` -- Makes the target face away
 
 `LeaveBehind {}` -- Spawns behind the specified character
-* `object Character_Name` -- Character
+* `object CharacterID` -- Character
         
 `SafeDie 1` -- Dies without injury
 
@@ -576,7 +582,7 @@
 `RefreshItemAbilities X` -- Refreshes the target's item abilities
 
 `PoolMetronome {}` -- Casts a random specified ability
-* `pool [Ability_Name]` -- Ability list
+* `pool [AbilityID]` -- Ability list
             
 `EndTurn 1` -- Ends the turn
 
@@ -648,7 +654,7 @@
 
 `BackflipWhenTargeted {}` -- Gives X backflips using a specified ability for the backflip
 * `stacks X` -- Amount (Can also be used as `BackflipWhenTargeted X`)
-* `ability Ability_Name` -- Ability used to backflip
+* `ability AbilityID` -- Ability used to backflip
 
 `NextBattleStatus {}` -- Table of statuses to give at the start of the next battle
 
@@ -677,7 +683,7 @@
 `RemoveItem Item_Name` -- Removes a specific item from the target's inventory
 
 `TeamCastAbility {}` -- Makes all of the targe's team cast an ability
-* `ability Ability_Name` -- Ability to cast (Can also be used as `TeamCastAbility Ability_Name`)
+* `ability AbilityID` -- Ability to cast (Can also be used as `TeamCastAbility AbilityID`)
 * `tag_restriction string` -- Tag required by the character to cast the ability
 * `same_orentation bool` -- If the character uses the same orentation of the original caster
 
@@ -698,6 +704,15 @@
 `IncreaseItemAuxOnKill X` -- (ITEM) Increases the item aux by X when it kills
 
 `TauntAlways 1` -- Gives constatly the taunt effect (Enemies will prioritize the source)
+
+`ForceMoveTowards 1` -- Makes the target move towards the source
+
+`ForceMoveTowardsEnemies 1 or AbilityID` -- Makes the target move towards it's enemies, can be given an AbilityID as input to use a different movement ability
+
+`ForceMoveTowardsTaggedObject {}` -- Makes the target move towers objects with a specific tag
+* `ability AbilityID` -- Movement ability used
+* `tag string` -- Specified tag
+
 ---
 
 ## X_is 
