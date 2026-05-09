@@ -190,9 +190,22 @@
 
 `PassiveIfEmptyHead {}` -- Table of passives executed while the target has no head armor
 
-`PassiveWhileNotHasStatus {}` -- Applies the specifies passives when the target doesn't have the specified status
+`PassiveWhileHasStatus {}` -- Table of passives executed while the target has the specified status
 * `status Status_Name` -- The status
 * `passives {}` -- Table of passives
+
+`PassiveWhileNotHasStatus {}` -- Table of passives executed while the target doesn't have the specified status
+* `status Status_Name` -- The status
+* `passives {}` -- Table of passives
+
+`TempPassiveWhileHasStatus {}` -- Table of passives executed while the target has the specified status, the passives are completely removed when the status is removed
+* `status Status_Name` -- The status
+
+`PassiveWhileShielded {}` -- Table of passives executed while the target has shield
+
+`PassiveWhileNotTakingTurn {}` -- Table of passives executed while in't not the target's turn
+
+`PassiveWhileWearingMetal {}` -- Table of passives executed while the target has a metal item
 
 `PassiveAtHealthThreshold {}` -- Appliest the specified passives when the target health matches the condition
 * `threshold X` -- The threshold amount

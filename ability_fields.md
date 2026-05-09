@@ -27,6 +27,8 @@
 
 ## META
 
+`ability_icon AbilityID` -- If specified, the ability will use the icon of another ability
+
 `type_icon "Icon_Name"` -- Top icon of the ability [movement, spawn, debuff, buff, misc, unknown, heal, defense, ranged, magic]
 
 `is_move bool` -- If this ability is the character movement
