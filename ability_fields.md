@@ -283,6 +283,8 @@
 
 `target_requires_element Element_Name` -- (MUST_HAVE_ELEMENT) [Element](enums.md#elements) check
 
+`aoe_tile_requires_element Element_Name` -- (character_must_be_affected_by_tile_with_element) [Element](enums.md#elements) check
+
 `low_health_character_threshold X` -- (MUST_HAVE_LOW_HEALTH_CHARACTER) Sets the treshold of a low damage unit to equal or less than X
 
 `X_is Variable_Name` -- X becomes a chosen [variable](enums.md#x_is), and can be used in expressions in other parts of the ability
@@ -301,6 +303,10 @@
 
 `raw_damage X` -- Raw damage dealt by the ability
 
+`blocked_damage X` -- Damage dealt to characters hit bu the moved target
+
+`blocked_multiplier X`-- Damage is multiplied by X for characters hit by the moved target
+
 `heal X` -- Healing dealt by the ability
 
 `knockback X` -- knockback dealt by the ability
@@ -315,7 +321,7 @@
 
 `makes_contact bool` -- If the ability counts as contact with the tile
 
-`force_no_contact bool` -- If the ability forces to be no contact to the targetted tile
+`force_no_contact bool` -- If the ability forces there to be no contact to the targetted tile
 
 `hit_animation_alt Animation_name` -- Change the hit animation for this damage instance
 
@@ -326,6 +332,8 @@
 `layer Layer_Name` -- On what entity layer this ability effects are applied [self, characters, pickups]
 
 `elements [Element_Name]` -- The [element](enums.md#elements) of the ability
+
+`effects {}` -- Table of statuses given to the target
 
 ---
 

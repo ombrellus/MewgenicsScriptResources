@@ -1,10 +1,14 @@
 ## PASSIVE ACTIONS
 
-`OverrideBasicAttack AbilityID` -- Replaces the basic attack of the character with the chosen ability
+`AddTag string` -- Adds a tag to the character
+
+`AddHiddenTag string` -- Adds an hidden tag to the character (hidden tags are more specific tags refenced only in gon files)
+
+`AlphaStatusOnTurnBegin {}` -- Table of statuses given at turn start to the cat with alpha
 
 `AddStatusToBasicAttack {}` -- Table of statuses given to the basic attack
 
-`AddStatusToFirstBasicAttack {}`
+`AddStatusToFirstBasicAttack {}` -- Table of statuses given to the first basic attack
 
 `AddSelfStatusToBasicAttack {}` -- Table of statuses given to the basic attack that get applied to the source
 
@@ -37,6 +41,14 @@
 
 `AddStatusesIfPersistentWeatherElement {}` -- Table of statuses given if there is a persistent element weather
 * `element [Element_Name]` -- Chosen [element](enums.md#elements) list
+
+`AddPassivesToMinions {}` -- Table of passives applied to the target's familiars
+
+`AddPassivesToCharmed {}` -- Table of passives applied to charmed characters
+
+`AddPassivesToSummonAbilityMinions {}` -- Table of passives applied to familiars spawned with abilities
+
+`AddPassiveToSpawnedRocks {}` -- Table of passives applied to spawned rocks
 
 `ChanceToRevive 0-100` -- Chance to revive at the end of the round
 
@@ -180,7 +192,17 @@
 
 `PassiveLevelScaledStatus {}` -- Applies the specified passives, inside the block "X" is the level of the passive
 
-`PassiveWhenTheAlpha {}` -- Applies the specific passives when the target is the alpha
+`PassiveWhenTheAlpha {}` -- Table of passives executed while the target is the alpha
+
+`PassiveWhenAffectedByElement {}` -- Table of passives executed while the target is affected by a specific element
+* `element Element_Name` -- [Element](enums.md#elements) name
+* `passives {}` -- Table of passives
+
+`PassiveWhenOnTile {}` -- Table of passives executed while the target is on a specific set of tiles
+* `tile [Tile_Name]` -- List of [tiles](enums.md#tiles)
+* `passives {}` -- Table of passives
+
+`PassiveWhenAtFullMana {}` -- Table of passives executed while the target is at full mana
 
 `PassiveIfAllArmorEmpty {}` -- Table of passives executed while the target has all it's armor slots empty
 
@@ -226,6 +248,8 @@
 `PassiveGroup {}` -- Treats a table of passives as one
 
 `IgnoreTiles 1` -- Ignore tiles
+
+`ExtraBasicAttacks X` -- Gives X extra basic attacks
 
 `ExtraWeaponAttacks X` -- Gives X extra weapon attacks
 
@@ -297,7 +321,7 @@
 
 `CaveFamilyEnrage {}` -- Cast ability when X or less other Characters with tag are alive [TEST]
 * `ability AbilityID` -- Ability to cast
-* `tag Tag_Name` -- Tag
+* `tag string` -- Tag
 * `count X` -- Character count
 
 `LateBloomer {}` -- Takes any status as optional parameter to give after X rounds 
@@ -311,11 +335,15 @@
 
 `AddMovement X` -- Adds X tiles to the movement range
 
+`ReplaceBasicAttack AbilityID` -- Replaces the basic attack with the specified ability
+
+`ReplaceBasicAttack_Mutation AbilityID` -- Replaces the basic attack with the specified ability (Will be overridden by non-mutation attack replacement)
+
+`OverrideBasicAttack AbilityID` -- Replaces the basic attack with the specified ability (It will overwrite any other attack replacement)
+
 `ReplaceBasicAttackWhenCastable AbilityID` -- Replaces the basic attack with the specified ability when the ability is castable
 
-`DisableAbilitiesWithTag Tag_Name` -- Disables all the target's abilities that have a specified tag
-
-`AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
+`DisableAbilitiesWithTag string` -- Disables all the target's abilities that have a specified tag
 
 `HouseFoodRequirementMultiplier X` -- Changes how much food is needed for the target's when a day passes [TEST if things other than 0 work]
 
@@ -331,6 +359,10 @@
 * `stacks X` -- Amount of stats down (Can also be used as `DepressionAura X`)
 * `range Y` -- Effect range (Set to `global` for global range)
 * `aura_effects_allies bool` -- If this effect targets allies
+
+`AllyBonusAbilityAura {}` -- Gives all units in a cross or square a bonus ability
+* `ability AbilityID` -- Bonus ability (Can be used as `AllyBonusAbilityAura AbilityID`)
+* `square bool` -- If the range is a square instead of a cross
 
 `SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
 
@@ -356,9 +388,13 @@
 * `move_ability AbilityID` -- Ability used to move (Can also be used as `MoveWhenDamaged AbilityID`) (if not included it uses the character's base move ability)
 * `weights Movement_Weight_Name` -- Weights used to decide where to move 
 
+`KillsHeal X or X%` -- When killing a character, heals the damager by X if it's not a percentage, or by X% of it's max health if it's a percentage
+
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
 
-`KillsHeal X or X%` -- When killing a character, heals the damager by X if it's not a percentage, or by X% of it's max health if it's a percentage
+`DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
+
+`AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
 
 ---
 
@@ -486,7 +522,7 @@
 
 `Revive 0-100%` -- Revive the target at a health percentage
 
-`ChangeTile Tile_Name` -- Changes the targeted tile to the selected tile  
+`ChangeTile Tile_Name` -- Changes the targeted tile to the selected [tile](enums.md#tiles)  
 
 `CollectsPickups 1` -- Collects targeted pickups  
 
@@ -513,6 +549,8 @@
 `ContextualHeal 1` -- Makes the ability heal allies and damage enemies [TEST might be in a different context]  
 
 `IgnoreSelf 1` -- Effects and damage don't get applied to the source  
+
+`IgnoreDebuffs 1` -- Debuffs given are not applied
 
 `Leech X` -- Damage dealt heals the source times X
 
@@ -738,7 +776,7 @@
 
 `XIsTargetHealth {}` -- Inside the expression X is the target's health
 
-`XIsLivingAlliesWithTag Tag_Name` -- X becomes the number of allies with a specific tag
+`XIsLivingAlliesWithTag string` -- X becomes the number of allies with a specific tag
 
 `XIsConsumedCharacterMaxHP N` -- X becomes N * the max health of the character the source consumed
 
@@ -804,7 +842,7 @@
 
 `Conditional_HasTag {}` -- Execute if target has tag
 
-* `tag Tag_Name` -- Name of tag
+* `tag string` -- Name of tag
 
 `Conditional_Adjacent {}` -- Execute if target is adjacent to source
 
@@ -852,7 +890,7 @@
 * `formula X` -- formula (can be a more complex formula if given as a string)
 
 `Conditional_SourceAbilityHasTag {}` -- Execute if the source is an ability and has a specific tag
-* `tag Tag_Name`
+* `tag string`
 
 `Conditional_Backstab {}` -- ABILITY Execute if the ability backstabs
 
