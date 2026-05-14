@@ -20,15 +20,15 @@
 
 `tooltip string` -- Tooltip of the character
 
-`scale .X` -- Visual scale of the character
+`scale float` -- Visual scale of the character
 
 `shadow MovieClip_Name` -- MovieClip of the character's shadow (`Nothing` for no shadow)
 
-`shadow_size .X` -- Visual scale of the character's shadow
+`shadow_size float` -- Visual scale of the character's shadow
 
 `projectile_spawn_offset [X Y]` -- Offset from where projectiles shot from the target come from
 
-`uifloaters_offset .X` -- Y offset of the health/statuses ui of the character
+`uifloaters_offset float` -- Y offset of the health/statuses ui of the character
 
 `status_display_count_max X` -- How many statuses can be displayed at the same time
 
@@ -67,7 +67,7 @@
 
 `tag [string]` -- List of character tags
 
-`hidden_tag [string]` -- List of hidden character tags [I have no idea what changes]
+`hidden_tag [string]` -- List of hidden character tags (hidden tags are more specific tags refenced only in gon files)
 
 `faction Faction_Name` -- [Faction](enums.md#factions) the character is part of [CHECk if they custom]
 
@@ -181,35 +181,51 @@
 
 ## Character ai
 
-`brain Brain_Type` -- [GenericBrain PatternBrain PlayerBrain NoBrain]
+`brain Brain_Type` -- Brain used by the character, will change how it takes decisions [GenericBrain PatternBrain PlayerBrain NoBrain]
 
-`move_weights MoveWeight_Type`
+`move_weights MoveWeight_Type` -- movement decision weights used by the character
 
-`decision_weights DecisionWeight_Type`
+`decision_weights DecisionWeight_Type` -- action decision weights used by the character
 
-`auto_orient bool`
+`auto_orient bool` -- If the character orients itself on it's turn
 
-`virtual_abilities {}`
-* `VirtualAbilityName {}`
-* * `ability AbilityID`
-* * `move_for_ability AbilityID`
-* * `move_weights MoveWeight_Type`
-* * `decision_weights DecisionWeight_Type`
+`end_turn_on_formswitch bool` -- If when switching form it automatically ends it's turn
 
-`pattern {}`
-* `do Character_Ability`
-* `do_all [Character_Ability]`
-* `do_random [Character_Ability]`
-* `do_strict [Character_Ability]`
-* `move_then_do_priority [Character_Ability]`
+`fallback_advances_pattern true` -- If the fallback pattern advances the pattern
+
+`stun_advances_pattern false` -- If skipped turns from stun advances the pattern
+
+`virtual_abilities {}` -- Table of unique character abilities that can use different weights or movement actions than the default ones
+* `VirtualAbilityName {}` -- Custom name for a virtual ability 
+* * `ability AbilityID` -- Ability used by this virtual ability
+* * `move_for_ability AbilityID` -- Movement ability used when moving to use this virtual ability
+* * `move_weights MoveWeight_Type` -- movement decision weights used for this virtual ability
+* * `decision_weights DecisionWeight_Type` -- action decision weights used for this virtual ability
+
+`pattern {}` -- Table of action lists that cycle every turn (Abilities still need to meet their cost to be used)
+* `do Character_Ability` -- Does a single action
+* `do_priority [Character_Ability]` -- Does the best possible action in the list
+* `move_then_do_priority [Character_Ability]` -- Moves then does the best possible action in the list
+* `do_random [Character_Ability]` -- Does a random action in the list
+* `do_all [Character_Ability]` -- Does all of the actions in the list in a random order
+* `do_strict [Character_Ability]` -- Does all of the actions in the list in order
+
+> [!NOTE]  
+> Patterns use the character's spells or virtual abilities, but there are other basic actions:  
+> `attack` Uses the basic attack  
+> `move` Uses the basic movement  
+> `weapon` Uses the weapon  
+> `trinket` Uses the trinket  
 
 > [!NOTE]  
 > `*Character_Ability` will make the character use the ability without moving  
 > `**Character_Ability` will make the character use the ability without moving and use a movement point  
 > `Character_Ability~` will make the character try to use the ability for as many times it can
 
-`mainturn_pattern {}`
+`mainturn_pattern {}` -- Pattern used only during main turns
 
-`bonusturn_pattern {}`
+`bonusturn_pattern {}` -- Pattern used only during bonus turns
 
-`round_end_bonusturn_pattern {}`
+`round_end_bonusturn_pattern {}` -- Pattern used only used during end of the round bonus turns
+
+`fallback {}` -- Pattern used if the other ones fail

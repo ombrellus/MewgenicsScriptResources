@@ -193,6 +193,8 @@
 
 `requires_attack_damage_threshold X` -- If this ability requires the basic attack damage to be over X
 
+`requires_exact_character_aux X` -- If this ability requires the character's aux to be at X
+
 `must_not_be_consuming bool` -- If this ability requires not having the consuming status
 
 `must_be_consuming bool` -- If this ability requires having the consuming status
@@ -258,6 +260,8 @@
 `straight_shot bool` -- If the targetting is done in a straight line, stopped by objects
 
 `upgrade_straight_shot_to_piercing bool` -- If the straight targetting becomes piercing, passing through objects
+
+`upgrade_straight_shot_to_boomerang bool` -- If the straight targetting becomes boomerang, coming back to the source
 
 `reverse_target_direction bool` -- If the character has to flip direction when casting the ability (From the butt)
 

@@ -61,6 +61,9 @@
 
 `StatusEachTurnEnd {}` -- Table of statuses given at the end of each turn
 
+`StatusAlliesEachTurn {}` -- Table of statuses given to all allies at the end of each turn
+* `exclude_self bool` -- If the source is excluded
+
 `StatusEachTurnEndForEachTurn {}` -- Table of statuses given at the end of each turn, scaled for how many turns have passed
 
 `StatusEachTurnBegin {}` --  Table of statuses given at the start of every turn
@@ -234,6 +237,8 @@
 * `mode Threshold_Mode` -- How the condition is calculated [equal, less, greater, less_or_equal, greater_or_equal]
 * `passives {}` -- Table of passives
 
+`PassiveUntilCastSpell {}` -- Table of passives executed until the target uses a spell
+
 `SpawnOnBattleStart {}` -- Spawns X Characters on battle start
 * `object CharacterID` -- Character (Can also be used as `SpawnOnBattleStart CharacterID`)
 * `number X` -- Number of Characters
@@ -281,18 +286,28 @@
 
 `StatusDamagers {}` -- Gives the specified statuses to any character that attacks the source
 
+`AutocastEachRound {}` -- Uses a specific ability at the end of every round
+* `ability AbilityID` -- Ability to use (Can also be used as `AutocastEachRound AbilityID`)
+* `even_if_stunned bool` -- If it uses the ability even if stunned
+* `force_display_name bool` -- If it forces to display the name of the ability when used
+
+`AbilityOnBattleStart AbilityID` -- Uses a specific ability at battle start
+
+`AbilityOnBattleStart_Immediate AbilityID` -- Uses a specific ability at battle start (Before the battle is even shown)
+
 `MovementReaction {}` -- Uses a specific ability when someone moves near the target
 * `ability AbilityID` -- Ability Name
 * `enemies_only bool` -- If it reacts to only enemies
 * `on_self_move_too bool` -- If it reacts when you move as well
 * `create_temp_ability bool` -- i don't know
 
-`AbilityReaction {}` -- Uses a specified ability when the source is hit (ImmediateAbilityReaction can be used for enemies)
+`AbilityReaction {}` -- Uses a specified ability when the source is hit
 * `ability [AbilityID]` -- Specified ability, if given a list it will choose one (Can also be used as `AbilityReaction [AbilityID]`)
 * `backstabs_only bool` -- If it reacts only when backstabbed
 * `ability_damage_only bool` -- If it reacts only when hit with a damaging attack
 * `match_knockback_direction bool` -- If the reaction ability follows the direction of the knockback given by the damaging attack
 * `cancel_knockback bool` -- If it cancels the knockback given by the damaging attack
+* `even_on_0_damage` -- If it reacts even when the damaging attack deals no damage
 * `even_on_0_damage_if_knockback bool` -- If it reacts even when the damaging attack deals no damage, but gives knockback
 * `even_if_stunned bool` -- If it reacts even when stunned
 * `target_furthest_valid bool` -- If the reaction ability targets the furthest valid target
@@ -324,6 +339,17 @@
 * `tag string` -- Tag
 * `count X` -- Character count
 
+`BungaEntrance {}` -- Uses an ability when either all characters with a tag die, or when below a certain health threshold
+* `ability AbilityID` -- Ability to use
+* `warrior_tag string` -- Tag of the dead characters
+* `health_threshold X` -- Health threshold
+* `even_if_stunned bool` -- If to use the ability even if stunned
+
+`HealAlliesEachTurn {}` -- Heals each ally at the end of every turn
+* `stacks X` -- Healing amount
+* `mana X` -- Mana healing amount
+* `exclude_self bool` -- If the source is excluded
+
 `LateBloomer {}` -- Takes any status as optional parameter to give after X rounds 
 * `stacks X` -- Number of rounds
 
@@ -346,6 +372,10 @@
 `DisableAbilitiesWithTag string` -- Disables all the target's abilities that have a specified tag
 
 `HouseFoodRequirementMultiplier X` -- Changes how much food is needed for the target's when a day passes [TEST if things other than 0 work]
+
+`TrinketPassiveMultiplierBonus X` -- Multiplies the held trinket passive effects by X
+
+`TrinketActiveEffectsMultiplierBonus X` -- Multiplies the held trinket active effects by X
 
 `AlternateCraftingPools {}` -- Changes specified crafting pools with new ones
 * `Pool_Name New_Pool_Name` -- Changes the Pool_Name pool with New_Pool_Name (This doesn't take into consideration tech, so if you want to change all 4 tech levels you have to specify it for each one)
@@ -396,12 +426,13 @@
 
 `AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
 
+`CatchBoomerang 1` -- (ABILITY) Catches the boomerang projectile
+
 ---
 
 ## EFFECT STATUSES
 
 >[!NOTE]
->These statuses also work as passives  
 >These statuses can be given as parameter a list of an integer and a float [X Y] where X = status stacks Y = chance of applying
 
 * `Shield X`
@@ -560,6 +591,9 @@
 
 `SpawnThingIfHitKills CharacterID` -- Spawns a specified character when the target is killed  
 
+`ScrambleLastUsedSpell {}` -- Replaces the last used spell with a random one
+* `permanent bool` -- If the effect is permanent
+
 `Metronome 1` -- Cast random spell [TEST if changing 1 does something]  
 
 `GainCoinsRange {}` -- Character gains a random amount of coins in a range
@@ -678,7 +712,7 @@
 
 `SetHealth X%` -- Sets the target's health to X%
 
-`FormChange Form_Name` -- Changes the target's form to Form_Name
+`FormChange string` -- Changes the target's form
 
 `RemoveMovePoints 1` -- Removes a movement point from the target
 
@@ -694,6 +728,7 @@
 * `pool Item_Pool` -- The item pool 
 * `slot Item_Slot` -- [Item slot](enums#item-slots)
 * `works_with_tech bool` -- If the crafting is influenced by tech (searches Item_Pool_X, where X is the amount of tech)
+* `temporary bool` -- If the crafted item lasts only for the current battle
 
 `RemoveStatusStacks {}` -- Removes X stacks of a specified status
 * `status Status_Name`-- Status
@@ -731,6 +766,8 @@
 
 `DestroyWeaponThrow 1` -- Destroys the thrown weapon
 
+`DamageWeapon X` -- Damages the weapon by X
+
 `RemoveItem Item_Name` -- Removes a specific item from the target's inventory
 
 `TeamCastAbility {}` -- Makes all of the targe's team cast an ability
@@ -763,6 +800,8 @@
 `ForceMoveTowardsTaggedObject {}` -- Makes the target move towers objects with a specific tag
 * `ability AbilityID` -- Movement ability used
 * `tag string` -- Specified tag
+
+`RefreshOncePerFightAbilities 1` -- Refreshes all abilities/items with once per fight restrictions
 
 ---
 
