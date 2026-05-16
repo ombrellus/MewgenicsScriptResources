@@ -404,13 +404,23 @@
 
 `LimitDamage X` -- Limits the damage amount taken to X
 
-`LimitHeal X` -- Limiys the healing amount received to X
+`LimitHeal X` -- Limits the healing amount received to X
+
+`OverrideMaxHealth X` -- Sets max health to X
+
+`OverrideMaxMana X` -- Sets max mana to X
+
+`StrictLimitDamage X` -- Damage received is capped at X
+
+`SetSpellCosts X` -- Sets the cost of all spells to X
 
 `NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
 
 `MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
 
 `BoostHeals X` -- Boosts the target's heals by X
+
+`BoostReceivedHealing X` -- Boosts the received heals by X
 
 `HealAtStart X%` -- Heals X% at the start of the battle
 
@@ -420,11 +430,15 @@
 
 `KillsHeal X or X%` -- When killing a character, heals the damager by X if it's not a percentage, or by X% of it's max health if it's a percentage
 
+`MulticlassLevelUp ClassID` -- Adds a class' abilities and passives to the upgrade pool
+
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
 
 `DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
 
 `AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
+
+`CopyCatPassive_Initializer X` -- (ABILITY) Copy cat ability effect
 
 `CatchBoomerang 1` -- (ABILITY) Catches the boomerang projectile
 
@@ -844,16 +858,16 @@
 > After a condition `Else {}` can be used to execute when the condition is not met.
 
 `Conditional_GoodRoll {}` -- Execute if roll is successful (positive roll)
-* `odds 0-100%` -- Roll odds
+* `odds X% or float` -- Roll odds
 
 `Conditional_BadRoll {}` -- Execute if roll is successful (negative roll)
-* `odds 0.0-1.0` -- Roll odds (FOR SOME REASON IT'S DECIMAL?????? BUT ONLY THIS ONE???????)
+* `odds X% or float` -- Roll odds
 
 `Conditional_RandomChance {}` -- Execute if roll is successful (neutral roll)
-* `odds 0-100%` -- Roll odds
+* `odds X% or float` -- Roll odds
 
-`Conditional_DebuffRoll {}` -- Execute if roll is successful (special negative roll??) [TEST]
-* `odds 0-100%`
+`Conditional_DebuffRoll {}` -- Execute if roll is successful (Treated as a debuff)
+* `odds X% or float`
 
 `Conditional_Shielded {}` -- Execute if target has shield
 
