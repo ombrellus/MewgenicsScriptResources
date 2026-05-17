@@ -432,6 +432,10 @@
 
 `MulticlassLevelUp ClassID` -- Adds a class' abilities and passives to the upgrade pool
 
+`CantSpreadDiseases 1` -- Makes `SpreadDisease` not work when used by the character
+
+`CantCatchDiseases 1` -- Makes `SpreadDisease` not work when applied to the character
+
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
 
 `DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
@@ -564,6 +568,8 @@
 `FlowersOnHit 1` -- Spawns flowers on the targetted tile
 
 `SpawnBearTrap 1` -- Spawns a bear trap on the targetted tile
+
+`SpawnCustomTrap MovieClip` -- Spawns a custom trap that takes the damage instance properties and effects with a specified movieclip (Check out tiles.swf for existing trap movieclips)
 
 `Revive 0-100%` -- Revive the target at a health percentage
 
@@ -816,6 +822,11 @@
 * `tag string` -- Specified tag
 
 `RefreshOncePerFightAbilities 1` -- Refreshes all abilities/items with once per fight restrictions
+
+`SpreadDisease {}` -- Gives a specified passive (with a popup) as a disease
+* `disease PassiveID` -- Passive to give
+* `chance X%` -- Chance of it being spread
+* `can_apply_to_anything bool` -- If it can spread to any kind of unit and not only player cats
 
 ---
 
