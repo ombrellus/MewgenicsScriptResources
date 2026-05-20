@@ -6,6 +6,8 @@
 
 `AlphaStatusOnTurnBegin {}` -- Table of statuses given at turn start to the cat with alpha
 
+`AddElementsToBasicAttack Element_Name` -- Adds a specific [element](enums.md#elements) to the basic attack
+
 `AddStatusToBasicAttack {}` -- Table of statuses given to the basic attack
 
 `AddStatusToFirstBasicAttack {}` -- Table of statuses given to the first basic attack
@@ -361,6 +363,10 @@
 
 `AddMovement X` -- Adds X tiles to the movement range
 
+`ReplaceBasicMove AbilityID` -- Replaces the basic move with the specified ability
+
+`ReplaceBasicMove_Mutation AbilityID` -- Replaces the basic move with the specified ability (Will be overridden by non-mutation move replacement)
+
 `ReplaceBasicAttack AbilityID` -- Replaces the basic attack with the specified ability
 
 `ReplaceBasicAttack_Mutation AbilityID` -- Replaces the basic attack with the specified ability (Will be overridden by non-mutation attack replacement)
@@ -436,6 +442,19 @@
 
 `CantCatchDiseases 1` -- Makes `SpreadDisease` not work when applied to the character
 
+`DiesToElement {}` -- Makes the character instantly die when affected by a specific element
+* `element Element_Name` -- The [element](enums.md#elements) (Can also be used as `DiesToElement Element_Name`)
+* `instant bool` -- If the death is instant
+
+`ReflectProjectiles X%` -- Gives X chance to reflect incoming projectiles
+
+`ReflectProjectiles {}` -- Reflects incoming projectiles dealing X damage to itself
+* `self_damage X` -- Damage dealt
+
+`LoopingSoundWhileAlive SoundID` -- Plays a looping sound while the character is alive
+
+`Phasing 1` -- Makes the characters be able to pass through characters and objects
+
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
 
 `DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
@@ -464,7 +483,9 @@
 * `Weakness X`
 * `Leeches X`
 * `Madness X`
+* `Doomed X`
 * `SafeDoomed X`
+* `HiddenDoomed X`
 * `Bruise X`
 * `Thorns X`
 * `BleedThorns X`
@@ -557,11 +578,13 @@
 
 `RandomInjury X` -- Gives the target X random injury [TEST]
 
-`HealthGain X` -- Heals the source by X  
+`HealthGain X` -- Heals by X  
 
-`ManaGain X` -- Gives the source X mana
+`ManaGain X` -- Gives X mana
 
 `PercentHeal X` -- Heals by X percent of the max health
+
+`HealAndOverhealToShield X` Heals by X and turns overheals into shield
 
 `BramblesOnHit 1` -- Spawns brambles on the targetted tile
 
@@ -827,6 +850,14 @@
 * `disease PassiveID` -- Passive to give
 * `chance X%` -- Chance of it being spread
 * `can_apply_to_anything bool` -- If it can spread to any kind of unit and not only player cats
+
+`PopAndSpawn {}` -- Destroys this character and spawns another
+* `object CharacterID` -- New character to spawn (Can also be used as `PopAndSpawn CharacterID`)
+* `no_splatter bool` -- If the destroyed character doesn't show any splatter
+* `clone_referenced_catdata bool` -- If the cat data is passed from the source character to the spawned character
+* `clone_items bool` -- If the spawned character clones the items from the source character
+
+`VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
 
 ---
 

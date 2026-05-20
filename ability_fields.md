@@ -12,6 +12,7 @@
 * `tags [Tag_Name]` -- List of ability tags
 * `chain_ability AbilityID` -- Ability casted right after this one
 * `ai_ability AbilityID` -- (AI) Another ability that is used to calculate the ai chance for this one
+* `keyword_tooltips {}` -- Table of statuses that overwrites the standard tooltips
 * `meta {}` -- Contains the information about the ability
 * `graphics {}` -- Contains the graphical properties of the ability
 * `cost {}` -- Containts the costs and requirements of the ability
