@@ -818,9 +818,11 @@
 * `tag_restriction string` -- Tag required by the character to cast the ability
 * `same_orentation bool` -- If the character uses the same orentation of the original caster
 
-`UpgradeRandomAbility X` -- Upgrades X random abilities temporarily
+`UpgradeRandomAbility 1` -- Upgrades a random ability temporarily
 
 `PermanentUpgradeRandomActive X` -- Upgrades permanently X random abilities
+
+`PermanentUpgradeRandomActiveOrPassive X` -- Upgrades permanently X random abilities or passives
 
 `MeleeRevengeDamage {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) targetting characters to inflict melee damage to the source
 
