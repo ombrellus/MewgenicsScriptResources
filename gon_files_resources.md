@@ -270,8 +270,7 @@
 
 `EquipPermanentItem Item_Name` -- Gives the target an item that stays after the battle
 
-`StatusAllCharactersOnSpawn {}` -- Table of statuses given to all characters when the source spawns
-
+`StatusAllCharactersOnSpawn {}` -- Table of statuses given to all characters that spawn while the character is alive
 `StatusAlliesOnBattleStart {}` -- Gives the specified statuses to all allies on battle start
 
 `ConsumablesMeleeRange X` -- Increases by X the melee range of the target consumables
@@ -684,6 +683,8 @@
 `ReduceManaCost X` -- Reduces mana cost by X
 
 `ReduceManaCostExcludeBrainstorm X` -- Reduces mana cost by X excluding the brainstorm ability [TEST]
+
+`MaxStartingMana 1` -- Makes the character start with max mana
 
 `NextAttackSpecialCrit {}` -- Gamble ability stuff [TEST]
 * `extra_coins_per_stack X` -- Gives X extra coins
