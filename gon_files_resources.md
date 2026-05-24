@@ -4,6 +4,13 @@
 
 `AddHiddenTag string` -- Adds an hidden tag to the character (hidden tags are more specific tags refenced only in gon files)
 
+`ApplyStatusesToRandomEnemiesEachTurn {}` -- Table of statuses given to random X enemies
+* `count X` -- Amount of enemies
+
+`ApplyStatusesNextTurnBegin {}` -- Table of statuses given at the start of the next turn
+
+`ApplyStatusesNextTurnEnd {}` -- Table of statuses given at the end of the next turn
+
 `AlphaStatusOnTurnBegin {}` -- Table of statuses given at turn start to the cat with alpha
 
 `AddElementsToBasicAttack Element_Name` -- Adds a specific [element](enums.md#elements) to the basic attack
@@ -270,7 +277,7 @@
 
 `EquipPermanentItem Item_Name` -- Gives the target an item that stays after the battle
 
-`StatusAllCharactersOnSpawn {}` -- Table of statuses given to all characters that spawn while the character is alive
+`StatusAllCharactersOnSpawn {}` -- Table of statuses given to all characters that spawn while the source exists
 `StatusAlliesOnBattleStart {}` -- Gives the specified statuses to all allies on battle start
 
 `ConsumablesMeleeRange X` -- Increases by X the melee range of the target consumables
@@ -671,6 +678,14 @@
 `ApplyToRandomClosestAlly {}` -- Table of statuses applied to a random closest ally
 
 `ApplyToSource {}` -- Use to switch to source in targeted effects
+
+`ApplyToSourceOnKill {}` -- (DAMAGE_INSTANCE) Table of statuses given to the source if it kills 
+
+`ApplyToOthersWithSharedTagAndFaction {}` -- Table of statuses given to all other characters that share the same tag and faction as the source
+
+`ApplyToTile {}` -- Table of statuses applied to the status itself
+
+`ApplyToConsumed {}` -- Table of statuses given to the consumed character
 
 `Imprison CharacterID` -- Creates specified Characters around the target
 
