@@ -46,7 +46,11 @@
 
 `AddStatusToSpells {}` -- Table of statuses given to spells
 
+`AddElementsToWeapon Element_Name` -- Adds an element to a weapon 
+
 `AddStatusToWeapons {}` -- Table of statuses given to weapons
+
+`AddSelfStatusToWeapons {}` -- Table of statuses given to the source when using the weapon
 
 `AddStatusesIfPersistentWeatherElement {}` -- Table of statuses given if there is a persistent element weather
 * `element [Element_Name]` -- Chosen [element](enums.md#elements) list
@@ -493,6 +497,7 @@
 * `SafeDoomed X`
 * `HiddenDoomed X`
 * `Bruise X`
+* `SpiderInfested X`
 * `Thorns X`
 * `BleedThorns X`
 * `Brace X`
@@ -507,6 +512,7 @@
 * `AlphaCat X`
 * `Charmed X`
 * `DoubleCastSpell X`
+* `BlastResistance X`
 * `CritChanceUp X` -- X is each percentage point
 * `DodgeChance_Status X` -- X is each percentage point
 * `ExtraBasicAttacks_Status X`
@@ -669,11 +675,12 @@
 * `ear2 X`
 
 `Temporary {}` -- Gives a temporary status for a select amount of turns
-* `status Status_Name` -- Status name
-* `stacks X` -- Stacks amount of the temporary status
-* `turns X` -- Turns the status remains
-* `expires_on_begin_turn bool` -- If it expires as soon as the next target turn begine
-* `expires_on_end_turn bool` -- If it expires as soon as the target turn ends
+* `status Status_Name/Passive_Name` -- Status or Passive name
+* `data Any` -- Data of the status/passive
+* `stacks X` -- Stacks amount of the temporary status/passive
+* `turns X` -- Turns the status/passive remains
+* `expires_on_begin_turn bool` -- If it counts down as soon as the next target turn begine
+* `expires_on_end_turn bool` -- If it counts down as soon as the target turn ends
 
 `ApplyToRandomClosestAlly {}` -- Table of statuses applied to a random closest ally
 
@@ -947,15 +954,17 @@
 
 `Conditional_OncePerBattle {}` -- Execute this condition once per battle
 
-* `key Name_Of_Key` -- Identifier of the condition (Known keys: gamewin)
+* `key string` -- Identifier of the condition (Known keys: gamewin)
 
 `Conditional_FirstApplicationThisTurn {}` -- Execute this condition once per turn
 
-* `key Name_Of_Key` -- Identifier of the condition
+* `key string` -- Identifier of the condition
 
 `Conditional_HasTag {}` -- Execute if target has tag
+* `tag string` -- Name of the tag
 
-* `tag string` -- Name of tag
+`Conditional_SourceHasTag {}` -- Execute if the source has tag
+* `tag string` -- Name of the tag
 
 `Conditional_Adjacent {}` -- Execute if target is adjacent to source
 
@@ -971,31 +980,36 @@
 
 `Conditional_Corpse {}` -- Execute if target is a corpse
 
-`Conditional_HasStatus {}` -- Execute if target has status (Conditional_SourceHasStatus for the source)
+`Conditional_HasStatus {}` -- Execute if target has status 
+
+`Conditional_SourceHasStatus {}`
 
 * `status Status_Name` -- Status name
 
 `Conditional_PartyMember {}` -- Execute if target is a party member [TEST]
 
-`Conditional_IsSelf {}` -- Execute if target is source
+`Conditional_IsSelf {}` -- Execute if the target is the source
 
-`Conditional_AbilityTargetIsSelf {}` -- Used in self_damage, Execute when the target of the ability is the source? (Not the self damage target) [TEST]
+`Conditional_AbilityTargetIsSelf {}` -- Execute when the target is the source
 
 `Conditional_Displaceable {}` -- Execute if the target is displaceable
 
-`Conditional_Buddy {}` -- Execute if target is the source's buddy (Esempio sta in Guillotina.gon)
+`Conditional_Buddy {}` -- Execute if target is the source's buddy
 
 `Conditional_InForm {}` -- Execute if target is in a specific form
 * `form Form_Name` -- Form name
 
 `Conditional_Object {}` -- Execute if target is an object
 
+`Conditional_Cat {}` -- Execute if the target is a cat
+
 `Conditional_PlayerCat {}` -- Execute if target is a player cat
 
 `Conditional_LivingPlayerCat {}` -- Execute if target is a player cat who happens to be alive
 
-`Conditional_AffectedByElement {}` -- Execute if target is affected by an element
+`Conditional_Familiar {}` -- Executes if the target is a familiar
 
+`Conditional_AffectedByElement {}` -- Execute if target is affected by an element
 * `element Element_Name` -- [Element](enums.md#elements) name
 
 `Conditional_FormulaIsPositive {}` -- Execute if the formula given is positive
@@ -1005,7 +1019,13 @@
 `Conditional_SourceAbilityHasTag {}` -- Execute if the source is an ability and has a specific tag
 * `tag string`
 
-`Conditional_Backstab {}` -- ABILITY Execute if the ability backstabs
+`Conditional_Backstab {}` -- Execute if the damage is a backstabs
+
+`Conditional_Frontstab {}` -- Executes if the damage comes from the front
+
+`Conditional_IsTrample {}` -- Execure if the damage comes from trample
+
+`Conditional_CanBeHealed {}` -- Execute if the target can be healed
 
 `Conditional_LastHit {}` -- ABILITY Execute at the last hit of a multihit ability
 
@@ -1013,7 +1033,7 @@
 
 * `weather [Weather_Name]` -- weathers list
 
-`Conditional_DoesDamage {}` -- Execute when damage deals actual damage, Used when source is a damage instance? [TEST]
+`Conditional_DoesDamage {}` -- Execute when the damage instance deals actual damage
 
 `Conditional_HasCleansableDebuffs {}` -- Execute if the target has removable debuffs [TEST]
 
