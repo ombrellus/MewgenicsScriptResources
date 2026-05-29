@@ -63,14 +63,17 @@
 
 `AddPassiveToSpawnedRocks {}` -- Table of passives applied to spawned rocks
 
-`ChanceToRevive 0-100` -- Chance to revive at the end of the round
+`ChanceToRevive {}` -- Chance to revive at the end of the round
+* `stacks X` -- Chance out of 100 for it to revive (Can also be used as `ChanceToRevive X`)
+* `health X%` -- Percentage of health revived with
+* `statuses {}` -- Table of statuses given when revived
 
-`StatusWhenAllySpendsMana {}`
+`StatusWhenAllySpendsMana {}` -- Table of statuses given to the character when an ally spends mana
 
-`ExtraStatusWhenDealingDamage {}`
+`ExtraStatusWhenDealingDamage {}` -- Table of stautuses given to all damages dealt
 
-`StatusWhenStatusCompletelyRemoved {}`
-* `status Status_Name`
+`StatusWhenStatusCompletelyRemoved {}` -- Table of statuses given when a status gets removed
+* `status Status_Name` -- Status to check
 
 `StatusEachTurnEnd {}` -- Table of statuses given at the end of each turn
 
@@ -465,6 +468,10 @@
 
 `Phasing 1` -- Makes the characters be able to pass through characters and objects
 
+`CharacterLightSource {}` -- Makes the character cast a light
+* `color [float float float]` -- Color of the light in rgb
+* `size float` -- Size of the light [TEST glow]
+
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
 
 `DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
@@ -491,23 +498,46 @@
 * `Freeze X`
 * `Hex X`  
 * `Weakness X`
+* `Poison X`
 * `Leeches X`
 * `Madness X`
 * `Doomed X`
 * `SafeDoomed X`
 * `HiddenDoomed X`
+* `Tarred X`
+* `Scrambled X`
+* `DelayedPain X`
 * `Bruise X`
 * `SpiderInfested X`
 * `Thorns X`
 * `BleedThorns X`
+* `PoisonThorns X`
 * `Brace X`
 * `Cleave X`
 * `Tech X`
 * `Trample X`
+* `Adrenaline X`
+* `Charge X`
+* `ChargeFists X`
+* `TempBackstab X`
+* `TempBackstabPiercing X`
+* `BlessingOfPeace X`
+* `Lifesteal X`
+* `Reflect X`
 * `HealthRegenUp X`
+* `DiminishingHealthRegen X`
+* `EmptyMind X`
+* `FreeSpell X`
+* `KineticSpikes X`
+* `PoisonLace X`
 * `TempInjuryImmunity X`
 * `TempManaCostReduction X`
 * `TempBasicAttackBonusAOE X`
+* `TempBonusKnockback X`
+* `TempBonusKnockbackDamage X`
+* `TempCounterAttack X`
+* `TempPreEmptiveCounterAttack X`
+* `NextTurnDoubleRangedDamage X`
 * `InjuryImmunity X`
 * `AlphaCat X`
 * `Charmed X`
@@ -516,6 +546,8 @@
 * `CritChanceUp X` -- X is each percentage point
 * `DodgeChance_Status X` -- X is each percentage point
 * `ExtraBasicAttacks_Status X`
+* `Trapper_Status X`
+* `DoubleCastSpellsEachTurn_Status X`
 
 >[!NOTE]
 >These statuses can be given as parameters negative numbers for debuffs
@@ -556,6 +588,11 @@
 * `pool Class_Name` -- Class pool (Can also be just `Class` to use the target class) (Can also be used as `EvolveabilityFromPool Class_Name`)
 * `upgraded bool` -- If it's the upgraded version
 
+`BounceObject {}` -- Spawns a specified Character bouncing it from the source
+* `obj CharacterID` -- Character to spawn (Can also be used as `BounceObject CharacterID`)
+* `slide X` -- How many tiles it slides for after spawning
+* `chance float` -- Chance of it spawning (0-1)
+
 `ObjectOnHitCharacter {}` -- Spawns X specified Characters from the target
 * `object CharacterID` -- Character (Can also be used as `ObjectOnHitCharacter CharacterID`)
 * `stacks X` -- Number of Characters
@@ -568,9 +605,17 @@
 
 `TransformAbility AbilityID` -- ABILITY Transform the current ability into a chosen ability  
 
-`OverrideDamage X` -- ABILITY overrides the ability's damage with X
+`BodyGuard {}` -- When an ally is damaged take their place using a specific ability
+* `stacks X` -- Status amount
+* `ability AbilityID` -- Ability used
 
-`CastAgain X` -- ABILITY casts the ability another X times
+`OverrideDamage X` -- overrides the damage dealt with X
+
+`IgnoreDamage 1` -- Ignores the damage dealt
+
+`BonusCritChance X` -- Gives X crit chance to the damage
+
+`CastAgain X` -- casts the ability another X times
 
 `UseAbility AbilityID` -- Makes the target use a specific ability  
 
@@ -693,6 +738,9 @@
 `ApplyToTile {}` -- Table of statuses applied to the status itself
 
 `ApplyToConsumed {}` -- Table of statuses given to the consumed character
+
+`ApplyMultipleTimes {}` -- Table of statuses given X times
+* `stacks X` -- Times to give statuses
 
 `Imprison CharacterID` -- Creates specified Characters around the target
 
@@ -883,6 +931,10 @@
 * `clone_items bool` -- If the spawned character clones the items from the source character
 
 `VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
+
+`SwitchMusic {}` -- Changes the currently playing music
+* `new_song SongID` -- ID of the song to use (put `same` to keep the current song)
+* `new_layer LayerID`  -- ID of the layer of the song to pick [map, event, battle, boss]
 
 ---
 
