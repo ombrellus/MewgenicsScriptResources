@@ -270,7 +270,7 @@
 
 `range_display_include_character_size bool` -- [TEST]
 
-`knockback_mode Mode_Name` -- how knockback is handled [zero, character_to_tile, target_to_tile, orientation, back_orentation, left_orentation, right_orentation, character_to_target, target_to_character, tile_to_character]
+`knockback_mode Mode_Name` -- how knockback is handled [zero, character_to_tile, target_to_tile, orientation, back_orentation, left_orentation, right_orentation, character_to_target, target_to_character, tile_to_character, pull_to_character]
 
 `always_bounce bool` -- [TEST]
 

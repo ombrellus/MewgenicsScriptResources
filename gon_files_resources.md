@@ -29,6 +29,8 @@
 
 `AddStatusToBasicMeleeAttack {}` -- Table of statuses given to the basic attack when melee
 
+`AddStatusToMeleeDamage {}` -- Table of statuses given to all melee attacks
+
 `AddStatusToElementDamage {}` -- Table of statuses given to damage of specific elements
 * `element [Element_Name]` -- Chosen [element](enums.md#elements) list
 
@@ -109,6 +111,9 @@
 `StatusOnCollectPickup {}` -- Table of statuses given when collecting a pickup
 
 `StatusOnPickupCoins {}` -- Table of statuses given when collecting a coin (as a pickup)
+
+`TaggedPickupEffectReplacement {}` -- Table of statuses given when collecting a pickup with a specified tag instead of it's normal effects
+* `tag string`
 
 `StatusOnEatFood {}` -- Table of statuses given when eating a food item/pickup
 
@@ -205,6 +210,9 @@
 
 `ScaledStatusOnBleedDamage {}` -- Table of statuses given for every bleed damage
 
+`ConvertDamageToScaledStatus {}` -- Table of statuses given instead of the damage taken
+* `stacks X` -- Max amount of damage convertable
+
 `PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
 
 `PassiveLevelUpAtCombatEnd X` -- Levels up spell by X when a battle ends
@@ -255,20 +263,51 @@
 
 `PassiveUntilCastSpell {}` -- Table of passives executed until the target uses a spell
 
+`PassiveAtStatThreshold {}` -- Appliest the specified passives when a stat matches the condition
+* `mode Threshold_Mode` -- How the condition is calculated [equal, less, greater, less_or_equal, greater_or_equal]
+* `treshold {}`
+* * `STAT X` -- [Stat](enums.md#stats) and amount to check the condition for (There can be more than one)
+* `passives {}` -- Table of passives
+
+`DamageIfDidntUseSpecificAbility {}` -- Deals X damage at the end of the turn if the character didn't use a specified ability
+* `ability AbilityID` -- Ability
+* `damage X` -- Damage to deal
+
 `SpawnOnBattleStart {}` -- Spawns X Characters on battle start
 * `object CharacterID` -- Character (Can also be used as `SpawnOnBattleStart CharacterID`)
-* `number X` -- Number of Characters
+* `number X / [X X]` -- Number or range of Characters
+
+`SpawnOnBattleStartRandomEmptyTile {}` -- Spawns X Characters on battle start on a random tile
+* `object CharacterID` -- Character 
+* `number X / [X X]` -- Number or range of Characters
+
+`SpawnOnDeath {}` -- Spawns X charcaters on death
+* `obj [CharacterID]` -- Character or list of possible characters to spawn (Can also be used as `SpawnOnDeath CharacterID`)
+* `count X / [X X]` -- Number or range of characters to spawn
+* `faction Faction_Name` -- [Faction](enums.md#factions) of the spawned character
+* `additiona_statuses {}` -- Table of statuses given to the spawned character
 
 `SpawnThingOnDamage {}` -- Spawn objects/Characters whenever the source takes damage
 * `object CharacterID` -- Character name
 * `number X` -- Number of Characters
 * `chance 1.0-0.0` -- chance of spawning
+* `shield_only bool` -- If the character is spawned only if shield damage is taken
+
+`GlobalSpawnOnRoundEnd {}` -- Spawns X characters on random tiles at the end of the round
+* `object CharacterID` -- Character to spawn
+* `number X / [X X]` -- Number or range of characters to spawn
+
+`ReplaceSpawnedObjects [CharacterID_old CharacterID_new]` -- Replaces all characters spawned by the source of a specific type to a new one
+
+`ReceivedStatusReplacement [Status_Name_old Status_Name_new]` -- Replaces all statuses of a specific type applied to the source with a new one (Can work with non in-game statuses)
 
 `RandomPassivePool {}` -- Randomly selects a passive from the table
 
 `PassiveGroup {}` -- Treats a table of passives as one
 
 `IgnoreTiles 1` -- Ignore tiles
+
+`MinimumKnockbackFromPhysicalAttacks X` -- Makes the minimum knockback to all received phisical attacks X
 
 `ExtraBasicAttacks X` -- Gives X extra basic attacks
 
@@ -314,7 +353,7 @@
 * `ability AbilityID` -- Ability Name
 * `enemies_only bool` -- If it reacts to only enemies
 * `on_self_move_too bool` -- If it reacts when you move as well
-* `create_temp_ability bool` -- i don't know
+* `create_temp_ability bool` -- If it creates a temporary ability to use (Needed if used on a character that doesn't have this ability as a spell)
 
 `AbilityReaction {}` -- Uses a specified ability when the source is hit
 * `ability [AbilityID]` -- Specified ability, if given a list it will choose one (Can also be used as `AbilityReaction [AbilityID]`)
@@ -348,6 +387,8 @@
 `DeathRattleRevive {}` -- When the target dies it revives and uses the specified ability
 * `ability AbilityID` -- Ability (Can also be used as `DeathRattleRevive AbilityID`)
 * `even_if_stunned bool` -- If it can be used when stunned
+
+`HarpoonTrapPassive AbilityID` -- Uses a specified ability when a character finishes their movement in front of source in a straight line (Does not actually target the character)
 
 `CaveFamilyEnrage {}` -- Cast ability when X or less other Characters with tag are alive [TEST]
 * `ability AbilityID` -- Ability to cast
@@ -433,6 +474,10 @@
 
 `SetSpellCosts X` -- Sets the cost of all spells to X
 
+`ManaCostReductionTagged {}` -- Reduces the cost of all spells with a specific tag
+* `tag string` -- Tag
+* `reduction X / X%` -- Amount of mana to reduce
+
 `NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
 
 `MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
@@ -470,12 +515,33 @@
 `ReflectProjectiles {}` -- Reflects incoming projectiles dealing X damage to itself
 * `self_damage X` -- Damage dealt
 
+`AutoEquipConsumables 1` -- Automatically equips consumables from the adventure inventory when the consumable slot is empty
+
+`CopyPassiveSlot 0-3` -- Copies the effects of the passive in a specified slot (2-3 are the disorders)
+
+`FurnitureStats {}` -- When the cat returns home it will give these house stats when present
+* `Comfort X`
+* `Stimulation X`
+* `Appeal X`
+* `Health X`
+* `Evolution X`
+
 `Robot {}` -- Makes the character metal, conductive and energized when hit by electric damage
 * `allow_energize_self bool` -- If it can get energized even with it's own electric attacks (If false can be used as `Robot 1`)
 
 `Phasing 1` -- Makes the characters be able to pass through characters and objects
 
+`ReplaceBrain {}` -- Replaces the [ai](character_formatting.md#character-ai) of the character with a new one
+
+`DamageNeighborsOnEndMove {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) applied to characters who end their movements adjacent to the source or vice versa
+
+`BloatEyePassive2 AbilityID` -- Makes the character use a specified ability whenever any character takes an action, targetting them if enemies
+
+`RandomWeatherEachFight [WeatherID]` -- Picks a random weather to apply at battle start
+
 `LoopingSoundWhileAlive SoundID` -- Plays a looping sound while the character is alive
+
+`SetDefaultFacePassive FaceID` -- Changes the default face of the cat with the specified one
 
 `CharacterLightSource {}` -- Makes the character cast a light
 * `color [float float float]` -- Color of the light in rgb
@@ -488,6 +554,8 @@
 `AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
 
 `CopyCatPassive_Initializer X` -- (ABILITY) Copy cat ability effect
+
+`CopyBasicAttackEffects 1` -- (ABILITY) Copies the basic attack effects
 
 `CatchBoomerang 1` -- (ABILITY) Catches the boomerang projectile
 
@@ -579,15 +647,25 @@
 
 `Die 1` -- Target dies  
 
+`SafeDie 1` -- Dies without injury
+
+`VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
+
 `FullHeal 1` -- Heals the target to full
 
 `FillMana 1` -- Fully fills the target's mana
 
-`SpawnFlames 1` -- Spawns fire
+`SpawnFlames 1 / [1 float]` -- Spawns fire, chance can be specified with a float
 
 `SpawnCreep 1` -- Spawns creep tile
 
 `PurgeAll 1` -- Removes all buffs and debuffs from the target
+
+`AllyInfested {}` -- Applies a special type of infested, spawning a specific character type and in a specific faction
+* `object CharacterID` -- Character to spawn
+* `faction Faction_Name` -- [Faction](enums.md#factions) of the spawned character
+
+`Infested X` -- Applies a special type of infested, spawning a character of the same type of the one who applied it
 
 `RandomMagicMissile X` -- Spawns X 1 damage sparks targetting the source's enemies
 
@@ -628,13 +706,22 @@
 
 `CastAgain X` -- casts the ability another X times
 
-`UseAbility AbilityID` -- Makes the target use a specific ability  
+`UseAbility AbilityID` -- Makes the character use a specific ability  
 
-`UseAbility_NonStack AbilityID` -- Makes the target use a specific ability (Applying it multiple times won't stack the effect)  
+`UseAbility_NonStack AbilityID` -- Makes the character use a specific ability (Applying it multiple times won't stack the effect)  
 
-`ForceUseAbility AbilityID` -- Forces the target to use a specific ability  
+`ForceUseAbility AbilityID` -- Forces the character to use a specific ability  
 
-`ImmediateUseAbility_Instant AbilityID` -- Makes the target use a specific ability instantly
+`ImmediateUseAbility_Instant AbilityID` -- Makes the character use a specific ability instantly
+
+`MoveAndUseAbilityEachTurnBeginIfPossible AbilityID` -- Makes the character move and use a specified ability at the start of every turn if possible
+
+`AbilityWhenTaggedCharacterMovesNear {}` -- Makes the character use a specified ability targetting characters with a specified tag when they move in range
+* `ability AbilityID` -- Ability to use
+* `tag string` -- Tag
+* `range X` -- Tile range
+
+`UseRandomSpell_Madness 1` -- Makes the character use one of it's spells at random using madness targetting
 
 `RerollEnemy 1` -- Rerolls the target to a random chapter enemy  
 
@@ -651,6 +738,8 @@
 `SpecificInjury Injury_Name` -- Gives the target a specific injury
 
 `RandomInjury X` -- Gives the target X random injury [TEST]
+
+`AddRandomEliteBuff X` -- Gives the target X random elite buffs (Doesn't work in conditionals)
 
 `HealthGain X` -- Heals by X  
 
@@ -736,6 +825,17 @@
 * `ear1 X`
 * `ear2 X`
 
+`CatPartsSizeScaleStatus {}` -- Changes the scale of specific parts of the target cat
+* `tail float`
+* `body float`
+* `head float`
+* `arm1 float`
+* `arm2 float`
+* `leg1 float`
+* `leg2 float`
+* `ear1 float`
+* `ear2 float`
+
 `Temporary {}` -- Gives a temporary status for a select amount of turns
 * `status Status_Name/Passive_Name` -- Status or Passive name
 * `data Any` -- Data of the status/passive
@@ -783,8 +883,6 @@
 `LeaveBehind {}` -- Spawns behind the specified character
 * `object CharacterID` -- Character
         
-`SafeDie 1` -- Dies without injury
-
 `ReviveNextRound {}` -- Revives the target after X rounds (takes any status as optional parameter for when the character is revived)
 * `stacks X` -- Rounds it takes to revive (Can also be used as `ReviveNextRound X`)
 * `revive_health Y%` -- Health the target is revived with
@@ -792,6 +890,10 @@
 `DontHealEnemies 1` -- Prevents the damage instance heal from applying to enemies
 
 `Displace X` -- Displaces the target by X tiles
+
+`RandomDistanceDisplace {}` -- Displaces the target by a random distance
+* `stacks X` -- Max distance
+* `min_dist X` -- Minimum distance
 
 `NextActionLuckUp X` -- [TEST if it's not only LuckUp]
 
@@ -820,7 +922,7 @@
 
 `AlliesTakeExtraTurn 1` -- Makes the take an extra turn if it's an ally
 
-`RandomStatusFromPool {}` -- Gives a random specified status effect
+`RandomStatusFromPool {}` -- Gives a random specified status effect (ignores run seed)
 
 `ScatterCoins {}` -- Scatters X coins around
 * `stacks X`-- Amount of coins
@@ -912,7 +1014,9 @@
 
 `PermanentUpgradeRandomActiveOrPassive X` -- Upgrades permanently X random abilities or passives
 
-`MeleeRevengeDamage {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) targetting characters to inflict melee damage to the source
+`RevengeDamage {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) targetting characters who damage the source
+
+`MeleeRevengeDamage {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) targetting characters who deal melee damage to the source
 
 `IncreaseExplosionSize X` -- Increases the source's explosions size by X
 
@@ -925,6 +1029,8 @@
 `IncreaseItemAuxOnKill X` -- (ITEM) Increases the item aux by X when it kills
 
 `TauntAlways 1` -- Gives constatly the taunt effect (Enemies will prioritize the source)
+
+`ChangeTauntPriority X` -- Positive numbers will make the source more targetted, negative numbers will make the source less likely to be targetted
 
 `ForceMoveTowards 1` -- Makes the target move towards the source
 
@@ -947,11 +1053,17 @@
 * `clone_referenced_catdata bool` -- If the cat data is passed from the source character to the spawned character
 * `clone_items bool` -- If the spawned character clones the items from the source character
 
-`VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
+`SwapHighestAndLowestStat 1` -- Swaps the highest and lowest stats (takes into consideration stat statuses)
+
+`QuakeAreaChance {}` -- Triggers stalagmites to falls
+* `radius X` -- Tile range
+* `chance X%` -- Chance of the stalagmites falling
 
 `SwitchMusic {}` -- Changes the currently playing music
 * `new_song SongID` -- ID of the song to use (put `same` to keep the current song)
-* `new_layer LayerID`  -- ID of the layer of the song to pick [map, event, battle, boss]
+* `new_layer LayerID` -- ID of the layer of the song to pick [map, event, battle, boss]
+
+`SetDefaultFace FaceID` -- Changes the default face of the cat with the specified one
 
 ---
 
