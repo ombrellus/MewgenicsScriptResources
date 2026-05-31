@@ -15,12 +15,12 @@ Poison
 Rock  
 Water  
 Wind  
-Quake
-Dust
-Heat
-Creep
-Conducted
-Dark
+Quake  
+Dust  
+Heat  
+Creep  
+Conducted  
+Dark  
 
 ## RESTRICTIONS
 none  
@@ -64,7 +64,7 @@ cant_target_behind
 must_be_directly_behind_enemy  
 must_be_adjacent_to_ally  
 must_not_be_knockback_immune_animate_character  
-must_be_adjacent_to_most_hurt_ally
+must_be_adjacent_to_most_hurt_ally   
 must_be_conductive  
 diagonal_only  
 
