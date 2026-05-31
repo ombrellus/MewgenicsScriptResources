@@ -459,14 +459,23 @@
 * `element Element_Name` -- The [element](enums.md#elements) (Can also be used as `DiesToElement Element_Name`)
 * `instant bool` -- If the death is instant
 
+`FadeInsteadOfDie 1` -- Makes the character fade out when dying
+
+`ExpireOnSpawnerTurnEnd 1` -- Makes the character die when the turn of the spawner character ends
+
+`MimicSpawnerAttacks 1` -- Makes the character's basic attack the one of it's spawner
+
 `ReflectProjectiles X%` -- Gives X chance to reflect incoming projectiles
 
 `ReflectProjectiles {}` -- Reflects incoming projectiles dealing X damage to itself
 * `self_damage X` -- Damage dealt
 
-`LoopingSoundWhileAlive SoundID` -- Plays a looping sound while the character is alive
+`Robot {}` -- Makes the character metal, conductive and energized when hit by electric damage
+* `allow_energize_self bool` -- If it can get energized even with it's own electric attacks (If false can be used as `Robot 1`)
 
 `Phasing 1` -- Makes the characters be able to pass through characters and objects
+
+`LoopingSoundWhileAlive SoundID` -- Plays a looping sound while the character is alive
 
 `CharacterLightSource {}` -- Makes the character cast a light
 * `color [float float float]` -- Color of the light in rgb
@@ -530,6 +539,8 @@
 * `FreeSpell X`
 * `KineticSpikes X`
 * `PoisonLace X`
+* `MagicWeakness X`
+* `Marked X`
 * `TempInjuryImmunity X`
 * `TempManaCostReduction X`
 * `TempBasicAttackBonusAOE X`
@@ -630,6 +641,12 @@
 `RepairOnKill X` -- Repair used item by X when it kills  
 
 `TakeExtraTurn X` -- Target takes X extra turn(s)
+
+`TakeBonusTurnWithStatus {}` -- Takes an extra turn with a specified table of statuses
+
+`TakeBonusTurnWithAIControl {}` -- Takes an extra turn with ai control
+* `end_of_round bool` -- If the extra turn is at the end of the round
+* `include_spells bool` -- If the ai can use spells
 
 `SpecificInjury Injury_Name` -- Gives the target a specific injury
 
@@ -966,8 +983,6 @@
 * `reset_percent 0-100%` -- How much X is reset when the ability is used
 
 `XIsOtherHealsThisTurn 1` -- X the number of hp something was healed by you during the turn
-
-`XIsTargetHealth N` -- X is the target’s health [TEST]
 
 ---
 

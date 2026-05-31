@@ -44,6 +44,21 @@ must_be_moveable_ignore_wall
 must_have_destructible_corpse  
 must_match_current_orientation  
 must_target_cat_with_empty_or_destructible_weapon_slot  
+must_target_alpha_if_exists  
+must_have_buddy  
+must_be_directly_in_front_of_enemy  
+must_not_have_boss  
+must_be_adjacent_to_enemy_fistoffate  
+require_empty_tile_in_front  
+must_be_movable_ignore_trample  
+must_not_have_tag  
+must_match_locked_orientation  
+must_not_have_large_character  
+cant_target_behind  
+must_be_directly_behind_enemy  
+must_be_adjacent_to_ally  
+must_not_be_knockback_immune_animate_character  
+must_be_conductive  
 diagonal_only  
 
 ## AOE RESTRICTIONS
@@ -62,6 +77,17 @@ enemies_only
 character_must_be_affected_by_tile_with_element  
 checker_parity_even  
 allies_only  
+exclude_allies  
+must_have_corpse_or_sleeping  
+must_have_cat_with_empty_weapon_slot  
+must_have_special_tag  
+must_backstab  
+character_has_turns_left  
+must_have_piercing_line_of_sight  
+must_be_partially_empty  
+must_have_aggro_target  
+tile_must_have_element  
+must_have_enemy_or_robot  
 
 ## ABILITY VARIABLE
 bonus_range  

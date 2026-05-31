@@ -179,6 +179,8 @@
 
 `spells [AbilityID]` -- Spells the character has
 
+`can_get_bonus bool` -- If it can gain bonus abilities
+
 ## Character ai
 
 `brain Brain_Type` -- Brain used by the character, will change how it takes decisions [GenericBrain PatternBrain PlayerBrain NoBrain]
