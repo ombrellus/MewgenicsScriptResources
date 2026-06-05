@@ -111,7 +111,7 @@ i.e.
 
 # NPC Favor Unlocks (file)
 
-This file tends to be a bit odd. While the effects of NPCs are stored under their name, their actual unlocks are triggered by a counter system that reads a integer value for a explicit variable, suggesting there may have been alterior or other plans of upgrading.
+This file tends to be a bit odd. While the effects of NPCs are stored under their name, a majority of actual unlocks are triggered by a counter system that reads a integer value for a explicit variable, suggesting there may have been alterior or other plans of upgrading.
 
 ## Beanies Quest Stuff
 
