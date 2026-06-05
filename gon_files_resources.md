@@ -7,8 +7,6 @@
 `ApplyStatusesToRandomEnemiesEachTurn {}` -- Table of statuses given to random X enemies
 * `count X` -- Amount of enemies
 
-`ApplyStatusesNextTurnBegin {}` -- Table of statuses given at the start of the next turn
-
 `ApplyStatusesNextTurnEnd {}` -- Table of statuses given at the end of the next turn
 
 `AlphaStatusOnTurnBegin {}` -- Table of statuses given at turn start to the cat with alpha
@@ -454,6 +452,8 @@
 * `ability AbilityID` -- Bonus ability (Can be used as `AllyBonusAbilityAura AbilityID`)
 * `square bool` -- If the range is a square instead of a cross
 
+`AllyMoveAbilityAura AbilityID` -- All adjacent unit's movement ability is replaced with a specified one
+
 `SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
 
 `SpawnExtraThingsOnBattleStart {}` -- Spawns the specified Characters on battle start
@@ -490,7 +490,7 @@
 
 `MoveWhenDamaged {}`
 * `move_ability AbilityID` -- Ability used to move (Can also be used as `MoveWhenDamaged AbilityID`) (if not included it uses the character's base move ability)
-* `weights Movement_Weight_Name` -- Weights used to decide where to move 
+* `weights Movement_WeightID` -- Weights used to decide where to move 
 
 `KillsHeal X or X%` -- When killing a character, heals the damager by X if it's not a percentage, or by X% of it's max health if it's a percentage
 
@@ -547,6 +547,11 @@
 * `color [float float float]` -- Color of the light in rgb
 * `size float` -- Size of the light [TEST glow]
 
+`FormChangeWhileHasStatus {}` -- (FORMCHANGER) Changes the character form based on if it has a specified status
+* `status Status_Name` -- Status
+* `form_has` -- Form to change to if it has the status
+* `form_hasnot`  -- Form to change to if it doesn't have the status
+
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
 
 `DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
@@ -594,6 +599,7 @@
 * `Tech X`
 * `Trample X`
 * `Adrenaline X`
+* `Quivered X`
 * `Charge X`
 * `ChargeFists X`
 * `TempBackstab X`
@@ -655,6 +661,14 @@
 
 `FillMana 1` -- Fully fills the target's mana
 
+`NoStartingMana 1` -- Starts with 0 mana
+
+`NoHealthRegen 1` -- Doesn't regenerate health at the end of the round
+
+`NoManaRegen 1` -- Doesn't regenerate mana at the end of the turn
+
+`TempNoManaRegen 1` -- Doesn't regenerate mana at the end of the turn, removed after the turn ends
+
 `SpawnFlames 1 / [1 float]` -- Spawns fire, chance can be specified with a float
 
 `SpawnCreep 1` -- Spawns creep tile
@@ -702,6 +716,8 @@
 
 `IgnoreDamage 1` -- Ignores the damage dealt
 
+`Counterspell 1` -- Counters the next played enemy spell, stopping it
+
 `BonusCritChance X` -- Gives X crit chance to the damage
 
 `CastAgain X` -- casts the ability another X times
@@ -716,6 +732,10 @@
 
 `MoveAndUseAbilityEachTurnBeginIfPossible AbilityID` -- Makes the character move and use a specified ability at the start of every turn if possible
 
+`UseMoveAbilityWithAI {}` -- Uses a specified move ability with a different ai
+* `ability AbilityID` -- Ability to use
+* `move_weights Movement_WeightID` -- Movement weight to use
+
 `AbilityWhenTaggedCharacterMovesNear {}` -- Makes the character use a specified ability targetting characters with a specified tag when they move in range
 * `ability AbilityID` -- Ability to use
 * `tag string` -- Tag
@@ -727,7 +747,15 @@
 
 `RepairOnKill X` -- Repair used item by X when it kills  
 
+`EndTurn 1` -- Ends the turn
+
+`StealTurn 1` -- Removes the target's next turn and gives it to the source
+
 `TakeExtraTurn X` -- Target takes X extra turn(s)
+
+`TakeExtraTurnEndOfRound 1` -- Takes an extra turn at the end of the round
+
+`AlliesTakeExtraTurn 1` -- Makes the take an extra turn if it's an ally
 
 `TakeBonusTurnWithStatus {}` -- Takes an extra turn with a specified table of statuses
 
@@ -846,6 +874,8 @@
 
 `ApplyToRandomClosestAlly {}` -- Table of statuses applied to a random closest ally
 
+`ApplyToRandomPartyMemberIfPossible {}` -- Table of statuses applied to a random party member, if there is no other party member the statuses are applied to the source
+
 `ApplyToSource {}` -- Use to switch to source in targeted effects
 
 `ApplyToSourceOnKill {}` -- (DAMAGE_INSTANCE) Table of statuses given to the source if it kills 
@@ -858,6 +888,8 @@
 
 `ApplyMultipleTimes {}` -- Table of statuses given X times
 * `stacks X` -- Times to give statuses
+
+`ApplyStatusesNextTurnBegin {}` -- Table of statuses given at the start of the next turn
 
 `Imprison CharacterID` -- Creates specified Characters around the target
 
@@ -901,8 +933,6 @@
 
 `PoolMetronome {}` -- Casts a random specified ability
 * `pool [AbilityID]` -- Ability list
-            
-`EndTurn 1` -- Ends the turn
 
 `DoDamage {}` -- Creates a [damage instance](ability_fields.md#damage_instance--self_damage) targetting the target
 
@@ -919,8 +949,6 @@
 * `distance X` -- Knockback distance
 * `displace true` -- [TEST]
 * `self_damage false` -- [TEST]
-
-`AlliesTakeExtraTurn 1` -- Makes the take an extra turn if it's an ally
 
 `RandomStatusFromPool {}` -- Gives a random specified status effect (ignores run seed)
 

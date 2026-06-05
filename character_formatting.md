@@ -34,7 +34,7 @@
 
 `no_splatter bool` -- If when killed the character burts into guts
 
-`dont_sink bool` -- [TEST]
+`dont_sink bool` -- If the character doesn't sink in liquids
 
 `art_flip -1` -- [TEST]
 
