@@ -1040,6 +1040,8 @@
 * `ability AbilityID` -- Movement ability used
 * `tag string` -- Specified tag
 
+`ForceMoveNonAlliesInRangeTowardsTile X` -- Makes a non-allied unit move to a targeted tile in range, using their basic move action. X is the aoe effect of this. 
+
 `RefreshOncePerFightAbilities 1` -- Refreshes all abilities/items with once per fight restrictions
 
 `SpreadDisease {}` -- Gives a specified passive (with a popup) as a disease
