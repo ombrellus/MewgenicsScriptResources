@@ -334,6 +334,11 @@
 * `max_bounces X` -- Max number of bouces the projectile can do
 * `max_range Y` -- Max range the bouncing can happen
 
+`SharePickups {}` -- Makes the pickups collected by the character be shared to all other party members
+* `include_coins bool` -- If coins are shared as well
+
+`SharePickupsWithSpawner 1` -- Makes the pickups collected by the character be shared to the spawner of the character
+
 `AddStatusToFirstBasicAttack {}` -- The first basic attack of the target gives the specified statuses
 
 `StatusDamagers {}` -- Gives the specified statuses to any character that attacks the source
@@ -1083,6 +1088,10 @@
 * `clone_referenced_catdata bool` -- If the cat data is passed from the source character to the spawned character
 * `clone_items bool` -- If the spawned character clones the items from the source character
 
+`AfterImage CharacterID` -- Whenever the character moves or is moved, spawns a specified character on the tile it moved from
+
+`LimitedTileTrail Tile_Name` -- Whenever the character moves or is moved, creates a specified [tile](enums.md#tiles) on the tile it moved from
+
 `SwapHighestAndLowestStat 1` -- Swaps the highest and lowest stats (takes into consideration stat statuses)
 
 `QuakeAreaChance {}` -- Triggers stalagmites to falls
@@ -1094,6 +1103,8 @@
 * `new_layer LayerID` -- ID of the layer of the song to pick [map, event, battle, boss]
 
 `SetDefaultFace FaceID` -- Changes the default face of the cat with the specified one
+
+`ParticleBurst ParticleID` -- Plays the specified particles
 
 ---
 

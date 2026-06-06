@@ -302,7 +302,7 @@
 
 `ai_base_score X` -- (AI) Base score that dictates the ai's willingness to cast this ability
 
-`type Type_Name` -- Damage type [ranged, melee, spell, status_spell, spell_cost]
+`type Type_Name` -- Damage type [ranged, melee, spell, status_spell, spell_cost, physical_spell]
 
 `damage X` -- Damage dealt by the ability
 
@@ -334,7 +334,7 @@
 
 `disallow_modifications bool` -- If the damage/heal of the damage instance isn't allowed to be modified
 
-`layer Layer_Name` -- On what entity layer this ability effects are applied [self, characters, pickups]
+`layer Layer_Name` -- On what entity [layer](enums.md#layers) this ability effects are applied
 
 `elements [Element_Name]` -- The [element](enums.md#elements) of the ability
 

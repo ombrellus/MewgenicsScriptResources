@@ -21,6 +21,7 @@ Heat
 Creep  
 Conducted  
 Dark  
+Metal  
 
 ## RESTRICTIONS
 none  
@@ -99,10 +100,18 @@ must_have_enemy_or_robot
 ## ABILITY VARIABLE
 bonus_range  
 bonus_ranged_damage  
-bonus_meele_range  
-bonus_meele_damage  
+bonus_melee_range  
+bonus_melee_damage  
 bonus_basic_spell_damage  
 level  
+str  
+spd  
+int  
+cha  
+con  
+dex  
+lck  
+
 
 ## STATS
 str (long: Strength)  
@@ -165,10 +174,12 @@ auto
 
 ## LAYERS
 all  
+self  
 characters  
 pickups  
 tiles  
 gas  
+trap  
 
 ## TILES
 BlankTile  
@@ -195,3 +206,35 @@ TallGrassTile
 ToxicTile  
 WaterTile  
 WaterTile_Current  
+
+
+## VANILLA CHAPTERS
+alley   
+junkyard   
+sewers   
+caves   
+boneyard   
+meatworld   
+desert   
+bunker   
+crater   
+core   
+moon   
+dimensionx   
+lab   
+iceage   
+future   
+jurassic   
+theend   
+endoftime   
+
+## VANILLA HOUSE BOSSES
+guillotina_1  
+guillotina_2  
+guillotina_3  
+pyrophina  
+zaratana  
+pyrophina_vs_zaratana  
+terminator_1  
+terminator_2  
+terminator_3  
