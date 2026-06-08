@@ -295,6 +295,10 @@
 * `object CharacterID` -- Character to spawn
 * `number X / [X X]` -- Number or range of characters to spawn
 
+`CreateGlobalModifiers {}` -- Sets certain global modifiers
+
+`RemoveGlobalModifiers {}` -- Removes certain global modifiers
+
 `ReplaceSpawnedObjects [CharacterID_old CharacterID_new]` -- Replaces all characters spawned by the source of a specific type to a new one
 
 `ReceivedStatusReplacement [Status_Name_old Status_Name_new]` -- Replaces all statuses of a specific type applied to the source with a new one (Can work with non in-game statuses)
@@ -351,6 +355,8 @@
 `AbilityOnBattleStart AbilityID` -- Uses a specific ability at battle start
 
 `AbilityOnBattleStart_Immediate AbilityID` -- Uses a specific ability at battle start (Before the battle is even shown)
+
+`AbilityOnRoundEnd AbilityID` -- uses a specific ability on round end (seems redundant with Autocast)
 
 `MovementReaction {}` -- Uses a specific ability when someone moves near the target
 * `ability AbilityID` -- Ability Name
@@ -557,6 +563,8 @@
 * `form_has` -- Form to change to if it has the status
 * `form_hasnot`  -- Form to change to if it doesn't have the status
 
+`FormChangeWhilePrimingAbility` -- (FORMCHANGER) Changes the form while (any) ability is primed (TEST)
+
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
 
 `DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
@@ -569,6 +577,10 @@
 
 `CatchBoomerang 1` -- (ABILITY) Catches the boomerang projectile
 
+`FinalBossBecomeTheChild {}` -- If this entity is called on to transform into the Child entity, do the following
+
+`FaceLastDamage {}` -- Face the last entity that damaged you
+* `use_turn_animations` -- Use a animation with the turnF or turnB if possible (check names)
 ---
 
 ## EFFECT STATUSES
