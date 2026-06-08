@@ -656,6 +656,8 @@
 
 `ApplyPassives {}` -- Table of passive effects to add to the target
 
+`TimeDelayStatusApplication {delay N}` -- Effects within this table aren't triggered until a certain amount of time.
+
 `Die 1` -- Target dies  
 
 `SafeDie 1` -- Dies without injury
@@ -830,6 +832,8 @@
 
 `SpawnThingIfHitKills CharacterID` -- Spawns a specified character when the target is killed  
 
+`GlobalSpawnCharacter` -- Spawns a character in some sort of global sense (used to spawn MegaGuppy)
+
 `ScrambleLastUsedSpell {}` -- Replaces the last used spell with a random one
 * `permanent bool` -- If the effect is permanent
 
@@ -963,6 +967,19 @@
 
 `EnableWeather Weather_Name` -- Starts a specified weather
 
+`PlayBackground X` -- Plays X backgrounds. (TEST to see if anything outside of 1 is a option)
+
+`InsertIntoBackgroundPlaceholder` -- Inserts a character within battle into the background (TEST)
+
+`FinalBossPupils {}` -- These values seem to be hardcoded (TEST for changing anim)
+* `radius X`
+* `virtual_head_position []` -- seems to be eye, head, eye
+* `look_at_offset []` -- predceeing followings
+* `teleport_tracking_halflife X` -- float
+* `reset_center_because_of_animation_halflife X` -- float
+* `reset_center_because_no_target_halflife X` -- float
+* `tracking_acquisition_halflife X` -- float
+
 `DoDistortionRing {}` -- Creates a visual distorted ring effect (Like gravity slam/zaratana) 
 * `speed X`
 * `intensity X`
@@ -971,6 +988,8 @@
 `DoScreenShake {}` -- Creates a screen shake effect
 * `time X`
 * `intensity X`
+
+`RemoveAmbientLightEffects` -- Removes existing ambient light effects
 
 `VisualFX FX_Name` -- Shows a visual effect on the target
 
