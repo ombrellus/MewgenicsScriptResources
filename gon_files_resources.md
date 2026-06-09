@@ -56,6 +56,7 @@
 * `element [Element_Name]` -- Chosen [element](enums.md#elements) list
 
 `AddPassivesToMinions {}` -- Table of passives applied to the target's familiars
+* `tag_filter string` -- Optional field if it should be applied to only minions with a specified tag
 
 `AddPassivesToCharmed {}` -- Table of passives applied to charmed characters
 
