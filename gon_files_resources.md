@@ -56,6 +56,7 @@
 * `element [Element_Name]` -- Chosen [element](enums.md#elements) list
 
 `AddPassivesToMinions {}` -- Table of passives applied to the target's familiars
+* `tag_filter string` -- Optional field if it should be applied to only minions with a specified tag
 
 `AddPassivesToCharmed {}` -- Table of passives applied to charmed characters
 
@@ -295,6 +296,10 @@
 * `object CharacterID` -- Character to spawn
 * `number X / [X X]` -- Number or range of characters to spawn
 
+`CreateGlobalModifiers {}` -- Sets certain global modifiers
+
+`RemoveGlobalModifiers {}` -- Removes certain global modifiers
+
 `ReplaceSpawnedObjects [CharacterID_old CharacterID_new]` -- Replaces all characters spawned by the source of a specific type to a new one
 
 `ReceivedStatusReplacement [Status_Name_old Status_Name_new]` -- Replaces all statuses of a specific type applied to the source with a new one (Can work with non in-game statuses)
@@ -334,6 +339,11 @@
 * `max_bounces X` -- Max number of bouces the projectile can do
 * `max_range Y` -- Max range the bouncing can happen
 
+`SharePickups {}` -- Makes the pickups collected by the character be shared to all other party members
+* `include_coins bool` -- If coins are shared as well
+
+`SharePickupsWithSpawner 1` -- Makes the pickups collected by the character be shared to the spawner of the character
+
 `AddStatusToFirstBasicAttack {}` -- The first basic attack of the target gives the specified statuses
 
 `StatusDamagers {}` -- Gives the specified statuses to any character that attacks the source
@@ -346,6 +356,8 @@
 `AbilityOnBattleStart AbilityID` -- Uses a specific ability at battle start
 
 `AbilityOnBattleStart_Immediate AbilityID` -- Uses a specific ability at battle start (Before the battle is even shown)
+
+`AbilityOnRoundEnd AbilityID` -- uses a specific ability on round end (seems redundant with Autocast)
 
 `MovementReaction {}` -- Uses a specific ability when someone moves near the target
 * `ability AbilityID` -- Ability Name
@@ -552,6 +564,8 @@
 * `form_has` -- Form to change to if it has the status
 * `form_hasnot`  -- Form to change to if it doesn't have the status
 
+`FormChangeWhilePrimingAbility` -- (FORMCHANGER) Changes the form while (any) ability is primed (TEST)
+
 `AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
 
 `DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
@@ -564,6 +578,10 @@
 
 `CatchBoomerang 1` -- (ABILITY) Catches the boomerang projectile
 
+`FinalBossBecomeTheChild {}` -- If this entity is called on to transform into the Child entity, do the following
+
+`FaceLastDamage {}` -- Face the last entity that damaged you
+* `use_turn_animations` -- Use a animation with the turnF or turnB if possible (check names)
 ---
 
 ## EFFECT STATUSES
@@ -650,6 +668,8 @@
 * `TempSpellDamageUp X`
 
 `ApplyPassives {}` -- Table of passive effects to add to the target
+
+`TimeDelayStatusApplication {delay N}` -- Effects within this table aren't triggered until a certain amount of time.
 
 `Die 1` -- Target dies  
 
@@ -825,6 +845,8 @@
 
 `SpawnThingIfHitKills CharacterID` -- Spawns a specified character when the target is killed  
 
+`GlobalSpawnCharacter` -- Spawns a character in some sort of global sense (used to spawn MegaGuppy)
+
 `ScrambleLastUsedSpell {}` -- Replaces the last used spell with a random one
 * `permanent bool` -- If the effect is permanent
 
@@ -958,6 +980,19 @@
 
 `EnableWeather Weather_Name` -- Starts a specified weather
 
+`PlayBackground X` -- Plays X backgrounds. (TEST to see if anything outside of 1 is a option)
+
+`InsertIntoBackgroundPlaceholder` -- Inserts a character within battle into the background (TEST)
+
+`FinalBossPupils {}` -- These values seem to be hardcoded (TEST for changing anim)
+* `radius X`
+* `virtual_head_position []` -- seems to be eye, head, eye
+* `look_at_offset []` -- predceeing followings
+* `teleport_tracking_halflife X` -- float
+* `reset_center_because_of_animation_halflife X` -- float
+* `reset_center_because_no_target_halflife X` -- float
+* `tracking_acquisition_halflife X` -- float
+
 `DoDistortionRing {}` -- Creates a visual distorted ring effect (Like gravity slam/zaratana) 
 * `speed X`
 * `intensity X`
@@ -966,6 +1001,8 @@
 `DoScreenShake {}` -- Creates a screen shake effect
 * `time X`
 * `intensity X`
+
+`RemoveAmbientLightEffects` -- Removes existing ambient light effects
 
 `VisualFX FX_Name` -- Shows a visual effect on the target
 
@@ -1083,6 +1120,10 @@
 * `clone_referenced_catdata bool` -- If the cat data is passed from the source character to the spawned character
 * `clone_items bool` -- If the spawned character clones the items from the source character
 
+`AfterImage CharacterID` -- Whenever the character moves or is moved, spawns a specified character on the tile it moved from
+
+`LimitedTileTrail Tile_Name` -- Whenever the character moves or is moved, creates a specified [tile](enums.md#tiles) on the tile it moved from
+
 `SwapHighestAndLowestStat 1` -- Swaps the highest and lowest stats (takes into consideration stat statuses)
 
 `QuakeAreaChance {}` -- Triggers stalagmites to falls
@@ -1094,6 +1135,8 @@
 * `new_layer LayerID` -- ID of the layer of the song to pick [map, event, battle, boss]
 
 `SetDefaultFace FaceID` -- Changes the default face of the cat with the specified one
+
+`ParticleBurst ParticleID` -- Plays the specified particles
 
 ---
 
