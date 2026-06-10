@@ -111,6 +111,7 @@ cha
 con  
 dex  
 lck  
+mov
 
 
 ## STATS
