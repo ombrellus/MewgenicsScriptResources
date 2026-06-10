@@ -1,3 +1,139 @@
+# Map (Making)
+
+Maps are stored in the "maps" folder and load the data for a map when loaded; this constitutes music, certain enemy selections, and levels loaded. Of course, the actual map gfx has to be done in adobe, but the ingame maps have been provided in [the ingame swfs folder.](ingame%20swfs/map.fla)
+
+Note that all map values are local to their own file.
+
+## Non-Structured
+
+This stuff is just on the file without having to be in a alterior object (table).
+
+`graphics ActionScriptLink` -- The map.fla object it loads for the visual map.
+
+`chapter_id ChapterID` -- Must be a variable within the MewDirector.h, which is later re-declared in the chapter_id_enum.gon file.
+
+`tileset TilesetID` -- Matches up with a group of tilesets delcared in tilesets.gon.
+
+`world_name_frame ActionScriptFrameLink` -- The name of the naming layer frame that corrosponds with a .fla object (NOTE: FIND WHAT THE OBJECT IS CALLED)
+
+`area_name string` -- Name corrosponding to the string in the CSV file.
+
+`intro_cutscene ActionScriptLink` -- The modular_cutscenes.fla object if loads for the visual introduction.
+
+`act string` -- The ACT it belongs to
+
+`chapter string` -- The CHAPTER it represents.
+
+`version X` -- TEST??
+
+`music string` -- Folder it pulls from in audio folder for tracks. Tracks MUST be named appropriately for each part, using the name of each part of a full chapter. 
+
+`ambience string` -- The ambience track to pull from in audio/ambience for the map.
+
+i.e. 
+
+[TODO: POPULATE WITH STRING REFERENCES TO EXAMPLE FROM ALLEY TRACKS]
+
+`levels {}` -- The levels on the map
+* `folder string` -- The folder within levels folder to pull from
+* `easy string` -- The folder within the pathing that all normal levels are pulled from
+* `hard string` -- The folder within the pathing that all hard levels are pulled from
+* `rare string` -- The folder within the pathing that all rare levels are pulled from
+* `boss string` -- The folder within the pathing that all boss levels are pulled from
+* `miniboss string` -- The folder within the pathing that all miniboss levels are pulled from
+* `special string` -- The folder within the pathing that all special levels are pulled from
+
+`events {}` -- Where event are pulled from
+* `normal []` -- The "normal" event pool to pull from. This is the only table ever read in events and it is unknown what other tables the game supports.
+    * `common` -- A hardcoded common pool. Note the absence of .gon at the end of the name.
+    * `gonfile.gon` -- You can insert .gon files from the events folder in here.
+
+`enemy_pools {}` -- A pool of enemies that can be pulled when a "random enemy" for the chapter spawns.
+* `small []` -- All small enemies, referenced by their gon pointer object
+* `medium []` -- All medium sized enemies, referened by their gon pointer object
+* `large []` -- All large sized enemies, referenced by their gon pointer object
+
+`item_pools {}` -- The items pulled as rewards after battles, etc etc.
+* `chapter_item_pool ChapterSpecificPoolPointer` -- Like events and "normal", this is the only acceptable value in item pools.
+
+
+## Boss
+
+There are two major ways to set up bosses. **For multi-boss levels, set up a local table like this:**
+
+`bosses {}` -- This table is populated with multiple bosses it pulls randomly from. There are two major ways to set this up;
+
+You can manually set up the levels and cutscene this boss pulls from;
+Note that the name of the table should still be the object pointer from boss_cutscene_info.
+The subfolder will be found in the pathing for bosses.
+```
+radicalrat {
+    subfolder radicalrat
+    boss_cutscene radicalrat
+}
+```
+
+Or, if the naming for the subfolder and boss_cutscene is exactly the same as the name of it's boss_cutscene_info.gon object folder, you may just do this.
+
+`radicalrat auto`
+
+**If you have a single boss**, the best way to set this up is through the map nodes. In the nodes table, add this.
+
+```
+boss {
+    type boss //this is the type of node
+    is_final_boss false //ironically does not mean it's the final boss. Instead points to if completing this event should proc the unlock for this area on currrnt playing classes.
+    boss_cutscene dybbuk //boss cutscene it draws from.
+}
+```
+
+* `type` -- Type of node
+* `is_final_boss` -- ironically does not mean it's the final boss. Instead points to if completing this event should proc the unlock for this area on currrnt playing classes.
+* `boss_cutscene` -- boss cutscene it draws from.
+
+## Minibosses
+
+Similarly, minibosses can be set up the same way as the multi-boss setup.
+
+`minibosses {}` -- This table is populated with (multiple) minibosses it pulls randomly from. The game tends to only set it up with the "auto" function so it's (UNTESTED) if the manual setup works.
+
+For instance, Boneyard does this:
+```
+minibosses {
+    mamamaggot auto
+}
+```
+
+## Nodes
+
+`nodes {}` -- This table sets up the way nodes are read and treated from the .fla object to the game. For the sake of not having to write out every single node, it is HIGHLY advised to put `#include "standard_nodes.gon"` at the top of the table. After that, you can begin to edit each node.
+
+The name that a "node" connects to is surprinsgly not the actionscript link name of the object, but the assigned meta name of the object on the map. This is how (and why) the game reads nodes such as "exit0" and "exit1", as these are declared on the .fla scene itself. 
+
+This is the setup of a custom node:
+
+`nodeName {}` -- Replace nodeName with the name assigned on the scene
+* `type nodeType` -- The type of node it represents. All node types can be found in "standard_nodes.gon"
+* `locked boolean` -- Is this node usually locked?
+* `override_art ActionScriptLink` -- Art that should play over the standard node look. 
+* `hidden` -- Is this node usually hidden?
+
+The following only apply to being in certain nodes
+
+* `unlockcheck_on_complete` -- Only applicable to boss nodes. Flags a unlock in adventure_progression_unlocks to run.
+* `next_map map.gon` -- Only applicable to exit nodes. The gon file to read for the next map.
+* `level GONObject` -- Only applicable to event and battle nodes. On map init, this sets up what any node of this type will load as a object.
+
+## Flags 
+
+`flags {}` -- Flags are the way maps can be "affected" by events and unlock ingame. Objects in these can be referenced by adventure_progression_unlocks to bw turned off (though not off). These are off by default until "unlocked" and cannot be turned off again (as of now)
+
+* `flagName {}` -- Replace flagName with the name you want.
+    * `node` -- The exact same setup as the custom nodes shown above.
+
+
+
+
 # Text Functions
 
 Mewgenics has a variety of text applications that enhance words written or spoken. MANY of these text functions are ONLY used when spoken, but majority of non-emotion or timing ones can be used.
@@ -105,3 +241,5 @@ I.e. `img[{str_aux}]`
 `ss` -- Shakes the screen upon being used. (TEST)
 
 > Example: `[ss][a:shake] GET OUT! [/a]`
+
+
