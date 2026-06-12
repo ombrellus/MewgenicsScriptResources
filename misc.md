@@ -14,34 +14,34 @@ This stuff is just on the file without having to be in a alterior object (table)
 
 `tileset TilesetID` -- Matches up with a group of tilesets delcared in tilesets.gon.
 
-`world_name_frame ActionScriptFrameLink` -- The name of the naming layer frame that corrosponds with a .fla object (NOTE: FIND WHAT THE OBJECT IS CALLED)
+`world_name_frame FrameLabel` -- The name of the naming layer frame that corrosponds with a .fla object (NOTE: FIND WHAT THE OBJECT IS CALLED)
 
-`area_name string` -- Name corrosponding to the string in the CSV file.
+`area_name string` -- Name of the area (can look up to CVS files)
 
 `intro_cutscene ActionScriptLink` -- The modular_cutscenes.fla object if loads for the visual introduction.
 
-`act string` -- The ACT it belongs to
+`act X` -- The ACT it belongs to
 
-`chapter string` -- The CHAPTER it represents.
+`chapter X` -- The CHAPTER it represents.
 
 `version X` -- TEST??
 
 `music string` -- Folder it pulls from in audio folder for tracks. Tracks MUST be named appropriately for each part, using the name of each part of a full chapter. 
 
-`ambience string` -- The ambience track to pull from in audio/ambience for the map.
+`ambience string` -- The ambience track to pull from in audio/ambience for the map (including extension).
 
 i.e. 
 
 [TODO: POPULATE WITH STRING REFERENCES TO EXAMPLE FROM ALLEY TRACKS]
 
-`levels {}` -- The levels on the map
-* `folder string` -- The folder within levels folder to pull from
-* `easy string` -- The folder within the pathing that all normal levels are pulled from
-* `hard string` -- The folder within the pathing that all hard levels are pulled from
-* `rare string` -- The folder within the pathing that all rare levels are pulled from
-* `boss string` -- The folder within the pathing that all boss levels are pulled from
-* `miniboss string` -- The folder within the pathing that all miniboss levels are pulled from
-* `special string` -- The folder within the pathing that all special levels are pulled from
+`levels {}` -- The level groups to use for specific nodes (groups can be unlockable)
+* `folder string` -- The folder(s) where level groups will be pulled from
+* `easy [string]` -- The folder(s) within the pathing that all normal levels are pulled from
+* `hard [string]` -- The folder(s) within the pathing that all hard levels are pulled from 
+* `rare [string]` -- The folder(s) within the pathing that all rare levels are pulled from (used for elite levels)
+* `boss [string]` -- The folder(s) within the pathing that all boss levels are pulled from
+* `miniboss [string]` -- The folder(s) within the pathing that all miniboss levels are pulled from
+* `special [string]` -- The folder(s) within the pathing that all special levels are pulled from (unused)
 
 `events {}` -- Where event are pulled from
 * `normal []` -- The "normal" event pool to pull from. This is the only table ever read in events and it is unknown what other tables the game supports.
@@ -49,12 +49,12 @@ i.e.
     * `gonfile.gon` -- You can insert .gon files from the events folder in here.
 
 `enemy_pools {}` -- A pool of enemies that can be pulled when a "random enemy" for the chapter spawns.
-* `small []` -- All small enemies, referenced by their gon pointer object
-* `medium []` -- All medium sized enemies, referened by their gon pointer object
-* `large []` -- All large sized enemies, referenced by their gon pointer object
+* `small [CharacterID]` -- All small enemies
+* `medium [CharacterID]` -- All medium sized enemies
+* `large [CharacterID]` -- All large sized enemies
 
 `item_pools {}` -- The items pulled as rewards after battles, etc etc.
-* `chapter_item_pool ChapterSpecificPoolPointer` -- Like events and "normal", this is the only acceptable value in item pools.
+* `chapter_item_pool ItemPoolID` -- Like events and "normal", this is the only acceptable value in item pools.
 
 
 ## Boss
