@@ -178,7 +178,7 @@
 `StatusOnDealtDamage {}` -- Table of statuses given when dealing damage
 
 `StatusOnDealtDamageThreshold {}` -- Table of statuses given when dealing over X damage
-* `threshold X` -- Damage treshold
+* `threshold X` -- Damage threshold
 * `count_overkill bool` -- If overkill damage counts
 
 `StatusOnEatPill {}` -- Table of statuses given when consuming a pill
@@ -264,7 +264,7 @@
 
 `PassiveAtStatThreshold {}` -- Appliest the specified passives when a stat matches the condition
 * `mode Threshold_Mode` -- How the condition is calculated [equal, less, greater, less_or_equal, greater_or_equal]
-* `treshold {}`
+* `threshold {}`
 * * `STAT X` -- [Stat](enums.md#stats) and amount to check the condition for (There can be more than one)
 * `passives {}` -- Table of passives
 

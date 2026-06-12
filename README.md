@@ -8,7 +8,10 @@ Someone else can comeup with a better description
 - [Effects/Passives Resources](gon_files_resources.md)
 - [Actionscript Resources](actionscript_resources.md) (credits to Kautaruma for the list found [here](https://docs.google.com/document/d/1MLpOIg7q19Tcapp-xs4g72LVITLWQBuFXkwfZ4fdsqA/edit?tab=t.0))
 - [Adventure Progression Unlocks, Locked Content Setup, and NPC Favor Unlocks (file)](unlock_stuff_resources.md)
+- [Maps](map_formatting.md)
 - [Misc](misc.md)
-    - Text
+    - [Text](misc.md#text-functions)
+    - [Music](misc.md#music)
+    - [Boss Cutscenes](misc.md#boss-cutscenes)
 
 
