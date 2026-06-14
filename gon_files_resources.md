@@ -173,6 +173,9 @@
 `StatusOnTurnEndIfManaExact {}` -- Table of statuses given at the end of the turn if the mana is exactly X
 * `mana X` -- Number of mana
 
+`StatusOnTurnEndIfManaOrHealthExact {}` -- Table of statuses given at the end of the turn if the mana or health is exactly X
+* `mana X` -- Number of mana or health
+
 `StatusOnStanceSwitch {}` -- Table of statuses given when changing monk stance
 
 `StatusOnDealtDamage {}` -- Table of statuses given when dealing damage
@@ -448,7 +451,7 @@
 `TrinketActiveEffectsMultiplierBonus X` -- Multiplies the held trinket active effects by X
 
 `AlternateCraftingPools {}` -- Changes specified crafting pools with new ones
-* `Pool_Name New_Pool_Name` -- Changes the Pool_Name pool with New_Pool_Name (This doesn't take into consideration tech, so if you want to change all 4 tech levels you have to specify it for each one)
+* `ItemPoolID New_ItemPoolID` -- Changes the Pool_Name pool with New_Pool_Name (This doesn't take into consideration tech, so if you want to change all 4 tech levels you have to specify it for each one)
 * etc...
 
 `TerminatorChase {}` -- C-800 behaviour, when the enemies use a spell it moves, and if gets in range of the enemy it uses a special ability
@@ -482,9 +485,17 @@
 
 `OverrideMaxMana X` -- Sets max mana to X
 
+`AddStartingMana X` -- Adds X to the starting battle mana
+
+`AddManaRegen X` -- Adds X to the end turn mana regen
+
 `StrictLimitDamage X` -- Damage received is capped at X
 
 `SetSpellCosts X` -- Sets the cost of all spells to X
+
+`IncreaseSpellRange X` -- Increases the spells range by X
+
+`AddSpellDamage X` -- Increases the damage of all spells by X
 
 `ManaCostReductionTagged {}` -- Reduces the cost of all spells with a specific tag
 * `tag string` -- Tag
@@ -521,6 +532,10 @@
 `ExpireOnSpawnerTurnEnd 1` -- Makes the character die when the turn of the spawner character ends
 
 `MimicSpawnerAttacks 1` -- Makes the character's basic attack the one of it's spawner
+
+`TakeWeaponFromSpawner 1` -- Makes the character take the spawner's weapon when spawning in
+
+`ConjureCastSpellsForAllies 1 / 2` -- Gives allies the character's last used spell as bonus ability, 2 makes the spell be upgraded
 
 `ReflectProjectiles X%` -- Gives X chance to reflect incoming projectiles
 
@@ -681,6 +696,8 @@
 
 `FillMana 1` -- Fully fills the target's mana
 
+`EmptyMana 1` -- Sets mana to 0
+
 `NoStartingMana 1` -- Starts with 0 mana
 
 `NoHealthRegen 1` -- Doesn't regenerate health at the end of the round
@@ -688,6 +705,8 @@
 `NoManaRegen 1` -- Doesn't regenerate mana at the end of the turn
 
 `TempNoManaRegen 1` -- Doesn't regenerate mana at the end of the turn, removed after the turn ends
+
+`PermanentMadness 1` -- Makes the character have madness permanently
 
 `SpawnFlames 1 / [1 float]` -- Spawns fire, chance can be specified with a float
 
@@ -701,10 +720,8 @@
 
 `Infested X` -- Applies a special type of infested, spawning a character of the same type of the one who applied it
 
-`RandomMagicMissile X` -- Spawns X 1 damage sparks targetting the source's enemies
-
 `RandomMagicMissile {}` -- Spawns X sparks targetting the source's enemies
-* `stacks X` -- Number of sparks
+* `stacks X` -- Number of sparks (can be used as `RandomMagicMissile X`)
 * `full_size bool` -- true = 3 damage, false = 1 damage
 
 `EvolveAbilityFromPool {}` -- ABILITY Permanently changes the ability to one from the specified class pool [TEST if works with custom pools]
@@ -720,7 +737,7 @@
 * `object CharacterID` -- Character (Can also be used as `ObjectOnHitCharacter CharacterID`)
 * `stacks X` -- Number of Characters
 
-`FindItemFromPool Item_Pool_Name` -- Gives an item from a specified pool
+`FindItemFromPool ItemPoolID` -- Gives an item from a specified pool
 
 `RefreshMovePoints N` -- Refreshes N movement points  
 
@@ -783,6 +800,8 @@
 * `end_of_round bool` -- If the extra turn is at the end of the round
 * `include_spells bool` -- If the ai can use spells
 
+`AlphaTurns 1 / -1` -- 1 = Takes an extra turn at the start of the battle, -1 = at the start of every round
+
 `SpecificInjury Injury_Name` -- Gives the target a specific injury
 
 `RandomInjury X` -- Gives the target X random injury [TEST]
@@ -839,7 +858,14 @@
 
 `Leech X` -- Damage dealt heals the source times X
 
-`FlatLeech X` -- Source heals X hp, targets gets damaged for X  
+`FlatLeech X` -- Source heals by X hp
+
+`FlatLeechIfDamaged X` -- Source heals X hp when actually damaging the target
+
+`RemoteLeech 1` -- Heals the spawner by the damage dealt [TEST X]
+
+`RemoteFlatLeech X` -- Heals the spawner by X when damaging something
+
 
 `PullSourceToKnockbackImmuneTarget 1` -- When knockback is dealt, if the target is immune to it pull the source to it  
 
@@ -1023,9 +1049,9 @@
 `RefreshMovePointsIfHit 1` -- Refreshes a movement point for the target if the damage instance hits
 
 `Craft {}` -- Creates an item in a specific slot from a specific pool
-* `pool Item_Pool` -- The item pool 
+* `pool ItemPoolID` -- The item pool 
 * `slot Item_Slot` -- [Item slot](enums#item-slots)
-* `works_with_tech bool` -- If the crafting is influenced by tech (searches Item_Pool_X, where X is the amount of tech)
+* `works_with_tech bool` -- If the crafting is influenced by tech (searches ItemPoolID_X, where X is the amount of tech)
 * `temporary bool` -- If the crafted item lasts only for the current battle
 
 `RemoveStatusStacks {}` -- Removes X stacks of a specified status

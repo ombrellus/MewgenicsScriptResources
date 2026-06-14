@@ -3,7 +3,7 @@
 >[!WARNING]
 >This list is still a work in progress, some things haven't been tested to their fullest, haven't been documentet properly, or aren't present
 
-`ItemName {}` -- Id name of the item
+`ItemID {}` -- Id name of the item
 * `name "ITEMNAME"` -- Display name of the item
 
 * `desc "ITEMDESC"` -- Description of the item
@@ -73,7 +73,7 @@
 * `aux_is_catid bool` -- Aux becomes the holder cat id (aux can be used with catdata) [Not sure if it's something hardcoded with the soul jar or not] [TEST]
 
 # SET FORMATTING
-`SetName {}` -- Id name of the set
+`SetID {}` -- Id name of the set
 * `name "ITEMSETNAME"` -- Display name of the item set
 
 * `desc "ITEMSETDESC"` -- Description of the item set
@@ -89,3 +89,25 @@
 * `STATNAME X` -- Gives X [stat](enums.md#stats)
 
 * `passives {}` -- Table of the [passive](gon_files_resources.md#passive-actions) effects that the item set gives (Including some statuses)
+
+# ITEM POOL FORMATTING
+
+Inside the folder data/item_pools you can specify new itempools with a custom identifier (ItemPoolID).
+
+Item pools can be specified in 3 ways:
+* Making a list of ItemIDs
+```
+ItemPoolID [ ItemID ItemID ]
+```
+* Making a list of ItemIDs and add the end of the name of the pool `_!autorarity`, Making the item chance in the pool be affected by their rarity
+```
+ItemPoolID_!autorarity [ ItemID ItemID ]
+```
+* Making a table of ItemIDs or ItemPoolIDs and assigning each a weight
+```
+ItemPoolID {
+    ItemID 4
+    ItemID .1
+    ItemPoolID 2
+}
+```

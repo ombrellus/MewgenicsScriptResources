@@ -10,7 +10,7 @@ In data/boss_cutscene_info.gon you can add a new cutscene for a boss buy specify
 
 # Music
 
-In audio/music/music_info.gon you can add new music by specifying a custom MusicID and specify each version of the music for each layer.
+In audio/music/music_info.gon you can add new music by specifying a custom Identifier (MusicID) and specify each version of the music for each layer.
 
 `MusicID {}`
 * `map    "path/to/file"`
@@ -24,6 +24,19 @@ In audio/music/music_info.gon you can add new music by specifying a custom Music
 
 >[!NOTE]
 > You can specify a path as a list of 2 paths to create a transition to a looping part
+
+
+# Cat Faces
+
+In data/catgen.gon new faces for cats can be specified by appending a custom Indentifier (FaceID) inside the `faces` table.
+
+`FaceID {}`
+* `face_offset [X Y]` -- Position offset of the whole face
+* `eyebrow_up X / [X Y]` -- Change in height of the eyebrows, different heights can be specified for the right and left eyebrow
+* `eyebrow_rotation X / [X Y]` -- Change in rotation of the eyebrows, different rotations can be specified for the right and left eyebrow
+* `ear_rotation X / [X Y]` -- Change in rotation of the ears, different rotations can be specified for the right and left ear
+* `mouth Mode` -- What appearence the mouth takes [open, closed, smile]
+* `eyes Mode / [Mode Mode]` -- How the eyes look [open, closed], different modes can be specified for the right and left eye
 
 
 # Text Functions
