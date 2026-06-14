@@ -2,7 +2,7 @@
 Someone else can comeup with a better description
 - [Ability Formatting](ability_fields.md)
 - [Passive Formatting](passive_formatting.md)
-- [Item Formatting](item_formatting.md)
+- [Item/Set/Pools Formatting](item_formatting.md)
 - [Character Formatting](character_formatting.md)
 - [Weather Formatting](weather_formatting.md)
 - [Effects/Passives Resources](gon_files_resources.md)
@@ -10,8 +10,10 @@ Someone else can comeup with a better description
 - [Adventure Progression Unlocks, Locked Content Setup, and NPC Favor Unlocks (file)](unlock_stuff_resources.md)
 - [Maps](map_formatting.md)
 - [Misc](misc.md)
-    - [Text](misc.md#text-functions)
     - [Music](misc.md#music)
     - [Boss Cutscenes](misc.md#boss-cutscenes)
+    - [Cat Faces](misc.md#cat-faces)
+    - [Text](misc.md#text-functions)
+    
 
 
