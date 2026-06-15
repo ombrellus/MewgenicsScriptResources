@@ -67,6 +67,8 @@
 
 `tag [string]` -- List of character tags
 
+`act_points X` -- How many times this character can use up the act slot
+
 `hidden_tag [string]` -- List of hidden character tags (hidden tags are more specific tags refenced only in gon files)
 
 `faction Faction_Name` -- [Faction](enums.md#factions) the character is part of [CHECk if they custom]
