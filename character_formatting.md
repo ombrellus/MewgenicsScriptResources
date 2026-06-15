@@ -208,9 +208,10 @@
 * `do Character_Ability` -- Does a single action
 * `do_priority [Character_Ability]` -- Does the best possible action in the list
 * `move_then_do_priority [Character_Ability]` -- Moves then does the best possible action in the list
-* `do_random [Character_Ability]` -- Does a random action in the list
+* `do_random [Character_Ability]` -- Does a random action in the list (Test)
 * `do_all [Character_Ability]` -- Does all of the actions in the list in a random order
 * `do_strict [Character_Ability]` -- Does all of the actions in the list in order
+* `do_nothing []` -- Does nothing
 
 > [!NOTE]  
 > Patterns use the character's spells or virtual abilities, but there are other basic actions:  
