@@ -126,6 +126,8 @@
 
 `uncatchable bool` -- If the projectile is uncatchable
 
+`dont_orient bool` -- If the character should not change orientation
+
 `palette X` -- Palette used for the ability graphics
 
 ---
@@ -224,7 +226,7 @@
 
 `custom_range [ [X,Y] ]` -- (RABGE_MODE CUSTOM) define a list of tiles with [x,y] where x=front/back tiles, y=sides tiles, [0,0] is the character tile
 
-`dont_orient bool` -- If the character should not orient the in the casting direction
+`dont_orient bool` -- If the character should not orient when casting this ability
 
 `aoe_mode Mode_Name` -- How the area is selected [standard, line, square, circle, perpline, cross, diagcross, 8cross, pierce_cross, map_edges, all, all_except_edges, all_except_random_empty, all_except_custom, narrow_cone, narrowest_cone, cone8 area_around_all_player_cats, occupied_tiles, hit_consumer, custom]
 
