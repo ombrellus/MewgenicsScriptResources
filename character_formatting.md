@@ -206,11 +206,14 @@
 
 `pattern {}` -- Table of action lists that cycle every turn (Abilities still need to meet their cost to be used)
 * `do Character_Ability` -- Does a single action
+* `do_best [Character_Ability]` -- Seems to be a alternative version to do_priority
 * `do_priority [Character_Ability]` -- Does the best possible action in the list
 * `move_then_do_priority [Character_Ability]` -- Moves then does the best possible action in the list
+* `move_then_do_random [Character_Ability]` -- Moves then does a random thing in the list
 * `do_random [Character_Ability]` -- Does a random action in the list (Test)
 * `do_all [Character_Ability]` -- Does all of the actions in the list in a random order
 * `do_strict [Character_Ability]` -- Does all of the actions in the list in order
+* `do_all_shuffle [Character_Ability]` -- (TEST - check Yeti action ingame)
 * `do_nothing []` -- Does nothing
 
 > [!NOTE]  
@@ -229,6 +232,10 @@
 
 `bonusturn_pattern {}` -- Pattern used only during bonus turns
 
+`dispersed_bonusturn_pattern {}` -- Alternate to bonus turns, will prioritize using these if they're dispersed instead of bonus
+
 `round_end_bonusturn_pattern {}` -- Pattern used only used during end of the round bonus turns
+
+`round_start_bonusturn_pattern {}` -- Pattern used only used during start of the round bonus turns
 
 `fallback {}` -- Pattern used if the other ones fail
