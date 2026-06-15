@@ -769,8 +769,8 @@
 
 `MoveAndUseAbilityEachTurnBeginIfPossible AbilityID` -- Makes the character move and use a specified ability at the start of every turn if possible
 
-`UseMoveAbilityWithAI {}` -- Uses a specified move ability with a different ai
-* `ability AbilityID` -- Ability to use
+`UseMoveAbilityWithAI {}` -- Uses a specified move ability that a character has with a different ai
+* `ability AbilityID` -- Ability in spell slot to use
 * `move_weights Movement_WeightID` -- Movement weight to use
 
 `AbilityWhenTaggedCharacterMovesNear {}` -- Makes the character use a specified ability targetting characters with a specified tag when they move in range
