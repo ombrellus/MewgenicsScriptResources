@@ -69,6 +69,8 @@
 
 `act_points X` -- How many times this character can use up the act slot
 
+`move_points X` -- How many times this character can use up it's movement ability
+
 `hidden_tag [string]` -- List of hidden character tags (hidden tags are more specific tags refenced only in gon files)
 
 `faction Faction_Name` -- [Faction](enums.md#factions) the character is part of [CHECk if they custom]
@@ -183,8 +185,6 @@
 
 `can_get_bonus bool` -- If it can gain bonus abilities
 
-## Character ai
-
 `brain Brain_Type` -- Brain used by the character, will change how it takes decisions [GenericBrain PatternBrain PlayerBrain NoBrain]
 
 `move_weights MoveWeight_Type` -- movement decision weights used by the character
@@ -195,9 +195,11 @@
 
 `end_turn_on_formswitch bool` -- If when switching form it automatically ends it's turn
 
-`fallback_advances_pattern true` -- If the fallback pattern advances the pattern
+`fallback_advances_pattern bool` -- If the fallback pattern advances the pattern
 
-`stun_advances_pattern false` -- If skipped turns from stun advances the pattern
+`stun_advances_pattern bool` -- If skipped turns from stun advances the pattern
+
+`randomize_pattern_start bool` -- If it chooses a random pattern when spawned
 
 `virtual_abilities {}` -- Table of unique character abilities that can use different weights or movement actions than the default ones
 * `VirtualAbilityName {}` -- Custom name for a virtual ability 
@@ -208,14 +210,14 @@
 
 `pattern {}` -- Table of action lists that cycle every turn (Abilities still need to meet their cost to be used)
 * `do Character_Ability` -- Does a single action
-* `do_best [Character_Ability]` -- Seems to be a alternative version to do_priority
-* `do_priority [Character_Ability]` -- Does the best possible action in the list
+* `do_best [Character_Ability]` -- Does the best possible action
+* `do_priority [Character_Ability]` -- Tries to do an action with priority going from first to last
 * `move_then_do_priority [Character_Ability]` -- Moves then does the best possible action in the list
 * `move_then_do_random [Character_Ability]` -- Moves then does a random thing in the list
-* `do_random [Character_Ability]` -- Does a random action in the list (Test)
-* `do_all [Character_Ability]` -- Does all of the actions in the list in a random order
+* `do_random [Character_Ability]` -- Does a random action in the list 
+* `do_all [Character_Ability]` -- Does all of the actions in the list in order (If an ability is impossible to cast, it will check if it can cast it later)
+* `do_all_shuffle [Character_Ability]` -- Does all of the actions in the list in a random order
 * `do_strict [Character_Ability]` -- Does all of the actions in the list in order
-* `do_all_shuffle [Character_Ability]` -- (TEST - check Yeti action ingame)
 * `do_nothing []` -- Does nothing
 
 > [!NOTE]  
