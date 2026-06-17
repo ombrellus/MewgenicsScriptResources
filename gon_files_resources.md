@@ -99,7 +99,7 @@
 `StatusOnBattleStart {}` -- Table of statuses given at the start of the battle
 
 `StatusOnBattleEnd {}` -- Table of statuses given at the end of the battle
-* `even_if_dead bool` -- Give statuses even if the cat was downed
+* `even_if_dead bool` -- Give statuses even if the cat was downed (default: `false`)
 
 `StatusOnBattleEndIfKillThresholdMet {}` -- Table of statuses given at the end of the battle if it killed X Characters
 * `kills X` -- Kill count
@@ -188,7 +188,7 @@
 
 `StatusOnEnemyDeath {}` -- Table of statuses given when an enemy dies
 
-`StatusOnEnemyConfused {}` -- Table of statuses given when an enemy gets confused
+`StatusOnEnemyConfused {}` -- Table of statuses given when an enemy hits themselves in confusion
 
 `StatusOnAllyCatDeath {}` -- Table of statuses given when an ally cat dies
 
@@ -211,6 +211,10 @@
 `ScaledStatusOnLoseShield {}` -- Table of statuses given for every shield lost
 
 `ScaledStatusOnBleedDamage {}` -- Table of statuses given for every bleed damage
+
+`StatusAdjacentOnTheirTurnBegin {}` -- Table of statuses given to adjacent characters when their turn begins
+
+`StatusAdjacentOnTheirTurnEnd {}` -- Table of statuses given to adjacent characters when their turn ends
 
 `ConvertDamageToScaledStatus {}` -- Table of statuses given instead of the damage taken
 * `stacks X` -- Max amount of damage convertable
@@ -401,6 +405,13 @@
 * `ability AbilityID` -- Ability (Can also be used as `DeathRattleRevive AbilityID`)
 * `even_if_stunned bool` -- If it can be used when stunned
 
+`SecurityBotProtect {}` -- Uses a specific ability whenever someone damages a allied character, targetting the damager
+* `ability AbilityID` -- Ability to use
+* `move AbilityID` -- Movement ability to use
+* `enemies_only bool` -- If to react only when the damage comes from an enemy (default: `false`)
+* `tag_restriction string` -- If to react only when a character with a tag is damaged
+* `not_on_kill bool` -- If to react only when the damage is not fatal (default: `false`)
+
 `HarpoonTrapPassive AbilityID` -- Uses a specified ability when a character finishes their movement in front of source in a straight line (Does not actually target the character)
 
 `CaveFamilyEnrage {}` -- Cast ability when X or less other Characters with tag are alive [TEST]
@@ -413,6 +424,8 @@
 * `warrior_tag string` -- Tag of the dead characters
 * `health_threshold X` -- Health threshold
 * `even_if_stunned bool` -- If to use the ability even if stunned
+
+`AbilityWhenBuddyDies AbilityID` -- Uses an ability when the buddy dies
 
 `HealAlliesEachTurn {}` -- Heals each ally at the end of every turn
 * `stacks X` -- Healing amount
@@ -722,7 +735,7 @@
 
 `RandomMagicMissile {}` -- Spawns X sparks targetting the source's enemies
 * `stacks X` -- Number of sparks (can be used as `RandomMagicMissile X`)
-* `full_size bool` -- true = 3 damage, false = 1 damage
+* `full_size bool` -- true = 3 damage, false = 1 damage (default: `false`)
 
 `EvolveAbilityFromPool {}` -- ABILITY Permanently changes the ability to one from the specified class pool [TEST if works with custom pools]
 * `pool Class_Name` -- Class pool (Can also be just `Class` to use the target class) (Can also be used as `EvolveabilityFromPool Class_Name`)
@@ -735,7 +748,7 @@
 
 `ObjectOnHitCharacter {}` -- Spawns X specified Characters from the target
 * `object CharacterID` -- Character (Can also be used as `ObjectOnHitCharacter CharacterID`)
-* `stacks X` -- Number of Characters
+* `stacks X` -- Number of Characters (default: `1`)
 
 `FindItemFromPool ItemPoolID` -- Gives an item from a specified pool
 
@@ -772,6 +785,9 @@
 `UseMoveAbilityWithAI {}` -- Uses a specified move ability that a character has with a different ai
 * `ability AbilityID` -- Ability in spell slot to use
 * `move_weights Movement_WeightID` -- Movement weight to use
+
+`ForceMoveAway {}` -- Forces the target to move away from the source (Can be used as `ForceMoveAway 1`)
+* `free bool` -- If it doesn't use the character movement point (default: `true`)
 
 `AbilityWhenTaggedCharacterMovesNear {}` -- Makes the character use a specified ability targetting characters with a specified tag when they move in range
 * `ability AbilityID` -- Ability to use
