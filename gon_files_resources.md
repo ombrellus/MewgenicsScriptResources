@@ -60,6 +60,17 @@
 
 `AddPassivesToCharmed {}` -- Table of passives applied to charmed characters
 
+`ArcLightning {}` -- Arcs lightning to a in distance that chains to other enemies (seems to chain only once)
+* `stacks X` -- Actually not sure, X is 100 usually
+* `enemies_only boolean` -- If the lightning only hits enemies
+* `ignore_self boolean` -- If the lightning can or cant hit the source
+* `max_distance X` -- X is range of tiles it can bounce to
+* `chance X` -- Chance to continually chain. X is a float between 0 and 1
+
+`AOEPuddle X` -- Creates a puddle of tile based on the applied element in X aoe
+
+`AIFavorLowHealth X` -- Favors the cat with the lowest health starting at X health (TEST??)
+
 `AddPassivesToSummonAbilityMinions {}` -- Table of passives applied to familiars spawned with abilities
 
 `AddPassiveToSpawnedRocks {}` -- Table of passives applied to spawned rocks
@@ -946,7 +957,7 @@
 
 `ApplyToOthersWithSharedTagAndFaction {}` -- Table of statuses given to all other characters that share the same tag and faction as the source
 
-`ApplyToTile {}` -- Table of statuses applied to the status itself
+`ApplyToTile {}` -- Table of statuses applied to the tile where the projectile would land
 
 `ApplyToConsumed {}` -- Table of statuses given to the consumed character
 
@@ -954,6 +965,8 @@
 * `stacks X` -- Times to give statuses
 
 `ApplyStatusesNextTurnBegin {}` -- Table of statuses given at the start of the next turn
+
+`ApplyShieldToApplierBasedOnMaxHealth {}` -- Applies shield to the source based on the health of the targeted unit
 
 `Imprison CharacterID` -- Creates specified Characters around the target
 
