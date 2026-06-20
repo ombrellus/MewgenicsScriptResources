@@ -590,6 +590,11 @@
 
 `RandomWeatherEachFight [WeatherID]` -- Picks a random weather to apply at battle start
 
+`FinalBossBecomeTheChild {}` -- Table of statuses if this entity is called on to transform into the Child entity
+
+`FaceLastDamage {}` -- Face the last entity that damaged you (can be used as `FaceLastDamage 1`)
+* `use_turn_animations true` -- Use a animation with the turnF or turnB if possible (check names)
+
 `LoopingSoundWhileAlive SoundID` -- Plays a looping sound while the character is alive
 
 `SetDefaultFacePassive FaceID` -- Changes the default face of the cat with the specified one
@@ -616,11 +621,6 @@
 `CopyBasicAttackEffects 1` -- (ABILITY) Copies the basic attack effects
 
 `CatchBoomerang 1` -- (ABILITY) Catches the boomerang projectile
-
-`FinalBossBecomeTheChild {}` -- If this entity is called on to transform into the Child entity, do the following
-
-`FaceLastDamage {}` -- Face the last entity that damaged you
-* `use_turn_animations` -- Use a animation with the turnF or turnB if possible (check names)
 ---
 
 ## EFFECT STATUSES
@@ -999,6 +999,8 @@
 `DontHealEnemies 1` -- Prevents the damage instance heal from applying to enemies
 
 `Displace X` -- Displaces the target by X tiles
+
+`DisplaceTowardsSource X` -- Displaces the target by X tiles towards the source
 
 `RandomDistanceDisplace {}` -- Displaces the target by a random distance
 * `stacks X` -- Max distance

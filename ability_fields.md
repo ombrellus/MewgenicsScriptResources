@@ -274,7 +274,7 @@
 
 `knockback_mode Mode_Name` -- how knockback is handled [zero, character_to_tile, target_to_tile, orientation, back_orentation, left_orentation, right_orentation, character_to_target, target_to_character, tile_to_character, pull_to_character]
 
-`always_bounce bool` -- [TEST]
+`always_bounce bool` -- (JUMP ATTACK) If the character always bounces off even if it has trample
 
 `delayed_trigger bool` -- If the ability is casted next turn
 
