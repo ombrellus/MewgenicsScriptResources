@@ -185,7 +185,7 @@
 
 `can_get_bonus bool` -- If it can gain bonus abilities
 
-`brain Brain_Type` -- Brain used by the character, will change how it takes decisions [GenericBrain PatternBrain PlayerBrain NoBrain]
+`brain Brain_Type` -- Brain used by the character, will change how it takes decisions [GenericBrain PatternBrain PlayerBrain NoBrain DicerBrain]
 
 `move_weights MoveWeight_Type` -- movement decision weights used by the character
 
