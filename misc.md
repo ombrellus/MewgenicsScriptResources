@@ -39,6 +39,20 @@ In data/catgen.gon new faces for cats can be specified by appending a custom Ind
 * `eyes Mode / [Mode Mode]` -- How the eyes look [open, closed], different modes can be specified for the right and left eye
 
 
+# Damage Styles
+
+In data/damage_text_styles.gon new damage styles can be specified by adding a custom indentifier (DamageStyleID)
+
+`DamageStyleID {}`
+* `color [R G B]` -- Color of the text
+* `outline_color [R G B]` -- Color of the text's outline
+* `right_icon string` -- Icon after the text (TODO find where they are located)
+* `back_icon string` -- Icon behind the text (TODO find where they are located)
+
+Damage styles based on the damage amount are specified in an array called `damagescale_thresholds`, each entry is a size 2 array formatted like:
+* `[X DamageStyleID]`
+Where `X` is the minimun damage needed to switch to the specified damage style
+
 # Text Functions
 
 Mewgenics has a variety of text applications that enhance words written or spoken. MANY of these text functions are ONLY used when spoken, but majority of non-emotion or timing ones can be used.

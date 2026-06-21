@@ -13,6 +13,7 @@ Someone else can comeup with a better description
     - [Music](misc.md#music)
     - [Boss Cutscenes](misc.md#boss-cutscenes)
     - [Cat Faces](misc.md#cat-faces)
+    - [Damage Styles](misc.md#damage-styles)
     - [Text](misc.md#text-functions)
     
 

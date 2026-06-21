@@ -272,6 +272,10 @@
 
 `range_display_include_character_size bool` -- [TEST]
 
+`throw_consumed_character bool` -- If the thrown character is the consumed entity, breaks it free
+
+`reorient_thrown_character bool` -- If the thrown character is reoriented after landing
+
 `knockback_mode Mode_Name` -- how knockback is handled [zero, character_to_tile, target_to_tile, orientation, back_orentation, left_orentation, right_orentation, character_to_target, target_to_character, tile_to_character, pull_to_character]
 
 `always_bounce bool` -- (JUMP ATTACK) If the character always bounces off even if it has trample
@@ -329,6 +333,8 @@
 `makes_contact bool` -- If the ability counts as contact with the tile
 
 `force_no_contact bool` -- If the ability forces there to be no contact to the targetted tile
+
+`contact_requires_adjacency bool` -- If the contact requires the character to be adjacent (default: true)
 
 `hit_animation_alt Animation_name` -- Change the hit animation for this damage instance
 

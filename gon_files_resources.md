@@ -443,9 +443,6 @@
 * `mana X` -- Mana healing amount
 * `exclude_self bool` -- If the source is excluded
 
-`LateBloomer {}` -- Takes any status as optional parameter to give after X rounds 
-* `stacks X` -- Number of rounds
-
 `SizeScale 0.0-1.0` -- Changes the target's size scale
 
 `SizeScalePercent X%` -- Changes the target's size scale by percentage
@@ -714,6 +711,8 @@
 
 `SafeDie 1` -- Dies without injury
 
+`CorpseVaporizer 1` -- Destroys the target and it's corpse
+
 `VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
 
 `FullHeal 1` -- Heals the target to full
@@ -737,6 +736,9 @@
 `SpawnCreep 1` -- Spawns creep tile
 
 `PurgeAll 1` -- Removes all buffs and debuffs from the target
+
+`LateBloomer {}` -- Table of statuses to give after X turns 
+* `stacks X` -- Number of turns
 
 `AllyInfested {}` -- Applies a special type of infested, spawning a specific character type and in a specific faction
 * `object CharacterID` -- Character to spawn
@@ -814,6 +816,8 @@
 `EndTurn 1` -- Ends the turn
 
 `StealTurn 1` -- Removes the target's next turn and gives it to the source
+
+`RemoveTurnsThisRound 1` -- Removes all turns of the target
 
 `TakeExtraTurn X` -- Target takes X extra turn(s)
 
@@ -893,7 +897,6 @@
 
 `RemoteFlatLeech X` -- Heals the spawner by X when damaging something
 
-
 `PullSourceToKnockbackImmuneTarget 1` -- When knockback is dealt, if the target is immune to it pull the source to it  
 
 `SpawnThingIfHitKills CharacterID` -- Spawns a specified character when the target is killed  
@@ -946,6 +949,20 @@
 * `turns X` -- Turns the status/passive remains
 * `expires_on_begin_turn bool` -- If it counts down as soon as the next target turn begine
 * `expires_on_end_turn bool` -- If it counts down as soon as the target turn ends
+
+`Consumed {}` -- The source consumes the target, becoming it's consumed character and gaining the Consuming status
+* `instant bool` -- TEST
+* `mount_mode bool` -- TEST
+* `force_contact bool` -- If it forces contact to be made
+* `drop_on_death bool` -- If the consumer will release the consumed character when it dies
+* `drop_on_self_death bool` -- If the consumer will release the consumed character when itself dies
+* `do_not_pop_corpse bool` -- If the consumer won't destroy the corpse of the consumed character
+* `struggle_ability AbilityID` -- Ability that replaces the basic attack of the consumed character while it's consumed
+
+`ChanceToBreakFree {}` -- Chance to break free from being consumed, scales with luck
+* `stacks 0-100` -- Chance
+* `ability AbilityID` -- Ability the consumer uses if successful
+* `fail_ability AilityID` -- Ability the consumer uses if unsuccessful
 
 `ApplyToRandomClosestAlly {}` -- Table of statuses applied to a random closest ally
 
@@ -1194,6 +1211,10 @@
 `SetDefaultFace FaceID` -- Changes the default face of the cat with the specified one
 
 `ParticleBurst ParticleID` -- Plays the specified particles
+
+`ShowFakeDamage {}` -- Shows a fake damage popup on the target
+* `stacks X` -- Amount of damage
+* `style [Damage_Style]` -- [Style](misc.md#damage-styles) of the damage
 
 ---
 
