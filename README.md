@@ -1,5 +1,5 @@
 # Mewgenics script resources
-Someone else can comeup with a better description
+Someone else can come up with a better description
 - [Ability Formatting](ability_fields.md)
 - [Passive Formatting](passive_formatting.md)
 - [Item/Set/Pools Formatting](item_formatting.md)
@@ -17,4 +17,4 @@ Someone else can comeup with a better description
     - [Text](misc.md#text-functions)
     
 
-
+Some general infos can be found in [notes](notes.md)

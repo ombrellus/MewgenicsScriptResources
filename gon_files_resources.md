@@ -687,6 +687,7 @@
 * `ExtraBasicAttacks_Status X`
 * `Trapper_Status X`
 * `DoubleCastSpellsEachTurn_Status X`
+* `Ammo X` -- Has no effects on it's own (check [notes](notes.md#functionless-statuses))
 
 >[!NOTE]
 >These statuses can be given as parameters negative numbers for debuffs
