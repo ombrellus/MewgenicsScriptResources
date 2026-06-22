@@ -576,6 +576,7 @@
 
 `Robot {}` -- Makes the character metal, conductive and energized when hit by electric damage
 * `allow_energize_self bool` -- If it can get energized even with it's own electric attacks (If false can be used as `Robot 1`)
+* `alternate_energized_effect {}` -- Table of statuses given instead of energized when hit by electric damage
 
 `Phasing 1` -- Makes the characters be able to pass through characters and objects
 
@@ -702,7 +703,7 @@
 * `RangeUp X`
 * `TempRangeUp X`
 * `TempDamageUp X`
-* `TempSpellDamageUp X`
+* `TempSpellDamageUp X` -- (BUG) When the status is removed, it removes all bonus spell damage
 
 `ApplyPassives {}` -- Table of passive effects to add to the target
 
@@ -1096,6 +1097,8 @@
 `RefreshActPoints 1` -- Refreshes an act point for the target
 
 `RefreshMovePointsIfHit 1` -- Refreshes a movement point for the target if the damage instance hits
+
+`ReloadAssociatedAbility AbilityID` -- Reloads the specified ability
 
 `Craft {}` -- Creates an item in a specific slot from a specific pool
 * `pool ItemPoolID` -- The item pool 
