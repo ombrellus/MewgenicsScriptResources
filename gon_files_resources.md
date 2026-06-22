@@ -1112,6 +1112,9 @@
 
 `RemoveStatus Status_Name` -- Removes a specified status
 
+`NextBattleStatusStacks {}` -- Table of statuses given to the character the next X fights
+* `fights X`
+
 `ForceTransferWeapon 1` -- Forces the source's weapon to go to the target
 
 `BackflipWhenTargeted {}` -- Gives X backflips using a specified ability for the backflip
