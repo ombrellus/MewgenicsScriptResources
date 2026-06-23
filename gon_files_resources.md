@@ -438,6 +438,13 @@
 
 `AbilityWhenBuddyDies AbilityID` -- Uses an ability when the buddy dies
 
+`AbilityWhenTaggedCharacterMovesNear {}` -- Makes the character use a specified ability targetting characters with a specified tag when they move in range
+* `ability AbilityID` -- Ability to use
+* `tag string` -- Tag
+* `range X` -- Tile range
+
+`TowerDefenseReflex AbilityID` -- USes an ability when an enemy moves in range
+
 `HealAlliesEachTurn {}` -- Heals each ally at the end of every turn
 * `stacks X` -- Healing amount
 * `mana X` -- Mana healing amount
@@ -489,6 +496,10 @@
 * `square bool` -- If the range is a square instead of a cross
 
 `AllyMoveAbilityAura AbilityID` -- All adjacent unit's movement ability is replaced with a specified one
+
+`BonusAbility AbilityID` -- Gives the target the specified ability in it's bonus spell slot
+
+`BonusAbility_DelayedApplication AbilityID` -- Gives the target the specified ability in it's bonus spell slot (Has priority over `BonusAbility`)
 
 `SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
 
@@ -787,6 +798,8 @@
 
 `CastAgain X` -- casts the ability another X times
 
+`ConjureBonusAbility AbilityID / AbilityPoolID` -- Gives the target the specified ability in it's bonus spell slot (Special inputs: `random` for a random ability, `Class` for an ability from the character's class)
+
 `UseAbility AbilityID` -- Makes the character use a specific ability  
 
 `UseAbility_NonStack AbilityID` -- Makes the character use a specific ability (Applying it multiple times won't stack the effect)  
@@ -803,11 +816,6 @@
 
 `ForceMoveAway {}` -- Forces the target to move away from the source (Can be used as `ForceMoveAway 1`)
 * `free bool` -- If it doesn't use the character movement point (default: `true`)
-
-`AbilityWhenTaggedCharacterMovesNear {}` -- Makes the character use a specified ability targetting characters with a specified tag when they move in range
-* `ability AbilityID` -- Ability to use
-* `tag string` -- Tag
-* `range X` -- Tile range
 
 `UseRandomSpell_Madness 1` -- Makes the character use one of it's spells at random using madness targetting
 
@@ -1026,6 +1034,8 @@
 * `min_dist X` -- Minimum distance
 
 `NextActionLuckUp X` -- [TEST if it's not only LuckUp]
+
+`NextBasicAttackCritsThisTurn 1` -- Makes the next basic attack crit, removed at turn end
 
 `RefreshItemAbilities X` -- Refreshes the target's item abilities
 
