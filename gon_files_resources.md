@@ -533,9 +533,17 @@
 * `tag string` -- Tag
 * `reduction X / X%` -- Amount of mana to reduce
 
+`ClassManaCostReduction {}` -- Reduces the cost of all spells of a specific class
+* `class ClassName` -- Class (remove it to reduce the mana cost of all spells of the character's class)
+* `reduction X` -- Amount of mana to reduce (TEST percentage)
+
 `NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
 
 `MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
+
+`RefreshEquipmentAbilityOnElement {}` -- Refreshes all abilities of the equipped items when the character is affected by a specified element
+* `element ElementName` -- Element
+* `text string` -- Pop up text when refreshed (can read from cvs)
 
 `BoostHeals X` -- Boosts the target's heals by X
 
@@ -800,6 +808,12 @@
 
 `ConjureBonusAbility AbilityID / AbilityPoolID` -- Gives the target the specified ability in it's bonus spell slot (Special inputs: `random` for a random ability, `Class` for an ability from the character's class)
 
+`CopySpells {}` -- Source copies the target spells for X turns (Must be a cat unit)
+* `stacks X` -- Turns (can also be used as `CopySpells X`)
+* `upgraded bool` -- If the abilities are upgraded
+
+`CopiedSpells X` -- Target copies the source spells for X turns (Must be a cat unit) (check [notes](notes.md#functionless-statuses))
+
 `UseAbility AbilityID` -- Makes the character use a specific ability  
 
 `UseAbility_NonStack AbilityID` -- Makes the character use a specific ability (Applying it multiple times won't stack the effect)  
@@ -818,6 +832,8 @@
 * `free bool` -- If it doesn't use the character movement point (default: `true`)
 
 `UseRandomSpell_Madness 1` -- Makes the character use one of it's spells at random using madness targetting
+
+`DeathwormUnderground AbilityID` -- Makes the target go off map, when a character moves on the tiles the target was on, it will use the specified ability (Needs to be a return ability)
 
 `RerollEnemy 1` -- Rerolls the target to a random chapter enemy  
 
@@ -1068,7 +1084,7 @@
 
 `PlayBackground X` -- Plays X backgrounds. (TEST to see if anything outside of 1 is a option)
 
-`InsertIntoBackgroundPlaceholder` -- Inserts a character within battle into the background (TEST)
+`InsertIntoBackgroundPlaceholder 1` -- Inserts a character within battle into the background (TEST)
 
 `FinalBossPupils {}` -- These values seem to be hardcoded (TEST for changing anim)
 * `radius X`
