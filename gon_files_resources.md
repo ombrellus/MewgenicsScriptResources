@@ -1,17 +1,38 @@
-## PASSIVE ACTIONS
+## INDEX
+
+>[!NOTE]
+> Index is still a work in progress
+
+* [Passives](#passives)
+* * [AddStatus](#addstatus)
+* * [AddPassives](#addpassives)
+* * [StatusOn](#statuson)
+* * [Passive if/when/while](#passive-ifwhenwhile)
+* * [SpawnOn](#spawnon)
+* * [Reactions](#reactions)
+* * [Repeated actions](#repeated-actions)
+* * [Spell passives](#spell-passives)
+* * [Auras](#auras)
+* * [Ability specific](#ability-specific-passives)
+* * [FormChanger specific](#form-changer-related-passives)
+* * [Visual / Sounds](#visual--sound)
+* * [AI](#ai)
+* * [Misc](#misc)
+* [Statuses](#statuses)
+* [Conditionals](#conditional-triggers)
+
+
+## PASSIVES
 
 `AddTag string` -- Adds a tag to the character
 
 `AddHiddenTag string` -- Adds an hidden tag to the character (hidden tags are more specific tags refenced only in gon files)
 
-`ApplyStatusesToRandomEnemiesEachTurn {}` -- Table of statuses given to random X enemies
-* `count X` -- Amount of enemies
-
-`ApplyStatusesNextTurnEnd {}` -- Table of statuses given at the end of the next turn
-
-`AlphaStatusOnTurnBegin {}` -- Table of statuses given at turn start to the cat with alpha
+`CreateGlobalModifiers {}` -- Sets certain global modifiers
 
 `AddElementsToBasicAttack Element_Name` -- Adds a specific [element](enums.md#elements) to the basic attack
+
+### AddStatus
 
 `AddStatusToBasicAttack {}` -- Table of statuses given to the basic attack
 
@@ -52,33 +73,23 @@
 
 `AddSelfStatusToWeapons {}` -- Table of statuses given to the source when using the weapon
 
+`AddStatusToFirstBasicAttack {}` -- The first basic attack of the target gives the specified statuses
+
 `AddStatusesIfPersistentWeatherElement {}` -- Table of statuses given if there is a persistent element weather
 * `element [Element_Name]` -- Chosen [element](enums.md#elements) list
+
+### AddPassives
 
 `AddPassivesToMinions {}` -- Table of passives applied to the target's familiars
 * `tag_filter string` -- Optional field if it should be applied to only minions with a specified tag
 
 `AddPassivesToCharmed {}` -- Table of passives applied to charmed characters
 
-`ArcLightning {}` -- Arcs lightning to a in distance that chains to other enemies (seems to chain only once)
-* `stacks X` -- Actually not sure, X is 100 usually
-* `enemies_only boolean` -- If the lightning only hits enemies
-* `ignore_self boolean` -- If the lightning can or cant hit the source
-* `max_distance X` -- X is range of tiles it can bounce to
-* `chance X` -- Chance to continually chain. X is a float between 0 and 1
-
-`AOEPuddle X` -- Creates a puddle of tile based on the applied element in X aoe
-
-`AIFavorLowHealth X` -- Favors the cat with the lowest health starting at X health (TEST??)
-
 `AddPassivesToSummonAbilityMinions {}` -- Table of passives applied to familiars spawned with abilities
 
 `AddPassiveToSpawnedRocks {}` -- Table of passives applied to spawned rocks
 
-`ChanceToRevive {}` -- Chance to revive at the end of the round
-* `stacks X` -- Chance out of 100 for it to revive (Can also be used as `ChanceToRevive X`)
-* `health X%` -- Percentage of health revived with
-* `statuses {}` -- Table of statuses given when revived
+### StatusOn
 
 `StatusWhenAllySpendsMana {}` -- Table of statuses given to the character when an ally spends mana
 
@@ -230,6 +241,23 @@
 `ConvertDamageToScaledStatus {}` -- Table of statuses given instead of the damage taken
 * `stacks X` -- Max amount of damage convertable
 
+`ApplyStatusesToRandomEnemiesEachTurn {}` -- Table of statuses given to random X enemies
+* `count X` -- Amount of enemies
+
+`ApplyStatusesNextTurnEnd {}` -- Table of statuses given at the end of the next turn
+
+`AlphaStatusOnTurnBegin {}` -- Table of statuses given at turn start to the cat with alpha
+
+`StatusAllCharactersOnSpawn {}` -- Table of statuses given to all characters that spawn while the source exists
+
+`StatusAlliesOnBattleStart {}` -- Gives the specified statuses to all allies on battle start
+
+`StatusDamagers {}` -- Gives the specified statuses to any character that attacks the source
+
+`CritsApplyStatus {}` -- When an attack crits apply the specified statuses
+
+### Passive if/when/while
+
 `PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
 
 `PassiveLevelUpAtCombatEnd X` -- Levels up spell by X when a battle ends
@@ -267,6 +295,8 @@
 `TempPassiveWhileHasStatus {}` -- Table of passives executed while the target has the specified status, the passives are completely removed when the status is removed
 * `status Status_Name` -- The status
 
+`PassiveWhileCharmed {}` -- Table of passives executed while the target is charmed
+
 `PassiveWhileShielded {}` -- Table of passives executed while the target has shield
 
 `PassiveWhileNotTakingTurn {}` -- Table of passives executed while in't not the target's turn
@@ -286,9 +316,17 @@
 * * `STAT X` -- [Stat](enums.md#stats) and amount to check the condition for (There can be more than one)
 * `passives {}` -- Table of passives
 
-`DamageIfDidntUseSpecificAbility {}` -- Deals X damage at the end of the turn if the character didn't use a specified ability
-* `ability AbilityID` -- Ability
-* `damage X` -- Damage to deal
+`PassiveWhileHasDurability {}` -- Table of passives executed while the heald weapon still has durability left
+
+`PassiveWhileInMonkMeleeStance {}` -- Table of passives executed while in the monk's melee stance (TEST non monk stances)
+
+`PassiveWhileInMonkRangedStance {}` -- Table of passives executed while in the monk's ranged stance (TEST non monk stances)
+
+`PassiveWhilePreviewingMonkMeleeStance {}` -- Table of passives executed while previewing the monk's melee stance (TEST non monk stances)
+
+`PassiveWhilePreviewingMonkRangedStance {}` -- Table of passives executed while previewing the monk's ranged stance (TEST non monk stances)
+
+### SpawnOn
 
 `SpawnOnBattleStart {}` -- Spawns X Characters on battle start
 * `object CharacterID` -- Character (Can also be used as `SpawnOnBattleStart CharacterID`)
@@ -314,68 +352,13 @@
 * `object CharacterID` -- Character to spawn
 * `number X / [X X]` -- Number or range of characters to spawn
 
-`CreateGlobalModifiers {}` -- Sets certain global modifiers
-
-`RemoveGlobalModifiers {}` -- Removes certain global modifiers
+`SpawnExtraThingsOnBattleStart {}` -- Spawns the specified Characters on battle start
+* `object [CharacterID]` -- Character(s) to spawn
+* `number X` or `[X Y]` -- Number of Characters to spawn, or range of Characters to spawn
 
 `ReplaceSpawnedObjects [CharacterID_old CharacterID_new]` -- Replaces all characters spawned by the source of a specific type to a new one
 
-`ReceivedStatusReplacement [Status_Name_old Status_Name_new]` -- Replaces all statuses of a specific type applied to the source with a new one (Can work with non in-game statuses)
-
-`RandomPassivePool {}` -- Randomly selects a passive from the table
-
-`PassiveGroup {}` -- Treats a table of passives as one
-
-`IgnoreTiles 1` -- Ignore tiles
-
-`MinimumKnockbackFromPhysicalAttacks X` -- Makes the minimum knockback to all received phisical attacks X
-
-`ExtraBasicAttacks X` -- Gives X extra basic attacks
-
-`ExtraWeaponAttacks X` -- Gives X extra weapon attacks
-
-`InnateElement Element_Name` -- Makes target be of a certain [element](enums.md#elements)
-
-`ElementImmune Element_Name` -- Makes target immune to a certain [element](enums.md#elements)
-
-`StatusImmunity [Status_Name]` -- Makes target immune to a list of statuses
-
-`EquipTemporaryItem Item_Name` -- Gives the target a temporary item that breaks after battle
-
-`EquipPermanentItem Item_Name` -- Gives the target an item that stays after the battle
-
-`StatusAllCharactersOnSpawn {}` -- Table of statuses given to all characters that spawn while the source exists
-`StatusAlliesOnBattleStart {}` -- Gives the specified statuses to all allies on battle start
-
-`ConsumablesMeleeRange X` -- Increases by X the melee range of the target consumables
-
-`BonusFoodEachBattle X` -- Gives X bonus food when winning a battle
-
-`ConsumablesInfiniteRange 1` -- Gives the target infinite range on it's consumables
-
-`BouncyProjectiles {}` -- Makes the target projectiles bounce X times to a Y range
-* `max_bounces X` -- Max number of bouces the projectile can do
-* `max_range Y` -- Max range the bouncing can happen
-
-`SharePickups {}` -- Makes the pickups collected by the character be shared to all other party members
-* `include_coins bool` -- If coins are shared as well
-
-`SharePickupsWithSpawner 1` -- Makes the pickups collected by the character be shared to the spawner of the character
-
-`AddStatusToFirstBasicAttack {}` -- The first basic attack of the target gives the specified statuses
-
-`StatusDamagers {}` -- Gives the specified statuses to any character that attacks the source
-
-`AutocastEachRound {}` -- Uses a specific ability at the end of every round
-* `ability AbilityID` -- Ability to use (Can also be used as `AutocastEachRound AbilityID`)
-* `even_if_stunned bool` -- If it uses the ability even if stunned
-* `force_display_name bool` -- If it forces to display the name of the ability when used
-
-`AbilityOnBattleStart AbilityID` -- Uses a specific ability at battle start
-
-`AbilityOnBattleStart_Immediate AbilityID` -- Uses a specific ability at battle start (Before the battle is even shown)
-
-`AbilityOnRoundEnd AbilityID` -- uses a specific ability on round end (seems redundant with Autocast)
+### Reactions
 
 `MovementReaction {}` -- Uses a specific ability when someone moves near the target
 * `ability AbilityID` -- Ability Name
@@ -445,18 +428,55 @@
 
 `TowerDefenseReflex AbilityID` -- USes an ability when an enemy moves in range
 
+`MoveWhenDamaged {}`
+* `move_ability AbilityID` -- Ability used to move (Can also be used as `MoveWhenDamaged AbilityID`) (if not included it uses the character's base move ability)
+* `weights Movement_WeightID` -- Weights used to decide where to move 
+
+`DamageIfDidntUseSpecificAbility {}` -- Deals X damage at the end of the turn if the character didn't use a specified ability
+* `ability AbilityID` -- Ability
+* `damage X` -- Damage to deal
+
+`TerminatorChase {}` -- C-800 behaviour, when the enemies use a spell it moves, and if gets in range of the enemy it uses a special ability
+* `move AbilityID` -- Movement ability used
+* `ability AbilityID` -- Special ability used when in range
+
+`FaceLastDamage {}` -- Face the last entity that damaged you (can be used as `FaceLastDamage 1`)
+* `use_turn_animations true` -- Use a animation with the turnF or turnB if possible (check names)
+
+`RefreshEquipmentAbilityOnElement {}` -- Refreshes all abilities of the equipped items when the character is affected by a specified element
+* `element Element_Name` -- [Element](enums.md#elements)
+* `text string` -- Pop up text when refreshed (can read from cvs)
+
+`DiesToElement {}` -- Makes the character instantly die when affected by a specific element
+* `element Element_Name` -- The [element](enums.md#elements) (Can also be used as `DiesToElement Element_Name`)
+* `instant bool` -- If the death is instant
+
+### Repeated actions
+
+`AbilityOnBattleStart AbilityID` -- Uses a specific ability at battle start
+
+`AbilityOnBattleStart_Immediate AbilityID` -- Uses a specific ability at battle start (Before the battle is even shown)
+
+`AbilityOnRoundEnd AbilityID` -- uses a specific ability on round end
+
+`AutocastEachRound {}` -- Uses a specific ability at the end of every round
+* `ability AbilityID` -- Ability to use (Can also be used as `AutocastEachRound AbilityID`)
+* `even_if_stunned bool` -- If it uses the ability even if stunned
+* `force_display_name bool` -- If it forces to display the name of the ability when used
+
 `HealAlliesEachTurn {}` -- Heals each ally at the end of every turn
 * `stacks X` -- Healing amount
 * `mana X` -- Mana healing amount
 * `exclude_self bool` -- If the source is excluded
 
-`SizeScale 0.0-1.0` -- Changes the target's size scale
+`ChanceToRevive {}` -- Chance to revive at the end of the round
+* `stacks X` -- Chance out of 100 for it to revive (Can also be used as `ChanceToRevive X`)
+* `health X%` -- Percentage of health revived with
+* `statuses {}` -- Table of statuses given when revived
 
-`SizeScalePercent X%` -- Changes the target's size scale by percentage
+`BloatEyePassive2 AbilityID` -- Makes the character use a specified ability whenever any character takes an action, targetting them if enemies
 
-`CritsApplyStatus {}` -- When an attack crits apply the specified statuses
-
-`AddMovement X` -- Adds X tiles to the movement range
+### Spell passives
 
 `ReplaceBasicMove AbilityID` -- Replaces the basic move with the specified ability
 
@@ -472,19 +492,28 @@
 
 `DisableAbilitiesWithTag string` -- Disables all the target's abilities that have a specified tag
 
-`HouseFoodRequirementMultiplier X` -- Changes how much food is needed for the target's when a day passes [TEST if things other than 0 work]
+`BonusAbility AbilityID` -- Gives the target the specified ability in it's bonus spell slot
 
-`TrinketPassiveMultiplierBonus X` -- Multiplies the held trinket passive effects by X
+`BonusAbility_DelayedApplication AbilityID` -- Gives the target the specified ability in it's bonus spell slot (Has priority over `BonusAbility`)
 
-`TrinketActiveEffectsMultiplierBonus X` -- Multiplies the held trinket active effects by X
+`SetSpellCosts X` -- Sets the cost of all spells to X
 
-`AlternateCraftingPools {}` -- Changes specified crafting pools with new ones
-* `ItemPoolID New_ItemPoolID` -- Changes the Pool_Name pool with New_Pool_Name (This doesn't take into consideration tech, so if you want to change all 4 tech levels you have to specify it for each one)
-* etc...
+`IncreaseSpellRange X` -- Increases the spells range by X
 
-`TerminatorChase {}` -- C-800 behaviour, when the enemies use a spell it moves, and if gets in range of the enemy it uses a special ability
-* `move AbilityID` -- Movement ability used
-* `ability AbilityID` -- Special ability used when in range
+`AddSpellDamage X` -- Increases the damage of all spells by X
+
+`ElementalManaCostReduction {}` -- Reduces the cost of all spells with a specific element
+* `element [Element_Name]` -- [Element(s)](enums.md#elements)
+
+`ManaCostReductionTagged {}` -- Reduces the cost of all spells with a specific tag
+* `tag string` -- Tag
+* `reduction X / X%` -- Amount of mana to reduce
+
+`ClassManaCostReduction {}` -- Reduces the cost of all spells of a specific class
+* `class ClassName` -- Class (remove it to reduce the mana cost of all spells of the character's class) (Putting `Jester` will reduce the cost of all classes spells)
+* `reduction X` -- Amount of mana to reduce (TEST percentage)
+
+### Auras
 
 `DepressionAura {}` -- Gives all units in a Y range X all stats down
 * `stacks X` -- Amount of stats down (Can also be used as `DepressionAura X`)
@@ -497,15 +526,107 @@
 
 `AllyMoveAbilityAura AbilityID` -- All adjacent unit's movement ability is replaced with a specified one
 
-`BonusAbility AbilityID` -- Gives the target the specified ability in it's bonus spell slot
+### Ability specific passives
 
-`BonusAbility_DelayedApplication AbilityID` -- Gives the target the specified ability in it's bonus spell slot (Has priority over `BonusAbility`)
+`AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
+
+`DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
+
+`AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
+
+`CopyCatPassive_Initializer X` -- (ABILITY) Copy cat ability effect
+
+`CopyBasicAttackEffects 1` -- (ABILITY) Copies the basic attack effects
+
+`CatchBoomerang 1` -- (ABILITY) Catches the boomerang projectile
+
+### Form changer related passives
+
+`FormChangeWhileHasStatus {}` -- (FORMCHANGER) Changes the character form based on if it has a specified status
+* `status Status_Name` -- Status
+* `form_has` -- Form to change to if it has the status
+* `form_hasnot`  -- Form to change to if it doesn't have the status
+
+`FormChangeWhilePrimingAbility` -- (FORMCHANGER) Changes the form while (any) ability is primed (TEST)
+
+### Visual / Sound
+
+`SizeScale float` -- Changes the target's size scale
+
+`SizeScalePercent X%` -- Changes the target's size scale by percentage
+
+`LoopingSoundWhileAlive SoundID` -- Plays a looping sound while the character is alive
+
+`SetDefaultFacePassive FaceID` -- Changes the default face of the cat with the specified one
+
+`CharacterLightSource {}` -- Makes the character cast a light
+* `color [float float float]` -- Color of the light in rgb
+* `size float` -- Size of the light [TEST glow]
+
+### Ai
+
+`ReplaceBrain {}` -- Replaces the [ai](character_formatting.md#character-ai) of the character with a new one
+
+`Uncontrollable 1` -- Makes the character ai controlled
+
+### Misc
+
+`DamageNeighborsOnEndMove {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) applied to characters who end their movements adjacent to the source or vice versa
+
+`RemoveGlobalModifiers {}` -- Removes certain global modifiers
+
+`ReceivedStatusReplacement [Status_Name_old Status_Name_new]` -- Replaces all statuses of a specific type applied to the source with a new one (Can work with non in-game statuses)
+
+`RandomPassivePool {}` -- Randomly selects a passive from the table
+
+`PassiveGroup {}` -- Treats a table of passives as one
+
+`IgnoreTiles 1` -- Ignore tiles
+
+`MinimumKnockbackFromPhysicalAttacks X` -- Makes the minimum knockback to all received phisical attacks X
+
+`ExtraBasicAttacks X` -- Gives X extra basic attacks
+
+`ExtraWeaponAttacks X` -- Gives X extra weapon attacks
+
+`InnateElement Element_Name` -- Makes target be of a certain [element](enums.md#elements)
+
+`ElementImmune Element_Name` -- Makes target immune to a certain [element](enums.md#elements)
+
+`StatusImmunity [Status_Name]` -- Makes target immune to a list of statuses
+
+`EquipTemporaryItem Item_Name` -- Gives the target a temporary item that breaks after battle
+
+`EquipPermanentItem Item_Name` -- Gives the target an item that stays after the battle
+
+`ConsumablesMeleeRange X` -- Increases by X the melee range of the target consumables
+
+`BonusFoodEachBattle X` -- Gives X bonus food when winning a battle
+
+`ConsumablesInfiniteRange 1` -- Gives the target infinite range on it's consumables
+
+`BouncyProjectiles {}` -- Makes the target projectiles bounce X times to a Y range
+* `max_bounces X` -- Max number of bouces the projectile can do
+* `max_range Y` -- Max range the bouncing can happen
+
+`SharePickups {}` -- Makes the pickups collected by the character be shared to all other party members
+* `include_coins bool` -- If coins are shared as well
+
+`SharePickupsWithSpawner 1` -- Makes the pickups collected by the character be shared to the spawner of the character
+
+`AddMovement X` -- Adds X tiles to the movement range
+
+`HouseFoodRequirementMultiplier X` -- Changes how much food is needed for the target's when a day passes [TEST if things other than 0 work]
+
+`TrinketPassiveMultiplierBonus X` -- Multiplies the held trinket passive effects by X
+
+`TrinketActiveEffectsMultiplierBonus X` -- Multiplies the held trinket active effects by X
+
+`AlternateCraftingPools {}` -- Changes specified crafting pools with new ones
+* `ItemPoolID New_ItemPoolID` -- Changes the Pool_Name pool with New_Pool_Name (This doesn't take into consideration tech, so if you want to change all 4 tech levels you have to specify it for each one)
+* etc...
 
 `SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
-
-`SpawnExtraThingsOnBattleStart {}` -- Spawns the specified Characters on battle start
-* `object [CharacterID]` -- Character(s) to spawn
-* `number X` or `[X Y]` -- Number of Characters to spawn, or range of Characters to spawn
 
 `DamageFromBehindOnly 1` -- Makes the character ignore all attacks that aren't from the back 
 
@@ -523,37 +644,15 @@
 
 `StrictLimitDamage X` -- Damage received is capped at X
 
-`SetSpellCosts X` -- Sets the cost of all spells to X
-
-`IncreaseSpellRange X` -- Increases the spells range by X
-
-`AddSpellDamage X` -- Increases the damage of all spells by X
-
-`ManaCostReductionTagged {}` -- Reduces the cost of all spells with a specific tag
-* `tag string` -- Tag
-* `reduction X / X%` -- Amount of mana to reduce
-
-`ClassManaCostReduction {}` -- Reduces the cost of all spells of a specific class
-* `class ClassName` -- Class (remove it to reduce the mana cost of all spells of the character's class) (Putting `Jester` will reduce the cost of all classes spells)
-* `reduction X` -- Amount of mana to reduce (TEST percentage)
-
 `NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
 
 `MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
-
-`RefreshEquipmentAbilityOnElement {}` -- Refreshes all abilities of the equipped items when the character is affected by a specified element
-* `element ElementName` -- Element
-* `text string` -- Pop up text when refreshed (can read from cvs)
 
 `BoostHeals X` -- Boosts the target's heals by X
 
 `BoostReceivedHealing X` -- Boosts the received heals by X
 
 `HealAtStart X%` -- Heals X% at the start of the battle
-
-`MoveWhenDamaged {}`
-* `move_ability AbilityID` -- Ability used to move (Can also be used as `MoveWhenDamaged AbilityID`) (if not included it uses the character's base move ability)
-* `weights Movement_WeightID` -- Weights used to decide where to move 
 
 `KillsHeal X or X%` -- When killing a character, heals the damager by X if it's not a percentage, or by X% of it's max health if it's a percentage
 
@@ -562,10 +661,6 @@
 `CantSpreadDiseases 1` -- Makes `SpreadDisease` not work when used by the character
 
 `CantCatchDiseases 1` -- Makes `SpreadDisease` not work when applied to the character
-
-`DiesToElement {}` -- Makes the character instantly die when affected by a specific element
-* `element Element_Name` -- The [element](enums.md#elements) (Can also be used as `DiesToElement Element_Name`)
-* `instant bool` -- If the death is instant
 
 `FadeInsteadOfDie 1` -- Makes the character fade out when dying
 
@@ -599,48 +694,12 @@
 
 `Phasing 1` -- Makes the characters be able to pass through characters and objects
 
-`ReplaceBrain {}` -- Replaces the [ai](character_formatting.md#character-ai) of the character with a new one
-
-`DamageNeighborsOnEndMove {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) applied to characters who end their movements adjacent to the source or vice versa
-
-`BloatEyePassive2 AbilityID` -- Makes the character use a specified ability whenever any character takes an action, targetting them if enemies
-
-`RandomWeatherEachFight [WeatherID]` -- Picks a random weather to apply at battle start
-
 `FinalBossBecomeTheChild {}` -- Table of statuses if this entity is called on to transform into the Child entity
 
-`FaceLastDamage {}` -- Face the last entity that damaged you (can be used as `FaceLastDamage 1`)
-* `use_turn_animations true` -- Use a animation with the turnF or turnB if possible (check names)
-
-`LoopingSoundWhileAlive SoundID` -- Plays a looping sound while the character is alive
-
-`SetDefaultFacePassive FaceID` -- Changes the default face of the cat with the specified one
-
-`CharacterLightSource {}` -- Makes the character cast a light
-* `color [float float float]` -- Color of the light in rgb
-* `size float` -- Size of the light [TEST glow]
-
-`FormChangeWhileHasStatus {}` -- (FORMCHANGER) Changes the character form based on if it has a specified status
-* `status Status_Name` -- Status
-* `form_has` -- Form to change to if it has the status
-* `form_hasnot`  -- Form to change to if it doesn't have the status
-
-`FormChangeWhilePrimingAbility` -- (FORMCHANGER) Changes the form while (any) ability is primed (TEST)
-
-`AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
-
-`DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
-
-`AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
-
-`CopyCatPassive_Initializer X` -- (ABILITY) Copy cat ability effect
-
-`CopyBasicAttackEffects 1` -- (ABILITY) Copies the basic attack effects
-
-`CatchBoomerang 1` -- (ABILITY) Catches the boomerang projectile
+`RandomWeatherEachFight [WeatherID]` -- Picks a random weather to apply at battle start
 ---
 
-## EFFECT STATUSES
+## STATUSES
 
 >[!NOTE]
 >These statuses can be given as parameter a list of an integer and a float [X Y] where X = status stacks Y = chance of applying
@@ -863,6 +922,8 @@
 
 `AlphaTurns 1 / -1` -- 1 = Takes an extra turn at the start of the battle, -1 = at the start of every round
 
+`AIFavorLowHealth X` -- Gives X ai score to targets with low health
+
 `SpecificInjury Injury_Name` -- Gives the target a specific injury
 
 `RandomInjury X` -- Gives the target X random injury [TEST]
@@ -888,6 +949,8 @@
 `Revive 0-100%` -- Revive the target at a health percentage
 
 `ChangeTile Tile_Name` -- Changes the targeted tile to the selected [tile](enums.md#tiles)  
+
+`AOEPuddle X` -- Creates a water puddle with size X
 
 `CollectsPickups 1` -- Collects targeted pickups  
 
@@ -1065,6 +1128,13 @@
 * `pool [AbilityID]` -- Ability list
 
 `DoDamage {}` -- Creates a [damage instance](ability_fields.md#damage_instance--self_damage) targetting the target
+
+`ArcLightning {}` -- Arcs lightning to a in distance that chains to other enemies (seems to chain only once)
+* `stacks X` -- Actually not sure, X is 100 usually
+* `enemies_only boolean` -- If the lightning only hits enemies
+* `ignore_self boolean` -- If the lightning can or cant hit the source
+* `max_distance X` -- X is range of tiles it can bounce to
+* `chance X` -- Chance to continually chain. X is a float between 0 and 1
 
 `Tangled {}` -- Tangles the target
 * `stacks X` -- Tangled amount (Can also be used as `Tangled X`)
