@@ -438,13 +438,17 @@
 
 `AbilityWhenBuddyDies AbilityID` -- Uses an ability when the buddy dies
 
+`AbilityWhenTaggedCharacterMovesNear {}` -- Makes the character use a specified ability targetting characters with a specified tag when they move in range
+* `ability AbilityID` -- Ability to use
+* `tag string` -- Tag
+* `range X` -- Tile range
+
+`TowerDefenseReflex AbilityID` -- USes an ability when an enemy moves in range
+
 `HealAlliesEachTurn {}` -- Heals each ally at the end of every turn
 * `stacks X` -- Healing amount
 * `mana X` -- Mana healing amount
 * `exclude_self bool` -- If the source is excluded
-
-`LateBloomer {}` -- Takes any status as optional parameter to give after X rounds 
-* `stacks X` -- Number of rounds
 
 `SizeScale 0.0-1.0` -- Changes the target's size scale
 
@@ -493,6 +497,10 @@
 
 `AllyMoveAbilityAura AbilityID` -- All adjacent unit's movement ability is replaced with a specified one
 
+`BonusAbility AbilityID` -- Gives the target the specified ability in it's bonus spell slot
+
+`BonusAbility_DelayedApplication AbilityID` -- Gives the target the specified ability in it's bonus spell slot (Has priority over `BonusAbility`)
+
 `SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
 
 `SpawnExtraThingsOnBattleStart {}` -- Spawns the specified Characters on battle start
@@ -525,9 +533,17 @@
 * `tag string` -- Tag
 * `reduction X / X%` -- Amount of mana to reduce
 
+`ClassManaCostReduction {}` -- Reduces the cost of all spells of a specific class
+* `class ClassName` -- Class (remove it to reduce the mana cost of all spells of the character's class) (Putting `Jester` will reduce the cost of all classes spells)
+* `reduction X` -- Amount of mana to reduce (TEST percentage)
+
 `NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
 
 `MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
+
+`RefreshEquipmentAbilityOnElement {}` -- Refreshes all abilities of the equipped items when the character is affected by a specified element
+* `element ElementName` -- Element
+* `text string` -- Pop up text when refreshed (can read from cvs)
 
 `BoostHeals X` -- Boosts the target's heals by X
 
@@ -579,6 +595,7 @@
 
 `Robot {}` -- Makes the character metal, conductive and energized when hit by electric damage
 * `allow_energize_self bool` -- If it can get energized even with it's own electric attacks (If false can be used as `Robot 1`)
+* `alternate_energized_effect {}` -- Table of statuses given instead of energized when hit by electric damage
 
 `Phasing 1` -- Makes the characters be able to pass through characters and objects
 
@@ -589,6 +606,11 @@
 `BloatEyePassive2 AbilityID` -- Makes the character use a specified ability whenever any character takes an action, targetting them if enemies
 
 `RandomWeatherEachFight [WeatherID]` -- Picks a random weather to apply at battle start
+
+`FinalBossBecomeTheChild {}` -- Table of statuses if this entity is called on to transform into the Child entity
+
+`FaceLastDamage {}` -- Face the last entity that damaged you (can be used as `FaceLastDamage 1`)
+* `use_turn_animations true` -- Use a animation with the turnF or turnB if possible (check names)
 
 `LoopingSoundWhileAlive SoundID` -- Plays a looping sound while the character is alive
 
@@ -616,11 +638,6 @@
 `CopyBasicAttackEffects 1` -- (ABILITY) Copies the basic attack effects
 
 `CatchBoomerang 1` -- (ABILITY) Catches the boomerang projectile
-
-`FinalBossBecomeTheChild {}` -- If this entity is called on to transform into the Child entity, do the following
-
-`FaceLastDamage {}` -- Face the last entity that damaged you
-* `use_turn_animations` -- Use a animation with the turnF or turnB if possible (check names)
 ---
 
 ## EFFECT STATUSES
@@ -690,6 +707,7 @@
 * `ExtraBasicAttacks_Status X`
 * `Trapper_Status X`
 * `DoubleCastSpellsEachTurn_Status X`
+* `Ammo X` -- Has no effects on it's own (check [notes](notes.md#functionless-statuses))
 
 >[!NOTE]
 >These statuses can be given as parameters negative numbers for debuffs
@@ -704,7 +722,7 @@
 * `RangeUp X`
 * `TempRangeUp X`
 * `TempDamageUp X`
-* `TempSpellDamageUp X`
+* `TempSpellDamageUp X` -- (BUG) When the status is removed, it removes all bonus spell damage
 
 `ApplyPassives {}` -- Table of passive effects to add to the target
 
@@ -713,6 +731,8 @@
 `Die 1` -- Target dies  
 
 `SafeDie 1` -- Dies without injury
+
+`CorpseVaporizer 1` -- Destroys the target and it's corpse
 
 `VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
 
@@ -738,6 +758,9 @@
 
 `PurgeAll 1` -- Removes all buffs and debuffs from the target
 
+`LateBloomer {}` -- Table of statuses to give after X turns 
+* `stacks X` -- Number of turns
+
 `AllyInfested {}` -- Applies a special type of infested, spawning a specific character type and in a specific faction
 * `object CharacterID` -- Character to spawn
 * `faction Faction_Name` -- [Faction](enums.md#factions) of the spawned character
@@ -761,11 +784,15 @@
 * `object CharacterID` -- Character (Can also be used as `ObjectOnHitCharacter CharacterID`)
 * `stacks X` -- Number of Characters (default: `1`)
 
+`FindItem ItemID` -- Gives an item to the adventure inventory
+
 `FindItemFromPool ItemPoolID` -- Gives an item from a specified pool
 
 `RefreshMovePoints N` -- Refreshes N movement points  
 
 `TransformBasicAttack AbilityID` -- Transform the target basic attack to a chosen ability  
+
+`TransformBasicMove AbilityID`  -- Transform the target basic move to a chosen ability  
 
 `TransformAbility AbilityID` -- ABILITY Transform the current ability into a chosen ability  
 
@@ -782,6 +809,14 @@
 `BonusCritChance X` -- Gives X crit chance to the damage
 
 `CastAgain X` -- casts the ability another X times
+
+`ConjureBonusAbility AbilityID / AbilityPoolID` -- Gives the target the specified ability in it's bonus spell slot (Special inputs: `random` for a random ability, `Class` for an ability from the character's class)
+
+`CopySpells {}` -- Source copies the target spells for X turns (Must be a cat unit)
+* `stacks X` -- Turns (can also be used as `CopySpells X`)
+* `upgraded bool` -- If the abilities are upgraded
+
+`CopiedSpells X` -- Target copies the source spells for X turns (Must be a cat unit) (check [notes](notes.md#functionless-statuses))
 
 `UseAbility AbilityID` -- Makes the character use a specific ability  
 
@@ -800,12 +835,9 @@
 `ForceMoveAway {}` -- Forces the target to move away from the source (Can be used as `ForceMoveAway 1`)
 * `free bool` -- If it doesn't use the character movement point (default: `true`)
 
-`AbilityWhenTaggedCharacterMovesNear {}` -- Makes the character use a specified ability targetting characters with a specified tag when they move in range
-* `ability AbilityID` -- Ability to use
-* `tag string` -- Tag
-* `range X` -- Tile range
-
 `UseRandomSpell_Madness 1` -- Makes the character use one of it's spells at random using madness targetting
+
+`DeathwormUnderground AbilityID` -- Makes the target go off map, when a character moves on the tiles the target was on, it will use the specified ability (Needs to be a return ability)
 
 `RerollEnemy 1` -- Rerolls the target to a random chapter enemy  
 
@@ -814,6 +846,8 @@
 `EndTurn 1` -- Ends the turn
 
 `StealTurn 1` -- Removes the target's next turn and gives it to the source
+
+`RemoveTurnsThisRound 1` -- Removes all turns of the target
 
 `TakeExtraTurn X` -- Target takes X extra turn(s)
 
@@ -893,7 +927,6 @@
 
 `RemoteFlatLeech X` -- Heals the spawner by X when damaging something
 
-
 `PullSourceToKnockbackImmuneTarget 1` -- When knockback is dealt, if the target is immune to it pull the source to it  
 
 `SpawnThingIfHitKills CharacterID` -- Spawns a specified character when the target is killed  
@@ -946,6 +979,20 @@
 * `turns X` -- Turns the status/passive remains
 * `expires_on_begin_turn bool` -- If it counts down as soon as the next target turn begine
 * `expires_on_end_turn bool` -- If it counts down as soon as the target turn ends
+
+`Consumed {}` -- The source consumes the target, becoming it's consumed character and gaining the Consuming status
+* `instant bool` -- TEST
+* `mount_mode bool` -- TEST
+* `force_contact bool` -- If it forces contact to be made
+* `drop_on_death bool` -- If the consumer will release the consumed character when it dies
+* `drop_on_self_death bool` -- If the consumer will release the consumed character when itself dies
+* `do_not_pop_corpse bool` -- If the consumer won't destroy the corpse of the consumed character
+* `struggle_ability AbilityID` -- Ability that replaces the basic attack of the consumed character while it's consumed
+
+`ChanceToBreakFree {}` -- Chance to break free from being consumed, scales with luck
+* `stacks 0-100` -- Chance
+* `ability AbilityID` -- Ability the consumer uses if successful
+* `fail_ability AilityID` -- Ability the consumer uses if unsuccessful
 
 `ApplyToRandomClosestAlly {}` -- Table of statuses applied to a random closest ally
 
@@ -1000,11 +1047,17 @@
 
 `Displace X` -- Displaces the target by X tiles
 
+`DisplaceTowardsSource X` -- Displaces the target by X tiles towards the source
+
+`DisplaceToAbilityTarget 1` -- Displaces characters in the ability's area as close to the targetted tile 
+
 `RandomDistanceDisplace {}` -- Displaces the target by a random distance
 * `stacks X` -- Max distance
 * `min_dist X` -- Minimum distance
 
 `NextActionLuckUp X` -- [TEST if it's not only LuckUp]
+
+`NextBasicAttackCritsThisTurn 1` -- Makes the next basic attack crit, removed at turn end
 
 `RefreshItemAbilities X` -- Refreshes the target's item abilities
 
@@ -1037,7 +1090,7 @@
 
 `PlayBackground X` -- Plays X backgrounds. (TEST to see if anything outside of 1 is a option)
 
-`InsertIntoBackgroundPlaceholder` -- Inserts a character within battle into the background (TEST)
+`InsertIntoBackgroundPlaceholder 1` -- Inserts a character within battle into the background (TEST)
 
 `FinalBossPupils {}` -- These values seem to be hardcoded (TEST for changing anim)
 * `radius X`
@@ -1077,6 +1130,8 @@
 
 `RefreshMovePointsIfHit 1` -- Refreshes a movement point for the target if the damage instance hits
 
+`ReloadAssociatedAbility AbilityID` -- Reloads the specified ability
+
 `Craft {}` -- Creates an item in a specific slot from a specific pool
 * `pool ItemPoolID` -- The item pool 
 * `slot Item_Slot` -- [Item slot](enums#item-slots)
@@ -1088,6 +1143,9 @@
 * `stacks X` -- Stacks
 
 `RemoveStatus Status_Name` -- Removes a specified status
+
+`NextBattleStatusStacks {}` -- Table of statuses given to the character the next X fights
+* `fights X`
 
 `ForceTransferWeapon 1` -- Forces the source's weapon to go to the target
 
@@ -1192,6 +1250,10 @@
 `SetDefaultFace FaceID` -- Changes the default face of the cat with the specified one
 
 `ParticleBurst ParticleID` -- Plays the specified particles
+
+`ShowFakeDamage {}` -- Shows a fake damage popup on the target
+* `stacks X` -- Amount of damage
+* `style [Damage_Style]` -- [Style](misc.md#damage-styles) of the damage
 
 ---
 

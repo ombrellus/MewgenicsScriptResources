@@ -62,7 +62,13 @@
 
 `custom_priming_animation Animation_Name` -- Idle animation used while this ability is primed
 
-`jump_attack_animation Animation_Name` -- Landing animation for jumps
+`jump_start_animation Animation_Name` -- Start animation for jumps
+
+`air_animation Aniamtion_Name` -- Animation played while in the air
+
+`jump_attack_animation Animation_Name` -- Landing attack animation for jumps
+
+`land_animation Animation_Name` -- Landing animation for jumps
 
 `dash_start_animation Animation_Name` -- Start dash animation
 
@@ -99,6 +105,10 @@
 `chain_movieclip MovieClip_Name` -- Chain graphics used to connect source and projectile
 
 `chain_distance X` -- distance between the chain parts
+
+`jump_height_multiplier float` -- Multiplier for the ability's jump height
+
+`do_damage_immediately bool` -- If to deal damage as soon as the character lands from the jump
 
 `particle Particle_Name` -- Particle played on hit characters
 
@@ -272,9 +282,13 @@
 
 `range_display_include_character_size bool` -- [TEST]
 
+`throw_consumed_character bool` -- If the thrown character is the consumed entity, breaks it free
+
+`reorient_thrown_character bool` -- If the thrown character is reoriented after landing
+
 `knockback_mode Mode_Name` -- how knockback is handled [zero, character_to_tile, target_to_tile, orientation, back_orentation, left_orentation, right_orentation, character_to_target, target_to_character, tile_to_character, pull_to_character]
 
-`always_bounce bool` -- [TEST]
+`always_bounce bool` -- (JUMP ATTACK) If the character always bounces off even if it has trample
 
 `delayed_trigger bool` -- If the ability is casted next turn
 
@@ -329,6 +343,8 @@
 `makes_contact bool` -- If the ability counts as contact with the tile
 
 `force_no_contact bool` -- If the ability forces there to be no contact to the targetted tile
+
+`contact_requires_adjacency bool` -- If the contact requires the character to be adjacent (default: true)
 
 `hit_animation_alt Animation_name` -- Change the hit animation for this damage instance
 

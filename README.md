@@ -1,5 +1,5 @@
 # Mewgenics script resources
-Someone else can comeup with a better description
+Someone else can come up with a better description
 - [Ability Formatting](ability_fields.md)
 - [Passive Formatting](passive_formatting.md)
 - [Item/Set/Pools Formatting](item_formatting.md)
@@ -13,7 +13,8 @@ Someone else can comeup with a better description
     - [Music](misc.md#music)
     - [Boss Cutscenes](misc.md#boss-cutscenes)
     - [Cat Faces](misc.md#cat-faces)
+    - [Damage Styles](misc.md#damage-styles)
     - [Text](misc.md#text-functions)
     
 
-
+Some general infos can be found in [notes](notes.md)

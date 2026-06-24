@@ -14,6 +14,12 @@ If you have any script errors at all, then flash will NOT export your scripts (a
 `setInvisible()`
 -- Sets the symbol to be invisible.
 
+`particle_begin(particlename: String)`
+-- Starts a particle effect
+
+`particle_end(particlename: String)`
+-- Stops a particle effect
+
 `ScreenShake(length: float, intensity: float)`
 -- Shakes the screen.
 
