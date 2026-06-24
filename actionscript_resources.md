@@ -48,7 +48,7 @@ Automatically freezes the Movieclip.
 
 `SetGlyphFrameAlt(triggerName(?): String)`
 -- Presumably used to set alternate versions of assets depending on certain conditions. Used by The Tormentor.
-> TODO: figure out what this does in specific
+> TODO: See if it's possible to abuse this with other statuses
 
 `VerticalCameraPanner(obj: MovieClip)`
 > TODO: figure out what this does
@@ -60,8 +60,9 @@ Automatically freezes the Movieclip.
 `particle_burst(particleName: String)`
 -- Creates a burst of particles. Particle names can be viewed from the dev menu’s particle editor.
 
-`FullScreenEffect(particleName: String)`
->TODO: figure out what this does, takes in a particle name. used in The Tormentor’s death animation
+`FullScreenEffect(particleName: String, overlaysUI: boolean)`
+-- Plays a effect fullscreen (like Creator transformation and stuff), boolean is false by default
+>Thanks lelpis
 
 `gib()`
 -- Spawns gibs(?) I dont see anything change when using this, so im not sure.
