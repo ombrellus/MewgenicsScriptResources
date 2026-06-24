@@ -534,7 +534,7 @@
 * `reduction X / X%` -- Amount of mana to reduce
 
 `ClassManaCostReduction {}` -- Reduces the cost of all spells of a specific class
-* `class ClassName` -- Class (remove it to reduce the mana cost of all spells of the character's class)
+* `class ClassName` -- Class (remove it to reduce the mana cost of all spells of the character's class) (Putting `Jester` will reduce the cost of all classes spells)
 * `reduction X` -- Amount of mana to reduce (TEST percentage)
 
 `NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
@@ -784,11 +784,15 @@
 * `object CharacterID` -- Character (Can also be used as `ObjectOnHitCharacter CharacterID`)
 * `stacks X` -- Number of Characters (default: `1`)
 
+`FindItem ItemID` -- Gives an item to the adventure inventory
+
 `FindItemFromPool ItemPoolID` -- Gives an item from a specified pool
 
 `RefreshMovePoints N` -- Refreshes N movement points  
 
 `TransformBasicAttack AbilityID` -- Transform the target basic attack to a chosen ability  
+
+`TransformBasicMove AbilityID`  -- Transform the target basic move to a chosen ability  
 
 `TransformAbility AbilityID` -- ABILITY Transform the current ability into a chosen ability  
 
@@ -1044,6 +1048,8 @@
 `Displace X` -- Displaces the target by X tiles
 
 `DisplaceTowardsSource X` -- Displaces the target by X tiles towards the source
+
+`DisplaceToAbilityTarget 1` -- Displaces characters in the ability's area as close to the targetted tile 
 
 `RandomDistanceDisplace {}` -- Displaces the target by a random distance
 * `stacks X` -- Max distance

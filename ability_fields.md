@@ -62,7 +62,13 @@
 
 `custom_priming_animation Animation_Name` -- Idle animation used while this ability is primed
 
-`jump_attack_animation Animation_Name` -- Landing animation for jumps
+`jump_start_animation Animation_Name` -- Start animation for jumps
+
+`air_animation Aniamtion_Name` -- Animation played while in the air
+
+`jump_attack_animation Animation_Name` -- Landing attack animation for jumps
+
+`land_animation Animation_Name` -- Landing animation for jumps
 
 `dash_start_animation Animation_Name` -- Start dash animation
 
@@ -99,6 +105,10 @@
 `chain_movieclip MovieClip_Name` -- Chain graphics used to connect source and projectile
 
 `chain_distance X` -- distance between the chain parts
+
+`jump_height_multiplier float` -- Multiplier for the ability's jump height
+
+`do_damage_immediately bool` -- If to deal damage as soon as the character lands from the jump
 
 `particle Particle_Name` -- Particle played on hit characters
 
