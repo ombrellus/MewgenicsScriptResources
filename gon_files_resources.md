@@ -697,6 +697,11 @@
 `FinalBossBecomeTheChild {}` -- Table of statuses if this entity is called on to transform into the Child entity
 
 `RandomWeatherEachFight [WeatherID]` -- Picks a random weather to apply at battle start
+
+`ChanceToForceEvent {}` -- Adds a chance for an event to be forced when entering an event node
+* `event EventID` -- Event to be forced
+* `chance X%` -- Chance
+
 ---
 
 ## STATUSES
