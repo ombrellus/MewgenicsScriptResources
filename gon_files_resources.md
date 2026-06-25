@@ -12,8 +12,10 @@
 * * [Reactions](#reactions)
 * * [Repeated actions](#repeated-actions)
 * * [Spell passives](#spell-passives)
+* * [Stats passives](#stats-related-passives)
 * * [Auras](#auras)
 * * [Ability specific](#ability-specific-passives)
+* * [Item specific](#item-specific-passives)
 * * [FormChanger specific](#form-changer-related-passives)
 * * [Visual / Sounds](#visual--sound)
 * * [AI](#ai)
@@ -256,6 +258,10 @@
 
 `CritsApplyStatus {}` -- When an attack crits apply the specified statuses
 
+`StatusKilledCharacters {}` -- Table of statuses given to killed characters
+
+`TheHunger {}` -- Table of statuses given on turn end if the character doesn't deal any damage to a unit
+
 ### Passive if/when/while
 
 `PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
@@ -341,6 +347,8 @@
 * `count X / [X X]` -- Number or range of characters to spawn
 * `faction Faction_Name` -- [Faction](enums.md#factions) of the spawned character
 * `additiona_statuses {}` -- Table of statuses given to the spawned character
+
+`SpawnThingOnDeath CharacterID` -- Spawns a character on death (redundant)
 
 `SpawnThingOnDamage {}` -- Spawn objects/Characters whenever the source takes damage
 * `object CharacterID` -- Character name
@@ -451,6 +459,10 @@
 * `element Element_Name` -- The [element](enums.md#elements) (Can also be used as `DiesToElement Element_Name`)
 * `instant bool` -- If the death is instant
 
+`AllUnitsExplodeOnDeath X` -- Whenever a character dies it explodes dealing X damage
+
+`MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
+
 ### Repeated actions
 
 `AbilityOnBattleStart AbilityID` -- Uses a specific ability at battle start
@@ -496,6 +508,8 @@
 
 `BonusAbility_DelayedApplication AbilityID` -- Gives the target the specified ability in it's bonus spell slot (Has priority over `BonusAbility`)
 
+`ConjureCastSpellsForAllies 1 / 2` -- Gives allies the character's last used spell as bonus ability, 2 makes the spell be upgraded
+
 `SetSpellCosts X` -- Sets the cost of all spells to X
 
 `IncreaseSpellRange X` -- Increases the spells range by X
@@ -513,6 +527,48 @@
 * `class ClassName` -- Class (remove it to reduce the mana cost of all spells of the character's class) (Putting `Jester` will reduce the cost of all classes spells)
 * `reduction X` -- Amount of mana to reduce (TEST percentage)
 
+
+### Stats related passives
+
+`AddMovement X` -- Adds X tiles to the movement range
+
+`CapMovementAbilityRange X` -- Caps movement abilities' range at X
+
+`LimitDamage X` -- Limits the damage amount taken to X
+
+`LimitHeal X` -- Limits the healing amount received to X
+
+`OverrideMaxHealth X` -- Sets max health to X
+
+`OverrideMaxMana X` -- Sets max mana to X
+
+`AddStartingMana X` -- Adds X to the starting battle mana
+
+`AddManaRegen X` -- Adds X to the end turn mana regen
+
+`StrictLimitDamage X` -- Damage received is capped at X
+
+`NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
+
+`BoostHeals X` -- Boosts the target's heals by X
+
+`BoostReceivedHealing X` -- Boosts the received heals by X
+
+`AddEndOfCombatRegen X` -- Adds X to the end of combat health regenetation
+
+`HealAtStart X%` -- Heals X% at the start of the battle
+
+`KillsHeal X or X%` -- When killing a character, heals the damager by X if it's not a percentage, or by X% of it's max health if it's a percentage
+
+`CharismaIsMaxStat 1` -- Makes charisma be equal to the character's highest stat
+
+`FurnitureStats {}` -- When the cat returns home it will give these house stats when present
+* `Comfort X`
+* `Stimulation X`
+* `Appeal X`
+* `Health X`
+* `Evolution X`
+
 ### Auras
 
 `DepressionAura {}` -- Gives all units in a Y range X all stats down
@@ -528,17 +584,31 @@
 
 ### Ability specific passives
 
-`AbilityInheritsWeaponEffects X` -- (ABILITY) The ability inherits the equipped weapon effects multiplied by X 
+`AbilityInheritsWeaponEffects X` -- The ability inherits the equipped weapon effects multiplied by X 
 
-`DownRankAIIfWeaponUsable float` -- (ABILITY) sets the ability ai chance to the specified flaotif the character's weapon is usable
+`DownRankAIIfWeaponUsable float` -- sets the ability ai chance to the specified flaotif the character's weapon is usable
 
-`AbilityEnabledOncePerFightAtHealthThreshold X% `-- (ABILITY) Enables the ability once after reaching X% health
+`AbilityEnabledOncePerFightAtHealthThreshold X% `-- Enables the ability once after reaching X% health
 
-`CopyCatPassive_Initializer X` -- (ABILITY) Copy cat ability effect
+`CopyCatPassive_Initializer X` -- Copy cat ability effect
 
-`CopyBasicAttackEffects 1` -- (ABILITY) Copies the basic attack effects
+`CopyBasicAttackEffects 1` -- Copies the basic attack effects
 
-`CatchBoomerang 1` -- (ABILITY) Catches the boomerang projectile
+`CatchBoomerang 1` -- Catches the boomerang projectile
+
+### Item specific passives
+
+`Fragile 1` -- Makes the item fragile, breaks when the character is downed
+
+`FragileDuringElement Element_Name` -- Makes the item fragile when affected by a specific [element](enums.md#elements)
+
+`Brittle 1` -- Makes the item brittle, 25% chance to break when hit
+
+`BrittleDuringElement Element_Name` -- Makes the item brittle when affected by a specific [element](enums.md#elements)
+
+`Flammable 1` -- Makes the item flammable, breaks when hit by fire and gives 1 Burn
+
+`BreakOnElement Element_Name` -- Breaks the item when affected by a specific [element](enums.md#elements)
 
 ### Form changer related passives
 
@@ -563,6 +633,10 @@
 * `color [float float float]` -- Color of the light in rgb
 * `size float` -- Size of the light [TEST glow]
 
+`MoveSpeedMultiplier float` -- Changes the movement speed by a multiplier
+
+`HideSomeHudStuff 1` -- Hides some hud elements like health, shield and statuses
+
 ### Ai
 
 `ReplaceBrain {}` -- Replaces the [ai](character_formatting.md#character-ai) of the character with a new one
@@ -583,6 +657,8 @@
 
 `IgnoreTiles 1` -- Ignore tiles
 
+`ReplaceBlankTilesOnBattleStart Tile_Name` -- Replaces all blank [tiles](enums.md#tiles) with a specific tile at battle start
+
 `MinimumKnockbackFromPhysicalAttacks X` -- Makes the minimum knockback to all received phisical attacks X
 
 `ExtraBasicAttacks X` -- Gives X extra basic attacks
@@ -599,6 +675,8 @@
 
 `EquipPermanentItem Item_Name` -- Gives the target an item that stays after the battle
 
+`CanRemoveCursedItems 1` -- Makes the character be able to remove cursed items
+
 `ConsumablesMeleeRange X` -- Increases by X the melee range of the target consumables
 
 `BonusFoodEachBattle X` -- Gives X bonus food when winning a battle
@@ -614,8 +692,6 @@
 
 `SharePickupsWithSpawner 1` -- Makes the pickups collected by the character be shared to the spawner of the character
 
-`AddMovement X` -- Adds X tiles to the movement range
-
 `HouseFoodRequirementMultiplier X` -- Changes how much food is needed for the target's when a day passes [TEST if things other than 0 work]
 
 `TrinketPassiveMultiplierBonus X` -- Multiplies the held trinket passive effects by X
@@ -626,37 +702,21 @@
 * `ItemPoolID New_ItemPoolID` -- Changes the Pool_Name pool with New_Pool_Name (This doesn't take into consideration tech, so if you want to change all 4 tech levels you have to specify it for each one)
 * etc...
 
+`BackstabWeakness float` -- Makes the character take damage * X if the damage was backstack (backstab already has a .25 damage bonus)
+
+`SetFaction  Faction_Name` -- Puts the character in a specific [faction](enums.md#factions)
+
 `SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
 
 `DamageFromBehindOnly 1` -- Makes the character ignore all attacks that aren't from the back 
 
-`LimitDamage X` -- Limits the damage amount taken to X
-
-`LimitHeal X` -- Limits the healing amount received to X
-
-`OverrideMaxHealth X` -- Sets max health to X
-
-`OverrideMaxMana X` -- Sets max mana to X
-
-`AddStartingMana X` -- Adds X to the starting battle mana
-
-`AddManaRegen X` -- Adds X to the end turn mana regen
-
-`StrictLimitDamage X` -- Damage received is capped at X
-
-`NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
-
-`MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
-
-`BoostHeals X` -- Boosts the target's heals by X
-
-`BoostReceivedHealing X` -- Boosts the received heals by X
-
-`HealAtStart X%` -- Heals X% at the start of the battle
-
-`KillsHeal X or X%` -- When killing a character, heals the damager by X if it's not a percentage, or by X% of it's max health if it's a percentage
-
 `MulticlassLevelUp ClassID` -- Adds a class' abilities and passives to the upgrade pool
+
+`CanLevelUpWhenDead 1` -- Makes the character be able to level up even if dead
+
+`AddLevelUpRerolls X` -- Adds X rerolls to the level up choices
+
+`AddLevelUpStatMultiplier 1` -- Doubles the stat given when leveling up
 
 `CantSpreadDiseases 1` -- Makes `SpreadDisease` not work when used by the character
 
@@ -670,8 +730,6 @@
 
 `TakeWeaponFromSpawner 1` -- Makes the character take the spawner's weapon when spawning in
 
-`ConjureCastSpellsForAllies 1 / 2` -- Gives allies the character's last used spell as bonus ability, 2 makes the spell be upgraded
-
 `ReflectProjectiles X%` -- Gives X chance to reflect incoming projectiles
 
 `ReflectProjectiles {}` -- Reflects incoming projectiles dealing X damage to itself
@@ -681,16 +739,11 @@
 
 `CopyPassiveSlot 0-3` -- Copies the effects of the passive in a specified slot (2-3 are the disorders)
 
-`FurnitureStats {}` -- When the cat returns home it will give these house stats when present
-* `Comfort X`
-* `Stimulation X`
-* `Appeal X`
-* `Health X`
-* `Evolution X`
-
 `Robot {}` -- Makes the character metal, conductive and energized when hit by electric damage
 * `allow_energize_self bool` -- If it can get energized even with it's own electric attacks (If false can be used as `Robot 1`)
 * `alternate_energized_effect {}` -- Table of statuses given instead of energized when hit by electric damage
+
+`SpawnNearEnemies 1` -- Makes the character spawn near the enemies
 
 `Phasing 1` -- Makes the characters be able to pass through characters and objects
 
@@ -701,6 +754,14 @@
 `ChanceToForceEvent {}` -- Adds a chance for an event to be forced when entering an event node
 * `event EventID` -- Event to be forced
 * `chance X%` -- Chance
+
+`RealTimePressure X` -- Makes every party member have a time limit of X to take an action, otherwise a random action is taken
+
+`RealTimePressure_OneUnit X` -- Makes the character have a time limit of X to take an action, otherwise a random action is taken
+
+`PermanentKitten 1` -- Makes the character permanently a kitten
+
+`ExtraInjuryOnDeath 1` -- Gives an extra injury when downed
 
 ---
 
@@ -715,12 +776,14 @@
 * `Stun X`  
 * `Slow X`
 * `Immobile X`
+* `PermanentImmobile 1`
 * `Freeze X`
 * `Hex X`  
 * `Weakness X`
 * `Poison X`
 * `Leeches X`
 * `Madness X`
+* `PermanentMadness 1`
 * `Doomed X`
 * `SafeDoomed X`
 * `HiddenDoomed X`
@@ -813,8 +876,6 @@
 `NoManaRegen 1` -- Doesn't regenerate mana at the end of the turn
 
 `TempNoManaRegen 1` -- Doesn't regenerate mana at the end of the turn, removed after the turn ends
-
-`PermanentMadness 1` -- Makes the character have madness permanently
 
 `SpawnFlames 1 / [1 float]` -- Spawns fire, chance can be specified with a float
 
@@ -925,6 +986,10 @@
 * `end_of_round bool` -- If the extra turn is at the end of the round
 * `include_spells bool` -- If the ai can use spells
 
+`AIControlNextTurn {}` -- Makes the next X turns be ai controlled
+* `stacks X` -- Turn amount
+* `include_spells bool` -- If it can use spells (default: false)
+
 `AlphaTurns 1 / -1` -- 1 = Takes an extra turn at the start of the battle, -1 = at the start of every round
 
 `AIFavorLowHealth X` -- Gives X ai score to targets with low health
@@ -966,6 +1031,8 @@
 `ForceAttack 1` -- Forces target to attack  
 
 `CharmedForceAttack 1` -- Makes the target automatically attack targetting the source's enemies
+
+`AutoReanimate X%` -- Reanimate a character as a zombie at X% hp, it joins the source's team
 
 `RandomStatUp X` -- Gives X random stats up  
 
