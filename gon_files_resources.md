@@ -260,6 +260,9 @@
 
 `StatusKilledCharacters {}` -- Table of statuses given to killed characters
 
+`StatusRandomEnemiesOnBattleStart {}` -- Table of statuses given to X enemies on battle start
+* `count X` -- Number of enemies
+
 `TheHunger {}` -- Table of statuses given on turn end if the character doesn't deal any damage to a unit
 
 ### Passive if/when/while
@@ -331,6 +334,10 @@
 `PassiveWhilePreviewingMonkMeleeStance {}` -- Table of passives executed while previewing the monk's melee stance (TEST non monk stances)
 
 `PassiveWhilePreviewingMonkRangedStance {}` -- Table of passives executed while previewing the monk's ranged stance (TEST non monk stances)
+
+`PassiveAfterXKills {}` -- Table of passives executed after having killed X characters
+* `stacks X` -- Number of kills
+* `passives` -- Table of passives
 
 ### SpawnOn
 
@@ -463,6 +470,10 @@
 
 `MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
 
+`ChanceToBlockAndCounter {}` -- Chance to block upcoming attacks and counter with the charcater's basic attack
+* `chance X%` -- Chance (can also be used as `ChanceToBlockAndCounter X%`)
+* `backstab_only bool` -- If it triggers only on backstabs (default: false)
+
 ### Repeated actions
 
 `AbilityOnBattleStart AbilityID` -- Uses a specific ability at battle start
@@ -526,7 +537,6 @@
 `ClassManaCostReduction {}` -- Reduces the cost of all spells of a specific class
 * `class ClassName` -- Class (remove it to reduce the mana cost of all spells of the character's class) (Putting `Jester` will reduce the cost of all classes spells)
 * `reduction X` -- Amount of mana to reduce (TEST percentage)
-
 
 ### Stats related passives
 
@@ -657,6 +667,8 @@
 
 `IgnoreTiles 1` -- Ignore tiles
 
+`ChanceToAmbush X%` -- Gives an X% chance for battles to start with an ambush
+
 `ReplaceBlankTilesOnBattleStart Tile_Name` -- Replaces all blank [tiles](enums.md#tiles) with a specific tile at battle start
 
 `MinimumKnockbackFromPhysicalAttacks X` -- Makes the minimum knockback to all received phisical attacks X
@@ -670,6 +682,10 @@
 `ElementImmune Element_Name` -- Makes target immune to a certain [element](enums.md#elements)
 
 `StatusImmunity [Status_Name]` -- Makes target immune to a list of statuses
+
+`AmplifyStatus {}` -- Adds X stacks to a specific status when inflicted by the target
+* `status Status_Name` -- Status (can also be used as `AmplifyStatus Status_Name`)
+* `addstacks X` -- Stacks to add (default: 1)
 
 `EquipTemporaryItem Item_Name` -- Gives the target a temporary item that breaks after battle
 
@@ -718,6 +734,8 @@
 
 `AddLevelUpStatMultiplier 1` -- Doubles the stat given when leveling up
 
+`JesterLevelUpRerolls 1` -- Makes rerolls use the pools of every class
+
 `CantSpreadDiseases 1` -- Makes `SpreadDisease` not work when used by the character
 
 `CantCatchDiseases 1` -- Makes `SpreadDisease` not work when applied to the character
@@ -754,6 +772,8 @@
 `ChanceToForceEvent {}` -- Adds a chance for an event to be forced when entering an event node
 * `event EventID` -- Event to be forced
 * `chance X%` -- Chance
+
+`ExcludeFromEvents EventID` -- Makes a specific event unable to pick the character as subject
 
 `RealTimePressure X` -- Makes every party member have a time limit of X to take an action, otherwise a random action is taken
 
@@ -1392,6 +1412,8 @@
 `SetDefaultFace FaceID` -- Changes the default face of the cat with the specified one
 
 `ParticleBurst ParticleID` -- Plays the specified particles
+
+`ShowText string` -- Shows a custom pop up text (can pull from cvs)
 
 `ShowFakeDamage {}` -- Shows a fake damage popup on the target
 * `stacks X` -- Amount of damage
