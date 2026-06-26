@@ -19,8 +19,17 @@
 * * [FormChanger specific](#form-changer-related-passives)
 * * [Visual / Sounds](#visual--sound)
 * * [AI](#ai)
-* * [Misc](#misc)
+* * [Misc](#passive-misc)
 * [Statuses](#statuses)
+* * [Status applying](#status-applying)
+* * [Ability casting](#ability-casting)
+* * [Spawn](#spawn)
+* * [Tiles](#tiles)
+* * [Stats](#stats)
+* * [Damage](#damage)
+* * [Turns](#turns)
+* * [Viasual / Sounds](#visual--sound)
+* * [Misc](#status-misc)
 * [Conditionals](#conditional-triggers)
 
 
@@ -451,6 +460,12 @@
 * `ability AbilityID` -- Ability
 * `damage X` -- Damage to deal
 
+`RevengeDamage {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) targetting characters who damage the source
+
+`MeleeRevengeDamage {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) targetting characters who deal melee damage to the source
+
+`GlobalMeleeRevengeDamage {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) targetting characters who deal melee damage to the source (applied to all characters)
+
 `TerminatorChase {}` -- C-800 behaviour, when the enemies use a spell it moves, and if gets in range of the enemy it uses a special ability
 * `move AbilityID` -- Movement ability used
 * `ability AbilityID` -- Special ability used when in range
@@ -653,7 +668,7 @@
 
 `Uncontrollable 1` -- Makes the character ai controlled
 
-### Misc
+### Passive Misc
 
 `DamageNeighborsOnEndMove {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) applied to characters who end their movements adjacent to the source or vice versa
 
@@ -765,6 +780,8 @@
 
 `Phasing 1` -- Makes the characters be able to pass through characters and objects
 
+`LimitedTileTrail Tile_Name` -- Whenever the character moves or is moved, creates a specified [tile](enums.md#tiles) on the tile it moved from
+
 `FinalBossBecomeTheChild {}` -- Table of statuses if this entity is called on to transform into the Child entity
 
 `RandomWeatherEachFight [WeatherID]` -- Picks a random weather to apply at battle start
@@ -863,6 +880,7 @@
 * `STATNAMELONGUp X` [(Stats list)](enums.md#stats)
 * `TempSTATNAMELONGUp X` [(Stats list)](enums.md#stats)
 * `AllStatsUp X`
+* `RandomStatUp X`
 * `RandomPermanentStat X`
 * `DamageUp X`
 * `SpellDamageUp X`
@@ -871,97 +889,48 @@
 * `TempDamageUp X`
 * `TempSpellDamageUp X` -- (BUG) When the status is removed, it removes all bonus spell damage
 
-`ApplyPassives {}` -- Table of passive effects to add to the target
+### Status applying
 
-`TimeDelayStatusApplication {delay N}` -- Effects within this table aren't triggered until a certain amount of time.
+`ApplyToRandomClosestAlly {}` -- Table of statuses applied to a random closest ally
 
-`Die 1` -- Target dies  
+`ApplyToRandomPartyMemberIfPossible {}` -- Table of statuses applied to a random party member, if there is no other party member the statuses are applied to the source
 
-`SafeDie 1` -- Dies without injury
+`ApplyToSource {}` -- Use to switch to source in targeted effects
 
-`CorpseVaporizer 1` -- Destroys the target and it's corpse
+`ApplyToSourceOnKill {}` -- (DAMAGE_INSTANCE) Table of statuses given to the source if it kills 
 
-`VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
+`ApplyToOthersWithSharedTagAndFaction {}` -- Table of statuses given to all other characters that share the same tag and faction as the source
 
-`FullHeal 1` -- Heals the target to full
+`ApplyToTile {}` -- Table of statuses applied to the tile where the projectile would land
 
-`FillMana 1` -- Fully fills the target's mana
+`ApplyToConsumed {}` -- Table of statuses given to the consumed character
 
-`EmptyMana 1` -- Sets mana to 0
+`ApplyMultipleTimes {}` -- Table of statuses given X times
+* `stacks X` -- Times to give statuses
 
-`NoStartingMana 1` -- Starts with 0 mana
+`ApplyStatusesNextTurnBegin {}` -- Table of statuses given at the start of the next turn
 
-`NoHealthRegen 1` -- Doesn't regenerate health at the end of the round
+`TimeDelayStatusApplication {}` -- Effects within this table aren't triggered until a certain amount of time.
+* `delay X` -- Time to wait
 
-`NoManaRegen 1` -- Doesn't regenerate mana at the end of the turn
+`CollectsPickupsWithAltEffects {}` -- Gives the source the specified statuses for every pickup collected by the ability, replaces the pickup effects
 
-`TempNoManaRegen 1` -- Doesn't regenerate mana at the end of the turn, removed after the turn ends
+`Temporary {}` -- Gives a temporary status for a select amount of turns
+* `status Status_Name/Passive_Name` -- Status or Passive name
+* `data Any` -- Data of the status/passive
+* `stacks X` -- Stacks amount of the temporary status/passive
+* `turns X` -- Turns the status/passive remains
+* `expires_on_begin_turn bool` -- If it counts down as soon as the next target turn begine
+* `expires_on_end_turn bool` -- If it counts down as soon as the target turn ends
 
-`SpawnFlames 1 / [1 float]` -- Spawns fire, chance can be specified with a float
-
-`SpawnCreep 1` -- Spawns creep tile
-
-`PurgeAll 1` -- Removes all buffs and debuffs from the target
+`RandomStatusFromPool {}` -- Gives a random specified status effect (ignores run seed)
 
 `LateBloomer {}` -- Table of statuses to give after X turns 
 * `stacks X` -- Number of turns
 
-`AllyInfested {}` -- Applies a special type of infested, spawning a specific character type and in a specific faction
-* `object CharacterID` -- Character to spawn
-* `faction Faction_Name` -- [Faction](enums.md#factions) of the spawned character
+`ApplyPassives {}` -- Table of passive effects to add to the target
 
-`Infested X` -- Applies a special type of infested, spawning a character of the same type of the one who applied it
-
-`RandomMagicMissile {}` -- Spawns X sparks targetting the source's enemies
-* `stacks X` -- Number of sparks (can be used as `RandomMagicMissile X`)
-* `full_size bool` -- true = 3 damage, false = 1 damage (default: `false`)
-
-`EvolveAbilityFromPool {}` -- ABILITY Permanently changes the ability to one from the specified class pool [TEST if works with custom pools]
-* `pool Class_Name` -- Class pool (Can also be just `Class` to use the target class) (Can also be used as `EvolveabilityFromPool Class_Name`)
-* `upgraded bool` -- If it's the upgraded version
-
-`BounceObject {}` -- Spawns a specified Character bouncing it from the source
-* `obj CharacterID` -- Character to spawn (Can also be used as `BounceObject CharacterID`)
-* `slide X` -- How many tiles it slides for after spawning
-* `chance float` -- Chance of it spawning (0-1)
-
-`ObjectOnHitCharacter {}` -- Spawns X specified Characters from the target
-* `object CharacterID` -- Character (Can also be used as `ObjectOnHitCharacter CharacterID`)
-* `stacks X` -- Number of Characters (default: `1`)
-
-`FindItem ItemID` -- Gives an item to the adventure inventory
-
-`FindItemFromPool ItemPoolID` -- Gives an item from a specified pool
-
-`RefreshMovePoints N` -- Refreshes N movement points  
-
-`TransformBasicAttack AbilityID` -- Transform the target basic attack to a chosen ability  
-
-`TransformBasicMove AbilityID`  -- Transform the target basic move to a chosen ability  
-
-`TransformAbility AbilityID` -- ABILITY Transform the current ability into a chosen ability  
-
-`BodyGuard {}` -- When an ally is damaged take their place using a specific ability
-* `stacks X` -- Status amount
-* `ability AbilityID` -- Ability used
-
-`OverrideDamage X` -- overrides the damage dealt with X
-
-`IgnoreDamage 1` -- Ignores the damage dealt
-
-`Counterspell 1` -- Counters the next played enemy spell, stopping it
-
-`BonusCritChance X` -- Gives X crit chance to the damage
-
-`CastAgain X` -- casts the ability another X times
-
-`ConjureBonusAbility AbilityID / AbilityPoolID` -- Gives the target the specified ability in it's bonus spell slot (Special inputs: `random` for a random ability, `Class` for an ability from the character's class)
-
-`CopySpells {}` -- Source copies the target spells for X turns (Must be a cat unit)
-* `stacks X` -- Turns (can also be used as `CopySpells X`)
-* `upgraded bool` -- If the abilities are upgraded
-
-`CopiedSpells X` -- Target copies the source spells for X turns (Must be a cat unit) (check [notes](notes.md#functionless-statuses))
+### Ability casting
 
 `UseAbility AbilityID` -- Makes the character use a specific ability  
 
@@ -977,16 +946,145 @@
 * `ability AbilityID` -- Ability in spell slot to use
 * `move_weights Movement_WeightID` -- Movement weight to use
 
-`ForceMoveAway {}` -- Forces the target to move away from the source (Can be used as `ForceMoveAway 1`)
-* `free bool` -- If it doesn't use the character movement point (default: `true`)
-
 `UseRandomSpell_Madness 1` -- Makes the character use one of it's spells at random using madness targetting
+
+`CharmedForceAttack 1` -- Makes the target automatically attack targetting the source's enemies
+
+`ForceAttack 1` -- Forces target to attack  
+
+`Metronome {}` -- Cast random spell 
+* `stacks X` -- Number of spells (can also be used as `Metronome X`)
+* `banned_abilities [AbilityID]` -- Abilities metronome cannot use (default: [])
+
+`PoolMetronome {}` -- Casts a random specified ability
+* `pool [AbilityID]` -- Ability list
+
+`TeamCastAbility {}` -- Makes all of the targe's team cast an ability
+* `ability AbilityID` -- Ability to cast (Can also be used as `TeamCastAbility AbilityID`)
+* `tag_restriction string` -- Tag required by the character to cast the ability
+* `same_orentation bool` -- If the character uses the same orentation of the original caster
 
 `DeathwormUnderground AbilityID` -- Makes the target go off map, when a character moves on the tiles the target was on, it will use the specified ability (Needs to be a return ability)
 
-`RerollEnemy 1` -- Rerolls the target to a random chapter enemy  
+`ForceMoveTowards 1` -- Makes the target move towards the source
 
-`RepairOnKill X` -- Repair used item by X when it kills  
+`ForceMoveTowardsEnemies 1 or AbilityID` -- Makes the target move towards it's enemies, can be given an AbilityID as input to use a different movement ability
+
+`ForceMoveTowardsTaggedObject {}` -- Makes the target move towers objects with a specific tag
+* `ability AbilityID` -- Movement ability used
+* `tag string` -- Specified tag
+
+`ForceMoveNonAlliesInRangeTowardsTile X` -- Makes a non-allied unit move to a targeted tile in range, using their basic move action. X is the aoe effect of this. 
+
+`ForceMoveAway {}` -- Forces the target to move away from the source (Can be used as `ForceMoveAway 1`)
+* `free bool` -- If it doesn't use the character movement point (default: `true`)
+
+### Spawn
+
+`BounceObject {}` -- Spawns a specified Character bouncing it from the source
+* `obj CharacterID` -- Character to spawn (Can also be used as `BounceObject CharacterID`)
+* `slide X` -- How many tiles it slides for after spawning
+* `chance float` -- Chance of it spawning (0-1)
+
+`ObjectOnHitCharacter {}` -- Spawns X specified Characters from the target
+* `object CharacterID` -- Character (Can also be used as `ObjectOnHitCharacter CharacterID`)
+* `stacks X` -- Number of Characters (default: `1`)
+
+`SpawnThingIfHitKills CharacterID` -- Spawns a specified character when the target is killed  
+
+`LeaveBehind {}` -- Spawns behind the specified character
+* `object CharacterID` -- Character
+
+`PopAndSpawn {}` -- Destroys this character and spawns another
+* `object CharacterID` -- New character to spawn (Can also be used as `PopAndSpawn CharacterID`)
+* `no_splatter bool` -- If the destroyed character doesn't show any splatter
+* `clone_referenced_catdata bool` -- If the cat data is passed from the source character to the spawned character
+* `clone_items bool` -- If the spawned character clones the items from the source character
+
+`AfterImage CharacterID` -- Whenever the character moves or is moved, spawns a specified character on the tile it moved from
+
+`GlobalSpawnCharacter` -- Spawns a character in some sort of global sense (used to spawn MegaGuppy)
+
+### Tiles
+
+`SpawnFlames 1 / [1 float]` -- Spawns fire, chance can be specified with a float
+
+`SpawnCreep 1` -- Spawns creep tile
+
+`BramblesOnHit 1` -- Spawns brambles on the targetted tile
+
+`FlowersOnHit 1` -- Spawns flowers on the targetted tile
+
+`SpawnBearTrap 1` -- Spawns a bear trap on the targetted tile
+
+`SpawnCustomTrap MovieClip` -- Spawns a custom trap that takes the damage instance properties and effects with a specified movieclip (Check out tiles.swf for existing trap movieclips)
+
+`ChangeTile Tile_Name` -- Changes the targeted tile to the selected [tile](enums.md#tiles)  
+
+`AOEPuddle X` -- Creates a water puddle with size X
+
+### Stats
+
+`FullHeal 1` -- Heals the target to full
+
+`FillMana 1` -- Fully fills the target's mana
+
+`EmptyMana 1` -- Sets mana to 0
+
+`NoStartingMana 1` -- Starts with 0 mana
+
+`NoHealthRegen 1` -- Doesn't regenerate health at the end of the round
+
+`NoManaRegen 1` -- Doesn't regenerate mana at the end of the turn
+
+`TempNoManaRegen 1` -- Doesn't regenerate mana at the end of the turn, removed after the turn ends
+
+`HealthGain X` -- Heals by X  
+
+`ManaGain X` -- Gives X mana
+
+`ManaSteal X` -- Source steals X mana from the target
+
+`PercentHeal X` -- Heals by X percent of the max health
+
+`HealAndOverhealToShield X` Heals by X and turns overheals into shield
+
+`SwapHighestAndLowestStat 1` -- Swaps the highest and lowest stats (takes into consideration stat statuses)
+
+### Damage
+
+`OverrideDamage X` -- overrides the damage dealt with X
+
+`IgnoreDamage 1` -- Ignores the damage dealt
+
+`DoDamage {}` -- Creates a [damage instance](ability_fields.md#damage_instance--self_damage) targetting the target
+
+`ArcLightning {}` -- Arcs lightning to a in distance that chains to other enemies (seems to chain only once)
+* `stacks X` -- Actually not sure, X is 100 usually
+* `enemies_only boolean` -- If the lightning only hits enemies
+* `ignore_self boolean` -- If the lightning can or cant hit the source
+* `max_distance X` -- X is range of tiles it can bounce to
+* `chance X` -- Chance to continually chain. X is a float between 0 and 1
+
+`RandomMagicMissile {}` -- Spawns X sparks targetting the source's enemies
+* `stacks X` -- Number of sparks (can be used as `RandomMagicMissile X`)
+* `full_size bool` -- true = 3 damage, false = 1 damage (default: `false`)
+
+`UndoDamage X` -- Undo last X damages taken by the target 
+
+`Rebuke X` -- Deal damage to the target equal to X * the damage that unit last dealt  
+
+`DamageOrHealConditionally 1` -- Makes the ability heal allies and damage enemies  
+
+`Die 1` -- Target dies  
+
+`SafeDie 1` -- Dies without injury
+
+`CorpseVaporizer 1` -- Destroys the target and it's corpse
+
+`VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
+
+### Turns
 
 `EndTurn 1` -- Ends the turn
 
@@ -1012,6 +1110,81 @@
 
 `AlphaTurns 1 / -1` -- 1 = Takes an extra turn at the start of the battle, -1 = at the start of every round
 
+### Visual / Sounds
+
+`SwitchMusic {}` -- Changes the currently playing music
+* `new_song SongID` -- ID of the song to use (put `same` to keep the current song)
+* `new_layer LayerID` -- ID of the layer of the song to pick [map, event, battle, boss]
+
+`SetDefaultFace FaceID` -- Changes the default face of the cat with the specified one
+
+`ParticleBurst ParticleID` -- Plays the specified particles
+
+`ShowText string` -- Shows a custom pop up text (can pull from cvs)
+
+`ShowFakeDamage {}` -- Shows a fake damage popup on the target
+* `stacks X` -- Amount of damage
+* `style [Damage_Style]` -- [Style](misc.md#damage-styles) of the damage
+
+`DoDistortionRing {}` -- Creates a visual distorted ring effect (Like gravity slam/zaratana) 
+* `speed X`
+* `intensity X`
+* `radius X`
+
+`DoScreenShake {}` -- Creates a screen shake effect
+* `time X`
+* `intensity X`
+
+### Status Misc
+
+`PurgeAll 1` -- Removes all buffs and debuffs from the target
+
+`AllyInfested {}` -- Applies a special type of infested, spawning a specific character type and in a specific faction
+* `object CharacterID` -- Character to spawn
+* `faction Faction_Name` -- [Faction](enums.md#factions) of the spawned character
+
+`Infested X` -- Applies a special type of infested, spawning a character of the same type of the one who applied it
+
+`EvolveAbilityFromPool {}` -- ABILITY Permanently changes the ability to one from the specified class pool [TEST if works with custom pools]
+* `pool Class_Name` -- Class pool (Can also be just `Class` to use the target class) (Can also be used as `EvolveabilityFromPool Class_Name`)
+* `upgraded bool` -- If it's the upgraded version
+
+`ApplyShieldToApplierBasedOnMaxHealth 1` -- Applies shield to the source based on the max health of the targeted unit
+
+`FindItem ItemID` -- Gives an item to the adventure inventory
+
+`FindItemFromPool ItemPoolID` -- Gives an item from a specified pool
+
+`RefreshMovePoints N` -- Refreshes N movement points  
+
+`TransformBasicAttack AbilityID` -- Transform the target basic attack to a chosen ability  
+
+`TransformBasicMove AbilityID`  -- Transform the target basic move to a chosen ability  
+
+`TransformAbility AbilityID` -- ABILITY Transform the current ability into a chosen ability  
+
+`BodyGuard {}` -- When an ally is damaged take their place using a specific ability
+* `stacks X` -- Status amount
+* `ability AbilityID` -- Ability used
+
+`Counterspell 1` -- Counters the next played enemy spell, stopping it
+
+`BonusCritChance X` -- Gives X crit chance to the damage
+
+`CastAgain X` -- casts the ability another X times
+
+`ConjureBonusAbility AbilityID / AbilityPoolID` -- Gives the target the specified ability in it's bonus spell slot (Special inputs: `random` for a random ability, `Class` for an ability from the character's class)
+
+`CopySpells {}` -- Source copies the target spells for X turns (Must be a cat unit)
+* `stacks X` -- Turns (can also be used as `CopySpells X`)
+* `upgraded bool` -- If the abilities are upgraded
+
+`CopiedSpells X` -- Target copies the source spells for X turns (Must be a cat unit) (check [notes](notes.md#functionless-statuses))
+
+`RerollEnemy 1` -- Rerolls the target to a random chapter enemy  
+
+`RepairOnKill X` -- Repair used item by X when it kills  
+
 `AIFavorLowHealth X` -- Gives X ai score to targets with low health
 
 `SpecificInjury Injury_Name` -- Gives the target a specific injury
@@ -1020,27 +1193,7 @@
 
 `AddRandomEliteBuff X` -- Gives the target X random elite buffs (Doesn't work in conditionals)
 
-`HealthGain X` -- Heals by X  
-
-`ManaGain X` -- Gives X mana
-
-`PercentHeal X` -- Heals by X percent of the max health
-
-`HealAndOverhealToShield X` Heals by X and turns overheals into shield
-
-`BramblesOnHit 1` -- Spawns brambles on the targetted tile
-
-`FlowersOnHit 1` -- Spawns flowers on the targetted tile
-
-`SpawnBearTrap 1` -- Spawns a bear trap on the targetted tile
-
-`SpawnCustomTrap MovieClip` -- Spawns a custom trap that takes the damage instance properties and effects with a specified movieclip (Check out tiles.swf for existing trap movieclips)
-
 `Revive 0-100%` -- Revive the target at a health percentage
-
-`ChangeTile Tile_Name` -- Changes the targeted tile to the selected [tile](enums.md#tiles)  
-
-`AOEPuddle X` -- Creates a water puddle with size X
 
 `CollectsPickups 1` -- Collects targeted pickups  
 
@@ -1048,23 +1201,11 @@
 
 `CurrentWeaponDamageUp X` -- Gives X damage up to the current held weapon  
 
-`ForceAttack 1` -- Forces target to attack  
-
-`CharmedForceAttack 1` -- Makes the target automatically attack targetting the source's enemies
-
 `AutoReanimate X%` -- Reanimate a character as a zombie at X% hp, it joins the source's team
-
-`RandomStatUp X` -- Gives X random stats up  
 
 `RandomMutation X` -- Gives X random mutations
 
 `RandomTaggedMutation string` -- Gives a random mutation that has the specified tag
-
-`UndoDamage X` -- Undo last X damages taken by the target 
-
-`Rebuke X` -- Deal damage to the target equal to X * the damage that unit last dealt  
-
-`DamageOrHealConditionally 1` -- Makes the ability heal allies and damage enemies  
 
 `ContextualHeal 1` -- Makes the ability heal allies and damage enemies [TEST might be in a different context]  
 
@@ -1084,20 +1225,12 @@
 
 `PullSourceToKnockbackImmuneTarget 1` -- When knockback is dealt, if the target is immune to it pull the source to it  
 
-`SpawnThingIfHitKills CharacterID` -- Spawns a specified character when the target is killed  
-
-`GlobalSpawnCharacter` -- Spawns a character in some sort of global sense (used to spawn MegaGuppy)
-
 `ScrambleLastUsedSpell {}` -- Replaces the last used spell with a random one
 * `permanent bool` -- If the effect is permanent
-
-`Metronome 1` -- Cast random spell [TEST if changing 1 does something]  
 
 `GainCoinsRange {}` -- Character gains a random amount of coins in a range
 * `min X` -- Minimum range
 * `max X` -- Maximum range
-
-`CollectsPickupsWithAltEffects {}` -- Gives the source the specified statuses for every pickup collected by the ability, replaces the pickup effects
 
 `AddWeaponAux X` -- Adds X to the currently equipped weapon aux
 
@@ -1127,14 +1260,6 @@
 * `ear1 float`
 * `ear2 float`
 
-`Temporary {}` -- Gives a temporary status for a select amount of turns
-* `status Status_Name/Passive_Name` -- Status or Passive name
-* `data Any` -- Data of the status/passive
-* `stacks X` -- Stacks amount of the temporary status/passive
-* `turns X` -- Turns the status/passive remains
-* `expires_on_begin_turn bool` -- If it counts down as soon as the next target turn begine
-* `expires_on_end_turn bool` -- If it counts down as soon as the target turn ends
-
 `Consumed {}` -- The source consumes the target, becoming it's consumed character and gaining the Consuming status
 * `instant bool` -- TEST
 * `mount_mode bool` -- TEST
@@ -1149,34 +1274,11 @@
 * `ability AbilityID` -- Ability the consumer uses if successful
 * `fail_ability AilityID` -- Ability the consumer uses if unsuccessful
 
-`ApplyToRandomClosestAlly {}` -- Table of statuses applied to a random closest ally
-
-`ApplyToRandomPartyMemberIfPossible {}` -- Table of statuses applied to a random party member, if there is no other party member the statuses are applied to the source
-
-`ApplyToSource {}` -- Use to switch to source in targeted effects
-
-`ApplyToSourceOnKill {}` -- (DAMAGE_INSTANCE) Table of statuses given to the source if it kills 
-
-`ApplyToOthersWithSharedTagAndFaction {}` -- Table of statuses given to all other characters that share the same tag and faction as the source
-
-`ApplyToTile {}` -- Table of statuses applied to the tile where the projectile would land
-
-`ApplyToConsumed {}` -- Table of statuses given to the consumed character
-
-`ApplyMultipleTimes {}` -- Table of statuses given X times
-* `stacks X` -- Times to give statuses
-
-`ApplyStatusesNextTurnBegin {}` -- Table of statuses given at the start of the next turn
-
-`ApplyShieldToApplierBasedOnMaxHealth {}` -- Applies shield to the source based on the health of the targeted unit
-
 `Imprison CharacterID` -- Creates specified Characters around the target
 
 `Cleanse 0 or 1` -- Removes all debuffs on the target (1 makes it so it also gives 1 holy shield for every type of debuff)
 
 `NextAttackBonusRange X` -- Gives next attack bonus range
-
-`ManaSteal X` -- Source steals X mana from the target
 
 `ReduceManaCost X` -- Reduces mana cost by X
 
@@ -1190,9 +1292,6 @@
 * `luck_increase X` -- [TEST if it's not only luck]
 
 `FaceAway 1` -- Makes the target face away
-
-`LeaveBehind {}` -- Spawns behind the specified character
-* `object CharacterID` -- Character
         
 `ReviveNextRound {}` -- Revives the target after X rounds (takes any status as optional parameter for when the character is revived)
 * `stacks X` -- Rounds it takes to revive (Can also be used as `ReviveNextRound X`)
@@ -1216,18 +1315,6 @@
 
 `RefreshItemAbilities X` -- Refreshes the target's item abilities
 
-`PoolMetronome {}` -- Casts a random specified ability
-* `pool [AbilityID]` -- Ability list
-
-`DoDamage {}` -- Creates a [damage instance](ability_fields.md#damage_instance--self_damage) targetting the target
-
-`ArcLightning {}` -- Arcs lightning to a in distance that chains to other enemies (seems to chain only once)
-* `stacks X` -- Actually not sure, X is 100 usually
-* `enemies_only boolean` -- If the lightning only hits enemies
-* `ignore_self boolean` -- If the lightning can or cant hit the source
-* `max_distance X` -- X is range of tiles it can bounce to
-* `chance X` -- Chance to continually chain. X is a float between 0 and 1
-
 `Tangled {}` -- Tangles the target
 * `stacks X` -- Tangled amount (Can also be used as `Tangled X`)
 * `alt_art MotionClip_Name` -- Motion clip to replac ethe default tangled art
@@ -1241,8 +1328,6 @@
 * `distance X` -- Knockback distance
 * `displace true` -- [TEST]
 * `self_damage false` -- [TEST]
-
-`RandomStatusFromPool {}` -- Gives a random specified status effect (ignores run seed)
 
 `ScatterCoins {}` -- Scatters X coins around
 * `stacks X`-- Amount of coins
@@ -1262,15 +1347,6 @@
 * `reset_center_because_of_animation_halflife X` -- float
 * `reset_center_because_no_target_halflife X` -- float
 * `tracking_acquisition_halflife X` -- float
-
-`DoDistortionRing {}` -- Creates a visual distorted ring effect (Like gravity slam/zaratana) 
-* `speed X`
-* `intensity X`
-* `radius X`
-
-`DoScreenShake {}` -- Creates a screen shake effect
-* `time X`
-* `intensity X`
 
 `RemoveAmbientLightEffects` -- Removes existing ambient light effects
 
@@ -1343,20 +1419,11 @@
 
 `RemoveItem Item_Name` -- Removes a specific item from the target's inventory
 
-`TeamCastAbility {}` -- Makes all of the targe's team cast an ability
-* `ability AbilityID` -- Ability to cast (Can also be used as `TeamCastAbility AbilityID`)
-* `tag_restriction string` -- Tag required by the character to cast the ability
-* `same_orentation bool` -- If the character uses the same orentation of the original caster
-
 `UpgradeRandomAbility 1` -- Upgrades a random ability temporarily
 
 `PermanentUpgradeRandomActive X` -- Upgrades permanently X random abilities
 
 `PermanentUpgradeRandomActiveOrPassive X` -- Upgrades permanently X random abilities or passives
-
-`RevengeDamage {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) targetting characters who damage the source
-
-`MeleeRevengeDamage {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) targetting characters who deal melee damage to the source
 
 `IncreaseExplosionSize X` -- Increases the source's explosions size by X
 
@@ -1372,16 +1439,6 @@
 
 `ChangeTauntPriority X` -- Positive numbers will make the source more targetted, negative numbers will make the source less likely to be targetted
 
-`ForceMoveTowards 1` -- Makes the target move towards the source
-
-`ForceMoveTowardsEnemies 1 or AbilityID` -- Makes the target move towards it's enemies, can be given an AbilityID as input to use a different movement ability
-
-`ForceMoveTowardsTaggedObject {}` -- Makes the target move towers objects with a specific tag
-* `ability AbilityID` -- Movement ability used
-* `tag string` -- Specified tag
-
-`ForceMoveNonAlliesInRangeTowardsTile X` -- Makes a non-allied unit move to a targeted tile in range, using their basic move action. X is the aoe effect of this. 
-
 `RefreshOncePerFightAbilities 1` -- Refreshes all abilities/items with once per fight restrictions
 
 `SpreadDisease {}` -- Gives a specified passive (with a popup) as a disease
@@ -1389,35 +1446,9 @@
 * `chance X%` -- Chance of it being spread
 * `can_apply_to_anything bool` -- If it can spread to any kind of unit and not only player cats
 
-`PopAndSpawn {}` -- Destroys this character and spawns another
-* `object CharacterID` -- New character to spawn (Can also be used as `PopAndSpawn CharacterID`)
-* `no_splatter bool` -- If the destroyed character doesn't show any splatter
-* `clone_referenced_catdata bool` -- If the cat data is passed from the source character to the spawned character
-* `clone_items bool` -- If the spawned character clones the items from the source character
-
-`AfterImage CharacterID` -- Whenever the character moves or is moved, spawns a specified character on the tile it moved from
-
-`LimitedTileTrail Tile_Name` -- Whenever the character moves or is moved, creates a specified [tile](enums.md#tiles) on the tile it moved from
-
-`SwapHighestAndLowestStat 1` -- Swaps the highest and lowest stats (takes into consideration stat statuses)
-
 `QuakeAreaChance {}` -- Triggers stalagmites to falls
 * `radius X` -- Tile range
 * `chance X%` -- Chance of the stalagmites falling
-
-`SwitchMusic {}` -- Changes the currently playing music
-* `new_song SongID` -- ID of the song to use (put `same` to keep the current song)
-* `new_layer LayerID` -- ID of the layer of the song to pick [map, event, battle, boss]
-
-`SetDefaultFace FaceID` -- Changes the default face of the cat with the specified one
-
-`ParticleBurst ParticleID` -- Plays the specified particles
-
-`ShowText string` -- Shows a custom pop up text (can pull from cvs)
-
-`ShowFakeDamage {}` -- Shows a fake damage popup on the target
-* `stacks X` -- Amount of damage
-* `style [Damage_Style]` -- [Style](misc.md#damage-styles) of the damage
 
 ---
 
