@@ -161,6 +161,8 @@
 
 `StatusOnLoseShield {}` -- Table of statuses given when taking shield damage
 
+`StatusOnTakeHealthDamage {}` -- Table of statuses given when taking health damage
+
 `StatusOnTakeHealthOrShieldDamage {}` -- Table of statuses given when taking health or shield damage
 
 `StatusOnHealed {}` -- Table of statuses given when healing
@@ -621,6 +623,33 @@
 
 `CatchBoomerang 1` -- Catches the boomerang projectile
 
+`ReloadOnAllyCatDies 1` -- Reload the ability when an ally cat dies
+
+`ReloadOnAllyDies 1` -- Reload when an ally dies
+
+`ReloadOnAnyDamage 1` -- Reload when taking damage
+
+`ReloadOnBackstab 1` -- Reload when backstabbing a character
+
+`ReloadOnElementalDamageReceived Element_Name` -- Reload when receiving damage of a specific [element](enums.md#elements)
+
+`ReloadOnGainCoins 1` -- Reload when gaining a coin
+
+`ReloadOnGainDivineShield 1` -- Relaod when gaining divine shield
+
+`ReloadOnKill 1` -- Reload when killing any character
+
+`ReloadOnKillEnemy 1` -- Reload when killing an enemy
+
+`ReloadOnKillTagged string` -- Reload when killing a character with a specific tag 
+`ReloadOnKillUnitWithStatus Status_Name` -- Reload when killing a character with a specific status
+
+`ReloadOnSpendMana 1` -- Reload when spending any mana
+
+`ReloadOnTotalDamageReceived X` -- Reload after receiving X damage
+
+`ReloadOnUseAbilityWithManaCost X` -- Reload after uning an ability with a mana cost of X
+
 ### Item specific passives
 
 `Fragile 1` -- Makes the item fragile, breaks when the character is downed
@@ -937,6 +966,10 @@
 `UseAbility_NonStack AbilityID` -- Makes the character use a specific ability (Applying it multiple times won't stack the effect)  
 
 `ForceUseAbility AbilityID` -- Forces the character to use a specific ability  
+
+`ForceUseAbility_NonStack AbilityID` -- Forces the character to use a specific ability (Applying it multiple times won't stack the effect)  
+
+`ForceUseAbilityOnTarget AbilityID` -- Forces the character to use a specific ability on the current target
 
 `ImmediateUseAbility_Instant AbilityID` -- Makes the character use a specific ability instantly
 
