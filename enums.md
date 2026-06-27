@@ -240,7 +240,7 @@ terminator_1
 terminator_2  
 terminator_3  
 
-## WEATHER
+## VANILLA WEATHERS
 None 
 AcidRain    
 AlienInvasion   
