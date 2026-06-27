@@ -241,7 +241,6 @@ terminator_2
 terminator_3  
 
 ## WEATHER
-None
 AcidRain
 AlienInvasion
 AlienOvergrowth
@@ -263,6 +262,7 @@ FlySwarm
 Fog
 GeomagneticStorm
 HauntedNight
+HeavyRain
 HeatWave
 HuntingSeason
 Hurricane
@@ -275,6 +275,7 @@ LowGravity
 MeteorShower
 Meteornado
 Minesweeper
+None
 OilSpill
 Overgrowth
 Pandemonium
@@ -282,7 +283,6 @@ PayDay
 PipeBlockage
 Rain
 RainingFrogs
-HeavyRain
 RestlessDead
 RobotUprising
 Sandstorm
@@ -295,8 +295,8 @@ TheHollowing
 TheShimmer
 Thunderstorm
 Tornado
-TrashDay
 TrainingDay
+TrashDay
 VisualFlySwarm
 Wildfire
 Windy
