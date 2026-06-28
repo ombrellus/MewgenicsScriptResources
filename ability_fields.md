@@ -368,6 +368,8 @@
 
 `faction Faction_Type` -- [Faction](enums#factions) of the spawned character
 
+`first_turn Firt_Turn_Type` -- When the spawned character takes it's first turn [next_turn initiative next_round end_of_round]
+
 `layer Layer_Type` -- [Layer](enums#layers) where the character is spawned
 
 `post_spawn_statuses {}` -- Statuses given to the spawned character

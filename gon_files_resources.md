@@ -368,6 +368,10 @@
 
 `SpawnThingOnDeath CharacterID` -- Spawns a character on death (redundant)
 
+`TransformOnDeathImmediately {}` -- Transforms into another character as soon as the character dies
+* `obj CharacterID` -- Character
+* `first_turn First_Turn_Type` -- When to take the first turn [next_turn initiative next_round end_of_round keep_turns]
+
 `SpawnThingOnDamage {}` -- Spawn objects/Characters whenever the source takes damage
 * `object CharacterID` -- Character name
 * `number X` -- Number of Characters
@@ -431,6 +435,10 @@
 * `enemies_only bool` -- If to react only when the damage comes from an enemy (default: `false`)
 * `tag_restriction string` -- If to react only when a character with a tag is damaged
 * `not_on_kill bool` -- If to react only when the damage is not fatal (default: `false`)
+
+`ProtectTargetedAllies {}` -- Uses an ability on an ally being attacked by an enemy before it gets actually hit (Can target itself)
+* `ability AbilityID` -- The ability used (can also be used as `ProtectTargetedAllies AbilityID`)
+* `tag_filter string` -- If it uses the ability only when an ally with tag is attacked
 
 `HarpoonTrapPassive AbilityID` -- Uses a specified ability when a character finishes their movement in front of source in a straight line (Does not actually target the character)
 
