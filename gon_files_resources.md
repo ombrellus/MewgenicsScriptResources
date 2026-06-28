@@ -276,6 +276,8 @@
 
 `TheHunger {}` -- Table of statuses given on turn end if the character doesn't deal any damage to a unit
 
+`StatusCharactersOnRoundStart {}` -- Table of statuses given to all characters on round start
+
 ### Passive if/when/while
 
 `PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
