@@ -567,7 +567,7 @@
 
 `AddMovement X` -- Adds X tiles to the movement range
 
-`CapMovementAbilityRange X` -- Caps movement abilities' range at X
+`CapMovementAbilityRange 1` -- Caps movement abilities' range at 1
 
 `LimitDamage X` -- Limits the damage amount taken to X
 
