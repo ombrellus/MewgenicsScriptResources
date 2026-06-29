@@ -161,6 +161,8 @@
 
 `StatusOnLoseShield {}` -- Table of statuses given when taking shield damage
 
+`StatusOnTakeHealthDamage {}` -- Table of statuses given when taking health damage
+
 `StatusOnTakeHealthOrShieldDamage {}` -- Table of statuses given when taking health or shield damage
 
 `StatusOnHealed {}` -- Table of statuses given when healing
@@ -274,6 +276,8 @@
 
 `TheHunger {}` -- Table of statuses given on turn end if the character doesn't deal any damage to a unit
 
+`StatusCharactersOnRoundStart {}` -- Table of statuses given to all characters on round start
+
 ### Passive if/when/while
 
 `PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
@@ -366,6 +370,10 @@
 
 `SpawnThingOnDeath CharacterID` -- Spawns a character on death (redundant)
 
+`TransformOnDeathImmediately {}` -- Transforms into another character as soon as the character dies
+* `obj CharacterID` -- Character
+* `first_turn First_Turn_Type` -- When to take the first turn [next_turn initiative next_round end_of_round keep_turns]
+
 `SpawnThingOnDamage {}` -- Spawn objects/Characters whenever the source takes damage
 * `object CharacterID` -- Character name
 * `number X` -- Number of Characters
@@ -429,6 +437,10 @@
 * `enemies_only bool` -- If to react only when the damage comes from an enemy (default: `false`)
 * `tag_restriction string` -- If to react only when a character with a tag is damaged
 * `not_on_kill bool` -- If to react only when the damage is not fatal (default: `false`)
+
+`ProtectTargetedAllies {}` -- Uses an ability on an ally being attacked by an enemy before it gets actually hit (Can target itself)
+* `ability AbilityID` -- The ability used (can also be used as `ProtectTargetedAllies AbilityID`)
+* `tag_filter string` -- If it uses the ability only when an ally with tag is attacked
 
 `HarpoonTrapPassive AbilityID` -- Uses a specified ability when a character finishes their movement in front of source in a straight line (Does not actually target the character)
 
@@ -557,7 +569,7 @@
 
 `AddMovement X` -- Adds X tiles to the movement range
 
-`CapMovementAbilityRange X` -- Caps movement abilities' range at X
+`CapMovementAbilityRange 1` -- Caps movement abilities' range at 1
 
 `LimitDamage X` -- Limits the damage amount taken to X
 
@@ -620,6 +632,33 @@
 `CopyBasicAttackEffects 1` -- Copies the basic attack effects
 
 `CatchBoomerang 1` -- Catches the boomerang projectile
+
+`ReloadOnAllyCatDies 1` -- Reload the ability when an ally cat dies
+
+`ReloadOnAllyDies 1` -- Reload when an ally dies
+
+`ReloadOnAnyDamage 1` -- Reload when taking damage
+
+`ReloadOnBackstab 1` -- Reload when backstabbing a character
+
+`ReloadOnElementalDamageReceived Element_Name` -- Reload when receiving damage of a specific [element](enums.md#elements)
+
+`ReloadOnGainCoins 1` -- Reload when gaining a coin
+
+`ReloadOnGainDivineShield 1` -- Relaod when gaining divine shield
+
+`ReloadOnKill 1` -- Reload when killing any character
+
+`ReloadOnKillEnemy 1` -- Reload when killing an enemy
+
+`ReloadOnKillTagged string` -- Reload when killing a character with a specific tag 
+`ReloadOnKillUnitWithStatus Status_Name` -- Reload when killing a character with a specific status
+
+`ReloadOnSpendMana 1` -- Reload when spending any mana
+
+`ReloadOnTotalDamageReceived X` -- Reload after receiving X damage
+
+`ReloadOnUseAbilityWithManaCost X` -- Reload after uning an ability with a mana cost of X
 
 ### Item specific passives
 
@@ -937,6 +976,10 @@
 `UseAbility_NonStack AbilityID` -- Makes the character use a specific ability (Applying it multiple times won't stack the effect)  
 
 `ForceUseAbility AbilityID` -- Forces the character to use a specific ability  
+
+`ForceUseAbility_NonStack AbilityID` -- Forces the character to use a specific ability (Applying it multiple times won't stack the effect)  
+
+`ForceUseAbilityOnTarget AbilityID` -- Forces the character to use a specific ability on the current target
 
 `ImmediateUseAbility_Instant AbilityID` -- Makes the character use a specific ability instantly
 

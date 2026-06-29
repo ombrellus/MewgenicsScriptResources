@@ -3,13 +3,13 @@
 >[!WARNING]
 >This list is still a work in progress, some things haven't been tested to their fullest, haven't been documentet properly, or aren't present
 
-`AbilityID {}`
+`AbilityID {}` -- Add 2 at the end for the upgraded version
 
-* `Class Class_Name` -- Ability class, only used when making a template [check ablity_template.gon for classes]
+* `Class Class_Name` -- Ability class [check ablity_template.gon for classes]
 
 * `template Template_Name` -- Ability template, will inherit all of the configurations of the template [check ablity_template.gon for templates]
-* `variant_of AbilityID` -- Used for upgraded abilities, the upgraded ability needs the same name with a 2 after it (AbilityName2), will inherit configurations
-* `tags [Tag_Name]` -- List of ability tags
+* `variant_of AbilityID` -- Will inherit the configurations of the specified spell
+* `tags [string]` -- List of ability tags
 * `chain_ability AbilityID` -- Ability casted right after this one
 * `ai_ability AbilityID` -- (AI) Another ability that is used to calculate the ai chance for this one
 * `keyword_tooltips {}` -- Table of statuses that overwrites the standard tooltips
@@ -22,7 +22,7 @@
 * `sounds {}` -- contains the sound properties of the ability
 * `self_damage {}` -- same as damage_instance but applied on the source
 * `bonus_passives {}` -- contains bonus passives applied to the source when it has this ability
-* `temporary_effects {}` -- contains effects applied to the source for the duration of the ability
+* `temporary_effects {}` -- contains statuses/passives applied/executed to the source for the duration of the ability
 
 ---
 
@@ -367,6 +367,8 @@
 `object CharacterID or [CharacterID]` -- Character or list of possible entities to spawn
 
 `faction Faction_Type` -- [Faction](enums#factions) of the spawned character
+
+`first_turn Firt_Turn_Type` -- When the spawned character takes it's first turn [next_turn initiative next_round end_of_round]
 
 `layer Layer_Type` -- [Layer](enums#layers) where the character is spawned
 
