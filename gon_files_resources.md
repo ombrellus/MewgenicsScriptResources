@@ -1411,7 +1411,7 @@
 
 `RefreshMovePointsIfHit 1` -- Refreshes a movement point for the target if the damage instance hits
 
-`ReloadAssociatedAbility AbilityID` -- Reloads the specified ability
+`ReloadAssociatedAbility 1` -- Reloads the ability that applied this status
 
 `Craft {}` -- Creates an item in a specific slot from a specific pool
 * `pool ItemPoolID` -- The item pool 
