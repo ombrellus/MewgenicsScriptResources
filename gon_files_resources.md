@@ -40,6 +40,9 @@
 `AddHiddenTag string` -- Adds an hidden tag to the character (hidden tags are more specific tags refenced only in gon files)
 
 `CreateGlobalModifiers {}` -- Sets certain global modifiers
+>Note: You can find most global modifiers in [weather formatting.](weather_formatting.md#WEATHER20%SPECIFIC20%PASSIVE20%EFFECTS)
+
+`RemoveGlobalModifiers {}` -- Removes certain global modifiers
 
 `AddElementsToBasicAttack Element_Name` -- Adds a specific [element](enums.md#elements) to the basic attack
 
@@ -129,7 +132,9 @@
 
 `StatusEachRoundEnd {}` -- Table of statuses to given at the end of every round
 
-`StatusOnBattleStart {}` -- Table of statuses given at the start of the battle
+`StatusOnBattleStart {}` -- Table of statuses given at the start of the battle, CANNOT BE USED IN GLOBAL EFFECTS
+
+`CharacterTypeGainsStatusAtBattleStart {}` -- Tables of statuses given at battle start, CAN ONLY BE USED IN GLOBAL EFFECTS
 
 `StatusOnBattleEnd {}` -- Table of statuses given at the end of the battle
 * `even_if_dead bool` -- Give statuses even if the cat was downed (default: `false`)
@@ -710,8 +715,6 @@
 ### Passive Misc
 
 `DamageNeighborsOnEndMove {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) applied to characters who end their movements adjacent to the source or vice versa
-
-`RemoveGlobalModifiers {}` -- Removes certain global modifiers
 
 `ReceivedStatusReplacement [Status_Name_old Status_Name_new]` -- Replaces all statuses of a specific type applied to the source with a new one (Can work with non in-game statuses)
 
