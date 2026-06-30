@@ -146,6 +146,7 @@ I.e. `img[{str_aux}]`
 ```
 
 `pause:num` -- Pauses for a certain amount of time between the preceeding substring and the following substring. "Num" is a float value but can be represented with a integer.
+
 `sfx:string` -- Plays a SFX value. Only seen ingame with the coin sound, used by Dr. Beanies.
 > note from the editor: how does dr. beanies pay you so much once he's broke? isn't he broke? i dont understand
 

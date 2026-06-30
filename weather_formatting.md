@@ -18,6 +18,7 @@
 
 ## WEATHER SPECIFIC PASSIVE EFFECTS
 
+`GlobalParticle` -- Spawns a particle with the base axis being at the bottom of the map.
 
 `Rain X` -- Rain effects, persistent water element [TEST X]
 
