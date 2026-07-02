@@ -1237,9 +1237,9 @@
 
 `Infested X` -- Applies a special type of infested, spawning a character of the same type of the one who applied it
 
-`EvolveAbilityFromPool {}` -- ABILITY Permanently changes the ability to one from the specified class pool [TEST if works with custom pools]
-* `pool Class_Name` -- Class pool (Can also be just `Class` to use the target class) (Can also be used as `EvolveabilityFromPool Class_Name`)
-* `upgraded bool` -- If it's the upgraded version
+`EvolveAbilityFromPool {}` -- ABILITY Permanently changes the ability to one from the specified class pool or from a pool in ability_pools.
+* `pool Pool_Name` -- Ability pool (Can either be the Class name or the Pool name) 
+* `upgraded bool` -- If it's the upgraded version (only works for classes I assume?)
 
 `ApplyShieldToApplierBasedOnMaxHealth 1` -- Applies shield to the source based on the max health of the targeted unit
 
