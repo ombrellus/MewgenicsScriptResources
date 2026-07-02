@@ -1239,7 +1239,7 @@
 
 `EvolveAbilityFromPool {}` -- ABILITY Permanently changes the ability to one from the specified class pool or from a pool in ability_pools.
 * `pool Pool_Name` -- Ability pool (Can either be the Class name or the Pool name) 
-* `upgraded bool` -- If it's the upgraded version (only works for classes I assume?)
+* `upgraded bool` -- If it's the upgraded version 
 
 `ApplyShieldToApplierBasedOnMaxHealth 1` -- Applies shield to the source based on the max health of the targeted unit
 
