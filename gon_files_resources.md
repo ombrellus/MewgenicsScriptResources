@@ -625,6 +625,8 @@
 
 `ManaRegenMultiplierIfNoCastSpells` -- Test
 
+`MultiplyCoinsOnBattleStart X` -- Multiply coins on battle start by X
+
 `MultiplyKnockbackDamage float` -- Knockback damage is multiplied by X
 
 `MultiplyKnockbackDistance float` -- Knockback distance is multiplied by X
