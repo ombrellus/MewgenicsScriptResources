@@ -658,13 +658,18 @@
 `DepressionAura {}` -- Gives all units in a Y range X all stats down
 * `stacks X` -- Amount of stats down (Can also be used as `DepressionAura X`)
 * `range Y` -- Effect range (Set to `global` for global range)
+* `square bool` -- If the range is a square instead of a cross
 * `aura_effects_allies bool` -- If this effect targets allies
 
 `AllyBonusAbilityAura {}` -- Gives all units in a cross or square a bonus ability
 * `ability AbilityID` -- Bonus ability (Can be used as `AllyBonusAbilityAura AbilityID`)
 * `square bool` -- If the range is a square instead of a cross
+* `range X` -- Effect range (Set to `global` for global range)
 
 `AllyMoveAbilityAura AbilityID` -- All adjacent unit's movement ability is replaced with a specified one
+* `ability AbilityID` -- Move ability (Can be used as `AllyMoveAbilityAura AbilityID`)
+* `square bool` -- If the range is a square instead of a cross
+* `range X` -- Effect range (Set to `global` for global range)
 
 ### Ability specific passives
 
