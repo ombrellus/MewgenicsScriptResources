@@ -611,6 +611,46 @@
 * `Health X`
 * `Evolution X`
 
+`BasicAttackDamageMultiplier X%` -- Basic attack's damage is multiplied by X
+
+`AbilityDamageMultiplier float` Abilities's damage is multiplied by X
+
+`AddCritMultiplier X%` -- Critical hits's damage is multiplied by X
+
+`HealthMultiplier float` -- Base health is multiplied by X
+
+`MultiplyReceivedHealing float` -- Received heals are multiplied by X
+
+`ManaRegenMultiplierIfManaEmpty float` -- Mana regen is multiplied by X if the mana is empty
+
+`ManaRegenMultiplierIfNoCastSpells` -- Test
+
+`MultiplyKnockbackDamage float` -- Knockback damage is multiplied by X
+
+`MultiplyKnockbackDistance float` -- Knockback distance is multiplied by X
+
+`AllyMultiplyKnockbackDamage float` -- Knockback damage for all allies is multiplied by X
+
+`AllyMultiplyKnockbackDistance float` -- Knockback distance for all allies is multiplied by X
+
+`TrapEffectsMultiplier X` -- The damage and effects of the target's traps are multiplied by X
+
+`FaceArmorPassiveMultiplierBonus X` -- Copies the face armor passive effects X times
+
+`HeadArmorPassiveMultiplierBonus X` -- Copies the head armor passive effects X times
+
+`NeckArmorPassiveMultiplierBonus X` -- Copies the neck armor passive effects X times
+ 
+`WeaponPassiveMultiplierBonus X` -- Copies the weapon passive effects X times
+
+`TrinketPassiveMultiplierBonus X` -- Copies the trinket armor passive effects X times
+
+`TrinketActiveEffectsMultiplierBonus X` -- Trinket active effects are copied X times
+
+`WeaponActiveEffectsMultiplierBonus X` -- Weapon active effects are copied X times
+
+`WeaponDamageMultiplierBonus float` -- Weapon damage is multiplied by X
+
 ### Auras
 
 `DepressionAura {}` -- Gives all units in a Y range X all stats down
@@ -713,6 +753,8 @@
 `Uncontrollable 1` -- Makes the character ai controlled
 
 ### Passive Misc
+
+`AlliesAvoidTraps 1` -- Allies do not trigger the source's traps
 
 `DamageNeighborsOnEndMove {}` -- [Damage instance](ability_fields.md#damage_instance--self_damage) applied to characters who end their movements adjacent to the source or vice versa
 
@@ -1183,6 +1225,8 @@
 
 ### Status Misc
 
+`WeaponAuxMultiplier float` -- Multiplies the weapon aux by X
+
 `PurgeAll 1` -- Removes all buffs and debuffs from the target
 
 `AllyInfested {}` -- Applies a special type of infested, spawning a specific character type and in a specific faction
@@ -1427,6 +1471,8 @@
 * `stacks X` -- Stacks
 
 `RemoveStatus Status_Name` -- Removes a specified status
+
+`RemoveStatusByStackKey string` -- Removes all statuses with a specific stack key (you can add a stack key to a status by applying it as a table and add the field `stack_key string`)
 
 `NextBattleStatusStacks {}` -- Table of statuses given to the character the next X fights
 * `fights X`
