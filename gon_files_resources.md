@@ -283,6 +283,16 @@
 
 `StatusCharactersOnRoundStart {}` -- Table of statuses given to all characters on round start
 
+`StatusAfterXStacks {}` -- Table of statuses given after the status with the same key being called X times
+* `stack_key string` -- Key of this status
+* `threshold X` -- Times needed
+* `expires_on_turn_end bool` -- If it resets on turn end
+
+`StatusAfterXTurns {}` -- Table of statuses given after X turns
+* `stacks X`
+
+`Diabetes {}` -- Table of statuses given at turn end if no food was eaten
+
 ### Passive if/when/while
 
 `PassiveIfWeaponIsUsable {}` -- (ITEM) executes the passives if the weapon is usable
@@ -725,6 +735,11 @@
 `Flammable 1` -- Makes the item flammable, breaks when hit by fire and gives 1 Burn
 
 `BreakOnElement Element_Name` -- Breaks the item when affected by a specific [element](enums.md#elements)
+
+`TintItem {}` -- Tints the item, only for trinkets and weapons
+* `add [r g b]` -- Added color value
+* `mul [r g b]` -- Multiplied color value
+* `ignore_if_str_aux_equals string` -- Ignore the tint if the item's str_aux is equal to a specified string
 
 ### Form changer related passives
 
