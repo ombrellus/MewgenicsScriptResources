@@ -543,10 +543,6 @@
 
 ### Spell passives
 
-`AllSpellsCostActPoints X` -- All spells cost X act points
-
-`SetSpellCosts X` -- All spells cost X mana
-
 `ReplaceBasicMove AbilityID` -- Replaces the basic move with the specified ability
 
 `ReplaceBasicMove_Mutation AbilityID` -- Replaces the basic move with the specified ability (Will be overridden by non-mutation move replacement)
@@ -566,6 +562,8 @@
 `BonusAbility_DelayedApplication AbilityID` -- Gives the target the specified ability in it's bonus spell slot (Has priority over `BonusAbility`)
 
 `ConjureCastSpellsForAllies 1 / 2` -- Gives allies the character's last used spell as bonus ability, 2 makes the spell be upgraded
+
+`AllSpellsCostActPoints X` -- All spells cost X act points
 
 `SetSpellCosts X` -- Sets the cost of all spells to X
 
