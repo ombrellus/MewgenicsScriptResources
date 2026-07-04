@@ -543,6 +543,10 @@
 
 ### Spell passives
 
+`AllSpellsCostActPoints X` -- All spells cost X act points
+
+`SetSpellCosts X` -- All spells cost X mana
+
 `ReplaceBasicMove AbilityID` -- Replaces the basic move with the specified ability
 
 `ReplaceBasicMove_Mutation AbilityID` -- Replaces the basic move with the specified ability (Will be overridden by non-mutation move replacement)
