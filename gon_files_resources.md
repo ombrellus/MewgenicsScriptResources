@@ -520,6 +520,8 @@
 * `chance X%` -- Chance (can also be used as `ChanceToBlockAndCounter X%`)
 * `backstab_only bool` -- If it triggers only on backstabs (default: false)
 
+`GainManaWhenAnythingDies X` -- Gain X mana when any character dies
+
 ### Repeated actions
 
 `AbilityOnBattleStart AbilityID` -- Uses a specific ability at battle start
@@ -558,6 +560,10 @@
 `OverrideBasicAttack AbilityID` -- Replaces the basic attack with the specified ability (It will overwrite any other attack replacement)
 
 `ReplaceBasicAttackWhenCastable AbilityID` -- Replaces the basic attack with the specified ability when the ability is castable
+
+`ReplaceBasicAttackWhenDead AbilityID` -- Replaces the basic attack with a specific ability when it's dead
+
+`ReplaceSpellsWhenDead AbilityID` -- Replaces the character's base spells with a specific one when it's dead
 
 `DisableAbilitiesWithTag string` -- Disables all the target's abilities that have a specified tag
 
@@ -605,6 +611,8 @@
 `AddManaRegen X` -- Adds X to the end turn mana regen
 
 `StrictLimitDamage X` -- Damage received is capped at X
+
+`AddCorpseHealth X` -- Adds X hp to the character's corpse
 
 `NoHealthOnlyShield 1` -- Makes the character have only shield (This affects interactions like shield piercing attacks)
 
