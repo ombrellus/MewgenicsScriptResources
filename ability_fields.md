@@ -346,6 +346,10 @@
 
 `contact_requires_adjacency bool` -- If the contact requires the character to be adjacent (default: true)
 
+`force_adjacent_and_diagonal_contact bool` -- If contact is forced even diagonally (default: false)
+
+`two_way_contact bool` -- If the ability contact counts as contact for the target as well (default: false)
+
 `hit_animation_alt Animation_name` -- Change the hit animation for this damage instance
 
 `force_play_hit_animation bool` -- If the ability forces the target to play it's hit animation

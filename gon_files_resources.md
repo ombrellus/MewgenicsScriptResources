@@ -107,6 +107,10 @@
 
 `StatusWhenAllySpendsMana {}` -- Table of statuses given to the character when an ally spends mana
 
+`StatusAlliesOnSpendMana {}` -- Table of statuses given to allies when the character spends mana
+
+`ScaledStatusAlliesOnSpendMana {}` -- Table of statuses given to allies when the character spends mana for each mana point spent
+
 `ExtraStatusWhenDealingDamage {}` -- Table of stautuses given to all damages dealt
 
 `StatusWhenStatusCompletelyRemoved {}` -- Table of statuses given when a status gets removed
@@ -1036,6 +1040,9 @@
 `LateBloomer {}` -- Table of statuses to give after X turns 
 * `stacks X` -- Number of turns
 
+`VisualCountDownThenApplyStatus {}` -- Table of statuses applied after a visual countdown
+* `delay X` -- Delay (If higher than 5, the countdown won't be shown until it reaches 5) (default: 5)
+
 `ApplyPassives {}` -- Table of passive effects to add to the target
 
 ### Ability casting
@@ -1193,6 +1200,8 @@
 `SafeDie 1` -- Dies without injury
 
 `CorpseVaporizer 1` -- Destroys the target and it's corpse
+
+`VaporizeCorpse 1` -- Destroys a corpse
 
 `VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
 
