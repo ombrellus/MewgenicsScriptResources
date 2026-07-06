@@ -5,8 +5,7 @@
 
 `AbilityID {}` -- Add 2 at the end for the upgraded version
 
-* `Class Class_Name` -- Ability class [check ablity_template.gon for classes]
-
+* `Class Class_Name` -- Unique ability classes for certain situations - check [in enums.](enums.md#SPECIAL20%ABILITY20%CLASSES)
 * `template Template_Name` -- Ability template, will inherit all of the configurations of the template [check ablity_template.gon for templates]
 * `variant_of AbilityID` -- Will inherit the configurations of the specified spell
 * `tags [string]` -- List of ability tags

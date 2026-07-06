@@ -23,6 +23,20 @@ Conducted
 Dark  
 Metal  
 
+## SPECIAL ABILITY CLASSES 
+AOESpellAbility     
+BounceDashAbility   
+DamageConsumedCharactersAbility     
+FullyAnimatedDashAttackAbility  
+KaijuSpinThrowAbility   
+MultiHitMeleeAttackAbility  
+MultiTargetRangedAttackAbility  
+MeleeEatAbility     
+PierceDashAbility      
+PlaceholderMeleeAttackAbility       
+SuplexAbility        
+TeleportEatAbility
+
 ## RESTRICTIONS
 none  
 must_be_empty  
