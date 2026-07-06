@@ -50,6 +50,8 @@
 
 `AddStatusToBasicAttack {}` -- Table of statuses given to the basic attack
 
+`AddTemporaryEffectsToBasicAttack {}` -- Table of statuses added to the temporary effects of the basic attack
+
 `AddStatusToFirstBasicAttack {}` -- Table of statuses given to the first basic attack
 
 `AddSelfStatusToBasicAttack {}` -- Table of statuses given to the basic attack that get applied to the source
@@ -92,6 +94,8 @@
 `AddStatusesIfPersistentWeatherElement {}` -- Table of statuses given if there is a persistent element weather
 * `element [Element_Name]` -- Chosen [element](enums.md#elements) list
 
+`AddTemporaryEffectsToEquipment {}` -- Table of statuses added to the temporary effects of the equipped items's abilities
+
 ### AddPassives
 
 `AddPassivesToMinions {}` -- Table of passives applied to the target's familiars
@@ -108,6 +112,9 @@
 `StatusWhenAllySpendsMana {}` -- Table of statuses given to the character when an ally spends mana
 
 `StatusAlliesOnSpendMana {}` -- Table of statuses given to allies when the character spends mana
+
+`StatusAlliesOnDeath {}` -- Table of statuses given to allies when the character dies
+* `trigger_limits X` -- How many times it can be triggered (default: infinite)
 
 `ScaledStatusAlliesOnSpendMana {}` -- Table of statuses given to allies when the character spends mana for each mana point spent
 
@@ -677,6 +684,10 @@
 
 `WeaponDamageMultiplierBonus float` -- Weapon damage is multiplied by X
 
+`IncreaseExplosionSize X` -- Increases the source's explosions size by X
+
+`IncreaseExplosionDamage X` -- Increases the source's explosions damage by X
+
 ### Auras
 
 `DepressionAura {}` -- Gives all units in a Y range X all stats down
@@ -833,6 +844,8 @@
 `BonusFoodEachBattle X` -- Gives X bonus food when winning a battle
 
 `ConsumablesInfiniteRange 1` -- Gives the target infinite range on it's consumables
+
+`SafeExplosions 1` -- The character's explosive damage won't affect allies
 
 `BouncyProjectiles {}` -- Makes the target projectiles bounce X times to a Y range
 * `max_bounces X` -- Max number of bouces the projectile can do
@@ -1557,10 +1570,6 @@
 `PermanentUpgradeRandomActive X` -- Upgrades permanently X random abilities
 
 `PermanentUpgradeRandomActiveOrPassive X` -- Upgrades permanently X random abilities or passives
-
-`IncreaseExplosionSize X` -- Increases the source's explosions size by X
-
-`IncreaseExplosionDamage X` -- Increases the source's explosions damage by X
 
 `ExplosionImmunity 1` -- Gives explosion damage immunity
 

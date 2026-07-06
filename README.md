@@ -17,4 +17,7 @@ Someone else can come up with a better description
     - [Text](misc.md#text-functions)
     
 
+Tools
+- [Cat Animation Viewer](https://ombrellus.github.io/Mewgenics-CatAnimsPlayer/)
+
 Some general infos can be found in [notes](notes.md)
