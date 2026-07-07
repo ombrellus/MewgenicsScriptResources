@@ -16,9 +16,13 @@
 
 > TODO Add example and test specific passive effects only found in weathers
 
-## WEATHER SPECIFIC PASSIVE EFFECTS
+## Global modifiers
 
-`GlobalParticle` -- Spawns a particle with the base axis being at the bottom of the map.
+`GlobalParticle ParticleID` -- Spawns a particle with the base axis being at the bottom of the map.
+
+`LowerAmbientLight {}` -- Creates a global ambient light
+* `amount [X%]` -- List of light percentage amount that the light cycles through (can also be used as `LowerAmbientLight X%`)
+* `speed X` -- Speed in which the light cycles through the list
 
 `Rain X` -- Rain effects, persistent water element [TEST X]
 

@@ -40,7 +40,7 @@
 `AddHiddenTag string` -- Adds an hidden tag to the character (hidden tags are more specific tags refenced only in gon files)
 
 `CreateGlobalModifiers {}` -- Sets certain global modifiers
->Note: You can find most global modifiers in [weather formatting.](weather_formatting.md#WEATHER20%SPECIFIC20%PASSIVE20%EFFECTS)
+>Note: You can find most global modifiers in [weather formatting.](weather_formatting.md#global-modifiers)
 
 `RemoveGlobalModifiers {}` -- Removes certain global modifiers
 
@@ -519,6 +519,13 @@
 * `element Element_Name` -- The [element](enums.md#elements) (Can also be used as `DiesToElement Element_Name`)
 * `instant bool` -- If the death is instant
 
+`ChanceToSpitOnDamage {}` -- Chance to spit the consumed character on damage
+* `ability AbilityID` -- Ability used to spit
+* `flat_chance X%` -- Chance
+* `chance_per_damage X%` -- Chance for each point of damage dealt
+* `backstabs_only bool` -- If it works only with backstabs (default: false)
+* `even_on_0_damage_if_knockback bool` -- If it works even when the damage deals 0 damage but dealws knockback (default: false)
+
 `AllUnitsExplodeOnDeath X` -- Whenever a character dies it explodes dealing X damage
 
 `MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
@@ -781,8 +788,6 @@
 
 `SizeScalePercent X%` -- Changes the target's size scale by percentage
 
-`LoopingSoundWhileAlive SoundID` -- Plays a looping sound while the character is alive
-
 `SetDefaultFacePassive FaceID` -- Changes the default face of the cat with the specified one
 
 `CharacterLightSource {}` -- Makes the character cast a light
@@ -792,6 +797,10 @@
 `MoveSpeedMultiplier float` -- Changes the movement speed by a multiplier
 
 `HideSomeHudStuff 1` -- Hides some hud elements like health, shield and statuses
+
+`SoundEventOnHit SoundID` -- Plays a sound if the damage hits
+
+`LoopingSoundWhileAlive SoundID` -- Plays a looping sound while the character is alive
 
 ### Ai
 
@@ -1182,6 +1191,8 @@
 `HealthGain X` -- Heals by X  
 
 `ManaGain X` -- Gives X mana
+
+`MaxHPUp X` -- Increases max hp by X
 
 `ManaSteal X` -- Source steals X mana from the target
 
