@@ -1542,13 +1542,14 @@
 `NextBattleStatusStacks {}` -- Table of statuses given to the character the next X fights
 * `fights X`
 
+`NextBattleStatus {}` -- Table of statuses to give at the start of the next battle
+
 `ForceTransferWeapon 1` -- Forces the source's weapon to go to the target
 
 `BackflipWhenTargeted {}` -- Gives X backflips using a specified ability for the backflip
 * `stacks X` -- Amount (Can also be used as `BackflipWhenTargeted X`)
 * `ability AbilityID` -- Ability used to backflip
 
-`NextBattleStatus {}` -- Table of statuses to give at the start of the next battle
 
 `FlippedFacingForceAttack 1` -- Flips direction and force attacks
 

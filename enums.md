@@ -157,7 +157,7 @@ turn_count
 random_0_to_N  
 alpha_exists  
 current_shield  
-storn_count  
+storm_count  
 this_ability_storm_count  
 is_dead  
 enable_if_has_ammo  
