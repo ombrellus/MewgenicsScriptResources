@@ -6,16 +6,16 @@
 `AbilityID {}` -- Add 2 at the end for the upgraded version
 
 * `Class Class_Name` -- Unique ability classes for certain situations - check [in enums.](enums.md#SPECIAL20%ABILITY20%CLASSES)
-* `template Template_Name` -- Ability template, will inherit all of the configurations of the template [check ablity_template.gon for templates]
+* `template Template_Name` -- Ability template, will inherit all of the configurations of the template. All templates can be found [here.](enums.md#ABILITY20%TEMPLATES)
 * `variant_of AbilityID` -- Will inherit the configurations of the specified spell
 * `tags [string]` -- List of ability tags
-* `chain_ability AbilityID` -- Ability casted right after this one
+* `chain_ability AbilityID` -- Ability casted right after this one. 
 * `ai_ability AbilityID` -- (AI) Another ability that is used to calculate the ai chance for this one
 * `keyword_tooltips {}` -- Table of statuses that overwrites the standard tooltips
 * `meta {}` -- Contains the information about the ability
 * `graphics {}` -- Contains the graphical properties of the ability
 * `cost {}` -- Containts the costs and requirements of the ability
-* `target {}` -- Contains the targetting properties of the ability
+* `target {}` -- Contains the targeting properties of the ability
 * `damage_instance {}` -- Contains the damage properties of the ability
 * `spawn {}` -- Used for spawning abilities, contains the spawn properties of the ability
 * `sounds {}` -- contains the sound properties of the ability

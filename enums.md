@@ -37,6 +37,32 @@ PlaceholderMeleeAttackAbility
 SuplexAbility        
 TeleportEatAbility
 
+## ABILITY TEMPLATES
+
+template_dash_attack    
+template_jump_attack    
+template_jump_move      
+template_laser      
+template_leave      
+template_lobbed_attack      
+template_melee_attack       
+template_melee_spell        
+template_move       
+template_multihit_self_buff     
+template_placeholder    
+template_ranged_attack      
+template_return     
+template_self_buff      
+template_spawn      
+template_spell      
+template_straightshot_attack        
+template_swap       
+template_targeted_status        
+template_teleport       
+template_throw_attack       
+template_tile_targeted_melee_attack     
+template_trample_dash   
+
 ## RESTRICTIONS
 none  
 must_be_empty  
