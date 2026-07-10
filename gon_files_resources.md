@@ -1231,9 +1231,17 @@
 
 `SafeDie 1` -- Dies without injury
 
+`Vaporize 1 ` -- Destroys the target
+
+`DeferVaporize 1` -- Destorys the target (delayed)
+
+`VaporizeTarget 1` -- Destroys only the targetted character
+
 `CorpseVaporizer 1` -- Destroys the target and it's corpse
 
 `VaporizeCorpse 1` -- Destroys a corpse
+
+`VaporizeCorpseFlipAdvantage [1 float]` -- Destorys a corpse (advantage is flipped, luck reduces the chance of it happening)
 
 `VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
 
