@@ -187,6 +187,7 @@ storm_count
 this_ability_storm_count  
 is_dead  
 enable_if_has_ammo  
+you_are_the_alpha   
 
 ## STR_AUX INITIALIZE
 random_seed  
