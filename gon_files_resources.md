@@ -519,6 +519,10 @@
 * `element Element_Name` -- The [element](enums.md#elements) (Can also be used as `DiesToElement Element_Name`)
 * `instant bool` -- If the death is instant
 
+`ExplosionIfHitSomething X` -- Creates an explosion that deals X damage if something is hit
+
+`SafeExplosionIfHitSomething X` -- Creates an explosion that deals X damage if something is hit (doesn't damage the caster)
+
 `ChanceToSpitOnDamage {}` -- Chance to spit the consumed character on damage
 * `ability AbilityID` -- Ability used to spit
 * `flat_chance X%` -- Chance
@@ -958,6 +962,7 @@
 * `PermanentImmobile 1`
 * `Freeze X`
 * `Hex X`  
+* `Drowsy X`   
 * `Weakness X`
 * `Poison X`
 * `Leeches X`
@@ -1469,7 +1474,7 @@
 `DisplaceToAbilityTarget 1` -- Displaces characters in the ability's area as close to the targetted tile 
 
 `RandomDistanceDisplace {}` -- Displaces the target by a random distance
-* `stacks X` -- Max distance
+* `stacks X` -- Max distance (can also be used as `RandomDistanceDisplace X`)
 * `min_dist X` -- Minimum distance
 
 `NextActionLuckUp X` -- [TEST if it's not only LuckUp]
@@ -1481,6 +1486,8 @@
 `Tangled {}` -- Tangles the target
 * `stacks X` -- Tangled amount (Can also be used as `Tangled X`)
 * `alt_art MotionClip_Name` -- Motion clip to replac ethe default tangled art
+
+`KnockbackDirectionIsFacingDirection 1 or Direction_Changer` -- Makes the inflicted knockback be directed where the character is facing, direction can also be modified with [flip rotate_right rotate_left]
 
 `KnockbackIfCrit {}` -- Give X knockback to the target if the attack crits
 * `knockback X` -- Amount of knockback
@@ -1568,8 +1575,6 @@
 `Instakill X` -- Instakills non boss units, and deals X damage to bosses
 
 `MonkStanceSwitch 1` -- Switches the monk stance of the target [TEST]
-
-`ExplosionIfHitSomething X` -- Creates an explosion that deals X damage if something is hit
 
 `DestroyNeckArmor 1` -- Destroys the neck item if it exists
 
