@@ -169,7 +169,7 @@ head
 neck  
 face  
 trinket  
-random_empty_armor
+random_empty_armor -- Only some things use it
 
 ## X_is
 custom  
