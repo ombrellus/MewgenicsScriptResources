@@ -612,6 +612,8 @@
 
 ### Stats related passives
 
+`BalanceStats 1` -- Balances all the character stats
+
 `AddMovement X` -- Adds X tiles to the movement range
 
 `CapMovementAbilityRange 1` -- Caps movement abilities' range at 1
@@ -845,6 +847,16 @@
 `AmplifyStatus {}` -- Adds X stacks to a specific status when inflicted by the target
 * `status Status_Name` -- Status (can also be used as `AmplifyStatus Status_Name`)
 * `addstacks X` -- Stacks to add (default: 1)
+
+`AmplifyPositiveStatus X` -- Adds X stacks to positive statuses when inflicted by the character
+
+`AmplifyNegativeStatus X` -- Adds X stacks to negative statuses when inflicted by the character
+
+`AmplifyKnockback X` -- Adds X knockback to knockback inflicted by the character
+
+`AmplifyReceivedNegativeStatus X` -- Adds X stacks to negative statuses given to the character
+
+`AmplifyReceivedPositiveStatus X` -- Adds X stacks to positive statuses given to the character
 
 `EquipTemporaryItem Item_Name` -- Gives the target a temporary item that breaks after battle
 
@@ -1306,6 +1318,8 @@
 `WeaponAuxMultiplier float` -- Multiplies the weapon aux by X
 
 `PurgeAll 1` -- Removes all buffs and debuffs from the target
+
+`ClearNegativeEffects 1` -- Removes negative effects being given
 
 `AllyInfested {}` -- Applies a special type of infested, spawning a specific character type and in a specific faction
 * `object CharacterID` -- Character to spawn
