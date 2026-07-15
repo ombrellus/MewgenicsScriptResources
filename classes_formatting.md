@@ -19,19 +19,19 @@ In order to create a class, in a new or existing file in data/classes you need t
 
 ## Meta
 
-`name string` -- Name of the class (can check in CSV files)
-`description string` -- Description of the class (can check in CSV files)
+`name string` -- Name of the class (can check in CSV files)    
+`description string` -- Description of the class (can check in CSV files)    
 
 ## Graphics
 
-`palette X or [X]` -- Id of the palette row to use for the class color (a list can be used to randomize it)
-`hud_palette X` -- Id of the palette row to use for the class hud (If unspecified, it will use the normal palette)
-`alt_animations [[AnimationName AnimationName]]` -- List of cat's animations to swap for another animation
-`portrait_face FaceID` -- [Face](misc.md#cat-faces) to use for the cat's portrait
+`palette X or [X]` -- Id of the palette row to use for the class color (a list can be used to randomize it)    
+`hud_palette X` -- Id of the palette row to use for the class hud (If unspecified, it will use the normal palette)    
+`alt_animations [[AnimationName AnimationName]]` -- List of cat's animations to swap for another animation    
+`portrait_face FaceID` -- [Face](misc.md#cat-faces) to use for the cat's portrait    
 
 ## Ability Groups
 
-`attack [AbilityID]` -- Attack abilities
-`defense [AbilityID]` -- Defense abilities
-`move [AbilityID]` -- Movement abilities (one will always show up if the cat has none)
-`misc [AbilityID]` -- Misc abilities
+`attack [AbilityID]` -- Attack abilities    
+`defense [AbilityID]` -- Defense abilities    
+`move [AbilityID]` -- Movement abilities (one will always show up if the cat has none)    
+`misc [AbilityID]` -- Misc abilities    
