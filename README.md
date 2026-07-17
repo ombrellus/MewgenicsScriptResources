@@ -2,6 +2,7 @@
 Someone else can come up with a better description
 - [Ability Formatting](ability_fields.md)
 - [Passive Formatting](passive_formatting.md)
+- [Class Formatting](class_formatting.md)
 - [Item/Set/Pools Formatting](item_formatting.md)
 - [Character Formatting](character_formatting.md)
 - [Weather Formatting](weather_formatting.md)

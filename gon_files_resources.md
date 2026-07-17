@@ -1242,6 +1242,8 @@
 
 `Rebuke X` -- Deal damage to the target equal to X * the damage that unit last dealt  
 
+`RNGCannonRandomDamage X` -- Deals 0-X damage to the target, affected by luck
+
 `DamageOrHealConditionally 1` -- Makes the ability heal allies and damage enemies  
 
 `Die 1` -- Target dies  
@@ -1602,7 +1604,7 @@
 
 `DamageWeapon X` -- Damages the weapon by X
 
-`RemoveItem Item_Name` -- Removes a specific item from the target's inventory
+`RemoveItem Item_Name` -- Removes a specific item from the target's equipped items
 
 `UpgradeRandomAbility 1` -- Upgrades a random ability temporarily
 
