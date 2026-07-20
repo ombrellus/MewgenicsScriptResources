@@ -1051,7 +1051,13 @@
 * `TempRangeUp X`
 * `TempDamageUp X`
 * `TempSpellDamageUp X` -- (BUG) When the status is removed, it removes all bonus spell damage
-* `OneUseSpellDamageUp X` -- (BUG) When the status is removed, if it was given in the same damage instance as SpellDamageUp, it removes all SpellDamageUp.
+* `OneUseSpellDamageUp X` -- (BUG Below)
+>[!Quote from User "Lazy" likemods]
+```
+if SpellDamageUp was applied as a status first, then SpellDamageUp (status) is not removed
+if SpellDamageUp was applied as a status after OneUseSpellDamageUp, then the SpellDamageUp status is removed on spell damage use
+note: i differentiate "applied as status" from "applied as passive" here because magic damage applied as a passive of equipment or passives does not influence this interaction
+```
 
 ### Status applying
 
