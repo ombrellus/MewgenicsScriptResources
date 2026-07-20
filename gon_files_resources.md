@@ -583,6 +583,10 @@
 
 `ReplaceSpellsWhenDead AbilityID` -- Replaces the character's base spells with a specific one when it's dead
 
+`ReplaceSpell {}` -- Replaces a slot of a unit cat's abilities with a different one.
+* `slot X` -- 0 to 4
+* `ability AbilityID` -- Ability it replaces with
+
 `DisableAbilitiesWithTag string` -- Disables all the target's abilities that have a specified tag
 
 `BonusAbility AbilityID` -- Gives the target the specified ability in it's bonus spell slot
