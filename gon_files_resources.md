@@ -965,6 +965,10 @@
 >[!NOTE]
 >These statuses can be given as parameter a list of an integer and a float [X Y] where X = status stacks Y = chance of applying
 
+### The full list of statuses ripped from the source code are [here.](https://github.com/NancokPS2/mewgenics-gon-map/blob/main/Statuses.txt) HOWEEVER, keep in mind that because some of these statuses are either unused or not fully coded, they have potential to break or crash on use.
+
+" X statuses "
+
 * `Shield X`
 * `Burn X`
 * `Bleed X`
@@ -1047,6 +1051,7 @@
 * `TempRangeUp X`
 * `TempDamageUp X`
 * `TempSpellDamageUp X` -- (BUG) When the status is removed, it removes all bonus spell damage
+* `OneUseSpellDamageUp X` -- (BUG) When the status is removed, if it was given in the same damage instance as SpellDamageUp, it removes all SpellDamageUp.
 
 ### Status applying
 
