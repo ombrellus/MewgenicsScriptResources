@@ -497,7 +497,32 @@ win
 critwin    
 test    
 
-# VANILLA FURNITURE VARIABLES
+## VANILLA ACTIVE POOLS 
+
+>[!Note from user "CVS" ia_svc]
+>These pools appear to be exclusively for the tutorial but can be utilized.
+
+BasicAttackPool (NOTE - COLLARLESS BASICS ONLY)
+CatAbilityPool    
+CatGenAbilityPool    
+ColorlessAbilities    
+
+## VANILLA PASSIVE POOLS
+
+all_disorders    
+birth_defects (NOTE - THESE DO NOT HAVE TO BE DECLARED IN ALL DISORDERS)    
+mental_disorders    
+physical_disorders    
+diseases    
+magic_disorders    
+forbidden_spell_consequences    
+forbidden_spell_consequences_crippling    
+stomach_disorders    
+low_hygeine_in_house_disorders    
+Steven_disorders    
+Crazy_disorders    
+
+## VANILLA FURNITURE VARIABLES
 
 Appeal    
 AutoFeedCat (UNUSED - UNKNOWN IF USABLE)    
