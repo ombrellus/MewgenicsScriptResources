@@ -439,6 +439,9 @@ Thunderstorm
 Tornado     
 TrainingDay     
 TrashDay    
+VisualFlySwarm  
+Wildfire    
+Windy   
 
 
 ## VANILLA EVENT CAT ANIMATIONS
@@ -493,6 +496,16 @@ critfail
 win    
 critwin    
 test    
-VisualFlySwarm  
-Wildfire    
-Windy   
+
+# VANILLA FURNITURE VARIABLES
+
+Appeal    
+AutoFeedCat (UNUSED - UNKNOWN IF USABLE)    
+BreedSuppression    
+Comfort    
+Evolution    
+FightBonusRewards    
+FightRisk    
+FoodStorage    
+Health    
+Stimulation    
