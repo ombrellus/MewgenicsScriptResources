@@ -614,9 +614,13 @@
 * `class ClassName` -- Class (remove it to reduce the mana cost of all spells of the character's class) (Putting `Jester` will reduce the cost of all classes spells)
 * `reduction X` -- Amount of mana to reduce (TEST percentage)
 
+`ChanceToDisableActionsIfNotCharmed X%` -- Chance to disable any action if not charmed/posessed/madness or other possessing statuses
+
 ### Stats related passives
 
 `BalanceStats 1` -- Balances all the character stats
+
+`BaseStatMultiply float` -- Multiplier applied to all stats
 
 `AddMovement X` -- Adds X tiles to the movement range
 
@@ -723,6 +727,10 @@
 * `square bool` -- If the range is a square instead of a cross
 * `range X` -- Effect range (Set to `global` for global range)
 
+`GlobalFamiliarDamageBoost X` -- Boosts familiar damage by X
+
+`GlobalFamiliarMoveBoost X` -- Boosts familiar movement by X
+
 ### Ability specific passives
 
 `AbilityInheritsWeaponEffects X` -- The ability inherits the equipped weapon effects multiplied by X 
@@ -799,6 +807,9 @@
 `SizeScalePercent X%` -- Changes the target's size scale by percentage
 
 `SetDefaultFacePassive FaceID` -- Changes the default face of the cat with the specified one
+
+`SetAnimationAlts {}` -- Table of animations to replace with a new one
+* `Animation_Name Animation_Name` -- Old and new animation
 
 `CharacterLightSource {}` -- Makes the character cast a light
 * `color [float float float]` -- Color of the light in rgb
@@ -899,7 +910,9 @@
 
 `SetFaction  Faction_Name` -- Puts the character in a specific [faction](enums.md#factions)
 
-`SetBrittleImmune Itemset_Name` -- Removes brittle to items of a specific item set
+`SetBrittleImmune Itemset_Name or ""` -- Removes brittle to items of a specific item set (Set as an empty string to remove brittle from all items)
+
+`SetFragileImmune Itemset_Name or ""` -- Removes fragile to items of a specific item set (Set as an empty string to remove fragile from all items)
 
 `DamageFromBehindOnly 1` -- Makes the character ignore all attacks that aren't from the back 
 
@@ -1238,9 +1251,13 @@
 
 `OverrideDamage X` -- overrides the damage dealt with X
 
+`BonusDamage X` -- Makes the attack deal X bonus damage
+
 `IgnoreDamage 1` -- Ignores the damage dealt
 
 `DoDamage {}` -- Creates a [damage instance](ability_fields.md#damage_instance--self_damage) targetting the target
+
+`MergeDamageInstance {}` -- Creates and merges a new [damage instance](ability_fields.md#damage_instance--self_damage) to the already active one
 
 `ArcLightning {}` -- Arcs lightning to a in distance that chains to other enemies (seems to chain only once)
 * `stacks X` -- Actually not sure, X is 100 usually
@@ -1261,6 +1278,8 @@
 
 `DamageOrHealConditionally 1` -- Makes the ability heal allies and damage enemies  
 
+`Instakill 1` -- Deals infinite damage to the target (Can be stopped with IgnoreDamage)
+
 `Die 1` -- Target dies  
 
 `SafeDie 1` -- Dies without injury
@@ -1278,6 +1297,34 @@
 `VaporizeCorpseFlipAdvantage [1 float]` -- Destorys a corpse (advantage is flipped, luck reduces the chance of it happening)
 
 `VaporizeInanimate 1` -- Destroys a character if it's an inanimate object
+
+### Knockback
+
+`BonusKnockbackDamage X` -- Makes the attack deal X bonus knockback damage
+
+`Displace X` -- Displaces the target by X tiles
+
+`DisplaceTowardsSource X` -- Displaces the target by X tiles towards the source
+
+`DisplaceToAbilityTarget 1` -- Displaces characters in the ability's area as close to the targetted tile 
+
+`RandomDistanceDisplace {}` -- Displaces the target by a random distance
+* `stacks X` -- Max distance (can also be used as `RandomDistanceDisplace X`)
+* `min_dist X` -- Minimum distance
+
+`KnockbackDirectionIsFacingDirection 1 or Direction_Changer` -- Makes the inflicted knockback be directed where the character is facing, direction can also be modified with [flip rotate_right rotate_left]
+
+`KnockbackIfCrit {}` -- Give X knockback to the target if the attack crits
+* `knockback X` -- Amount of knockback
+* `override_chain_knockback Y` -- Override chain knockback given with Y
+
+`KnockUpAndAway {}` -- Knocks the target away throwing it in the air 
+* `stacks X` -- Damage it deals if it hits something
+* `distance X` -- Knockback distance
+* `displace bool` -- [TEST]
+* `self_damage bool` -- if it deals damage to itself (default: true)
+
+`PullSourceToKnockbackImmuneTarget 1` -- When knockback is dealt, if the target is immune to it pull the source to it  
 
 ### Turns
 
@@ -1422,7 +1469,7 @@
 
 `RemoteFlatLeech X` -- Heals the spawner by X when damaging something
 
-`PullSourceToKnockbackImmuneTarget 1` -- When knockback is dealt, if the target is immune to it pull the source to it  
+
 
 `ScrambleLastUsedSpell {}` -- Replaces the last used spell with a random one
 * `permanent bool` -- If the effect is permanent
@@ -1498,16 +1545,6 @@
 
 `DontHealEnemies 1` -- Prevents the damage instance heal from applying to enemies
 
-`Displace X` -- Displaces the target by X tiles
-
-`DisplaceTowardsSource X` -- Displaces the target by X tiles towards the source
-
-`DisplaceToAbilityTarget 1` -- Displaces characters in the ability's area as close to the targetted tile 
-
-`RandomDistanceDisplace {}` -- Displaces the target by a random distance
-* `stacks X` -- Max distance (can also be used as `RandomDistanceDisplace X`)
-* `min_dist X` -- Minimum distance
-
 `NextActionLuckUp X` -- [TEST if it's not only LuckUp]
 
 `NextBasicAttackCritsThisTurn 1` -- Makes the next basic attack crit, removed at turn end
@@ -1517,18 +1554,6 @@
 `Tangled {}` -- Tangles the target
 * `stacks X` -- Tangled amount (Can also be used as `Tangled X`)
 * `alt_art MotionClip_Name` -- Motion clip to replac ethe default tangled art
-
-`KnockbackDirectionIsFacingDirection 1 or Direction_Changer` -- Makes the inflicted knockback be directed where the character is facing, direction can also be modified with [flip rotate_right rotate_left]
-
-`KnockbackIfCrit {}` -- Give X knockback to the target if the attack crits
-* `knockback X` -- Amount of knockback
-* `override_chain_knockback Y` -- Override chain knockback given with Y
-
-`KnockUpAndAway {}` -- Knocks the target away throwing it in the air [TEST]
-* `stacks X` -- [TEST]
-* `distance X` -- Knockback distance
-* `displace true` -- [TEST]
-* `self_damage false` -- [TEST]
 
 `ScatterCoins {}` -- Scatters X coins around
 * `stacks X`-- Amount of coins
@@ -1606,6 +1631,8 @@
 `Instakill X` -- Instakills non boss units, and deals X damage to bosses
 
 `MonkStanceSwitch 1` -- Switches the monk stance of the target [TEST]
+
+`RepairWeapon X` -- Repairs the held weapon by X
 
 `DestroyNeckArmor 1` -- Destroys the neck item if it exists
 

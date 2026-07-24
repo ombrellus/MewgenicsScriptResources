@@ -257,6 +257,8 @@
 
 `max_targets X` -- Target only a Maximum of X tiles
 
+`min_targets X` -- Target only a minim of X tiles
+
 `can_multihit bool` -- If the ability can hit multiple times
 
 `multihit X` -- The ability hits X times
@@ -331,6 +333,8 @@
 
 `knockback X` -- knockback dealt by the ability
 
+`can_instapop bool` -- If it can overkill and destory bodies (default: true)
+
 `override_trample_damage X` -- Overrides the trample damage with X
 
 `incidentally_collects_pickups bool` -- If the ability collects pickupcs from the tiles it hits
@@ -351,7 +355,9 @@
 
 `hit_animation_alt Animation_name` -- Change the hit animation for this damage instance
 
-`force_play_hit_animation bool` -- If the ability forces the target to play it's hit animation
+`force_play_hit_animation bool` -- If the ability forces the target to play it's hit animation (default: false)
+
+`force_no_hit_animation bool` -- If the ability forces the target to not play it's hit animation (default: false)
 
 `disallow_modifications bool` -- If the damage/heal of the damage instance isn't allowed to be modified
 
@@ -370,6 +376,12 @@
 `object CharacterID or [CharacterID]` -- Character or list of possible entities to spawn
 
 `faction Faction_Type` -- [Faction](enums#factions) of the spawned character
+
+`clone_items bool` -- (FOR CATS) If the spawned cat copies the source's items (default: false)
+
+`inherit_elite_buffs bool` -- If it inherits elit buffs from the source (default: true)
+
+`face_camera bool` -- If it spawns facing the camera (defalt: false)
 
 `first_turn Firt_Turn_Type` -- When the spawned character takes it's first turn [next_turn initiative next_round end_of_round]
 

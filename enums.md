@@ -144,6 +144,7 @@ bonus_melee_range
 bonus_melee_damage  
 bonus_basic_spell_damage  
 level  
+size   
 str  
 spd  
 int  
