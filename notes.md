@@ -24,6 +24,28 @@ The following statuses work well as dummy statuses with the exception that there
 * `FinalBossHitCountdownExplosive` -- Lowers by one integer on being hit.
 * `FinalBossHitCountdownHoly` -- Lowers by one integer on being hit.
 
+## Abilities and the "Self"
+
+Abilities have two unique "variants" - the unit ability and the non-unit ability. In better specification, if a ability is cast directly from a unit, the ability will consider itself in terms of it's involvement with the unit. However, despite still being tracable to the source, abilities cast from functions such as ForceUseAbility, chain_ability or delayed_trigger (essentially ForceUseAbility) do NOT consider themselves when reading over statuses that have to do with their placement.
+
+Let's consider a example:
+
+```
+target {
+    delayed_trigger true
+}
+
+damage_instance {
+    type spell
+    damage 0
+    effects {
+        TransformAbility MyNewAbility
+    }
+}
+```
+
+This is a "broken" format; because TransformAbility is occuring as a ability "seperated" from it's unit, the ability cannot consider itself in terms of the unit and **will not transform.**
+
 ## Setting up Hitler spawning custom cats
 
 While it seems like a given, this is just a resource for those who don't know.

@@ -733,7 +733,7 @@
 
 ### Ability specific passives
 
-`AbilityInheritsWeaponEffects X` -- The ability inherits the equipped weapon effects multiplied by X 
+`AbilityInheritsWeaponEffects X` -- The ability inherits the equipped weapon damage multiplied by X, with the same amount of statuses (1 damage instance of said statuses)
 
 `DownRankAIIfWeaponUsable float` -- sets the ability ai chance to the specified flaotif the character's weapon is usable
 
@@ -1067,9 +1067,12 @@
 * `RangeUp X`
 * `TempRangeUp X`
 * `TempDamageUp X`
-* `TempSpellDamageUp X` -- (BUG) When the status is removed, it removes all bonus spell damage
-* `OneUseSpellDamageUp X` -- (BUG Below)
->[!Quote from User "Lazy" likemods]
+* `TempSpellDamageUp X`[^SpellBug]
+* `OneUseSpellDamageUp X`[^SpellBug]       
+
+[^SpellBug]: These statuses have specific bugs. Said bugs are below.
+>[!WARNING]
+>Quote from user "Lazy" likesmods:
 > ```
 > if SpellDamageUp was applied as a status first, then SpellDamageUp (status) is not removed
 > if SpellDamageUp was applied as a status after OneUseSpellDamageUp, then the SpellDamageUp status is removed on spell damage use

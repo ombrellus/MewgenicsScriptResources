@@ -91,7 +91,139 @@ I.e. `img[{str_aux}]`
 
 > Example: `Did you know the symbol for the Jester [img:Jester] looks like a die?! And Colorless [img:Colorless] looks like a "No" symbol!`
 
+`{binding:X}` -- The specific [binding](enums.md#input-bindings) a controller or keyboard has for a specific input.
+
+## Abilities
+
+Some abilities have specific utility variables for their descriptions that are replaced upon use. 
+
+`{vX}` -- Replaced by the set of variables in the "tooltip_values" found in the "meta" table of a ability. X is the value called (v0 being the first, v1 being the second, so on)
+
+## Items
+
+Some items have specific utility variables that are replaced upon use.
+
+`{aux}` -- Replaced by the aux of the item. (TEST: Maybe works with abilities not sure)
+
+`{str_aux}` -- Replaced by the variable given for str_aux_initialize.
+
+`{aux_cat_name}` -- Replaced by the name of the cat using said item.
+
+`{str_aux_active_name}` -- Replaced by the active_name aux in str_aux_initialize (called upon random_copyable_colorless_ability)
+
+`{str_aux_active_desc}` -- Replaced by the active_desc aux in str_aux_initialize (called upon random_copyable_colorless_ability)
+
+`{str_aux_passive_name}` -- Replaced by the passive_name aux in str_aux_initialize (called upon random_copyable_colorless_passive)
+
+`{str_aux_passive_desc}` -- Replaced by the passive_desc aux in str_aux_initialize (called upon random_copyable_colorless_passive)
+
+`{amount}` -- The amount of uses left? (This is only ever used ADDITION_USES and ADDITION_DURABILITY so it's likely this actually doesn't do anything but must be tested first before removed.)
+
+`{chaptername}` -- The [chapter name](enums.md#vanilla-chapters) of the destination of a quest item. 
+
+## Combat
+
+`{rounds}` -- The amount of rounds that have passed, with the counter being 1+X, where Round 1 is 0.
+
+`{studiedtype}` -- Used only in combat, and only when triggered by Study (virtually useless)
+
+`{count}` -- Specifically only used in combat to count the amount of enemies that fled the battle.
+
+`{stacy_number}` -- Replaced with a random number.
+
+`{buddyname}` -- Replaced by the "buddy" variable in the passives table of a entity in combat; Guillotina's Head for her body, a chosen cat for Lenny, etc etc.
+
+`{SpawnedBy}` -- Replaced by the spawner of a entity.
+
+## Statuses
+
+Some statuses have specific utility variables that are replaced upon use.
+
+`{stacks}` -- The stacks of the status.
+
+`{absstacks}` -- The mathematically absolute value of the stacks of the status.
+
+`{applier}` -- Applier of the status.
+
+`{applier's}` -- The possessive pronoun of the applier of the status.
+
+## Level Up
+
+`{level}` -- Current level of the chosen cat (seems to only function on single-subject uses.)
+
+## Events
+
+While these aren't important to know regularly, there are useful variables that are replaced with certain strings that help writing flow well. These are mostly pronoun variables (i.e. she, they, him) but there are a couple other useful utilities.
+
+> [!TIP]
+> All pronoun specific words have uppercased and lowercased versions (i.e. {His} and {his}). However, since not all people will read this message, the lowercased versions have been supplied anyway.
+
+`{Catname}` -- Replaced with the name of the chosen cat for the event.  
+`{catname}` -- Achieves the same as it's counterpart, but does not begin with a uppercase.
+
+`{Catname's}` -- Replaced with the possessive form of the name of the chosen cat for the event.     
+`{catname's}` -- Achieves the same as it's counterpart, but does not begin with a uppercase.
+
+`{He}` -- Replaced by the single-subject appropriated version of "he" (i.e. he, she, they, it)      
+`{he}` -- Achieves the same as it's counterpart, but does not begin with a uppercase.
+
+`{His}` -- Replaced by the single-subject appropriated possessive pronoun. (i.e. his, her, theirs, its)     
+`{his}` -- Achieves the same as it's counterpart, but does not begin with a uppercase.
+> Note that " its' " is not a word.
+
+`{Him}` -- Replaced by the single-subject appropriated version of "him." (i.e. him, her, their, it)     
+`{him}` -- Achieves the same as it's counterpart, but does not begin with a uppercase.
+
+`{He's}` -- Replaced by the single-subject appropriated conjunction of the chosen cat pronoun and "is". (i.e. he's, she's, they're, it's)       
+`{he's}` -- Achieves the same as it's counterpart, but does not begin with a uppercase.
+
+`{Himself}` -- Replaced by the appropriated third-person reflexive (intensive) pronoun. (i.e. himself, herself, themselves, itself)         
+`{himself}` -- Achieves the same as it's counterpart, but does not begin with a uppercase.
+
+`{itemname}` -- Replaced with the event's "prize" item. (This will change based on the outcome of the event and it's arguements.)
+
+`{amount}` -- Replaced with certain aux values. Note that even if the event's value is a percent and not a integer, {amount} is still used to represent the percent value (though it should be accompanied by a percent symbol.)
+
+`{ability}` -- Replaced by the event's "prize" ability. 
+
+`{disorder}` -- Replaced by the event's "prize" disorder.
+
+`{passive}` -- Replaced by the event's "prize" passive.
+
+`{statchanges}` -- Replaced by the event's "prize" stat changes ({statchanges} is icons and no actual text. Will look like ""Fluffy got +1[img:str], -1[img:con]"" in context)
+
+## House (Interstatials)
+
+At the moment, these are useless to know since we can't do anything with house interstatial texts as of now (outside of changing them).
+
+`{Catname}` -- Replaced with the name of the chosen cat for the event.
+
+`{CatnameX}` -- Replaced with the name for the X cat selected during a multi-cat scene. (The first cat is 1, second 2, and so on...)
+
+`{gendericonX}` -- Replaced with the appropriate gender icon for the X cat selected in a multi-cat scene. (The first cat is 1, second 2, and so on...)
+
+`{injury}` -- Replaced by a selected injury associated with the selected cat.
+
+`{disorder}` -- Replaced by a selected disorder associated with the selected cat.
+
+`{age}` -- The age of the currently selected cat during a house intestatials cutscene. (seems to only function on single-subject uses.)
+
+`{age}` -- The age an NPC will accept a cat at, visually shown on the NPC map.
+
+`{amount}` -- Replaced with certain aux values. Note that even if the event's value is a percent and not a integer, {amount} is still used to represent the percent value (though it should be accompanied by a percent symbol.)
+
+`{year}` -- Replaced by the current ingame year.
+
+`{weekday}` -- Replaced by the day of the current ingame week.
+
+`{month}` -- Replaced by the current ingame month.
+
+`{day}` -- Replaced by the current ingame day.
+
 ## NPC Text
+
+> [!IMPORTANT]
+> All of the name and pronoun functions in [event text](misc.md#events) can apply in here.
 
 `a:string` -- Sets a text action to affect the string or substring. Here are the following known options:
 * `pulse` -- The letters pulse.
@@ -148,7 +280,6 @@ I.e. `img[{str_aux}]`
 `pause:num` -- Pauses for a certain amount of time between the preceeding substring and the following substring. "Num" is a float value but can be represented with a integer.
 
 `sfx:string` -- Plays a SFX value. Only seen ingame with the coin sound, used by Dr. Beanies.
-> note from the editor: how does dr. beanies pay you so much once he's broke? isn't he broke? i dont understand
 
 > Example: `Oh also, here's {questreward} coins for your time.[sfx:PickupCoin][pause:1][sfx:PickupCoin][pause:1][sfx:PickupCoin]`
 
@@ -156,10 +287,32 @@ I.e. `img[{str_aux}]`
 
 > Example: `Frank want [o:black][c:white][img:retired]Retired[/c][/o] cats only.`
 
+`{name}` -- The name of the NPC? (Only used by Baby Jack, Organ Grinder, and Tracy)
+
+`{desc}` -- The description of the NPC? (Only used by Baby Jack, Organ Grinder, and Tracy)
+
+`{organname}` -- The Steam User's name. (Notably, this is only declared on how Steam updates your name on the cloud, so having another person's savefile means you get their name too)
+
+`{questitemname}` -- Replaced by the quest item a NPC will give to you.
+
+`{questdestination}` -- Replaced by the [chapter](enums.md#vanilla-chapters) a NPC wants a specific item taken to.
+
+`{questreward}` -- Replaced by the reward a NPC gives you after finishing a specific QUEST. (Notably, instead of this being a object, this is used to indicate how many coins Beanies plans to reward you with.)
+
 ## Misc/Unused
 
 `ss` -- Shakes the screen upon being used. (TEST)
 
 > Example: `[ss][a:shake] GET OUT! [/a]`
 
+`{Teamname}` -- The name of a cat team through an adventure.
 
+`{Adjective}` -- Used by the Teamname variable.
+
+`{Nouns}` -- Used by the Teamname variable.
+
+`{level}` -- The current level of the cat; this variant of the variable is used only on the map screen.
+
+`{item}` -- Replaced by the item unlocked in the item unlock description (niche).
+
+`{version_file}` -- Replaced by the current version file of the game.

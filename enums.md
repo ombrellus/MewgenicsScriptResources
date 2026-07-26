@@ -152,8 +152,7 @@ cha
 con  
 dex  
 lck  
-mov
-
+mov     
 
 ## STATS
 str (long: Strength)  
@@ -224,7 +223,7 @@ tiles
 gas  
 trap  
 
-## TILES
+## VANILLA TILES
 BlankTile  
 BrambleTile  
 CreepTile  
@@ -500,10 +499,10 @@ test
 
 ## VANILLA ACTIVE POOLS 
 
->[!Note from user "CVS" ia_svc]
+>[!NOTE]
 >These pools appear to be exclusively for the tutorial but can be utilized.
 
-BasicAttackPool (NOTE - COLLARLESS BASICS ONLY)
+BasicAttackPool     
 CatAbilityPool    
 CatGenAbilityPool    
 ColorlessAbilities    
@@ -523,7 +522,7 @@ low_hygeine_in_house_disorders
 Steven_disorders    
 Crazy_disorders    
 
-## VANILLA FURNITURE VARIABLES
+## FURNITURE VARIABLES
 
 Appeal    
 AutoFeedCat (UNUSED - UNKNOWN IF USABLE)    
@@ -535,3 +534,14 @@ FightRisk
 FoodStorage    
 Health    
 Stimulation    
+
+## INPUT BINDINGS
+
+TacticalView
+Examine
+MenuNavigation
+Select
+VMouseMove
+Inventory
+Pause
+Examine

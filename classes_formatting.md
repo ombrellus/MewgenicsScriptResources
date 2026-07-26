@@ -1,6 +1,6 @@
 # Classes Formatting
 
-In order to create a class, in a new or existing file in data/classes you need to add a new Identifier (ClassID) like this:
+In order to create a class in a new or existing file in data/classes you need to add a new Identifier (ClassID) like this:
 
 `ClassID {}` -- The custom identifier of the class
 * `meta {}` -- Table that holds the name and description properties of the class

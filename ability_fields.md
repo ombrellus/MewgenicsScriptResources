@@ -5,8 +5,8 @@
 
 `AbilityID {}` -- Add 2 at the end for the upgraded version
 
-* `Class Class_Name` -- Unique ability classes for certain situations - check [in enums.](enums.md#SPECIAL20%ABILITY20%CLASSES)
-* `template Template_Name` -- Ability template, will inherit all of the configurations of the template. All templates can be found [here.](enums.md#ABILITY20%TEMPLATES)
+* `Class Class_Name` -- Unique ability classes for certain situations - check [in enums.](enums.md#special-ability-classes)
+* `template Template_Name` -- Ability template, will inherit all of the configurations of the template. All templates can be found [here.](enums.md#ability-templates)
 * `variant_of AbilityID` -- Will inherit the configurations of the specified spell
 * `tags [string]` -- List of ability tags
 * `chain_ability AbilityID` -- Ability casted right after this one. 
@@ -50,6 +50,8 @@
 `icon_damage_type Frame_Label` -- Changes the damage icon type [physical, heal, contextual, magic, combo (magic + physical), and contextualspell]
 
 `is_trinket bool` -- If this ability is a trinket ability
+
+`tooltip_values [ ... ]` -- A table of values the tooltip can give it's description. The first value is represented in text by "{v0}", the second is "{v1}", and so on.
 
 ---
 
