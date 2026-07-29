@@ -537,11 +537,11 @@ Stimulation
 
 ## INPUT BINDINGS
 
-TacticalView
-Examine
-MenuNavigation
-Select
-VMouseMove
-Inventory
-Pause
-Examine
+TacticalView        
+Examine     
+MenuNavigation      
+Select      
+VMouseMove      
+Inventory       
+Pause       
+Examine     

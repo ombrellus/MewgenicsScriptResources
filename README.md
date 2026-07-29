@@ -55,10 +55,10 @@ While these do not correlate directly with .GON scripts, the files of all FLAs w
 > [!IMPORTANT]
 > The following files are **posted as markdown files linking to their respective flas** due to the large size of said flas.
 > That being:
-> [npcs.md](ingame%20swfs/npc.md)
-> [events.md](ingame%20swfs/events.md)
-> [modular cutscenes.fla](ingame%20swfs/modular_cutscenes.md)
-> [ui.fla](ingame%20swfs/ui.md)
+> [npcs.md](ingame%20swfs/npc.md)           
+> [events.md](ingame%20swfs/events.md)          
+> [modular cutscenes.fla](ingame%20swfs/modular_cutscenes.md)           
+> [ui.fla](ingame%20swfs/ui.md)         
 
 # Tools
 
