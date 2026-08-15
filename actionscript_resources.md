@@ -11,6 +11,9 @@ If you have any script errors at all, then flash will NOT export your scripts (a
 `castpoint()`
 -- Triggers whatever attack/spell this animation is for on that frame.
 
+`PlaySound()`
+-- Plays a sound. These sounds can be found in comvat_sfx.gon in audio. Cat voice noises can be found in [enums.](enums.md#vanilla-cat-voice-sounds)
+
 `setInvisible()`
 -- Sets the symbol to be invisible.
 

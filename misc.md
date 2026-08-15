@@ -316,3 +316,21 @@ At the moment, these are useless to know since we can't do anything with house i
 `{item}` -- Replaced by the item unlocked in the item unlock description (niche).
 
 `{version_file}` -- Replaced by the current version file of the game.
+
+# Time Travel Frames
+
+Useless file on it's own.
+
+Each **house NPC** has a selection of small differences in their appearance and outfits, triggered to change when the time machine in Act 3 is used.
+The numbers correlating to a user's .gon files is the max amount of different variants pieces of a NPC can display. 
+
+Beanies (All versions) - 15 frames. (Pocket)
+Baby Jack - 10 frames. (Eyepatch)
+Stacy - 30 frames. (Head thing)
+Tracy - 10 frames. (Patch/headband)
+Butch - 10 frames. (Scratches)
+Organ Grinder - 10 frames. (Head)
+Frank (All versions) - 10 frames. (Body)
+Tink - 5 frames. (Crown)
+
+It can be surmised that increasing these values allows the game to pick from a larger pool of variants, if the movie objects are appended to.

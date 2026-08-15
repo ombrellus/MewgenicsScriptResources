@@ -48,6 +48,8 @@ The [notes](notes.md) file contains a variety of useful tips, gotchas, known "bl
 
 [Text](misc.md#text-functions)
 
+[Time Travel Frames](misc.md#time-travel-frames)
+
 ## SWF Resources
 
 While these do not correlate directly with .GON scripts, the files of all FLAs within the game are here for **modding usage only.** For further clarification, read the [proof of sincerity in the swf notes.](ingame%20swfs/1_notes.md#proof-of-sincerity-(flas))

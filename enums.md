@@ -443,6 +443,18 @@ VisualFlySwarm
 Wildfire    
 Windy   
 
+## VANILLA CAT VOICE SOUNDS
+
+Angry       
+Death       
+Happy       
+Hit     
+Hiss        
+Normal      
+Purr        
+Sad         
+Sing        
+
 
 ## VANILLA EVENT CAT ANIMATIONS
 
