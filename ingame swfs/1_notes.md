@@ -19,6 +19,28 @@ Since the game reads the current container (npc object) onscreen to call animati
 Because Mewgenics's actionscript statements are universal, it opens up the possibility for much more dynamic animations. 
 The actionscript statement with the MOST potential is `gotoAndPlay("loop");`, as this allows for certain animations to have "intros" that dont play again. This opens up the ability to have NPCs "enter" and "exit" the scene.
 
+# Graphic Overlays
+
+One of the most common issues with different mods appending to the same source file is the issue of graphic overlays. Sometimes, you'll finish making your .fla, and get something like this:
+
+![Failed Image Graphic](util_images/failedgraphic.png)
+
+Not good!
+
+The most common reason this can occur is from **graphic overlaying**; i.e, when a frame containing a type graphic is appended to the same frame containing a type movieclip, the graphic will overlay the movieclip of the preceeding frame.
+
+The following chart expressely identifies the behaviors of two different mods appending to the same frame, where "overlay" means either of the graphics overlay each other.
+
+| **Second Mod Loaded** |  | Frame 1, _Graphic_ | Frame 2, _Graphic_ | Frame 1, _Movieclip_ | Frame 2, _Movieclip_ |
+|---|---|---|---|---|---|
+| **First Mod Loaded** |   |   |   |   |
+| Frame 1, _Graphic_ |   | Overlay | Overlay | Overlay | Overlay |
+| Frame 2, _Graphic_ |   | Overlay | Normal | Overlay | Overlay |
+| Frame 1, _Movieclip_ |   | Normal | Normal | Normal | Normal |
+| Frame 2, _Movieclip_ |   | Normal | Normal | Normal | **Normal** |
+
+
+_From this, it can be correctly assumed that the **safest way to avoid these mistakes** is by **setting every single type of object in a appended scene to a movieclip.**_
 
 # Proof of Sincerity (FLAS)
 
