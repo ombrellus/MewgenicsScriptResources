@@ -47,6 +47,8 @@
 
 `icon_damage_display_eq X` -- Changes the damage display on the ability with X
 
+`icon_damage_display_suffix X` -- Changes the amount of cast suffixes with X
+
 `icon_damage_type Frame_Label` -- Changes the damage icon type [physical, heal, contextual, magic, combo (magic + physical), and contextualspell]
 
 `is_trinket bool` -- If this ability is a trinket ability
@@ -70,6 +72,8 @@
 `jump_attack_animation Animation_Name` -- Landing attack animation for jumps
 
 `land_animation Animation_Name` -- Landing animation for jumps
+
+`aoe_spell_on_land bool` -- Should the aoe spell happen on landing?
 
 `dash_start_animation Animation_Name` -- Start dash animation
 
@@ -141,11 +145,31 @@
 
 `palette X` -- Palette used for the ability graphics
 
+`damage_threshold_altanimations {}` -- Contains a list of animations that should be played based on the damage amount, where "X" is any value less than or equal to it relative to the last given value for a animation.
+* `animation X` -- Animation name, max damage.
+
+>[!EXAMPLE]
+>```
+>graphics {
+>    animation Default
+>
+>    damage_threshold_altanimations {
+>        heavyMelee 10
+>        heaviestMelee 20
+>    }
+>}
+>```
+>Where Default plays between 0 and 9, heavyMelee between 10 and 20, and heaviestMelee above 20.
+
 ---
 
 ## SOUNDS
 
 `ontrigger Sound_Name` -- Sound played when ability is triggered
+
+`oncast Sound_Name` -- Sound played when the ability's castpoint is triggered
+
+`oncastpoint Sound_Name` -- Sound played when the ability's castpoint is triggered
 
 ---
 
@@ -261,6 +285,8 @@
 
 `min_targets X` -- Target only a minim of X tiles
 
+`range_bonuses` -- Extra specific tiles that can be targeted with this attack. [include_alpha include_all_orthogonal include_adjacent_to_allies]        
+
 `can_multihit bool` -- If the ability can hit multiple times
 
 `multihit X` -- The ability hits X times
@@ -321,7 +347,7 @@
 
 `ai_base_score X` -- (AI) Base score that dictates the ai's willingness to cast this ability
 
-`type Type_Name` -- Damage type [ranged, melee, spell, status_spell, spell_cost, physical_spell]
+`type Type_Name` -- Damage type [ranged, melee, spell, status_spell, spell_cost, physical_spell, generic_physical, none]
 
 `damage X` -- Damage dealt by the ability
 

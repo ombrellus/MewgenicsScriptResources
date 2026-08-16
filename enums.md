@@ -22,6 +22,7 @@ Creep
 Conducted  
 Dark  
 Metal  
+Musical    
 
 ## SPECIAL ABILITY CLASSES 
 AOESpellAbility     

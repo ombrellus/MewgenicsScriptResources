@@ -46,8 +46,8 @@ In data/damage_text_styles.gon new damage styles can be specified by adding a cu
 `DamageStyleID {}`
 * `color [R G B]` -- Color of the text
 * `outline_color [R G B]` -- Color of the text's outline
-* `right_icon string` -- Icon after the text (TODO find where they are located)
-* `back_icon string` -- Icon behind the text (TODO find where they are located)
+* `right_icon string` -- Icon after the text (Symbol 4538 in UI)
+* `back_icon string` -- Icon behind the text (Symbol 4532 in UI)
 
 Damage styles based on the damage amount are specified in an array called `damagescale_thresholds`, each entry is a size 2 array formatted like:
 * `[X DamageStyleID]`

@@ -394,7 +394,7 @@
 * `faction Faction_Name` -- [Faction](enums.md#factions) of the spawned character
 * `additiona_statuses {}` -- Table of statuses given to the spawned character
 
-`SpawnThingOnDeath CharacterID` -- Spawns a character on death (redundant)
+`SpawnThingOnDeath CharacterID` -- Spawns a character on death (CAN ONLY BE USED FOR INDESTRUCTIBLE CORPSES)
 
 `TransformOnDeathImmediately {}` -- Transforms into another character as soon as the character dies
 * `obj CharacterID` -- Character
@@ -839,6 +839,10 @@
 
 `RandomPassivePool {}` -- Randomly selects a passive from the table
 
+`AbilityChargeRefundChance {}` -- Gives a chance for a ability requiring reload to reload after usage.
+* `chance X%` -- X% chance to be refunded.
+* `advantage_softcap X` -- The chance for this to modify, with X representing how many times you "roll" the dice. (Contained only to this, sorry.)
+
 `PassiveGroup {}` -- Treats a table of passives as one
 
 `IgnoreTiles 1` -- Ignore tiles
@@ -974,6 +978,12 @@
 `PermanentKitten 1` -- Makes the character permanently a kitten
 
 `ExtraInjuryOnDeath 1` -- Gives an extra injury when downed
+
+`DelayedWindTrail 1` -- Delayed wind trail on ability
+
+`RemoveOncePerFightRestriction 1` -- Removes once-per-fight restrictions.
+
+`WeaponCountsAsBasicAttack 1` -- Reflects if your weapon counts as your basic attack. **Note that the weapon will not gain any effects of the basic attack, but will gain additional effects given to your basic attack from outside the basic innate passives.**
 
 ---
 
