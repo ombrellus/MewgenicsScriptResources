@@ -291,6 +291,10 @@
 
 `multihit X` -- The ability hits X times
 
+`multihit_min X` -- The least amount of times the ability can multihit (random between this and max)
+
+`multihit_max X` -- The most amount of times the ability can multihit (random between this and min)
+
 `shotgun_mode bool` -- If the ability behaves like the shotgun item (projectiles come from you and hit the first thing they come in contact with)
 
 `stagger_multihit_targets bool` -- [TEST]

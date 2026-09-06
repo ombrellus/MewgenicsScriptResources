@@ -46,7 +46,6 @@
 
 `alt_animations [[Frame_Label Frame_Label]]` (_CAT) List of default cat animations to swap with custom ones
 
-
 ## Character stats
 
 `strength X` -- The characters strength stat
@@ -175,6 +174,10 @@
 
 `disallow_items all or ItemID` -- (_CAT) If the character is not allowed to use any or a specific item
 
+`partial_animation_suffix string` -- Animation suffix to all animations the character plays.
+
+`hint_no_corpse bool` -- Hints that the entity does not get a corpse (true by default)
+
 ## Character abilities
 
 `move AbilityID` -- Ability used by the character to move
@@ -200,6 +203,12 @@
 `stun_advances_pattern bool` -- If skipped turns from stun advances the pattern
 
 `randomize_pattern_start bool` -- If it chooses a random pattern when spawned
+
+`reset_pattern_on_formswitch bool` -- Should pattern be reset on formswitch?
+
+`clamp_pattern bool` -- Should the pattern clamp if it is impossible to reach a certain ability in the pattern before it can reset? [TEST]
+
+`wait_till_next_round_to_update_turns bool` -- Should wait until the next round before it's turn amount/order is updated.
 
 `virtual_abilities {}` -- Table of unique character abilities that can use different weights or movement actions than the default ones
 * `VirtualAbilityName {}` -- Custom name for a virtual ability 

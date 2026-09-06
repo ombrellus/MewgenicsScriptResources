@@ -35,17 +35,6 @@
 
 ## PASSIVES
 
-`AddTag string` -- Adds a tag to the character
-
-`AddHiddenTag string` -- Adds an hidden tag to the character (hidden tags are more specific tags refenced only in gon files)
-
-`CreateGlobalModifiers {}` -- Sets certain global modifiers
->Note: You can find most global modifiers in [weather formatting.](weather_formatting.md#global-modifiers)
-
-`RemoveGlobalModifiers {}` -- Removes certain global modifiers
-
-`AddElementsToBasicAttack Element_Name` -- Adds a specific [element](enums.md#elements) to the basic attack
-
 ### AddStatus
 
 `AddStatusToBasicAttack {}` -- Table of statuses given to the basic attack
@@ -444,6 +433,14 @@
 * `buddy_damage_only bool` -- It reacts only when the damaging attack comes from a buddy
 * `chance X%` -- X chance of reacting
 
+`AbilityHealthThreshold {}` -- Uses a specified ability when the source's health reaches below a certain threshold
+* `threshold int` -- Where "int" is a positive integer. If HP is below this, the ability will trigger. **"X" can be used as a integer to represent the maximum health of the source.**
+* `immediate bool` -- Should this happen immediately, or only on the turn of the entity?
+* `even_if_stunned bool` -- Should this happen even if the source is stunned?
+* `ability [AbilityID]` -- Specified ability, if given a list it will choose one
+* `use_ai bool` -- Runs the check for if the ability can be passed through conditionals the AI of the source may provide. [TEST]
+
+
 `DeathRattle {}` -- When the target dies uses the specified ability
 * `ability AbilityID` -- Ability (Can also be used as `DeathRattle AbilityID`)
 * `pop_corpse bool` -- If the corpse should be destroyed
@@ -539,6 +536,15 @@
 * `backstab_only bool` -- If it triggers only on backstabs (default: false)
 
 `GainManaWhenAnythingDies X` -- Gain X mana when any character dies
+
+`MonkCatReactionAbilities {}` -- Provides a list of reactions possible when a unit of a enemy faction triggers a character ability callback indexed to match as a action within this table
+* `move CharacterAbility` -- The [CharacterAbility](character_formatting.md/#character-abilities) that triggers when a unit of a enemy faction moves.
+* `attack CharacterAbility` -- The [CharacterAbility](character_formatting.md/#character-abilities) that triggers when a unit of a enemy faction attacks.
+* `weapon CharacterAbility` -- The [CharacterAbility](character_formatting.md/#character-abilities) that triggers when a unit of a enemy faction uses their weapon.
+* `spell CharacterAbility` -- The [CharacterAbility](character_formatting.md/#character-abilities) that triggers when a unit of a enemy faction casts a spell/ability.
+* `trinket CharacterAbility` -- The [CharacterAbility](character_formatting.md/#character-abilities) that triggers when a unit of a enemy faction uses their trinket.
+
+`WeremanTransformationReceiver` -- The ability that triggers when a character is attacked by a werecat.
 
 ### Repeated actions
 
@@ -791,14 +797,154 @@
 * `mul [r g b]` -- Multiplied color value
 * `ignore_if_str_aux_equals string` -- Ignore the tint if the item's str_aux is equal to a specified string
 
-### Form changer related passives
+### Form Changer + Related Passives
+
+`FormChanger {}` -- A selection of keys and tables, with each table representing a set of values that can override values of the same key for the data set of a character.
+* `FormName {}` -- Where "FormName" represents a string key and the table represents data values that can be replaced within the data of the character it's contained within.
+* `initial_form FormName` -- The initial form the entity takes. (Note that this is unnessecary if another passive establishes the form on character initialization. If neither exists, no form will be chosen, and the character will rely on the data it already has.)
+* `sync_brain_patterns bool` -- Should the cycle of the pattern sync if possible? [TEST - check if based on iteration or on last ability]
+
+#### What is FormChanger?
+
+The passive `FormChanger` function is a relatively abstract component of involute entities. It's worthwhile to note that FormChanger is built specifically to support mutliple patterns of character ai, and serves no purpose in class abilities.
+
+The FormChanger passive serves to complicate enemy AI by storing different presets of character **data** as "states" the AI of a character can have. The info from these "states" will override the information of the base AI given the "state" is enabled (unless no AI is given).
+
+A classic FormChanger setup could appear like this:
+
+```
+FormChanger {
+    Default {
+    }
+    DesireMech {
+        ai {
+            brain PatternBrain
+
+            pattern {
+                do_priority [*TCMechSuit TCMechSuit]
+            }
+            decision_weights default
+            move_weights keep_distance
+        }
+    }
+    }
+```
+
+Where "Default" could declared by a menagerie of functions, and DesireMech is clearly given as a alternative dataset loaded on top of the character's preexisting dataset when the form is changed.
+
+Let's push FormChanger's potential by abusing more than just a AI rewrite. Cultists are a perfect example of this.
+<details>
+
+**<summary>Take a look at the following example. (It has been collapsed for readability.)</summary>**
+
+
+```
+FormChanger {
+    Cultist {
+        animation_suffix "Cultist"
+        attack BasicMelee
+        name "ENEMY_CULTISTLACKEY_NAME"
+        tooltip "ENEMY_CULTISTLACKEY_DESC"
+
+        passives {
+            TagGreed bishop_hat
+
+            StatusOnKill {
+                UseAbility_NonStack BBTransformZealot
+            }
+
+            MutateViaAbility BBTransformMutant
+        }
+
+        ai {
+            brain PatternBrain
+
+            pattern {
+                do_priority [BBPickupCrown, attack, BBToss]
+                do_priority [BBPickupCrown, BBToss, attack]
+            }
+
+            decision_weights default
+            move_weights stay_close
+            end_turn_on_formswitch true
+            randomize_pattern_start true
+        }
+    }
+    Zealot {
+        animation_suffix "Zealot"
+        attack BBStabby
+        name "ENEMY_CULTISTZEALOT_NAME"
+        tooltip "ENEMY_CULTISTZEALOT_DESC"
+
+        passives {
+            TagGreed bishop_hat
+
+            AbilityHealthThreshold {
+                threshold "max(X*.33, 5)"
+                ability BBPullBomb
+            }
+
+            MutateViaAbility BBTransformMutant
+        }
+
+        ai {
+            brain PatternBrain
+
+            pattern {
+                do_priority [BBPickupCrown, attack, BBSpin, BBCut]
+                do_priority [BBPickupCrown, BBSpin, attack, BBCut]
+            }
+
+            decision_weights default
+            move_weights stay_close
+            end_turn_on_formswitch true
+            randomize_pattern_start true
+        }
+    }
+}
+```
+
+Here, we can see each form specifies everything from the meta of the entity to the passives and ai structure, making each form seem comepletely individual while still being part of the same overall entity. **Note that the elements of the "meta" table are provided inside the form instead of inside a table within the form.**
+
+</details>
+
+#### Formchanger Icons
+
+FormChanger also introduces the ability for dynamic portraits. In your portrait file, select the portrait movieclip you have drawn for your entity and give it two internal frames. The default frame for your entity will always be the first frame **if no label is given.** When one is given, you have the opprotunity to have the icon change based on the form. For instance, using Franklin's code as a example, we have an example of both forms.
+
+![DefaultImage](images/franklin1.png) ![CoolFranklin](images/franklin2.png)
+
+#### Formchanger Passives / Utilities
+
+Noted that "FormName" for all these would be the key of a table given in FormChanger (i.e. "Default" or "DesireMech", as used in that Franklin example above!)
 
 `FormChangeWhileHasStatus {}` -- (FORMCHANGER) Changes the character form based on if it has a specified status
 * `status Status_Name` -- Status
-* `form_has` -- Form to change to if it has the status
-* `form_hasnot`  -- Form to change to if it doesn't have the status
+* `form_has FormName` -- Form to change to if it has the status
+* `form_hasnot FormName`  -- Form to change to if it doesn't have the status
 
 `FormChangeWhilePrimingAbility` -- (FORMCHANGER) Changes the form while (any) ability is primed (TEST)
+* `priming FormName` -- The form the entity should take while priming any ability
+* `not_priming FormName` -- The form the entity should take while not priming any ability
+
+`FormChangeOffMap {}` -- (FORMCHANGER) The forms this entity should take when they are on and off the map
+* `form_offmap FormName`-- The indexed name of the form that should be initialized when the source is not on the current battle map.
+* `form_onmap FormName`-- The indexed name of the form that should be initialized when the source is on the current battle map.
+
+`FormChangerMatchMonkStances {}` -- (FORMCHANGER) Sets specific forms based on if the given position (given through MonkStance)
+* `melee FormName` -- The indexed name of the form that should be initialized when the "melee" stance is activated.
+* `ranged FormName` -- The indexed name of the form that should be initialized when the "ranged" stance is activated.
+
+`SupportFormChangeInsteadOfRun FormName` -- The form the character takes when they would be called to "run away"
+
+`ChaosBossFormChangeGuide {}` -- Provides a list of "active" and "passive" forms for the entity to go through, choosing a random combination when it is possible. If the passive threshold is reached, the source will begin looking to enter forms that start with a random "active" piece as a prefix for the form name and a "passive" piece as a suffix for the form name.
+* `active_pieces [FormPrefix FormPrefix ...]` -- A list of form prefixes. If the passive threshold is not reached, form names will only be from this.
+* `passive_pieces [FormPrefix FormPrefix ...]` -- A list of form suffixes. One of these will randomly be chosen to be added onto a randomly chosen active piece.
+* `passives_health_threshold X%` -- The highest percent of health at which suffixes from passive_pieces can be added to the actives chosen.
+
+`ChaosBossPieces {}` -- Contains a list of active and passive pieces.
+* `active_pieces [FormPrefix FormPrefix ...]` -- A list of form prefixes.
+* `passive_pieces [FormPrefix FormPrefix ...]` -- A list of form suffixes.
 
 ### Visual / Sound
 
@@ -829,7 +975,34 @@
 
 `Uncontrollable 1` -- Makes the character ai controlled
 
+`RandomizeAIWeightsEachTurn {}` -- Replaces the weights of specific portions of an AI, weighing all options evenly. [TEST - unsure if the weights constitute the choice or if the choice consitutues the weights]
+* `move_weights MoveWeight` -- Replaces the [move weights](enums.md/#vanilla-move-presets) of the current character.
+* `decision_weights MoveWeight` -- Replaces the [decision weights](enums.md/#vanilla-decision-presets) of the current character.
+
+### Aggro/Target Prioritization
+
+`AggroTargetIsCurrentTurn 1` -- The current target is the specified aggro.
+
+`PrioritizeAggroTarget 1` -- The "taunt" value of all other characters diminishes drastically for the source, and the value increases drastically for the target.
+
+`PrioritizeHitDifferentTargets 1` -- The character will prioritize hitting different targets each turn as much as possible.
+
 ### Passive Misc
+
+`AddTag string` -- Adds a tag to the character
+
+`AddHiddenTag string` -- Adds an hidden tag to the character (hidden tags are more specific tags refenced only in gon files)
+
+`CreateGlobalModifiers {}` -- Sets certain global modifiers
+>Note: You can find most global modifiers in [weather formatting.](weather_formatting.md#global-modifiers)
+
+`RemoveGlobalModifiers {}` -- Removes certain global modifiers
+
+`AddElementsToBasicAttack Element_Name` -- Adds a specific [element](enums.md#elements) to the basic attack
+
+`AddInitiative X` -- Adds X amount of initiative for the character (when it's turn happens.)
+
+`DebuffImmunity 1` -- This character cannot gain debuffs.
 
 `AlliesAvoidTraps 1` -- Allies do not trigger the source's traps
 
@@ -984,6 +1157,14 @@
 `RemoveOncePerFightRestriction 1` -- Removes once-per-fight restrictions.
 
 `WeaponCountsAsBasicAttack 1` -- Reflects if your weapon counts as your basic attack. **Note that the weapon will not gain any effects of the basic attack, but will gain additional effects given to your basic attack from outside the basic innate passives.**
+
+`MonkStances [MeleeStance RangedStance]` -- Gives the different basic attack based on your Monk stance (where melee is the basic attack when the source is in Melee/Default, and ranged is the basic when the source is in Ranged)
+
+`BackstabAllDirections 1` -- You get backstabbed from all directions (genuine trash)
+
+`BackstabImmunity 1` -- You can't get backstabbed (genuine peak)
+
+`FullBlockEverything 1` -- Blocks all damage or attacks on it (good for "hidden" characters like Hitler 3)
 
 ---
 
@@ -1391,6 +1572,8 @@
 * `intensity X`
 
 ### Status Misc
+
+`Tall 1` -- This character is "tall".
 
 `WeaponAuxMultiplier float` -- Multiplies the weapon aux by X
 
@@ -1844,3 +2027,25 @@
 `Conditional_Speculative {}` -- don't know [TEST] (Else can be used to not make an AI calculate outcomes (Check special_enemy_abilities.gon))
 
 `Conditional_FinishedSpawning {}` -- Execute if the target finished spawning??? [TEST]
+
+`Conditional_NotAlly {}` -- Execute if the target is NOT a ally of the source's faction
+
+`Conditional_NotEnemy {}` -- Execute if the target is NOT a enemy of the source's faction
+
+`Conditional_NotBossOrBig {}` -- Execute if the target is not tagged as a boss or "big" (2x2)
+
+`Conditional_Tiny {}` -- Execute if the target is tiny
+
+`Conditional_IsPhysicalAttack {}` -- Execute if the type of BASIC attack is considered "physical"
+
+`Conditional_IsPhysical {}` -- Execute if the type of attack is considered "physical" [TEST]
+
+`Conditional_HasKnockback {}` -- Execute if the attack provides knockback on the target it's applying to [TEST]
+
+`Conditional_HasSetBonus {}` -- Exectute if the source has a set bonus from any set [TEST]
+
+`Conditional_Flying {}` -- Execute if the target is flying
+
+`Conditional_DestructibleCorpse {}` -- Execute if the target is a destructibe corpse [TEST]
+
+`Conditional_BuffRoll {}` -- ??? [TEST]

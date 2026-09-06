@@ -38,7 +38,6 @@ In data/catgen.gon new faces for cats can be specified by appending a custom Ind
 * `mouth Mode` -- What appearence the mouth takes [open, closed, smile]
 * `eyes Mode / [Mode Mode]` -- How the eyes look [open, closed], different modes can be specified for the right and left eye
 
-
 # Damage Styles
 
 In data/damage_text_styles.gon new damage styles can be specified by adding a custom indentifier (DamageStyleID)
