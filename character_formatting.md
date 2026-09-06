@@ -206,7 +206,7 @@
 
 `reset_pattern_on_formswitch bool` -- Should pattern be reset on formswitch?
 
-`clamp_pattern bool` -- Should the pattern clamp if it is impossible to reach a certain ability in the pattern before it can reset? [TEST]
+`clamp_pattern bool` -- Should the last action of the pattern loop repeat over and over instead of the pattern looping?
 
 `wait_till_next_round_to_update_turns bool` -- Should wait until the next round before it's turn amount/order is updated.
 

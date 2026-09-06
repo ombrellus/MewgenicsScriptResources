@@ -546,6 +546,9 @@
 
 `WeremanTransformationReceiver` -- The ability that triggers when a character is attacked by a werecat.
 
+`SlotMachineRollPool {}` -- Pool of SPECIFIC STATUSES applied as spells. This pool is initialized and searched through when the source is hit. 
+* `SpellID X` -- The id and weight of activating the spell.
+
 ### Repeated actions
 
 `AbilityOnBattleStart AbilityID` -- Uses a specific ability at battle start
@@ -904,7 +907,7 @@ FormChanger {
 }
 ```
 
-Here, we can see each form specifies everything from the meta of the entity to the passives and ai structure, making each form seem comepletely individual while still being part of the same overall entity. **Note that the elements of the "meta" table are provided inside the form instead of inside a table within the form.**
+Here, we can see each form specifies everything from the meta of the entity to the passives and ai structure, making each form seem comepletely individual while still being part of the same overall entity. **Note that the elements of the "meta" table are provided directly inside the form instead of inside a table within the form.**
 
 </details>
 
@@ -917,6 +920,11 @@ FormChanger also introduces the ability for dynamic portraits. In your portrait 
 #### Formchanger Passives / Utilities
 
 Noted that "FormName" for all these would be the key of a table given in FormChanger (i.e. "Default" or "DesireMech", as used in that Franklin example above!)
+
+`FormChangeHealthThreshold {}` -- (FORMCHANGER) Chanegs the character form based on the HP of the character
+* `threshold integer` -- Where "X" represents the maximum HP of the character.
+* `form_below FormName` -- The form the character should take when their HP is below the threshold.
+* `form_above FormName` -- The form the character should take when their HP is higher or exactly on the threshold.
 
 `FormChangeWhileHasStatus {}` -- (FORMCHANGER) Changes the character form based on if it has a specified status
 * `status Status_Name` -- Status
@@ -935,16 +943,44 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 * `melee FormName` -- The indexed name of the form that should be initialized when the "melee" stance is activated.
 * `ranged FormName` -- The indexed name of the form that should be initialized when the "ranged" stance is activated.
 
-`SupportFormChangeInsteadOfRun FormName` -- The form the character takes when they would be called to "run away"
+`SupportFormChangeInsteadOfRun FormName` -- (FORMCHANGER) The form the character takes INSTEAD of fleeing the battle
 
-`ChaosBossFormChangeGuide {}` -- Provides a list of "active" and "passive" forms for the entity to go through, choosing a random combination when it is possible. If the passive threshold is reached, the source will begin looking to enter forms that start with a random "active" piece as a prefix for the form name and a "passive" piece as a suffix for the form name.
+`SupportFormChangeInsteadOfRun {}` -- (FORMCHANGER) The form the character takes INSTEAD of fleeing the battle
+* `ability AbilityID` -- The ability the source should cast if it's cached to run this passive
+* `wait_till_turn bool` -- Should the entity wait to do this ability until it's turn occurs?
+
+`ChaosBossFormChangeGuide {}` -- (FORMCHANGER) Provides a list of "active" and "passive" forms for the entity to go through, choosing a random combination when it is possible. If the passive threshold is reached, the source will begin looking to enter forms that start with a random "active" piece as a prefix for the form name and a "passive" piece as a suffix for the form name.
 * `active_pieces [FormPrefix FormPrefix ...]` -- A list of form prefixes. If the passive threshold is not reached, form names will only be from this.
 * `passive_pieces [FormPrefix FormPrefix ...]` -- A list of form suffixes. One of these will randomly be chosen to be added onto a randomly chosen active piece.
 * `passives_health_threshold X%` -- The highest percent of health at which suffixes from passive_pieces can be added to the actives chosen.
 
-`ChaosBossPieces {}` -- Contains a list of active and passive pieces.
+`ChaosBossPieces {}` -- (FORMCHANGER) Contains a list of active and passive pieces.
 * `active_pieces [FormPrefix FormPrefix ...]` -- A list of form prefixes.
 * `passive_pieces [FormPrefix FormPrefix ...]` -- A list of form suffixes.
+
+`TVBotScreen {}` -- (FORMCHANGER) Contains a set of forms
+* `FormName X` -- Where "X" is frame number of the movieclip this entity chooses to play in it's Idle animation, should the FormName match the form already chosen.
+
+`ChanceToFormChangeOnAbilityDamage {}` -- (FORMCHANGER) Contains a percent value integer and the form that this entity should take if the roll works (there doesn't seem to be anything weighing the roll?)
+* `chance X%` -- The percent chance the form should change
+* `form FormName` -- The form that should be selected on the roll being applicable
+
+`FormChangeOnElementInfluence {}` -- (FORMCHANGER) Changes the form of the entity while it's under the influence of a element
+* `element [Element]` -- The [element](enums.md/#elements) that triggers this formchange effect
+* `exclude [Element]` -- The [element](enums.md/#elements) that would override this formchange effect? [TEST]
+* `form FormName` -- The form that should be taken should the [element](enums.md/#elements) in "element" affect the source 
+* `particle ParticleID` -- The particle that should be spawned on form initialization
+* `sfx SoundID` -- The sound that should be played on form initialization
+
+`FormChangeDuringWeatherElement {}` -- (FORMCHANGER) Changes the form of the entity while it's under the influence of a element specifically applied through a weather effect
+* `element [Element]` -- The [element](enums.md/#elements) from a weather effect that triggers this formchange effect
+* `form FormName` -- The form that should be taken should the [element](enums.md/#elements) in "element" affect the source 
+
+`SwimmingFormChange {}` -- (FORMCHANGER) Changes the form of the entity according to if it's counted as "swimming" or not
+* `form_in FormName` -- The form it should take while residing in a state of "swimming"
+* `form_out FormName` -- The form it should take while not residing in a state of "swimming"
+
+`FormChangeWhenBuddyDies FormName` -- The form the source should take if it's buddy is indexed and it's buddy is killed [TEST to see if it counts not existed as "died"]
 
 ### Visual / Sound
 
@@ -1165,6 +1201,10 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 `BackstabImmunity 1` -- You can't get backstabbed (genuine peak)
 
 `FullBlockEverything 1` -- Blocks all damage or attacks on it (good for "hidden" characters like Hitler 3)
+
+`MuteDemonicGlyphDisplay 1` -- If this character has demonic glyphs, they are hidden visually.
+
+
 
 ---
 
@@ -1870,6 +1910,10 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 `QuakeAreaChance {}` -- Triggers stalagmites to falls
 * `radius X` -- Tile range
 * `chance X%` -- Chance of the stalagmites falling
+
+`ChaosBossFormChange 1` -- Caches the entity to clear it's FormChange and to set another one the next round based on it's ChaosBossFormChangeGuide
+
+`T3HitlerTriggerInitialSpawns 1` -- If the spawning phase of Hitler 3 should be initialized. 
 
 ---
 
