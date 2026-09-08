@@ -199,6 +199,8 @@
 
 `requires_reload bool` -- If ability requires to be reloaded to be used 
 
+`start_reloaded bool` -- If the ability starts reloaded (default: false)
+
 `minimum_STAT X` -- Ability castable if [STAT](enums.md#stats) is more or equal than X
 
 `once_per_fight bool` -- If ability is castable only once per fight
