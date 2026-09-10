@@ -208,8 +208,17 @@
 * `tag string` -- Chosen tag
 * `exclude_basicattack bool` -- If the basic attack doesn't count
 
+`StatusOnUseAbilityWithManaCost {}` -- Table of statuses given when using an ability with a specific mana cost [TEST]
+* `mana X` -- Mana cost
+
+`StatusOnTurnEndIfDidntCastSpells {}` -- Table of statuses given at the end of the turn if no spells were casted
+
 `StatusOnTurnEndIfCastNSpells {}` -- Table of statuses given at the end of the turn if exactly X spells were casted
 * `spells X` -- Number of spells
+
+`StatusOnTurnEndIfDidntCastAbilityTypes {}` -- Table of statuses given on turn end if no spells with a specific damage type were used
+* `type [Damage_Type]` -- Types to check
+
 
 `StatusOnTurnEndIfManaExact {}` -- Table of statuses given at the end of the turn if the mana is exactly X
 * `mana X` -- Number of mana
@@ -293,6 +302,12 @@
 * `stacks X`
 
 `Diabetes {}` -- Table of statuses given at turn end if no food was eaten
+
+`StatusPerInjury {}` -- Table of statuses given per injury
+* `injury InjuryID` -- Injury to check
+* `cap X` -- Max amount of injuries counted
+
+`StatusThingsKnockedBack {}` -- Table of statuses given to units knocked back by the target
 
 ### Passive if/when/while
 
@@ -537,6 +552,8 @@
 * `backstab_only bool` -- If it triggers only on backstabs (default: false)
 
 `GainManaWhenAnythingDies X` -- Gain X mana when any character dies
+
+`DamageEnemiesOnKill X` -- Deal X damage to every enemy when killing a unit
 
 `MonkCatReactionAbilities {}` -- Provides a list of reactions possible when a unit of a enemy faction triggers a character ability callback indexed to match as a action within this table
 * `move CharacterAbility` -- The [CharacterAbility](character_formatting.md/#character-abilities) that triggers when a unit of a enemy faction moves.
@@ -1388,6 +1405,10 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 `PoolMetronome {}` -- Casts a random specified ability
 * `pool [AbilityID]` -- Ability list
 
+`RepressedMemoriesMetronome {}` -- Casts a random ability from a pool which mana cost is equal or lower than it's stack (applying more than once at the same time will make the status stack)
+* `stacks` -- The status stack, a.k.a. max mana cost
+* `pool PoolID` -- Ability pool
+
 `TeamCastAbility {}` -- Makes all of the targe's team cast an ability
 * `ability AbilityID` -- Ability to cast (Can also be used as `TeamCastAbility AbilityID`)
 * `tag_restriction string` -- Tag required by the character to cast the ability
@@ -1504,6 +1525,8 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 `RandomMagicMissile {}` -- Spawns X sparks targetting the source's enemies
 * `stacks X` -- Number of sparks (can be used as `RandomMagicMissile X`)
 * `full_size bool` -- true = 3 damage, false = 1 damage (default: `false`)
+
+`Drag X` -- Deal X damage for every tile moved
 
 `UndoDamage X` -- Undo last X damages taken by the target 
 
@@ -1907,6 +1930,11 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 * `disease PassiveID` -- Passive to give
 * `chance X%` -- Chance of it being spread
 * `can_apply_to_anything bool` -- If it can spread to any kind of unit and not only player cats
+
+`CureDisease {}` -- Cures a disease (passive) from the target
+* `chance X%` -- Chance for it to be cured
+* `disease PassiveID` -- Disease to remove
+* `can_apply_to_anything bool` -- If this cure can be applied to any kind of character (default: false)
 
 `QuakeAreaChance {}` -- Triggers stalagmites to falls
 * `radius X` -- Tile range
