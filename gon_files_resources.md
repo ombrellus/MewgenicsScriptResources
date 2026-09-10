@@ -46,6 +46,7 @@
 `AddSelfStatusToBasicAttack {}` -- Table of statuses given to the basic attack that get applied to the source
 
 `AddStatusToAllDamage {}` -- Table of statuses given to all damages coming from the target
+* `must_do_damage` -- Should this apply if no non-zero integer for damage is actually passed?
 
 `AddStatusToFirstSpellEachTurn {}` -- Table of statuses given to the first spell used each turn
 
