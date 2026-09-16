@@ -546,9 +546,15 @@
 
 `MutateViaAbility AbilityID` -- If a mutation gets triggered, it mutates using the specified ability
 
+`ChanceToBlock X%` -- Chance to block upcoming attack by X%
+
 `ChanceToBlockAndCounter {}` -- Chance to block upcoming attacks and counter with the charcater's basic attack
 * `chance X%` -- Chance (can also be used as `ChanceToBlockAndCounter X%`)
 * `backstab_only bool` -- If it triggers only on backstabs (default: false)
+* `melee_only bool` -- If it triggers only on melee attacks (default: false)
+* `ranged_only bool` -- If it triggers only on ranged attacks (default: false)
+
+`ChanceToBlockProjectile X%` -- Chance to block upcoming projectile by X%
 
 `GainManaWhenAnythingDies X` -- Gain X mana when any character dies
 
