@@ -48,6 +48,10 @@
 `AddStatusToAllDamage {}` -- Table of statuses given to all damages coming from the target
 * `must_do_damage` -- Should this apply if no non-zero integer for damage is actually passed?
 
+`AddDamageToElementDamage {}` -- Amount of extra damage given to attacks that use this element.
+* `element [Element_Name]` -- Chosen [element](enums.md#elements) list
+* `damage X` -- X Amount of extra damage 
+
 `AddStatusToFirstSpellEachTurn {}` -- Table of statuses given to the first spell used each turn
 
 `AddStatusToTrampleDamage {}` -- Table of statuses given to the trample damage
@@ -1191,6 +1195,10 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 `SpawnNearEnemies 1` -- Makes the character spawn near the enemies
 
 `Phasing 1` -- Makes the characters be able to pass through characters and objects
+
+`TileTrail Tile_Name` -- Whenever the character moves or is moved, creates a specified [tile](enums.md#tiles) on the tile it moved from
+
+`TileTrail_Ahead Tile_Name` -- Specified [tile](enums.md#tiles) is created on target location.
 
 `LimitedTileTrail Tile_Name` -- Whenever the character moves or is moved, creates a specified [tile](enums.md#tiles) on the tile it moved from
 
