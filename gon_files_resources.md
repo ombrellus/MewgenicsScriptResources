@@ -16,7 +16,7 @@
 * * [Auras](#auras)
 * * [Ability specific](#ability-specific-passives)
 * * [Item specific](#item-specific-passives)
-* * [FormChanger specific](#form-changer-related-passives)
+* * [FormChanger specific](#form-changer--related-passives)
 * * [Visual / Sounds](#visual--sound)
 * * [AI](#ai)
 * * [Misc](#passive-misc)

@@ -152,3 +152,5 @@ T3Spawn_MyCustomCat {
 - When using WeaponCountsAsBasicAttack, your weapon will not gain any effects of the basic attack, but will gain additional effects given to your basic attack from outside the basic innate passives.
 
 - You cannot use ForceUseAbility or ChainAbility on a Jump template ability (for some reason???)
+
+- "Knockblock" damage type deals knockback damage; blocked damage overrides the damage for the one that gets landed on

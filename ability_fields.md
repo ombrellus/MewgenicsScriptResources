@@ -353,7 +353,7 @@
 
 `ai_base_score X` -- (AI) Base score that dictates the ai's willingness to cast this ability
 
-`type Type_Name` -- Damage type [ranged, melee, spell, status_spell, spell_cost, physical_spell, generic_physical, none]
+`type Type_Name` -- Damage type [ranged, melee, spell, status_spell, spell_cost, physical_spell, generic_physical, knockblock, spawn, trample, none]
 
 `damage X` -- Damage dealt by the ability
 
