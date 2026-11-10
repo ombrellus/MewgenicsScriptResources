@@ -2063,6 +2063,13 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 `Conditional_IsSelf {}` -- Execute if the target is the source
 
 `Conditional_AbilityTargetIsSelf {}` -- Execute when the target is the source
+>[!WARNING]
+>Quote from user "Lazy" likesmods:
+> ```
+> cool note on Conditional_AbilityTargetIsSelf
+> it seems like it only makes effects only trigger on the caster if the effects are in an Else child conditional of the conditional itself
+> putting effects in the conditional itself makes it apply to all units except the caster
+> ```
 
 `Conditional_Displaceable {}` -- Execute if the target is displaceable
 

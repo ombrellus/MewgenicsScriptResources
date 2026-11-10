@@ -22,6 +22,8 @@ The file formats are split into 4 major sections:
 
 [Map Formatting](map_formatting.md)
 
+[House Boss Formatting](houseboss_formatting.md)
+
 [Adventure Progression Unlocks, Locked Content Setup, and NPC Favor Unlocks (file)](unlock_stuff_resources.md)
 
 ## Resources
