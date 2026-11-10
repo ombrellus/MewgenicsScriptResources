@@ -389,6 +389,9 @@
 
 ### SpawnOn
 
+`BattlefieldUniqueRandomPassive {}` -- Chooses a random status from the provided list to give to the unit, provided no other entity has that status
+* `status 1` -- Replace "status" with a [available ingame status](https://github.com/NancokPS2/mewgenics-gon-map/blob/main/Statuses.txt)
+
 `SpawnOnBattleStart {}` -- Spawns X Characters on battle start
 * `object CharacterID` -- Character (Can also be used as `SpawnOnBattleStart CharacterID`)
 * `number X / [X X]` -- Number or range of Characters
@@ -530,7 +533,7 @@
 
 `RefreshEquipmentAbilityOnElement {}` -- Refreshes all abilities of the equipped items when the character is affected by a specified element
 * `element Element_Name` -- [Element](enums.md#elements)
-* `text string` -- Pop up text when refreshed (can read from cvs)
+* `text string` -- Pop up text when refreshed (can read from csv)
 
 `DiesToElement {}` -- Makes the character instantly die when affected by a specific element
 * `element Element_Name` -- The [element](enums.md#elements) (Can also be used as `DiesToElement Element_Name`)
@@ -723,6 +726,8 @@
 `AllyMultiplyKnockbackDamage float` -- Knockback damage for all allies is multiplied by X
 
 `AllyMultiplyKnockbackDistance float` -- Knockback distance for all allies is multiplied by X
+
+`KaijuKnockbackImmune 1` -- Large knockback, such as ones from Kaijus that would normally send a unit back, do not apply/are capped to 1 (unsure)
 
 `TrapEffectsMultiplier X` -- The damage and effects of the target's traps are multiplied by X
 
@@ -1057,10 +1062,19 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 
 `AddHiddenTag string` -- Adds an hidden tag to the character (hidden tags are more specific tags refenced only in gon files)
 
+`Buddy CharacterID` -- The "buddy" that belongs to the unit. Can be replaced for "choose_favorite_cat". CharacterID is the key string value assigned as the name.
+
+`Buddy {}` -- The "buddy" that belongs to the unit.
+* `obj CharacterID` -- CharacterID is the key string value assigned as the name.
+* `allies_only bool` -- Must the character be a ally for the unit's faction? (True by default)
+
 `CreateGlobalModifiers {}` -- Sets certain global modifiers
 >Note: You can find most global modifiers in [weather formatting.](weather_formatting.md#global-modifiers)
 
 `RemoveGlobalModifiers {}` -- Removes certain global modifiers
+
+`BossRewards {}` -- Table of rewards the boss will drop, assigning item to rarity
+* `rarity ItemID` -- Replace [rarity](enums.md#item-rarity) with something like common, rare, etc etc
 
 `AddElementsToBasicAttack Element_Name` -- Adds a specific [element](enums.md#elements) to the basic attack
 
@@ -1099,6 +1113,11 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 `ElementImmune Element_Name` -- Makes target immune to a certain [element](enums.md#elements)
 
 `StatusImmunity [Status_Name]` -- Makes target immune to a list of statuses
+
+`StripStatuses 1` -- All statuses past this passive's application stay and cannot be removed. Statuses cannot be added or removed unless done by the unit.
+>[!WARNING]
+>Note from author: I have not been able to get this behavior to apply to units by giving them the passive, which makes me wonder if the value is depricated.
+>TODO: Scan through pointer addresses and figure this out!
 
 `AmplifyStatus {}` -- Adds X stacks to a specific status when inflicted by the target
 * `status Status_Name` -- Status (can also be used as `AmplifyStatus Status_Name`)
@@ -1236,7 +1255,9 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 
 `MuteDemonicGlyphDisplay 1` -- If this character has demonic glyphs, they are hidden visually.
 
+`DigestDeadBodies AbilityID` -- _If the unit is currently consuming another unit_, this unit will do this action on the unit at the end of their turn.
 
+`KaijuWinCon pyrophina/zaratana` -- Wins the battle if the entity the value belongs to dies on the battlefield. (CHECK for both custom and if removed counts...)
 
 ---
 

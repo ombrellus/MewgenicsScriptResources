@@ -115,6 +115,13 @@ stay_close_g3
 drmangler	    
 chaos_always_move   
 
+## AI BRAINS
+GenericBrain    
+PatternBrain    
+PlayerBrain     
+NoBrain     
+DicerBrain      
+
 ## SPECIAL ABILITY CLASSES 
 AOESpellAbility     
 BounceDashAbility   
@@ -255,6 +262,18 @@ cha (long: Charisma)
 con (long: Constitution)  
 dex (long: Dexterity)  
 lck (long: Luck)  
+
+## ITEM RARITY      
+common  
+uncommon    
+rare    
+very_rare   
+consumable_common       
+consumable_uncommon     
+consumable_rare     
+consumable_very_rare    
+quest   
+sidequest
 
 ## ITEM SLOTS
 weapon  

@@ -18,7 +18,7 @@
 
 * `hint_destination Chapter_Name` -- Where this quest item has to be taken
 
-* `rarity Rarity_Name` -- Rarity of an item [common, uncommon, rare, very_rare, consumable_common, consumable_uncommon, consumable_rare, consumable_very_rare, quest, sidequest]  
+* `rarity Rarity_Name` -- [Rarity](enums.md#item-rarity) of an item  
 
 * `set [Set_Name]` -- What set(s) this item is part of  
 

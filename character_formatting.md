@@ -72,7 +72,7 @@
 
 `hidden_tag [string]` -- List of hidden character tags (hidden tags are more specific tags refenced only in gon files)
 
-`faction Faction_Name` -- [Faction](enums.md#factions) the character is part of [CHECk if they custom]
+`faction Faction_Name` -- [Faction](enums.md#factions) the character is part of [Check if they can be custom]
 
 `inherit_faction bool` -- If the character inherits it's faction from the spawner
 
@@ -188,7 +188,7 @@
 
 `can_get_bonus bool` -- If it can gain bonus abilities
 
-`brain Brain_Type` -- Brain used by the character, will change how it takes decisions [GenericBrain PatternBrain PlayerBrain NoBrain DicerBrain]
+`brain Brain_Type` -- [Brain](enums.md#ai-brains) used by the character, will change how it takes decisions
 
 `move_weights MoveWeight_Type` -- movement decision weights used by the character
 

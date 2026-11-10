@@ -10,7 +10,7 @@ The file formats are split into 4 major sections:
 
 [Passive Formatting](passive_formatting.md)
 
-[Class Formatting](class_formatting.md)
+[Class Formatting](classes_formatting.md)
 
 [Item/Set/Pools Formatting](item_formatting.md)
 
