@@ -224,8 +224,8 @@
 * `move_then_do_priority [Character_Ability]` -- Moves then does the best possible action in the list
 * `move_then_do_random [Character_Ability]` -- Moves then does a random thing in the list
 * `do_random [Character_Ability]` -- Does a random action in the list 
-* `do_all [Character_Ability]` -- Does all of the actions in the list in order (If an ability is impossible to cast, it will check if it can cast it later)
-* `do_all_shuffle [Character_Ability]` -- Does all of the actions in the list in a random order
+* `do_all [Character_Ability]` -- Does all of the actions in the list in order (If an ability is impossible to cast, it will check if it can cast it later - **DOES NOT RESPECT ACT_POINTS.**)
+* `do_all_shuffle [Character_Ability]` -- Does all of the actions in the list in a random order. (**UNLIKE DO_ALL, THIS FUNCTION WILL RESPECT THE ACT_POINTS OF THE UNIT AND WILL AUTOMATICALLY END IF THE VALUE IS 0 OR LOWER.**)
 * `do_strict [Character_Ability]` -- Does all of the actions in the list in order
 * `do_nothing []` -- Does nothing
 
