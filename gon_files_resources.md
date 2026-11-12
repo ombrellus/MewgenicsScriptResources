@@ -1114,10 +1114,7 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 
 `StatusImmunity [Status_Name]` -- Makes target immune to a list of statuses
 
-`StripStatuses 1` -- All statuses past this passive's application stay and cannot be removed. Statuses cannot be added or removed unless done by the unit.
->[!WARNING]
->Note from author: I have not been able to get this behavior to apply to units by giving them the passive, which makes me wonder if the value is depricated.
->TODO: Scan through pointer addresses and figure this out!
+`StripStatuses 1` -- All statuses that were on the unit before this passive's application stay and cannot be removed.
 
 `AmplifyStatus {}` -- Adds X stacks to a specific status when inflicted by the target
 * `status Status_Name` -- Status (can also be used as `AmplifyStatus Status_Name`)
