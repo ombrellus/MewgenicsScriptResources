@@ -502,6 +502,21 @@ ToxicTile
 WaterTile  
 WaterTile_Current 
 
+## VANILLA NODE TYPES
+any     
+battle      
+empty       
+enter       
+event       
+foodbox     
+hard        
+home        
+miniboss        
+npc     
+optional_event      
+shop        
+treasure        
+
 ## VANILLA POOLS 
 
 alleyitems_!autorarity  

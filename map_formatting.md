@@ -41,6 +41,7 @@ i.e.
 * `rare [LevelFolder]` -- The folder(s) within the pathing that all rare levels are pulled from (used for elite levels)
 * `boss [LevelFolder]` -- The folder(s) within the pathing that all boss levels are pulled from
 * `miniboss [LevelFolder]` -- The folder(s) within the pathing that all miniboss levels are pulled from
+* `nemesis [LevelFolder]` -- The folder(s) within the pathing that all nemesis levels are pulled from (unused)
 * `special [LevelFolder]` -- The folder(s) within the pathing that all special levels are pulled from (unused)
 
 `events {}` -- Where event are pulled from
@@ -106,7 +107,7 @@ The name that a "node" connects to is the instance name of the object on the map
 This is the setup of a custom node:
 
 `nodeName {}` -- Replace nodeName with the name assigned on the scene
-* `type nodeType` -- The type of node it represents. All node types can be found in "standard_nodes.gon"
+* `type nodeType` -- The [type of node](enums.md#vanilla-node-types) level that should be loaded.   
 * `locked bool` -- Is this node usually locked?
 * `override_art ActionScriptLink` -- Art that should play over the standard node look. 
 * `override_music MusicID` -- (ANY BATTLE TYPE). Changes the [music](misc.md#music) for the fight with another one
@@ -116,6 +117,10 @@ This is the setup of a custom node:
 * `next_map map.gon` -- (EXIT TYPE). The gon file to read for the next map.
 * `unlockcheck_on_complete string` -- (BOSS TYPE). Flags a unlock in adventure_progression_unlocks to run.
 * `boss_cutscene string` -- (BOSS TYPE). Sets the boss cutscene to a specific one
+* `head_start X` -- How many other nodes need to be reached before the logic of this node is loaded? (Loads a random event if the amount is less than the set value)
+* `advance X` -- By how many nodes should this thing move?
+* `spawn_node nodeType` -- At which sort of [node type](enums.md#vanilla-node-types) should this thing spawn?
+* `repeat bool` -- Should node logic be refreshed?
 * `level LevelFolder` -- (BOSS TYPE). Sets the boss level group to a specific one
 * `level EventID` -- (SPECIAL_EVENT TYPE). Sets the event that the node plays to a specific one
 * `level EventID` -- (SPECIAL_EVENT TYPE). Sets the event that the node plays to a specific one
@@ -129,4 +134,4 @@ This is the setup of a custom node:
 `flags {}` -- Flags are the way maps can be "affected" by events and unlock ingame. Objects in these can be referenced by adventure_progression_unlocks to bw turned off (though not off). These are off by default until "unlocked" and cannot be turned off again (as of now)
 
 * `flagName {}` -- Replace flagName with the name you want.
-    * `node` -- The exact same setup as the custom nodes shown above.
+* * `node` -- The exact same setup as the custom nodes shown above.
