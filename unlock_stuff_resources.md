@@ -158,7 +158,7 @@ Anything that's usually incrementally upgraded will have a "1"
 
 `coins X` -- Amount of coins you get for completing this favor.
 
-`house_upgrade string` -- Activates a object in the "upgrades" table within house.gon, [house_upgrade_attic house_upgrade_mediumhouse house_upgrade_largehouse house_upgrade_4throom]
+`house_upgrade string` -- Activates a object in the ["upgrades" table](enums.md#house-upgrades) within house.gon
 
 `shop_level_up 1` -- Used by Organ Grinder, Tracy and Jack for the .fla to read and output certain objects when loaded. Upgrades by (int)
 

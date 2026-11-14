@@ -36,7 +36,7 @@
 
 * `consumable bool` -- If this item is a consumable  
 
-* `on_store X` -- Effect when item is returned home, [become_aux_coins, become_furniture, become_rare_furniture]
+* `on_store X` -- [Effect](enums.md#item-on-store-effects) when item is returned home.
 
 * `shield X` -- Gives X shield
 

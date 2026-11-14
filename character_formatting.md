@@ -40,7 +40,7 @@
 
 `spawnin_animation Frame_Label` -- Animation used when the character spawns
 
-`water_mask Water_Mask_Type` -- Shape of the character's water mask when it's on a water tile [square medium big medmed]
+`water_mask Water_Mask_Type` -- Shape of the character's [water mask](enums.md#character-water-masks) when it's on a water tile
 
 `custom_cat_data CatDataID` -- (_CAT) Cat data used for the appearence and sounds of the character
 
@@ -76,7 +76,7 @@
 
 `inherit_faction bool` -- If the character inherits it's faction from the spawner
 
-`type Character_Type` -- Type of the character [small cat boss object]
+`type Character_Type` -- [Type](enums.md#character-type) of the character
 
 `initial_health X` -- Starting health of the character
 
@@ -96,7 +96,7 @@
 
 `flying bool` -- If it's a flying character
 
-`size Size_Type` -- The size of the character [1x1 2x2 3x3]
+`size Size_Type` -- The [size](enums.md#character-size) of the character
 
 `tall bool` -- If it's a tall object [Not sure what it does]
 
@@ -110,7 +110,7 @@
 
 `kill_required bool` -- If the character needs to be killed to end the battle
 
-`move_block Block_Type` -- How the character blocks movement paths [nothing everything_even_when_dead]
+`move_block Block_Type` -- How the character [blocks movement paths](enums.md#character-move-blocking)
 
 `takes_turns bool` -- If the character takes turns
 
@@ -126,7 +126,7 @@
 
 `can_grant_extra_turns bool` -- If this character can give extra turns
 
-`auto_run_priority Run_Type` -- How the character handles running away [stationary support default]
+`auto_run_priority Run_Type` -- How the character [handles running away.](enums.md#character-run-priority)
 
 `movement X` -- How many tiles can the character move
 

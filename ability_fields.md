@@ -29,7 +29,7 @@
 
 `ability_icon AbilityID` -- If specified, the ability will use the icon of another ability
 
-`type_icon "Icon_Name"` -- Top icon of the ability [movement, spawn, debuff, buff, misc, unknown, heal, defense, ranged, magic]
+`type_icon "Icon_Name"` -- Top [icon](enums.md#ability-icons) of the ability.
 
 `is_move bool` -- If this ability is the character movement
 
@@ -43,13 +43,13 @@
 
 `desc "ABILITYDESC"` -- Description of the abilty, can be directly written as a string or point to the translation file
 
-`icon_shell_frame Frame_Label` -- [attack, big_damage, damage]
+`icon_shell_frame Frame_Label` -- The [shell frame](enums.md#ability-icon-shells) this icon takes.      
 
 `icon_damage_display_eq X` -- Changes the damage display on the ability with X
 
 `icon_damage_display_suffix X` -- Changes the amount of cast suffixes with X
 
-`icon_damage_type Frame_Label` -- Changes the damage icon type [physical, heal, contextual, magic, combo (magic + physical), and contextualspell]
+`icon_damage_type Frame_Label` -- Changes the [damage icon](enums.md#ability-icon-damage-type) type.
 
 `is_trinket bool` -- If this ability is a trinket ability
 
@@ -251,9 +251,9 @@
 
 ## TARGET
 
-`target_mode Mode_Name` -- How the target tile(s) can be selected [tile, direction, direction8, random_tile, random_closest_tile, random_farthest_tile, random_direction none = No selection]
+`target_mode Mode_Name` -- How the target [tile(s) can be selected.](enums.md#vanilla-target-modes)     
 
-`range_mode Mode_Name` -- [standard, square, water_move, groud_move, cross, 8cross, diagcross, last_targetted_tile, map_edges, special_tagged_tiles, custom, none]
+`range_mode Mode_Name` -- The [range of target tile(s).](enums.md#vanilla-target-ranges)        
 
 `allow_diagonals bool` -- AI Stuff [TEST]
 
@@ -265,7 +265,7 @@
 
 `dont_orient bool` -- If the character should not orient when casting this ability
 
-`aoe_mode Mode_Name` -- How the area is selected [standard, line, square, circle, perpline, cross, diagcross, 8cross, pierce_cross, map_edges, all, all_except_edges, all_except_random_empty, all_except_custom, narrow_cone, narrowest_cone, cone8 area_around_all_player_cats, occupied_tiles, hit_consumer, custom]
+`aoe_mode Mode_Name` -- How the [area is selected.](enums.md#vanilla-aoe-modes)     
 
 `custom_aoe [ [X,Y] ]` -- (AOE_MODE CUSTOM) define a list of tiles with [x,y] where x=front/back tiles, y=sides tiles, [0,0] is the character tile
 
@@ -279,15 +279,15 @@
 
 `aoe_hint_teamcast bool` -- If the ability aoe considers the other characters of the team casting it
 
-`aoe_symmetry Symmetry_Type` -- How symmetry is handled for the aoe [none, four_way, eight_way, front_back, left_right]
+`aoe_symmetry Symmetry_Type` -- How [symmetry is handled for the aoe.](enums.md#vanilla-aoe-symmetry)       
 
-`range_symmetry Symmetry_Type` -- How symmetry is handled for the range [none, four_way, eight_way, front_back, left_right]
+`range_symmetry Symmetry_Type` -- How [symmetry is handled for the range.](enums.md#vanilla-range-symmetry)     
 
 `max_targets X` -- Target only a Maximum of X tiles
 
 `min_targets X` -- Target only a minim of X tiles
 
-`range_bonuses` -- Extra specific tiles that can be targeted with this attack. [include_alpha include_all_orthogonal include_adjacent_to_allies]        
+`range_bonuses` -- Extra [specific tiles that can be targeted with this attack.](enums.md#vanilla-range-bonuses)      
 
 `can_multihit bool` -- If the ability can hit multiple times
 
@@ -321,7 +321,7 @@
 
 `reorient_thrown_character bool` -- If the thrown character is reoriented after landing
 
-`knockback_mode Mode_Name` -- how knockback is handled [zero, character_to_tile, target_to_tile, orientation, back_orentation, left_orentation, right_orentation, character_to_target, target_to_character, tile_to_character, pull_to_character]
+`knockback_mode Mode_Name` -- how [knockback is handled.](enums.md#knockback-modes)
 
 `always_bounce bool` -- (JUMP ATTACK) If the character always bounces off even if it has trample
 
@@ -417,7 +417,7 @@
 
 `face_camera bool` -- If it spawns facing the camera (defalt: false)
 
-`first_turn Firt_Turn_Type` -- When the spawned character takes it's first turn [next_turn initiative next_round end_of_round]
+`first_turn Firt_Turn_Type` -- When the spawned character takes it's [first turn.](enums.md#first-turn-types)
 
 `layer Layer_Type` -- [Layer](enums#layers) where the character is spawned
 

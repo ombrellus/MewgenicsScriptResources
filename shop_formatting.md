@@ -145,10 +145,10 @@ This section is almost entirely unnessecary as the player has little to no reaso
 
 Each integer key in button navigation is connected to a matrix, where the integers represent the same value (as a string) used for the instance name of a purchasable object in the shop. **If a value is string "x", it implies there is no connection there.**
 
-The FIRST value will always represent the instance name of the object **ABOVE** the currently selected object.
-The SECOND value will always represent the instance name of the object **BELOW** the currently selected object.
-The THIRD value will always represent the instance name of the object **TO THE LEFT** of the currently selected object.
-The FOURTH value will always represent the instance name of the object **TO THE RIGHT** of the currently selected object.
+The FIRST value will always represent the instance name of the object **ABOVE** the currently selected object.      
+The SECOND value will always represent the instance name of the object **BELOW** the currently selected object.     
+The THIRD value will always represent the instance name of the object **TO THE LEFT** of the currently selected object.     
+The FOURTH value will always represent the instance name of the object **TO THE RIGHT** of the currently selected object.       
 
 Let us consider a example.
 

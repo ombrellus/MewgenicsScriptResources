@@ -115,12 +115,123 @@ stay_close_g3
 drmangler	    
 chaos_always_move   
 
+## VANILLA TARGET MODES
+tile       
+direction       
+direction8      
+random_tile     
+random_closest_tile     
+random_farthest_tile        
+random_direction        
+none        
+
+## VANILLA TARGET RANGES
+standard   
+square      
+water_move      
+groud_move      
+cross       
+8cross      
+diagcross       
+last_targetted_tile     
+map_edges       
+special_tagged_tiles        
+custom      
+none        
+
+## VANILLA AOE MODES
+standard        
+line        
+square      
+circle      
+perpline        
+cross       
+diagcross       
+8cross      
+pierce_cross        
+map_edges       
+all     
+all_except_edges        
+all_except_random_empty     
+all_except_custom       
+narrow_cone     
+narrowest_cone      
+cone8       
+area_around_all_player_cats     
+occupied_tiles      
+hit_consumer        
+custom     
+
+## VANILLA AOE SYMMETRY
+none        
+four_way        
+eight_way       
+front_back      
+left_right      
+
+## VANILLA RANGE SYMMETRY
+none        
+four_way        
+eight_way       
+front_back      
+left_right   
+
+## VANILLA RANGE BONUSES
+include_alpha       
+include_all_orthogonal      
+include_adjacent_to_allies      
+
+## KNOCKBACK MODES
+zero    
+character_to_tile   
+target_to_tile      
+orientation     
+back_orentation     
+left_orentation     
+right_orentation        
+character_to_target     
+target_to_character     
+tile_to_character       
+pull_to_character       
+
+## CHARACTER WATER MASKS
+square      
+medium      
+big     
+medmed[^MedMedNote] 
+
+## CHARACTER TYPE
+small       
+cat     
+boss        
+object      
+
+## CHARACTER SIZE
+1x1     
+2x2     
+3x3     
+
+## CHARACTER MOVE BLOCKING
+nothing     
+everything_even_when_dead       
+
+## CHARACTER RUN PRIORITY
+stationary      
+support     
+default     
+
 ## AI BRAINS
 GenericBrain    
 PatternBrain    
 PlayerBrain     
 NoBrain     
 DicerBrain      
+
+## FIRST TURN TYPES
+next_turn       
+initiative      
+next_round      
+end_of_round        
 
 ## SPECIAL ABILITY CLASSES 
 AOESpellAbility     
@@ -236,6 +347,31 @@ must_have_aggro_target
 tile_must_have_element  
 must_have_enemy_or_robot  
 
+## ABILITY ICONS
+movement        
+spawn       
+debuff      
+buff        
+misc        
+unknown     
+heal        
+defense     
+ranged      
+magic       
+
+## ABILITY ICON SHELLS
+attack      
+big_damage      
+damage      
+
+## ABILITY ICON DAMAGE TYPE
+physical        
+heal        
+contextual      
+magic       
+combo[^ComboIconDamageNote]      
+contextualspell
+
 ## ABILITY VARIABLE
 bonus_range  
 bonus_ranged_damage  
@@ -281,7 +417,12 @@ head
 neck  
 face  
 trinket  
-random_empty_armor -- Only some things use it
+random_empty_armor[^RandomEmptyArmorNote]
+
+## ITEM ON STORE EFFECTS
+become_aux_coins        
+become_furniture        
+become_rare_furniture       
 
 ## X_is
 custom  
@@ -646,6 +787,13 @@ low_hygeine_in_house_disorders
 Steven_disorders    
 Crazy_disorders    
 
+## HOUSE UPGRADES
+
+house_upgrade_attic     
+house_upgrade_mediumhouse       
+house_upgrade_largehouse        
+house_upgrade_4throom       
+
 ## FURNITURE VARIABLES
 
 Appeal    
@@ -669,3 +817,7 @@ VMouseMove
 Inventory       
 Pause       
 Examine     
+
+[^ComboIconDamageNote]: This icon represents Physical + Magic
+[^MedMedNote]: Between large and medium
+[^RandomEmptyArmorNote]: Only some things use this
