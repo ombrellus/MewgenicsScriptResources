@@ -174,11 +174,14 @@ button_nav {
 
     default { //the default layout of the shop.
         0 [x 1 x x] 
-        //Object 0, the one on the top, should not get any connections to anything above it or to the right and left. However, we do want the game to put us at object 1 if we go down, since it's visually below it!
+        //Object 0, the one on the top, should not get any connections to anything above it or to the right and left. 
+        //However, we do want the game to put us at object 1 if we go down, since it's visually below it!
         1 [0 2 x x]
-        //Object 1, the one in the middle, is given a connection for going up (to object 0) and going down (to object 2). However, it has no connections left and right.
+        //Object 1, the one in the middle, is given a connection for going up (to object 0) and going down (to object 2). 
+        //However, it has no connections left and right.
         2 [1 x x x]
-        //Object 2, the one on the bottom, should have a connection for going up (object 1.) However, there isnt anything below it, or to the left and right.
+        //Object 2, the one on the bottom, should have a connection for going up (object 1.) 
+        //However, there isnt anything below it, or to the left and right.
     }
 }
 
