@@ -19,8 +19,15 @@ Note that nothing in here will "summon" the boss. That can be found in [the unlo
 
 * `rematch_cutscene_night SWFFile`  -- _Selects a .swf file from "swfs/cutscenes" to pull from._ SWFFile is the name of the file without the file type extension (i.e. guillotina.swf -> guillotina)
 
+* `ending_cutscene SWFFile` -- _Selects a .swf file from "swfs/cutscenes" to pull from._ SWFFile is the name of the file without the file type extension (i.e. guillotina.swf -> guillotina)
+
+* `ending_cutscene2 SWFFile` -- _Selects a .swf file from "swfs/cutscenes" to pull from._ SWFFile is the name of the file without the file type extension (i.e. guillotina.swf -> guillotina)
+
 * `arrival_unlock AdventureProgressionKeyName` -- Calls a "unlock"/table in adventure_progression_unlocks.gon to be ran. (This is usually to run a npc sequence, which leads to Butch and Jack commenting on the Kaijus, Frank to mention C-1000, etc. )
 
 * `act X` -- The ACT the boss belongs to.
 
 * `index X` -- The position in sequence of the ACT the boss belongs to. (Used for Steven.)
+
+TODO:
+- someone PLEASE test the ending cutscenes on guillotina, using alterior cutscenes! If possible, do this on a savefile where you have not fought either guillotina or hitler yet, so we can test if the game still runs unlocks based on the boss or based on the cutscene

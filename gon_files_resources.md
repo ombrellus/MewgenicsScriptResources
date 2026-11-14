@@ -1114,7 +1114,7 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 
 `StatusImmunity [Status_Name]` -- Makes target immune to a list of statuses
 
-`StripStatuses 1` -- All statuses that were on the unit before this passive's application stay and cannot be removed.
+`StripStatuses 1` -- All statuses that are not applied through passive means or behavior (i.e. ones that are given in battle through a unit, method or technique through a ability) are ignored.
 
 `AmplifyStatus {}` -- Adds X stacks to a specific status when inflicted by the target
 * `status Status_Name` -- Status (can also be used as `AmplifyStatus Status_Name`)
@@ -1166,6 +1166,8 @@ Noted that "FormName" for all these would be the key of a table given in FormCha
 `BackstabWeakness float` -- Makes the character take damage * X if the damage was backstack (backstab already has a .25 damage bonus)
 
 `SetFaction  Faction_Name` -- Puts the character in a specific [faction](enums.md#factions)
+
+`InvertBrainFaction 1` -- Inverts faction if possible.
 
 `SetBrittleImmune Itemset_Name or ""` -- Removes brittle to items of a specific item set (Set as an empty string to remove brittle from all items)
 

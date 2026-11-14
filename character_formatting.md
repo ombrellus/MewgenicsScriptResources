@@ -90,6 +90,8 @@
 
 `round_end_bonus_turns X` -- Gives additional X bonus turns to the character at the end of the round
 
+`dispersed_bonus_turns_before_cats bool` -- Should bonus turns go before cats?
+
 `initiative X` -- Initiative of the character, changing how soon it acts during the round
 
 `flying bool` -- If it's a flying character
